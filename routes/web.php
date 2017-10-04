@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/mailable', function () {
+   // $invoice = App\Invoice::find(1);
+
+    return new App\Mail\newParticipantPurchase();
+});
