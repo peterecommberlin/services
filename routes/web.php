@@ -16,8 +16,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/mailable', function () {
-   // $invoice = App\Invoice::find(1);
+Route::get('/participants/{id}/promo', "ParticipantPromoController@index");
 
-    return new App\Mail\newParticipantPurchase();
-});
+Route::get('/participants/{id}/newsletters', "NewsletterController@index");
