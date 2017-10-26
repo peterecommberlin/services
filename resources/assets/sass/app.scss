@@ -1,4 +1,7 @@
 
+//@import "node_modules/bootstrap/scss/bootstrap.scss";
+
+
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
@@ -9,7 +12,5 @@
 //@import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 
-@import "node_modules/bootstrap/scss/bootstrap.scss";
-
-
-@import "../css/dashboard.css";
+@import "../css/dashboard.scss";
+@import "../css/custom.scss";

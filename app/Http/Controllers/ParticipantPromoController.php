@@ -12,9 +12,11 @@ class ParticipantPromoController extends Controller
     }
 
 
-    function index()
+    function index($id)
     {
-    	return view("participant.promo");
+    	$data = ["iframeSrc" => action("NewsletterController@index", ["id"=>$id])];
+
+    	return view("participant.promo", $data);
     }
 
 }
