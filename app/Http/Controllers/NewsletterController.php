@@ -10,16 +10,24 @@ use Eventjuicer\Repositories\ParticipantRepository;
 
 class NewsletterController extends Controller
 {
-    function __construct()
-    {
 
+	protected $repo;
+
+    function __construct(ParticipantRepository $repo)
+    {
+    	$this->repo = $repo;
     }
 
-    function index(ParticipantRepository $participant, $id)
+    function index($id)
     {
-    	$p = $participant->toSearchArray($id);
+    	$p = $this->repo->toSearchArray($id);
 
-    //	dd($p);
     	return new ExhibitorInvite($p, "zaproszenie na targi");
+    }
+
+    function download($id)
+    {	
+
+    	return response()->downloadViewAsHtml( $this->index($id) );
     }
 }

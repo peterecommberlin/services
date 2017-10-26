@@ -19,3 +19,4 @@ Route::get('/', function () {
 Route::get('/participants/{id}/promo', "ParticipantPromoController@index");
 
 Route::get('/participants/{id}/newsletters', "NewsletterController@index");
+Route::get('/participants/{id}/download', "NewsletterController@download");
