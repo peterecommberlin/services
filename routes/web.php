@@ -26,4 +26,7 @@ Route::get('/p/{id}/tutorial', "ParticipantPromoController@tutorial");
 
 
 Route::get('/p/{id}/newsletter-raw', "NewsletterController@index");
+
 Route::get('/p/{id}/download', "NewsletterController@download");
+
+Route::get('/p/{id}/source', "NewsletterController@source");

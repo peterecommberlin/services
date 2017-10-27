@@ -49,7 +49,11 @@ class ParticipantPromoController extends Controller
 
     function newsletter($id)
     {
-    	$data = ["iframeSrc" => action("NewsletterController@index", ["id"=>$id])];
+    	$data = [
+    		"iframeSrc" => action("NewsletterController@index", ["id"=>$id]),
+
+    		"textareaSrc" => file_get_contents(action("NewsletterController@source", ["id"=>$id]))
+    	];
 
     	return view("participant.newsletter", $data);
     }

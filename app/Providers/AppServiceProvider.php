@@ -15,6 +15,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+         \Response::macro('outputAsPlainText', function ($content) {
+
+            $headers = [
+             'Content-type'        => 'text/plain',
+             'Content-Disposition' => 'inline; filename="newsletter_'.date("YmdHi").'.html"',
+            ];
+
+            return \Response::make($content, 200, $headers);
+
+        });
+
         \Response::macro('downloadViewAsHtml', function ($content) {
 
             $headers = [
@@ -25,6 +37,8 @@ class AppServiceProvider extends ServiceProvider
             return \Response::make($content, 200, $headers);
 
         });
+
+       
 
     }
 

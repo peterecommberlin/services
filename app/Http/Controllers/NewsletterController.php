@@ -65,4 +65,10 @@ class NewsletterController extends Controller
     {	
     	return response()->downloadViewAsHtml( $this->index() );
     }
+
+     function source()
+    {	
+   
+    	return response()->outputAsPlainText( $this->index() );
+    }
 }
