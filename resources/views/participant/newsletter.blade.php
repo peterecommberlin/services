@@ -1,7 +1,7 @@
 
 @extends('layouts.default')
 
-@section('title', 'Newsletter promujący Stoisko')
+@section('title', 'Newsletter promujący udział w Targach')
 
 
 
@@ -40,6 +40,11 @@
 
 
 <section>
+
+<div class="alert alert-success" role="alert">
+ <strong>Tip:</strong> 
+  Poniższy newsletter zawiera już odpowiedni link trackingowy
+</div>  
 
 <p>Podgląd</p>
 
