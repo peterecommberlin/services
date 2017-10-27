@@ -82,7 +82,7 @@ export default class Ranking extends React.Component {
                   <th>Miejsce</th>
                   <th>Nazwa firmy</th>
                   <th>Punktów</th>
-                <th>Świadczenia</th>
+                <th>Świadczenia, które otrzymasz od Organizatora</th>
                 </tr>
               </thead>
 
