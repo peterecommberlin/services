@@ -13,14 +13,16 @@ class ExhibitorInvite extends Mailable
 
     public $participant;
     public $subject;
-  //  public $image;
+    public $imageEnc;
+    public $promolink;
 
-    public function __construct($participant, $subject)
+    public function __construct($participant, $imageEnc, $promolink, $subject)
     {
         $this->participant  = $participant;
+        $this->imageEnc     = $imageEnc;
         $this->subject      = $subject;
+        $this->promolink    = $promolink;
 
-        //$this->image = $this->embed("asd");
     }
 
     /**
@@ -30,8 +32,6 @@ class ExhibitorInvite extends Mailable
      */
     public function build()
     {
-
-
 
         return $this->subject($this->subject)->markdown('emails.exhibitor-invite');
     }

@@ -16,7 +16,14 @@ Route::get('/', function () {
 });
 
 
-Route::get('/participants/{id}/promo', "ParticipantPromoController@index");
+Route::get('/p/{id}/promo', "ParticipantPromoController@index");
+Route::get('/p/{id}/ranking', "ParticipantPromoController@ranking");
 
-Route::get('/participants/{id}/newsletters', "NewsletterController@index");
-Route::get('/participants/{id}/download', "NewsletterController@download");
+Route::get('/p/{id}/newsletter', "ParticipantPromoController@newsletter");
+
+Route::get('/p/{id}/tutorial', "ParticipantPromoController@tutorial");
+
+
+
+Route::get('/p/{id}/newsletter-raw', "NewsletterController@index");
+Route::get('/p/{id}/download', "NewsletterController@download");

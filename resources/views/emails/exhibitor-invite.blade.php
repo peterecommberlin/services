@@ -2,7 +2,7 @@
 
 @component('mail::message')
 
-<img src="data:image/png;base64,{{base64_encode(file_get_contents(array_get($participant, "fields.avatar") ))}}" alt="" style="margin-bottom: 30px;">
+<img src="{{$imageEnc}}" alt="" style="margin-bottom: 30px;">
 
 
 # Cześć, tu {{ array_get($participant, "fields.cname2") }}!
@@ -10,7 +10,7 @@
 ## 8 listopada będziemy na XIII Targach eHandlu w Warszawie. Jeśli masz czas i chęci, chętnie porozmawiamy na miejscu przy naszym stoisku {{array_get($participant, "fields.booth")}}
 
 
-@component('mail::button', ['url' => "https://targiehandlu.pl/?utm_content=" . array_get($participant, "id")])
+@component('mail::button', ['url' => $promolink])
 Odbierz bezpłatną wejściówkę
 @endcomponent
 
