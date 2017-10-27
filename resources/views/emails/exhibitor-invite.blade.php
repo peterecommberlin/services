@@ -2,8 +2,8 @@
 
 @component('mail::message')
 
-<img src="{{$imageEnc}}" alt="" style="margin-bottom: 30px;">
 
+<a href="{{$promolink}}"><img src="{{$imageEnc}}" alt="" style="margin-bottom: 30px;"></a>
 
 # Cześć, tu {{ array_get($participant, "fields.cname2") }}!
 
@@ -25,9 +25,6 @@ Do zobaczenia, {{ array_get($participant, "fields.cname2") }}
 
 PS: Targi ehandlu odbędą się na **EXPO XXI w Warszawie. Start 10:00.** 
 
-* [https://targiehandlu.pl]({{$promolink}}) 
-* https://www.facebook.com/targi.ehandlu/
-* https://twitter.com/targiehandlu/
 
 @endcomponent
 
