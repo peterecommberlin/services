@@ -25,7 +25,7 @@ Do zobaczenia, {{ array_get($participant, "fields.cname2") }}
 
 PS: Targi ehandlu odbędą się na **EXPO XXI w Warszawie. Start 10:00.** 
 
-* https://targiehandlu.pl
+* [https://targiehandlu.pl]({{$promolink}}) 
 * https://www.facebook.com/targi.ehandlu/
 * https://twitter.com/targiehandlu/
 
