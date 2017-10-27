@@ -41098,7 +41098,7 @@ var Ranking = function (_React$Component) {
                             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                 'th',
                                 null,
-                                '\u015Awiadczenia'
+                                '\u015Awiadczenia, kt\xF3re otrzymasz od Organizatora'
                             )
                         )
                     ),
