@@ -36,6 +36,8 @@
 
 <form>
   <a href="{{ action("NewsletterController@download", ["id"=>$partner_id]) }}" class="btn btn-primary">Pobierz na dysk</a>
+
+  <a href="#newsletter-source" class="btn btn-default">Skopiuj źródło</a>
 </form>
 
 
@@ -48,11 +50,23 @@
 
 <p>Podgląd</p>
 
-
 <iframe src="{{$iframeSrc}}"></iframe>
 
 </section>
 
+<section id="newsletter-source">
+
+<p>Źródło HTML Newslettera (możesz skopiować do edytora)</p>
+
+<form>
+<div class="form-group">
+
+<textarea onFocus="this.select()" class="form-control source">{{$textareaSrc}}</textarea>
+
+</div>
+</form>
+
+</section>
 
 
 @endsection
