@@ -2,7 +2,7 @@
 
 return array(
     
-"fb_app_id" => "costam z configa",
+"fb_app_id" => "171440222951000",
 
 "link" =>  "https://targiehandlu.pl/?utm_source=partner_%d&utm_medium=%s&utm_campaign=promoninja_exhibitors&utm_content=%s",
 
