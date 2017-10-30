@@ -22,6 +22,7 @@ class CreateTableForSocialPromo2 extends Migration
             $table->increments("id");
 
 
+
             $table->unsignedInteger("organizer_id")->default(0)->index();
             $table->unsignedInteger("group_id")->default(0)->index();
             $table->unsignedInteger("event_id")->default(0)->index();
@@ -30,13 +31,13 @@ class CreateTableForSocialPromo2 extends Migration
             $table->unsignedInteger("participant_id")->default(0)->index();
             $table->unsignedInteger("template_id")->default(0)->index();
 
+            $table->string("name")->nullable();
+
             $table->enum("act_as", ["link", "newsletter", "social", "banner"])->index();
             
-            $table->string("name")->nullable();
             $table->longText("data")->nullable();
 
             $table->timestamps();
-
 
         });
     }
