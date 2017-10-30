@@ -34,41 +34,80 @@
 */ ?>
 
 
-<form>
-  <a href="{{ action("NewsletterController@download", ["id"=>$partner_id]) }}" class="btn btn-primary">Pobierz na dysk</a>
 
-  <a href="#newsletter-source" class="btn btn-default">Skopiuj źródło</a>
-</form>
 
 
 <section>
+
+
+
+<p>Podgląd</p>
+
+<iframe src="{{$iframeSrc}}"></iframe>
+
 
 <div class="alert alert-success" role="alert">
  <strong>Tip:</strong> 
   Poniższy newsletter zawiera już odpowiedni link trackingowy
 </div>  
 
-<p>Podgląd</p>
-
-<iframe src="{{$iframeSrc}}"></iframe>
 
 </section>
 
 <section id="newsletter-source">
 
-<p>Źródło HTML Newslettera (możesz skopiować do edytora)</p>
+<div>
+<p>
+  <a href="{{ action("PromoNewsletterController@download", ["participantId" => $participantId, "newsletterId" => 1]) }}" class="btn btn-primary">Pobierz na dysk</a>
+
+lub skopiuj źródło poniżej
+</p>
+</div>
+
 
 <form>
 <div class="form-group">
 
-<textarea onFocus="this.select()" class="form-control source">{{$textareaSrc}}</textarea>
+<textarea onFocus="this.select()" class="form-control source"></textarea>
 
 </div>
+
+
+
 </form>
 
 </section>
 
 
 @endsection
+
+
+
+
+@push('scripts')
+
+<script type="text/javascript">
+
+
+jQuery(function(){
+
+  var newsletterSourceUrl = "{{$newsletterSourceUrl}}";
+  var target = jQuery("textarea.source");
+
+  axios.get(newsletterSourceUrl)
+  .then(function (response) {
+    target.text(response.data);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+
+});
+
+
+
+</script>
+
+@endpush
 
 

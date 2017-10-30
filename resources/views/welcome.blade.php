@@ -78,7 +78,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    services.eventjuicer.com
+                    {{ url("/") }}
                 </div>
 
                 <div class="links">
