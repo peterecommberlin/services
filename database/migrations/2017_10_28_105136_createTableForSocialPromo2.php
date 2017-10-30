@@ -15,31 +15,36 @@ class CreateTableForSocialPromo2 extends Migration
     {
 
 
-        Schema::create('eventjuicer_promo_creatives', function (Blueprint $table)
+        if (!Schema::hasTable('eventjuicer_promo_creatives'))
         {
-            
 
-            $table->increments("id");
+            Schema::create('eventjuicer_promo_creatives', function (Blueprint $table)
+            {
+                
 
-
-
-            $table->unsignedInteger("organizer_id")->default(0)->index();
-            $table->unsignedInteger("group_id")->default(0)->index();
-            $table->unsignedInteger("event_id")->default(0)->index();
+                $table->increments("id");
 
 
-            $table->unsignedInteger("participant_id")->default(0)->index();
-            $table->unsignedInteger("template_id")->default(0)->index();
 
-            $table->string("name")->nullable();
+                $table->unsignedInteger("organizer_id")->default(0)->index();
+                $table->unsignedInteger("group_id")->default(0)->index();
+                $table->unsignedInteger("event_id")->default(0)->index();
 
-            $table->enum("act_as", ["link", "newsletter", "social", "banner"])->index();
-            
-            $table->longText("data")->nullable();
 
-            $table->timestamps();
+                $table->unsignedInteger("participant_id")->default(0)->index();
+                $table->unsignedInteger("template_id")->default(0)->index();
 
-        });
+                $table->string("name")->nullable();
+
+                $table->enum("act_as", ["link", "newsletter", "social", "banner"])->index();
+                
+                $table->longText("data")->nullable();
+
+                $table->timestamps();
+
+            });
+
+        }
     }
 
     /**
