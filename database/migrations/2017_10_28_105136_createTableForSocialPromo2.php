@@ -37,8 +37,6 @@ class CreateTableForSocialPromo2 extends Migration
 
             $table->timestamps();
 
-            $table->unique(["participant_id", "creative_id"], "check");
-
 
         });
     }
