@@ -73,13 +73,9 @@ class PromoFacebookController extends Controller
         }
         else
         {
-            return redirect(
+            return redirect($this->creatives->targetUrl());
 
-                sprintf(config("promo.link"), 
-                    $this->promo->participantId(), 
-                    $creative->act_as, 
-                    $creative->id
-                ));
+               
         }
 	
     }
