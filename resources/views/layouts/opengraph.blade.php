@@ -11,16 +11,18 @@
 
 	<meta property="og:description" content="{{$description}}" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="{{$image}}" />
 
-	<meta property="og:image:secure_url" content="{{$image}}"/>
+	<meta property="og:image" content="{{$image}}?1" />
+	<meta property="og:image:secure_url" content="{{$image}}?1"/>
 	
 	<meta property="og:url" content=" "/>
 
 	<meta property="fb:app_id" content="{{config("promo.fb_app_id")}}"/>
 
 	<meta name="twitter:title" content="{{$title}}"/>
-	<meta name="twitter:image" content="{{$image}}"/>
+
+	
+	<meta name="twitter:image" content="{{$image}}?1"/>
 
 	<meta name="twitter:card" content="summary"/>
 	<meta name="twitter:description" content="{{$description}}"/>
