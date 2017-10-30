@@ -63,7 +63,7 @@
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
 
 
-      <img src="{{ asset("storage/". $template->path ) }}" data-id="{{ $template->id }}" class="selectable img-thumbnail" />
+      <img src="{{ secure_asset("storage/". $template->path ) }}" data-id="{{ $template->id }}" class="selectable img-thumbnail" />
 
 
       </div>
