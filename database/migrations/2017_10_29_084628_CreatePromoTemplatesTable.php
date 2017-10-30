@@ -21,8 +21,7 @@ class CreatePromoTemplatesTable extends Migration
             $table->unsignedInteger("group_id")->default(0)->index();
             $table->unsignedInteger("event_id")->default(0)->index();
 
-            $table->string("path")->nullable();
-            $table->longText("template")->nullable();
+            
 
             $table->enum("act_as", ["newsletter","social", "banner"])->index();
             
