@@ -8,8 +8,15 @@
 @section('content')
 
 
-@include('shared.did-you-know', ["title"=>"Nic tylko wysłać!", "description"=>"Poniższy newsletter jest zaproszeniem do odwiedzenia Twojego stoiska. Newsletter zawiera specjalny link zliczający punkty."])
 
+
+
+
+
+@if(!empty($iframeSrc))
+
+
+@include('shared.did-you-know', ["title"=>"Nic tylko wysłać!", "description"=>"Poniższy newsletter jest zaproszeniem do odwiedzenia Twojego stoiska. Newsletter zawiera specjalny link zliczający punkty."])
 
 <section>
 
@@ -43,6 +50,12 @@ lub skopiuj źródło poniżej
 
 </section>
 
+
+@else
+
+@include('shared.warning', [ "title" => "Coś jest nie tak.", "description" => "Nie możemy odnaleźć Twojego logotypu... to na pewno Twoje główne konto?"])
+
+@endif
 
 @endsection
 

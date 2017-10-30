@@ -13,7 +13,7 @@ class PromoCreativesAddPreviewColumn extends Migration
      */
     public function up()
     {
-        Schema::table('eventjuicer_promo_creatives', function (Blueprint $table) {
+        Schema::table('eventjuicer_promo_templates', function (Blueprint $table) {
             
 
             $table->string("template_path")->nullable();
@@ -30,7 +30,7 @@ class PromoCreativesAddPreviewColumn extends Migration
      */
     public function down()
     {
-        Schema::table('eventjuicer_promo_creatives', function (Blueprint $table) {
+        Schema::table('eventjuicer_promo_templates', function (Blueprint $table) {
             //
         });
     }

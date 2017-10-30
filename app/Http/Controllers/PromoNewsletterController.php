@@ -11,6 +11,10 @@ use Eventjuicer\Services\ParticipantPromoCreatives;
 
 use ZipStream\ZipStream;
 
+use Eventjuicer\Services\ImageShared;
+use Exception;
+
+
 class PromoNewsletterController extends Controller
 {
     protected $promo, $creatives;
@@ -31,21 +35,37 @@ class PromoNewsletterController extends Controller
     function index($participantId)
     {
 
+        $data = [
 
-    	$data = [
-
-    		"iframeSrc" => action(
+            "iframeSrc" => action(
                 class_basename(__CLASS__)."@raw", 
                 ["participantId"=>$participantId, "newsletterId" => 1]
                 ),
 
-    		"newsletterSourceUrl" => action(
+            "newsletterSourceUrl" => action(
                     class_basename(__CLASS__) . "@source", 
                     ["participantId"=>$participantId, "newsletterId" => 1]
                 
-    		)
-    	];
+            )
+        ];
 
+
+        //check if we have image!
+
+        try {
+
+            new ImageShared($this->promo->participantImage());
+        }
+        
+        catch (Exception $e)
+        {
+            $data = [
+                "iframeSrc" => "",
+                "newsletterSourceUrl" => ""
+            ];
+        }
+
+    
     	return view("promo.newsletter.index", $data);
     }
 
