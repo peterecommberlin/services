@@ -8,6 +8,6 @@ return array(
 
 "og_title" => "8 listopada będziemy na stoisku %s",
 
-"og_description" => "%s zaprasza na XIII Targi eHandlu na EXPO XXI w Warszawie"
+"og_description" => "Wstęp FREE. %s zaprasza na XIII Targi eHandlu na EXPO XXI w Warszawie. Blisko 140 Wystawców, 22 prezentacje Ekspertów."
 
 );
