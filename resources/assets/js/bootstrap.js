@@ -58,3 +58,30 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+
+
+
+
+// var React = require('react');
+// var SampleApp = require('./components/SampleApp.react');
+
+// function getDomain() {
+//     return document.getElementById('react').dataset.domain;
+// }
+
+// function initReact() {
+
+//     var params = {
+//         domain: getDomain()
+//     };
+
+//     React.render(
+//         <SampleApp {...params} />,
+//         document.getElementById('react')
+//     );
+
+// }
+
+// window.onload = function() {
+//     initReact();
+// };

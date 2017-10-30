@@ -16,7 +16,6 @@ Odbierz bezpłatną wejściówkę
 
 
 
-
 Targi eHandlu to również **3 sceny** prezentacyjne, blisko **140 Wystawców** oferujących produktu i usługi pomagające sprzedawać w Internecie
 
 

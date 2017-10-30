@@ -13,14 +13,21 @@ class CreateNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('notifications', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('type');
-            $table->morphs('notifiable');
-            $table->text('data');
-            $table->timestamp('read_at')->nullable();
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('eventjuicer_notifications'))
+        {
+
+            Schema::create('eventjuicer_notifications', function (Blueprint $table)
+            {
+                $table->uuid('id')->primary();
+                $table->string('type');
+                $table->morphs('notifiable');
+                $table->text('data');
+                $table->timestamp('read_at')->nullable();
+                $table->timestamps();
+
+                $table->index(['notifiable_id', 'notifiable_type'], "id_type");
+            });
+        }
     }
 
     /**
