@@ -59,12 +59,14 @@ class PromoCreativeController extends Controller
      */
     public function create(Request $request, $id)
     {
-        
+        $templates = $this->creatives->templates();
 
-          $data = [
+       
 
-                "templates" =>  $this->creatives->templates(),
-            ];
+        $data = [
+
+                "templates" =>  $templates,
+        ];
 
 
          return view("promo.creatives.edit", $data);
@@ -76,7 +78,7 @@ class PromoCreativeController extends Controller
 
         $target = $this->creatives->buildLocalFilename($creative);
 
-        $img =  (new ImageAddText($this->creatives->current(), $target))->build();
+        $img =  (new ImageAddText($this->creatives, $target))->build();
 
         return response()->json($this->creatives->buildPublicFilename($creative));
 
