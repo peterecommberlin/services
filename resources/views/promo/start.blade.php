@@ -9,7 +9,7 @@
 @section('content')
 
 
-@include('shared.did-you-know', ["title"=>"", "description" => ''])
+@include('shared.did-you-know', ["title"=>"Twój uniwersalny link trackingowy", "description" => 'Link przekierowuje do strony głównej Targów eHandlu z odpowiednimi parametrami Google Analytics, które pozwalają na przypisanie Tobie punktów w Rankingu.'])
 
 
 
