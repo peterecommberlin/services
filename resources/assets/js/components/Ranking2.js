@@ -26,7 +26,9 @@ export default class Ranking extends React.Component {
   
     getRanking()
     {
+
         axios.get('https://api.eventjuicer.com/v1/public/hosts/targiehandlu.pl/partner-performance?search=partner_&role=company')
+
             .then(function (response) {
 
                 if ("data" in response.data)

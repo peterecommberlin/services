@@ -41045,7 +41045,11 @@ var Ranking = function (_React$Component) {
     _createClass(Ranking, [{
         key: 'getRanking',
         value: function getRanking() {
+<<<<<<< HEAD
             axios.get('https://api.eventjuicer.com/v1/public/hosts/targiehandlu.pl/partner-performance?search=partner_&role=company').then(function (response) {
+=======
+            axios.get('https://api.eventjuicer.com/public/v1/hosts/targiehandlu.pl/partner-performance?search=partner_&role=company').then(function (response) {
+>>>>>>> origin/master
 
                 if ("data" in response.data) {
                     this.setState({ ranking: response.data.data });

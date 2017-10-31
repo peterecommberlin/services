@@ -59,10 +59,10 @@ class PromoCreativeController extends Controller
      */
     public function create(Request $request, $id)
     {
+
         $templates = $this->creatives->templates();
 
-       
-
+    
         $data = [
 
                 "templates" =>  $templates,

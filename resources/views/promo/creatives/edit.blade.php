@@ -63,7 +63,9 @@
       <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
 
 
+
       <img src="{{ asset("templates/".$template->template_preview_path ) }}" data-id="{{ $template->id }}" class="selectable img-thumbnail" />
+
 
 
       </div>
