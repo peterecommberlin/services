@@ -38,12 +38,15 @@
   <div class="form-group">
     <label for="">Tytuł</label>
     <input type="text" name="data[title]" class="form-control" value="{{old("data.title")}}" />
+    <small class="form-text text-muted">Min 10 znaków.</small>
+
   </div>
 
 
   <div class="form-group">
     <label for="">Opis</label>
     <textarea name="data[description]" class="form-control">{{old("data.description")}}</textarea>
+    <small class="form-text text-muted">Opcjonalne</small>
   </div>
 
 
