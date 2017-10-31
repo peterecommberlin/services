@@ -14,7 +14,7 @@
 
 
 
-@include('shared.did-you-know', ["title"=>"Możesz działać!", "description"=>"Możesz wysłać tę stronę do swoich Klientów, Partnerów, Współpracowników z prośbą o udostępnienie Twojej kreacji na serwisach społecznościowych." ])
+@include('shared.did-you-know', ["title"=>"Możesz działać!", "description"=>"Możesz wysłać tę stronę - skopiuj URL z paska przeglądarki - do swoich Klientów, Partnerów, Współpracowników z prośbą o udostępnienie Twojej kreacji na serwisach społecznościowych, do których mają dostęp." ])
 
 
 
