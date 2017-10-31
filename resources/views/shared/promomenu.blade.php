@@ -18,7 +18,7 @@
 </li>
 
 
-<li class="nav-item" style="display: none;">
+<li class="nav-item">
 <a class="nav-link {{Request::is("*/creatives*") ? "active": "" }}" href="{{ action("PromoCreativeController@index", ["participantId" => $participantId]) }}">Kreacje</a>
 
 </li>
