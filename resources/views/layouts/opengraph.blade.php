@@ -17,15 +17,17 @@
 	
 	<meta property="og:url" content=" "/>
 
-	<meta property="fb:app_id" content="{{config("promo.fb_app_id")}}"/>
-
-	<meta name="twitter:title" content="{{$title}}"/>
+	<meta property="fb:app_id" content="{{config("promo.fb_app_id", "")}}"/>
 
 	
+
+
 	<meta name="twitter:image" content="{{$image}}?1"/>
 
 	<meta name="twitter:card" content="summary"/>
 	<meta name="twitter:description" content="{{$description}}"/>
+
+<meta name="twitter:site" content="{{config("promo.twitter_site", "")}}"/>
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -41,23 +43,6 @@
 	@yield('content')
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
