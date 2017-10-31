@@ -13,7 +13,7 @@
 @section('content')
 
 
-@include('shared.did-you-know', ["title"=>"", "description"=>"", "action" => action("PromoCreativeController@create", compact("participantId")) ])
+@include('shared.did-you-know', ["title"=>"Oto generator indywidualnych kreacji na serwisy społecznościowe", "description"=>"Kliknij Utwórz nową aby zacząć. Wykorzystaj jeden z szablonów - dodaj własny tekst, który będzie widoczny na serwisach społecznościowych. Każda wygenerowana kreacja zawiera link trackingowy!", "action" => action("PromoCreativeController@create", compact("participantId")) ])
 
 
 
