@@ -30,6 +30,8 @@ Route::get('/~{hash}', "PromoFacebookController@index")->where("hash", "[a-zA-Z0
 Route::get('/~{hash}/p', "PromoFacebookController@preview")->where("hash", "[a-zA-Z0-9]+");
 
 
+Route::get('/ninja', "RefericonController@index");
+
 
 
 /**

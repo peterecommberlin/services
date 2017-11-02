@@ -28,25 +28,6 @@
   <body>
 
 
-<script>
-window.fbAsyncInit = function() {
-FB.init({
-appId            : '{{config("promo.fb_app_id", "")}}',
-autoLogAppEvents : true,
-xfbml            : true,
-version          : 'v2.10'
-});
-FB.AppEvents.logPageView();
-};
-
-(function(d, s, id){
-var js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id)) {return;}
-js = d.createElement(s); js.id = id;
-js.src = "https://connect.facebook.net/en_US/sdk.js";
-fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
@@ -64,7 +45,7 @@ fjs.parentNode.insertBefore(js, fjs);
 
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">{{$participantName}} <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
             </li>
            
 
@@ -79,7 +60,7 @@ fjs.parentNode.insertBefore(js, fjs);
       <div class="row">
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
 
-            @include('shared.promomenu')
+         
 
 
         </nav>
@@ -109,15 +90,16 @@ fjs.parentNode.insertBefore(js, fjs);
 
 
    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 
 
-    <script src="{{ mix('/js/app.js') }}"></script>
+    <script src="{{ mix('/js/appq.js') }}"></script>
 
 
- @stack('scripts')
+
  
 
   </body>
@@ -137,5 +119,6 @@ fjs.parentNode.insertBefore(js, fjs);
              
 
             
+
 
 
