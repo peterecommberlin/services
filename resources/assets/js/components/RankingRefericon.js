@@ -80,8 +80,10 @@ export default class Ranking extends React.Component {
                   <th>Wynik</th>
 
                   <th>Imię i nazwisko</th>
-                  <th>Telefon</th>
                   <th>Email</th>
+
+                  <th>Telefon</th>
+                
                   
                   <th>Świadczenia, które otrzymasz od Fundatorów nagród</th>
                 </tr>
