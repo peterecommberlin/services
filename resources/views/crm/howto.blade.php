@@ -7,7 +7,7 @@
 @section('content')
 
 
-<h2>{{$participantName}} Stoisko: {{$booth}}</h2>
+<h4>{{$participantName}} Stoisko: {{$booth}}</h4>
 
 
 
