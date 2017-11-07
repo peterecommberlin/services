@@ -2,6 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import GA from './ga';
 
 
 const prizes = [
@@ -27,19 +28,23 @@ export default class Ranking extends React.Component {
     getRanking()
     {
 
-        axios.get('https://api.eventjuicer.com/v1/public/hosts/targiehandlu.pl/partner-performance?search=partner_&role=company')
 
-            .then(function (response) {
+      this.setState({ranking: GA.data});
 
-                if ("data" in response.data)
-                {
-                    this.setState({ranking: response.data.data});
-                }
+
+        // axios.get('https://api.eventjuicer.com/v1/public/hosts/targiehandlu.pl/partner-performance?search=partner_&role=company')
+
+        //     .then(function (response) {
+
+        //         if ("data" in response.data)
+        //         {
+        //             this.setState({ranking: response.data.data});
+        //         }
                 
-        }.bind(this))
-        .catch(function (error) {
-            console.log(error);
-        });
+        // }.bind(this))
+        // .catch(function (error) {
+        //     console.log(error);
+        // });
     }
 
     renderPrizes(pos)
