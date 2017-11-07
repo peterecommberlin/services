@@ -9,7 +9,7 @@ const prizes = [
 
   {"name" : "Wywiad video", "min" : 1, "max" : 3},
   {"name" : "Prawo do dystrybucji ulotek", "min": 1, "max": 20},
-  {"name" : "Aplikacja do skanowania zwiedzających", "min": 1, "max": 50}
+  {"name" : "Aplikacja do skanowania zwiedzających", "min": 1, "max": 50, "link" : true}
 
 ];
  
@@ -47,9 +47,9 @@ export default class Ranking extends React.Component {
         // });
     }
 
-    renderPrizes(pos)
+    renderPrizes(pos, company)
     {
-        
+        console.log(company);
 
         return (<ul> {
 
@@ -57,7 +57,11 @@ export default class Ranking extends React.Component {
 
             if(prize.min <= pos+1 && pos+1 <= prize.max)
             {
-                return (<li key={i}>{prize.name}</li>);
+                return (<li key={i}>
+
+                {"link" in prize ? <a href={`/p/${company.source}/scanner`}>{prize.name}</a> : prize.name }
+
+                </li>);
             }
 
             return null;
@@ -96,18 +100,18 @@ export default class Ranking extends React.Component {
                 <tbody>
                 {rankingFiltered ? 
 
-                    rankingFiltered.map(function(item,i)
+                    rankingFiltered.map(function(company,i)
                     {
 
                         return (
 
                 <tr key={i}>
                  <td>{i+1}</td>
-                  <td>{item.name}</td>
-                  <td>{item.sessions}</td>
+                  <td>{company.name}</td>
+                  <td>{company.sessions}</td>
                   <td>{
 
-                    this.renderPrizes(i)
+                    this.renderPrizes(i, company)
 
                   }</td>
                 </tr> 

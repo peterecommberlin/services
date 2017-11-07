@@ -6,6 +6,10 @@ use Illuminate\Support\ServiceProvider;
 
 
 
+use Illuminate\Support\Facades\View;
+use Eventjuicer\ViewComposers\ParticipantPromoComposer;
+
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -16,7 +20,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        
+        View::composer('promo/*', ParticipantPromoComposer::class);
+        View::composer('crm/*', ParticipantPromoComposer::class);
+
         if($this->app->environment() === 'production')
         { 
             $this->app['request']->server->set('HTTPS', true); 

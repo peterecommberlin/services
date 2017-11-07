@@ -41,36 +41,48 @@ Route::get('/ninja', "RefericonController@index");
 **/
 
 
-Route::prefix('p/{participant}/promo')->group(function()
+
+
+
+Route::prefix('p/{participant}')->group(function()
 {
-   
-
-	Route::get('ranking', "PromoController@ranking");
-
-	Route::get('creatives/{creative}/generate', "PromoCreativeController@generate");
-
-	Route::resource('creatives', "PromoCreativeController");
-
-	Route::get('logistics', "PromoController@logistics");
-	Route::get('learn', "PromoController@learn");
 
 
-	Route::get('newsletters/{newsletterId}/zip', "PromoNewsletterController@zip");
 
-	Route::get('newsletters/{newsletterId}/raw', "PromoNewsletterController@raw");
+	Route::prefix('promo')->group(function()
+	{
+	   
 
-	Route::get('newsletters/{newsletterId}/download',"PromoNewsletterController@download");
+		Route::get('ranking', "PromoController@ranking");
 
-	Route::get('newsletters/{newsletterId}/source', "PromoNewsletterController@source");
+		Route::get('creatives/{creative}/generate', "PromoCreativeController@generate");
 
-	Route::get('newsletters/{newsletterId}/send', "PromoNewsletterSendController@index");
+		Route::resource('creatives', "PromoCreativeController");
 
-	Route::resource('newsletters', "PromoNewsletterController");
+		Route::get('logistics', "PromoController@logistics");
+		Route::get('learn', "PromoController@learn");
 
-	Route::get('/', "PromoController@index");
 
+		Route::get('newsletters/{newsletterId}/zip', "PromoNewsletterController@zip");
+
+		Route::get('newsletters/{newsletterId}/raw', "PromoNewsletterController@raw");
+
+		Route::get('newsletters/{newsletterId}/download',"PromoNewsletterController@download");
+
+		Route::get('newsletters/{newsletterId}/source', "PromoNewsletterController@source");
+
+		Route::get('newsletters/{newsletterId}/send', "PromoNewsletterSendController@index");
+
+		Route::resource('newsletters', "PromoNewsletterController");
+
+		Route::get('/', "PromoController@index");
+
+
+	});
+
+
+	Route::get('scanner', "ScannerController@index");
 
 });
-
 
 
