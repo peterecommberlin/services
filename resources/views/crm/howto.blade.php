@@ -7,11 +7,6 @@
 @section('content')
 
 
-<h4>{{$participantName}} Stoisko: {{$booth}}</h4>
-
-
-
-
 <div class="row">
 	
 	<div class="col">
@@ -36,10 +31,9 @@
 <div class="hero mt-3">
 
 
-
 <ul style="list-style-type: nosne;">
 
-<li class="mt-3">
+<li class="mt-2">
 
 	<h4>
 		
@@ -49,7 +43,7 @@
 
 </li>
 
-<li class="mt-3">
+<li class="mt-2">
 
 <h4>
 Wejdź na stronę <strong>http://exhibitordeck.com</strong> z komórki i kliknij "Open it with Expo" 
@@ -57,7 +51,7 @@ Wejdź na stronę <strong>http://exhibitordeck.com</strong> z komórki i kliknij
 
 </li>
 
-<li class="mt-3">
+<li class="mt-2">
 	
 	<h4>
 	Zeskanuj kod QR (w górnym prawym rogu) by się "zalogować".
@@ -67,7 +61,7 @@ Wejdź na stronę <strong>http://exhibitordeck.com</strong> z komórki i kliknij
 
 </li>
 
-<li class="mt-3">
+<li class="mt-2">
 	
 <h4>
 	Skanuj Zwiedzających
@@ -78,7 +72,7 @@ Wejdź na stronę <strong>http://exhibitordeck.com</strong> z komórki i kliknij
 
 
 
-<li  class="mt-3">
+<li  class="mt-2">
 
 	<h4>
 	
@@ -99,6 +93,7 @@ Wejdź na stronę <strong>http://exhibitordeck.com</strong> z komórki i kliknij
 
 
 
+<h4>{{$participantName}} Stoisko: {{$booth}}</h4>
 
 
 
