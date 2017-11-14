@@ -178,7 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-
+        Eventjuicer\Providers\LaravelApiComponents::class,
 
         \Torann\GeoIP\GeoIPServiceProvider::class,
 
