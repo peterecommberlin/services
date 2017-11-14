@@ -35,13 +35,24 @@ class PromoNewsletterController extends Controller
     function index($participantId)
     {
 
+       return $this->show($participantId, 1);
+    }
+
+    function show($participantId, $id)
+    {
+
+
+        
+         $data = [
 
             "iframeSrc" => action(
                 class_basename(__CLASS__)."@raw", 
+                ["participantId"=>$participantId, "newsletterId" => $id]
                 ),
 
             "newsletterSourceUrl" => action(
                     class_basename(__CLASS__) . "@source", 
+                    ["participantId"=>$participantId, "newsletterId" => $id]
                 
             )
         ];
@@ -63,17 +74,18 @@ class PromoNewsletterController extends Controller
         }
 
     
+        return view("promo.newsletter.index", $data);
+
+    }
 
 
 
 
 
-
-
-
-
+    function raw($participantId, $id)
     {
 
+    
        $creative = $this->creatives->filtered("newsletter")->first();
 
        $target = $this->creatives->buildLocalFilename($creative);
@@ -83,10 +95,41 @@ class PromoNewsletterController extends Controller
        $filename = $this->creatives->buildPublicFilename($creative);
 
 
+       //masked link
+       $link  = $this->creatives->buildLink($creative->id);
+
+
+        if($id > 1)
+        {   
+
+            app()->setLocale("en");
+
+            config(["app.name" => "E-commerce Berlin #3"]);
+
+            $link = sprintf(config("promo.link"), 
+                    $creative->participant_id,
+                    $creative->participant_id, 
+                    $creative->act_as, 
+                    $creative->id
+                );
+        }
+
+
+
 
        $newsletter = new ExhibitorInvite(
-    		$this->promo->participant(), 
 
+    		$this->promo->participant(), 
+    	
+        	(string) $filename , 
+    	
+        	$link,
+    	
+        	config("promo.email_subject"),
+        
+            'emails.exhibitor-invite' . $id
+
+        );
 
        $render = $newsletter->render();
 
@@ -100,6 +143,7 @@ class PromoNewsletterController extends Controller
 
     }
 
+    function zip($participantId, $id)
     {
         
         $creative = $this->creatives->filtered("newsletter")->first();
@@ -122,11 +166,15 @@ class PromoNewsletterController extends Controller
         return $zip->finish();
     }
 
+    function download($participantId, $id)
     {	
+    	return response()->downloadViewAsHtml( $this->raw($participantId, $id) );
     }
 
+    function source($participantId, $id)
     {	
    
+    	return response()->outputAsPlainText( $this->raw($participantId, $id) );
     }
 
 
