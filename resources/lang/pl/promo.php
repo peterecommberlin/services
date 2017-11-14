@@ -3,9 +3,11 @@
 return [
 
 
-	"newsletter_preview_title" => "Newsletter promujący udział w Targach",
+	"newsletter_preview_pagetitle" => "Newsletter promujący udział w Targach",
 
-	"newsletter_preview_tip_title" => "Nic tylko wysyłać!", 
+	"newsletter_preview_title" => "Podgląd newslettera",
+
+	"newsletter_preview_tip_summary" => "Nic tylko wysyłać!", 
 
 	"newsletter_preview_tip" => "Poniższy newsletter jest zaproszeniem do odwiedzenia Twojego stoiska. Newsletter zawiera specjalny link zliczający punkty.",
 

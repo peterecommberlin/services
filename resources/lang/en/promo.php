@@ -3,14 +3,16 @@
 return [
 
 
-	"newsletter_preview_title" => "Newsletter promujący udział w Targach",
+	"newsletter_preview_pagetitle" => "Promote your call-for-papers presentation!",
 
-	"newsletter_preview_tip_title" => "Nic tylko wysyłać!", 
+	"newsletter_preview_title" => "Newsletter preview",
 
-	"newsletter_preview_tip" => "Poniższy newsletter jest zaproszeniem do odwiedzenia Twojego stoiska. Newsletter zawiera specjalny link zliczający punkty.",
+	"newsletter_preview_tip_summary" => "Ready to use!", 
 
-	"newsletter_preview_download" => "Pobierz na dysk",
+	"newsletter_preview_tip" => "Use newsletter template provided below - you can download HTML file or copy/paste visible source code. Use your favourite email campaing software to send it out.",
 
-	"newsletter_preview_source_copy" => "Skopiuj źródło"
+	"newsletter_preview_download" => "Download HTML file",
+
+	"newsletter_preview_source_copy" => "Copy HTML source"
 
 ];

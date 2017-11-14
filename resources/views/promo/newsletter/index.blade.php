@@ -1,7 +1,7 @@
 
 @extends('layouts.default')
 
-@section('title', __('promo.newsletter_preview_title'))
+@section('title', __('promo.newsletter_preview_pagetitle'))
 
 
 
@@ -12,11 +12,11 @@
 @if(!empty($iframeSrc))
 
 
-@include('shared.did-you-know', ["title"=>"Nic tylko wysłać!", "description"=>__("promo.newsletter_preview_tip")])
+@include('shared.did-you-know', ["title"=>__("promo.newsletter_preview_tip_summary"), "description"=>__("promo.newsletter_preview_tip")])
 
 <section>
 
-<p>Podgląd newslettera</p>
+<p>{{__('promo.newsletter_preview_title')}}</p>
 
 <iframe src="{{$iframeSrc}}"></iframe>
 
@@ -28,7 +28,9 @@
 <p>
   <a href="{{ action("PromoNewsletterController@download", ["participantId" => $participantId, "newsletterId" => 1]) }}" class="btn btn-primary">{{__("promo.newsletter_preview_download")}}</a>
 
-lub {{__("promo.newsletter_preview_source_copy")}}
+  {{__("general.or")}}
+
+ {{__("promo.newsletter_preview_source_copy")}}
 </p>
 </div>
 
