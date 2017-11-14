@@ -179,13 +179,13 @@ class PromoNewsletterController extends Controller
 
     function download($participantId, $id)
     {	
-    	return response()->downloadViewAsHtml( $this->raw($participantId, $id) );
+    	return response()->downloadViewAsHtml( $this->raw($participantId, $id), request()->getHttpHost() );
     }
 
     function source($participantId, $id)
     {	
    
-    	return response()->outputAsPlainText( $this->raw($participantId, $id) );
+    	return response()->outputAsPlainText( $this->raw($participantId, $id), request()->getHttpHost() );
     }
 
 
