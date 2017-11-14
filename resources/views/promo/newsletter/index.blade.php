@@ -1,7 +1,7 @@
 
 @extends('layouts.default')
 
-@section('title', 'Newsletter promujący udział w Targach')
+@section('title', __('promo.newsletter_preview_title'))
 
 
 
@@ -9,14 +9,10 @@
 
 
 
-
-
-
-
 @if(!empty($iframeSrc))
 
 
-@include('shared.did-you-know', ["title"=>"Nic tylko wysłać!", "description"=>"Poniższy newsletter jest zaproszeniem do odwiedzenia Twojego stoiska. Newsletter zawiera specjalny link zliczający punkty."])
+@include('shared.did-you-know', ["title"=>"Nic tylko wysłać!", "description"=>__("promo.newsletter_preview_tip")])
 
 <section>
 
@@ -30,9 +26,9 @@
 
 <div>
 <p>
-  <a href="{{ action("PromoNewsletterController@download", ["participantId" => $participantId, "newsletterId" => 1]) }}" class="btn btn-primary">Pobierz na dysk</a>
+  <a href="{{ action("PromoNewsletterController@download", ["participantId" => $participantId, "newsletterId" => 1]) }}" class="btn btn-primary">{{__("promo.newsletter_preview_download")}}</a>
 
-lub skopiuj źródło poniżej
+lub {{__("promo.newsletter_preview_source_copy")}}
 </p>
 </div>
 

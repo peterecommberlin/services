@@ -35,16 +35,13 @@ class PromoNewsletterController extends Controller
     function index($participantId)
     {
 
-        $data = [
 
             "iframeSrc" => action(
                 class_basename(__CLASS__)."@raw", 
-                ["participantId"=>$participantId, "newsletterId" => 1]
                 ),
 
             "newsletterSourceUrl" => action(
                     class_basename(__CLASS__) . "@source", 
-                    ["participantId"=>$participantId, "newsletterId" => 1]
                 
             )
         ];
@@ -66,8 +63,6 @@ class PromoNewsletterController extends Controller
         }
 
     
-    	return view("promo.newsletter.index", $data);
-    }
 
 
 
@@ -77,8 +72,6 @@ class PromoNewsletterController extends Controller
 
 
 
-
-    function raw()
     {
 
        $creative = $this->creatives->filtered("newsletter")->first();
@@ -89,11 +82,11 @@ class PromoNewsletterController extends Controller
 
        $filename = $this->creatives->buildPublicFilename($creative);
 
+
+
        $newsletter = new ExhibitorInvite(
     		$this->promo->participant(), 
-    		(string) $filename , 
-    		$this->creatives->buildLink($creative->id),
-    		"Spotkajmy się 8 listopada w Warszawie!");
+
 
        $render = $newsletter->render();
 
@@ -107,7 +100,6 @@ class PromoNewsletterController extends Controller
 
     }
 
-    function zip()
     {
         
         $creative = $this->creatives->filtered("newsletter")->first();
@@ -130,15 +122,11 @@ class PromoNewsletterController extends Controller
         return $zip->finish();
     }
 
-    function download()
     {	
-    	return response()->downloadViewAsHtml( $this->raw() );
     }
 
-    function source()
     {	
    
-    	return response()->outputAsPlainText( $this->raw() );
     }
 
 

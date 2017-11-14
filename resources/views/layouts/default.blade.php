@@ -54,7 +54,7 @@ fjs.parentNode.insertBefore(js, fjs);
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         
 
-        <a class="navbar-brand" href="#">Targi eHandlu</a>
+        <a class="navbar-brand" href="#">{{config("promo.site_name")}}</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -77,12 +77,17 @@ fjs.parentNode.insertBefore(js, fjs);
 
     <div class="container-fluid">
       <div class="row">
+
+        @if(config("promo.show_menu"))
+
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
 
             @include('shared.promomenu')
 
 
         </nav>
+
+        @endif
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
 
