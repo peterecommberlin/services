@@ -67,7 +67,11 @@ class PromoNewsletterController extends Controller
                     class_basename(__CLASS__) . "@source", 
                     ["participantId"=>$participantId, "newsletterId" => $id]
                 
-            )
+            ),
+
+            "downloadLink" => action(class_basename(__CLASS__)."@download", 
+               ["participantId"=>$participantId, "newsletterId" => $id]
+           )
         ];
 
 

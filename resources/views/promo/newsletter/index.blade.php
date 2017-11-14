@@ -26,7 +26,7 @@
 
 <div>
 <p>
-  <a href="{{ action("PromoNewsletterController@download", ["participantId" => $participantId, "newsletterId" => 1]) }}" class="btn btn-primary">{{__("promo.newsletter_preview_download")}}</a>
+  <a href="{{ $downloadLink }}" class="btn btn-primary">{{__("promo.newsletter_preview_download")}}</a>
 
   {{__("general.or")}}
 
