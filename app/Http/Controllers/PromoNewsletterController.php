@@ -19,7 +19,7 @@ class PromoNewsletterController extends Controller
 {
     protected $promo, $creatives;
 
-    function __construct(ParticipantPromo $promo, ParticipantPromoCreatives $creatives)
+    function __construct(Request $request, ParticipantPromo $promo, ParticipantPromoCreatives $creatives)
     {
 
         $this->promo = $promo;
@@ -29,6 +29,20 @@ class PromoNewsletterController extends Controller
         //we should check if we have customlink
 
         $this->creatives->autogenerateIfNone("newsletter");
+
+
+/**
+* temporaryhack
+*/
+
+ 
+  
+        if($request->route("newsletterId") > 1)
+        {
+            app()->setLocale("en");
+
+            config(["app.name" => "E-commerce Berlin #3"]);
+        }
 
     }
 
@@ -42,8 +56,7 @@ class PromoNewsletterController extends Controller
     {
 
 
-        
-         $data = [
+        $data = [
 
             "iframeSrc" => action(
                 class_basename(__CLASS__)."@raw", 
@@ -102,9 +115,7 @@ class PromoNewsletterController extends Controller
         if($id > 1)
         {   
 
-            app()->setLocale("en");
-
-            config(["app.name" => "E-commerce Berlin #3"]);
+         
 
             $link = sprintf(config("promo.link"), 
                     $creative->participant_id,

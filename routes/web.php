@@ -73,7 +73,10 @@ Route::prefix('p/{participant}')->group(function()
 
 		Route::get('newsletters/{newsletterId}/send', "PromoNewsletterSendController@index");
 
-		Route::resource('newsletters', "PromoNewsletterController");
+		Route::get('newsletters/{newsletterId}', "PromoNewsletterController@show");
+
+		Route::get('newsletters', "PromoNewsletterController@index");
+
 
 		Route::get('/', "PromoController@index");
 
