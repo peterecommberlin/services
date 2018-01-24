@@ -16,6 +16,15 @@ Route::get('/', function()
     return view('welcome');
 });
 
+
+https://services.eventjuicer.com/company-assign/380157078faad64aa1f1632a7d37363ceba320a4
+
+Route::get('/company-assign/{token}', 
+
+	"CompanyAssignController@index")->where("token", "[a-zA-Z0-9]{32,}");
+
+
+
 Route::get('/p', function()
 {
     abort(404);
@@ -31,6 +40,19 @@ Route::get('/~{hash}/p', "PromoFacebookController@preview")->where("hash", "[a-z
 
 
 Route::get('/ninja', "RefericonController@index");
+Route::get('/ninja2', "RefericonController@indexWinners");
+
+
+
+Route::get('/invites', "InvitesGeneratorController@index");
+
+
+
+Route::get('/meetup-mute/', "MeetupController@mute");
+Route::get('/meetup-block/', "MeetupController@index");
+Route::get('/meetup-confirm/', "MeetupController@index");
+
+
 
 
 

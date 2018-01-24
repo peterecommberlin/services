@@ -30,6 +30,12 @@ class RefericonController extends Controller
         return view("refericon", []);
     }
 
+    public function indexWinners()
+    {
+
+        return view("refericon2", []);
+    }
+
 
 
 }

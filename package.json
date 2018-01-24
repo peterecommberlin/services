@@ -25,6 +25,7 @@
         "tether": "^1.4.0"
     },
     "dependencies": {
-        "babel-polyfill": "^6.26.0"
+        "babel-polyfill": "^6.26.0",
+        "react-csv": "^1.0.8"
     }
 }

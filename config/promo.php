@@ -30,7 +30,7 @@ array(
     
 "fb_app_id" => "171440222951000",
 
-"show_menu" => 0,
+"show_menu" => 1,
 
 "twitter_site" => "@targiehandlu",
 

@@ -16,4 +16,4 @@ require('./bootstrap');
 //require('./components/Example');
 
 
-require('./components/RankingRefericon');
+require('./components/RankingRefericon2');

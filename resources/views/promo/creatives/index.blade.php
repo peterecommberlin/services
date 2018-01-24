@@ -61,4 +61,4 @@
 
 </script>
 
-@enpush
+@endpush

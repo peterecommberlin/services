@@ -12,7 +12,7 @@ use Eventjuicer\Services\ParticipantPromo;
 use Eventjuicer\Services\ParticipantPromoCreatives;
 
 
-use Eventjuicer\Services\ImageAddText;
+use Eventjuicer\Services\PromoImageAddText;
 
 class PromoCreativeController extends Controller
 {
@@ -78,7 +78,7 @@ class PromoCreativeController extends Controller
 
         $target = $this->creatives->buildLocalFilename($creative);
 
-        $img =  (new ImageAddText($this->creatives, $target))->build();
+        $img =  (new PromoImageAddText($this->creatives, $target))->build();
 
         return response()->json($this->creatives->buildPublicFilename($creative));
 
