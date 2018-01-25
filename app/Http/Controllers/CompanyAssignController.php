@@ -23,10 +23,8 @@ class CompanyAssignController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($token)
+    public function index()
     {
-
-        $this->user->setToken($token);
 
         $assign = (new ApiUserAssign($this->user))->make(true);
 

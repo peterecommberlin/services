@@ -17,11 +17,6 @@ Route::get('/', function()
 });
 
 
-https://services.eventjuicer.com/company-assign/380157078faad64aa1f1632a7d37363ceba320a4
-
-Route::get('/company-assign/{token}', 
-
-	"CompanyAssignController@index")->where("token", "[a-zA-Z0-9]{32,}");
 
 
 

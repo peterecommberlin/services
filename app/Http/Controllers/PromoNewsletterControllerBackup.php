@@ -77,18 +77,18 @@ class PromoNewsletterController extends Controller
 
         //check if we have image!
 
-        try {
+        // try {
 
-            new ImageShared($this->promo->participantImage());
-        }
+        //     new ImageShared($this->promo->participantImage());
+        // }
         
-        catch (Exception $e)
-        {
-            $data = [
-                "iframeSrc" => "",
-                "newsletterSourceUrl" => ""
-            ];
-        }
+        // catch (Exception $e)
+        // {
+        //     $data = [
+        //         "iframeSrc" => "",
+        //         "newsletterSourceUrl" => ""
+        //     ];
+        // }
 
     
         return view("promo.newsletter.index", $data);

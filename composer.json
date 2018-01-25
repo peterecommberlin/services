@@ -15,6 +15,7 @@
     "require": {
         "php": ">=7.0.0",
         "aws/aws-sdk-php": "^3.36",
+        "barryvdh/laravel-cors": "^0.11.0",
         "eventjuicer/api-components": "@dev",
         "fideloper/proxy": "~3.3",
         "guzzlehttp/guzzle": "^6.3",
