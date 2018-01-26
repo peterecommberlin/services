@@ -25,7 +25,7 @@ class CompanyNewsletterController extends Controller
 
        if(!$participant)
        {
-        abort(404);
+        abort(404, "cannot find user :/");
        }
 
        $this->user = $user;
@@ -33,6 +33,7 @@ class CompanyNewsletterController extends Controller
        $this->user->setToken($participant->token);
 
        app()->setLocale("en");
+
        config(["app.name" => "E-commerce Berlin #3"]);
  
         
@@ -41,12 +42,15 @@ class CompanyNewsletterController extends Controller
     public function show(Request $request, int $id)
     {
 
-        $source = $this->user->logotype();
+        $source = $this->user->logotype(); //switchToParent!
         $filename = md5($source) . ".jpg";
         $publicSource = asset("storage/" . $filename);
         $localTarget = storage_path("app/public/" . $filename);
 
         $image =  (new ImageEncode($source , $localTarget))->save();
+
+
+
 
        $newsletter = (new ExhibitorInvite(
        
@@ -56,7 +60,7 @@ class CompanyNewsletterController extends Controller
                
                    $this->user->trackingLink(),
                
-                   "e-commerce berlin expo #3",
+                   "Meet us at the E-Commerce Berlin Expo 2018!",
                
                    'emails.eb3-exhibitor-' . $id
        

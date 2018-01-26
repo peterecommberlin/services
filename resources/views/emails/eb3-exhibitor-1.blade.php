@@ -9,23 +9,22 @@
 </div>
 
 
-# VOTE FOR US!
+# Hi,
 
-## We are participating in the CALL FOR PAPERS - CONTEST of the **E-Commerce Berlin Expo 2018!** Winners will be granted a spot on the EBE stage on **February 15, 2018** at Station, Berlin! 
+## We would like to let you know that {{ array_get($participant, "fields.cname2") }} is exhibiting at the E-Commerce Berlin Expo 2018 on **February 15th** at STATION, Berlin. 
 
+We’re excited for a day fully dedicated to e-commerce best practices &amp; trends. 
+Come have a chat with us at stand {{ array_get($participant, "fields.booth") }}.
 
-You can help us become part of the agenda by voting for our presentation proposal “{{ array_get($participant, "fields.presentation_title") }}” below: 
 
 @component('mail::button', ['url' => $promolink])
-Click here to go to the voting page
+Register for a free ticket here
 @endcomponent
 
+Looking forward to meet you! 
 
-We’re looking forward to your support! 
-
-Thank you!
+Kind Regards,
 {{ array_get($participant, "fields.cname2") }}
-
 
 @endcomponent
 
