@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Eventjuicer\Services\ApiUser;
 use Eventjuicer\Services\ImageEncode;
 use Eventjuicer\ValueObjects\RichContent;
+use Eventjuicer\Repositories\ParticipantRepository;
 
 use App\Mail\ExhibitorInvite;
 use ZipStream\ZipStream;
@@ -17,11 +18,19 @@ class CompanyNewsletterController extends Controller
 {
     protected $user;
 
-    function __construct(ApiUser $user)
+    function __construct(ApiUser $user, ParticipantRepository $participants, Request $request)
     {
        
+       $participant = $participants->find($request->input("participant_id"));
+
+       if(!$participant)
+       {
+        abort(404);
+       }
+
        $this->user = $user;
-       $this->user->check();
+
+       $this->user->setToken($participant->token);
 
        app()->setLocale("en");
        config(["app.name" => "E-commerce Berlin #3"]);
