@@ -7,11 +7,14 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
+use Eventjuicer\Services\Personalizer;
+
 class ExhibitorInvite extends Mailable
 {
     use Queueable, SerializesModels;
 
     public $participant;
+    public $fields;
     public $subject;
     public $imageEnc;
     public $promolink;
@@ -24,6 +27,8 @@ class ExhibitorInvite extends Mailable
         $this->subject      = $subject;
         $this->promolink    = $promolink;
         $this->body         = $body;
+
+        $this->fields = new Personalizer($this->participant);
     }
 
     /**

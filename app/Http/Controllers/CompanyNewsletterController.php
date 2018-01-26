@@ -43,6 +43,7 @@ class CompanyNewsletterController extends Controller
     {
 
         $source = $this->user->logotype(); //switchToParent!
+
         $filename = md5($source) . ".jpg";
         $publicSource = asset("storage/" . $filename);
         $localTarget = storage_path("app/public/" . $filename);
@@ -75,6 +76,11 @@ class CompanyNewsletterController extends Controller
         if($request->input("zip"))
         {
             return $this->zip($id, $newsletter);
+        }
+
+        if($request->input("html"))
+        {
+            return $newsletter;
         }
 
         return response()->outputAsPlainText( $newsletter, request()->getHttpHost() );

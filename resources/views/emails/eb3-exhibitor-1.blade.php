@@ -11,10 +11,10 @@
 
 # Hi,
 
-## We would like to let you know that {{ array_get($participant, "fields.cname2", "our company") }} is exhibiting at the E-Commerce Berlin Expo 2018 on **February 15th** at STATION, Berlin. 
+## We would like to let you know that {{ $fields->translate("[[cname2]]") }} is exhibiting at the E-Commerce Berlin Expo 2018 on **February 15th** at STATION, Berlin. 
 
 We’re excited for a day fully dedicated to e-commerce best practices &amp; trends. 
-Come have a chat with us at stand {{ array_get($participant, "fields.booth") }}.
+Come have a chat with us at stand {{ $fields->translate("[[booth]]") }}.
 
 
 @component('mail::button', ['url' => $promolink])
