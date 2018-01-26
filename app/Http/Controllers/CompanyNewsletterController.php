@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use Eventjuicer\Services\ApiUser;
 use Eventjuicer\Services\ImageEncode;
+use Eventjuicer\ValueObjects\RichContent;
+
 use App\Mail\ExhibitorInvite;
 use ZipStream\ZipStream;
 
@@ -19,28 +21,29 @@ class CompanyNewsletterController extends Controller
     {
        
        $this->user = $user;
-       
+       $this->user->check();
+
        app()->setLocale("en");
        config(["app.name" => "E-commerce Berlin #3"]);
+ 
         
     }
 
     public function show(Request $request, int $id)
     {
 
-        $file = $this->user->logotype();
+        $source = $this->user->logotype();
+        $filename = md5($source) . ".jpg";
+        $publicSource = asset("storage/" . $filename);
+        $localTarget = storage_path("app/public/" . $filename);
 
-        $publicFilename = asset("storage/" . md5($file) . ".jpg");
-
-        $localTarget = storage_path("app/public/" . md5($file) . ".jpg");
-
-        $image =  (new ImageEncode($file , $localTarget))->save();
+        $image =  (new ImageEncode($source , $localTarget))->save();
 
        $newsletter = (new ExhibitorInvite(
        
                    $this->user->user(), 
                
-                   (string) $publicFilename , 
+                   (string) $publicSource , 
                
                    $this->user->trackingLink(),
                
@@ -69,32 +72,42 @@ class CompanyNewsletterController extends Controller
     public function zip($id, $source)
     {
         
-        $zip = new ZipStream("newsletter_eb3_".$id . ".zip");
+        $zip = new ZipStream("ecommerce_berlin_expo_newsletter_".$id . ".zip");
+
+        $images = (new RichContent($source))->images();
+
+        $c = 1;
+
+        foreach($images as $image)
+        {
+
+          $fp = tmpfile();
+
+          $extension = $image->ext();
+
+          fwrite($fp, $image->data());
+
+          fflush($fp);
+          rewind($fp);
+
+          $targetPath = 'images/'.$c.'.' .$extension;
+
+          //replace in source...
+
+          $source = str_replace((string) $image, $targetPath, $source);
+
+          $zip->addFileFromStream($targetPath, $fp);
+
+          fclose($fp);
+
+          $c++;
+
+        }
 
         $zip->addFile('index.html', $source);
 
-        $url = $this->user->logotype();
-
-
-        $fp = tmpfile();
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_FILE, $fp);
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_exec($ch);
-
-
-        fflush($fp);
-        rewind($fp);
-
-        $zip->addFileFromStream('images/test.png', $fp);
-        
-        fclose($fp);
-
-        # add a file named 'some_image.jpg' from a local file 'path/to/image.jpg'
         //$zip->addFileFromPath('some_image.jpg', 'path/to/image.jpg');
 
-        # finish the zip stream
         return $zip->finish();
     }
 
