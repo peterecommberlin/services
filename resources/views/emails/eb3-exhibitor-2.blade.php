@@ -9,22 +9,21 @@
 </div>
 
 
-# VOTE FOR US!
+# Hallo,
 
-## We are participating in the CALL FOR PAPERS - CONTEST of the **E-Commerce Berlin Expo 2018!** Winners will be granted a spot on the EBE stage on **February 15, 2018** at Station, Berlin! 
+# Wir möchten Ihnen mitteilen, dass {{ array_get($participant, "fields.cname2", "") }} als Aussteller auf der diesjährigen E-Commerce Berlin Expo 2018 **am 15. Februar im STATION, Berlin** sein wird. 
 
-
-You can help us become part of the agenda by voting for our presentation proposal “{{ array_get($participant, "fields.presentation_title") }}” below: 
+Wir freuen uns auf einen Tag rund um den E-Commerce. Kommen Sie auf ein Gespräch mit uns am Stand {{ array_get($participant, "fields.booth") }} vorbei, es wäre schön Sie kennenzulernen! 
 
 @component('mail::button', ['url' => $promolink])
-Click here to go to the voting page
+Sie können sich hier für ein kostenloses Ticket registrieren. 
 @endcomponent
 
 
-We’re looking forward to your support! 
+Wir freuen uns darauf Sie bald zu treffen!
 
-Thank you!
-{{ array_get($participant, "fields.cname2") }}
+Mit freundlichen Grüßen,
+{{ array_get($participant, "fields.cname2", "") }}
 
 
 @endcomponent
