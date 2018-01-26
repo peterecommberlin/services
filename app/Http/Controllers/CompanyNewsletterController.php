@@ -58,7 +58,7 @@ class CompanyNewsletterController extends Controller
                
                    (string) $publicSource , 
                
-                   $this->user->trackingLink(),
+                   $this->user->trackingLink("email", "button"),
                
                    "Meet us at the E-Commerce Berlin Expo 2018!",
                
