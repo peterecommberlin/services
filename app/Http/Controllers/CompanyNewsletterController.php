@@ -81,14 +81,18 @@ class CompanyNewsletterController extends Controller
         foreach($images as $image)
         {
 
+       //   $fp = fopen('php://memory', 'r+');
+
           $fp = tmpfile();
 
           $extension = $image->ext();
+
 
           fwrite($fp, $image->data());
 
           fflush($fp);
           rewind($fp);
+
 
           $targetPath = 'images/'.$c.'.' .$extension;
 
@@ -96,7 +100,7 @@ class CompanyNewsletterController extends Controller
 
           $source = str_replace((string) $image, $targetPath, $source);
 
-          $zip->addFileFromStream($targetPath, $fp);
+          $zip->addFileFromStream("newsletter/" . $targetPath, $fp);
 
           fclose($fp);
 
@@ -104,7 +108,7 @@ class CompanyNewsletterController extends Controller
 
         }
 
-        $zip->addFile('index.html', $source);
+        $zip->addFile('newsletter/index.html', $source);
 
         //$zip->addFileFromPath('some_image.jpg', 'path/to/image.jpg');
 
