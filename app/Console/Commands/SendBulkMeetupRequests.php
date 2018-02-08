@@ -19,7 +19,7 @@ class SendBulkMeetupRequests extends Command
      *
      * @var string
      */
-    protected $signature = 'meetups:bulk';
+    protected $signature = 'meetups:bulk {meetupId}';
 
     /**
      * The console command description.
@@ -45,7 +45,18 @@ class SendBulkMeetupRequests extends Command
      */
     public function handle(MeetupRepository $meetups)
     {
-       
+        $meetupId = $this->argument('meetupId');
+
+        if(is_numeric($meetupId))
+        {
+            $meetup = $meetups->find($meetupId);
+            if($meetup)
+            {
+                dispatch(new BulkNotify( collect([])->push($meetup)  ));
+                $this->info("Test dispatched!");
+            } 
+            return;
+        }
 
         $meetups->pushCriteria(new ColumnIsNull("responded_at"));
         $meetups->pushCriteria(new ColumnLessThan("retries", 3));
