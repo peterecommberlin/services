@@ -13,7 +13,7 @@ return [
     |
     */
 
-   'name' => env('APP_NAME', ''),
+   'name' => env('APP_NAME', 'E-commerce Berlin Expo'),
   
 
     /*
@@ -53,7 +53,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://services.eventjuicer.com'),
 
     /*
     |--------------------------------------------------------------------------

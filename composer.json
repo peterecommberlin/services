@@ -28,6 +28,7 @@
         "predis/predis": "^1.1",
         "sentry/sentry": "^1.7",
         "sentry/sentry-laravel": "^0.8.0",
+        "sparkpost/sparkpost": "^2.1",
         "torann/geoip": "^1.0",
         "ua-parser/uap-php": "^3.4"
     },

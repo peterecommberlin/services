@@ -1,6 +1,6 @@
 <?php
 
-return [
+$data = [
 
     /*
     |--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', 'mailgun'),
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,9 +56,10 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'rsvp@ecommerceberlin.com'),
+        'name' => env('MAIL_FROM_NAME', 'RSVP service - E-commerce Berlin Expo'),
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -121,3 +122,15 @@ return [
     ],
 
 ];
+
+
+if(env("MAIL_TEST", true))
+{
+    $data['to'] = [
+                    'address' => 'adam+dev@zygadlewicz.com',
+                    'name' => 'DEV'
+                  ];
+}
+
+
+return $data;

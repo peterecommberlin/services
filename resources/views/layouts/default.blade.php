@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.ico">
 
-    <title>teh</title>
+    <title>@yield('title')</title>
 
    
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -28,25 +28,7 @@
   <body>
 
 
-<script>
-window.fbAsyncInit = function() {
-FB.init({
-appId            : '{{config("promo.fb_app_id", "")}}',
-autoLogAppEvents : true,
-xfbml            : true,
-version          : 'v2.10'
-});
-FB.AppEvents.logPageView();
-};
 
-(function(d, s, id){
-var js, fjs = d.getElementsByTagName(s)[0];
-if (d.getElementById(id)) {return;}
-js = d.createElement(s); js.id = id;
-js.src = "https://connect.facebook.net/en_US/sdk.js";
-fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
-</script>
 
 
 
@@ -54,7 +36,7 @@ fjs.parentNode.insertBefore(js, fjs);
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         
 
-        <a class="navbar-brand" href="#">{{config("promo.site_name")}}</a>
+        <a class="navbar-brand" href="#"> </a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -64,7 +46,7 @@ fjs.parentNode.insertBefore(js, fjs);
 
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">{{$participantName}} <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#">  <span class="sr-only">(current)</span></a>
             </li>
            
 
@@ -78,16 +60,17 @@ fjs.parentNode.insertBefore(js, fjs);
     <div class="container-fluid">
       <div class="row">
 
-        @if(config("promo.show_menu"))
+      
 
+        
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
 
-            @include('shared.promomenu')
+           
 
 
         </nav>
 
-        @endif
+        
 
         <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
 
@@ -95,7 +78,7 @@ fjs.parentNode.insertBefore(js, fjs);
           <h1>@yield('title')</h1>
 
 
-        @include('shared.errors')
+          @include('shared.errors')
 
 
           <section class="pb-5 mb-5">
@@ -107,6 +90,10 @@ fjs.parentNode.insertBefore(js, fjs);
          
           
         </main>
+
+
+
+
       </div>
     </div>
 

@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('QUEUE_DRIVER', 'sync'),
+    'default' => env('QUEUE_DRIVER', 'database'),
 
     /*
     |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ return [
 
         'database' => [
             'driver' => 'database',
-            'table' => 'jobs',
+            'table' => 'eventjuicer_jobs',
             'queue' => 'default',
             'retry_after' => 90,
         ],
@@ -79,7 +79,7 @@ return [
 
     'failed' => [
         'database' => env('DB_CONNECTION', 'mysql'),
-        'table' => 'failed_jobs',
+        'table' => 'eventjuicer_failed_jobs',
     ],
 
 ];
