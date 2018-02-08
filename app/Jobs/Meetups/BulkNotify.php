@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\Meetups\Bulk;
 use Carbon\Carbon;
 use Eventjuicer\Services\Meetups\Sendable;
+use Eventjuicer\
 
 class BulkNotify implements ShouldQueue
 {

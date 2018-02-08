@@ -11,6 +11,8 @@ use Eventjuicer\Repositories\Criteria\ColumnLessThan;
 
 use App\Jobs\Meetups\BulkNotify;
 use Eventjuicer\Services\Meetups\Sendable;
+use Eventjuicer\ValueObjects\EmailAddress;
+
 
 class SendBulkMeetupRequests extends Command
 {
@@ -75,7 +77,15 @@ class SendBulkMeetupRequests extends Command
 
         foreach($grouped as $meetupsColl)
         {
-            $this->info("Dispatching notification(s) for: " . $meetupsColl->first()->participant->email . ". Requests: " . $meetupsColl->count() );
+            $email = $meetupsColl->first()->participant->email;
+
+            if( ! (new EmailAddress($email))->isValid() )
+            {
+                $this->error("Email address invalid: " . $email);
+                continue;
+            }
+
+            $this->info("Dispatching notification(s) for: " . $email . ". Requests: " . $meetupsColl->count() );
             dispatch(new BulkNotify($meetupsColl));
         }
 
