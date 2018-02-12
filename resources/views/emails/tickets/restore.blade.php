@@ -22,7 +22,7 @@ If yes? You can download your fresh ticket directly:
 Skip registration - Download ticket
 @endcomponent
 
-If your contact details are more valid we advise you to [register here](https://ecommerceberlin.com/preorder?ticket_id=1122) - it takes only approx. 60 seconds!
+If your contact details are no more valid we advise you to [register here](https://ecommerceberlin.com/preorder?ticket_id=1122) - it takes only approx. 60 seconds!
 
 ## E-commerce Berlin Expo #3 will be HUGE!
 
