@@ -57,9 +57,11 @@ class TicketStats extends Command
 
         $participantsByTicketRole = $ticketRepo->getParticipantsWithTicketRole("visitor", "event", $eventId);
 
+        $unique = $participantsByTicketRole->pluck("email")->unique()->count();
+
         $participant_ids = $participantsByTicketRole->pluck("id")->all();
 
-        $this->info("Total visitors: " . count($participant_ids) );
+        $this->info("Total UNIQUE visitors: " . $unique );
 
         $participantsRepo->pushCriteria(new WhereIn("id", $participant_ids));
         $participantsRepo->pushCriteria(new RelEmpty("ticketdownloads"));
