@@ -46,7 +46,7 @@ class ParticipantInviteMail extends Mailable
 
         $this->from("visitors+re@ecommerceberlin.com", "E-commerce Berlin Expo");
 
-        $this->subject("Your ticket is ready! Download and print!");
+        $this->subject("Instant ticket for E-commerce Berlin Expo? It's coming on Thursday!");
 
         return $this->markdown('emails.tickets.restore');
 
