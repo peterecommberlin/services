@@ -12,6 +12,9 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 use Eventjuicer\Repositories\ParticipantDeliveryRepository;
 use Eventjuicer\Models\Participant;
+use App\Mail\ParticipantInviteMail;
+use Eventjuicer\Services\Revivers\ParticipantSendable;
+
 
 class ParticipantInvite implements ShouldQueue
 {
@@ -31,18 +34,25 @@ class ParticipantInvite implements ShouldQueue
      *
      * @return void
      */
-    public function handle(ParticipantDeliveryRepository $deliveries)
+    public function handle(ParticipantDeliveryRepository $deliveries, ParticipantSendable $sendable)
     {
-       
-        if(! env("MAIL_TEST", true))
+
+
+        // double check !
+
+        if(! $sendable->filter( collect([])->push( $this->participant ), $this->eventId)->count() )
         {
-              //  $repo->updateAfterSent($meetup->id);
-         }
-        if(Mail::send(new TicketDownloadReminder( $this->participant )))
-        {
-            $deliveries->updateAfterSend($this->participant->email, $this->eventId);
+            return;
         }
 
-       // Mail::send(new Bulk( $participant,   ) );
+
+        Mail::send(new ParticipantInviteMail( $this->participant ));
+
+       
+        if(! env("MAIL_TEST", true) )
+        {
+             $deliveries->updateAfterSend($this->participant->email, $this->eventId);
+        }
+     
     }
 }

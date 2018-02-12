@@ -47,7 +47,9 @@ class EmailDisbelievers extends Command
     {
         $route = new Resolver($this->argument("host"));
 
-        $this->info("Event id: " . $route->getEventId() );
+        $eventId  = $route->getEventId();
+
+        $this->info("Event id: " . $eventId );
 
         //get all from this event and build a list....
 
@@ -55,25 +57,31 @@ class EmailDisbelievers extends Command
 
         $all = $repo->all();
 
-        $excludes = $all->where("event_id", $route->getEventId())->pluck("email")->all();
+        $this->info("Found " . $all->count() . " records in the event group");
 
-        $filtered =  $sendable->filter($difference, $route->getEventId(), $excludes);
+        $excludes = $all->where("event_id", $eventId )->pluck("email")->all();
 
-        $this->info( count($filtered) . " dispatched" );
+        $this->info("Found " . count($excludes) . " records in current event");
+
+        $filtered =  $sendable->filter($all, $eventId, $excludes);
+
+        $this->info( $filtered->count() . " can be notified" );
 
         foreach($filtered as $participant)
         {
 
-            if( !(new EmailAddress($participant->email))->isValid() )
+            $email = (new EmailAddress($participant->email));
+
+            if( ! $email->isValid() )
             {
-                $this->error("Invalid email: " . $participant->email );
+                $this->error("Invalid email: " . (string) $email );
                 continue;
             }
 
-            dispatch( new ParticipantInvite( $email, $route->getEventId() ) );
+            dispatch( new ParticipantInvite( $participant, $eventId ) );
         }
        
-        $this->info( count($filtered) . " dispatched" );
+        $this->info("All dispatched" );
     }
 
 
