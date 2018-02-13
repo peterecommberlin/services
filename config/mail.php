@@ -127,7 +127,7 @@ $data = [
 if(env("MAIL_TEST", true))
 {
     $data['to'] = [
-                    'address' => 'adam+dev@zygadlewicz.com',
+                    'address' => 'adam.zygadlewicz@gmail.com',
                     'name' => 'DEV'
                   ];
 }
