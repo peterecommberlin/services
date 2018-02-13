@@ -42,7 +42,7 @@ class ParticipantInviteMail extends Mailable
 
         $this->url = "https://ecommerceberlin.com/ticket/" . $hash;
 
-        $this->to($this->participant->email);
+        $this->to( strtolower(trim($this->participant->email)) );
 
         $this->from("visitors+re@ecommerceberlin.com", "E-commerce Berlin Expo");
 

@@ -72,6 +72,9 @@ class SendTicketReminder extends Command
         $this->info("Visitors without a ticket: " . $participants->count() );
 
         //ANTI SPAM!!!
+
+        $sendable->checkUniqueness(false);
+        
         $participants = $sendable->filter($participants, $eventId);
 
         $this->info("Visitors that can be notified: " . $participants->count() );
