@@ -44,11 +44,11 @@ class ParticipantInviteMail extends Mailable
 
         $this->to( strtolower(trim($this->participant->email)) );
 
-        $this->from("visitors+re@ecommerceberlin.com", "E-commerce Berlin Expo");
+        $this->from("visitors+re@ecommerceberlin.com", "Lucas Zarna, E-commerce Berlin Expo");
 
-        $this->subject("Instant ticket for E-commerce Berlin Expo? It's coming on Thursday!");
+        $this->subject("Are you coming to E-commerce Berlin Expo on Thursday?");
 
-        return $this->markdown('emails.tickets.restore');
+        return $this->markdown('emails.tickets.restore2');
 
 
     }
