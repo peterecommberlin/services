@@ -48,7 +48,7 @@ class GeneralReminder extends Mailable
 
       //  $this->subject("Your ticket is ready! Download and print!");
 
-        $this->subject("It's tomorrow! Read some important information!");
+        $this->subject("Tomorrow! Presentations, parking info and more...");
 
         return $this->markdown('emails.tickets.reminder3');
 
