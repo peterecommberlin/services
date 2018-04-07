@@ -28,8 +28,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::get('/company-assign', "CompanyAssignController@index");
-
-
-Route::get('/company-newsletters/{id}', "CompanyNewsletterController@show");
+Route::get('/company-assign', "Api\CompanyAssignController@index");
+Route::get('/company-newsletters/{id}', "Api\CompanyNewsletterController@show");
+Route::post('/admin-message', "Api\SendAdminMessageController@store");
 
