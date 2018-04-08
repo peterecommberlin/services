@@ -25,6 +25,11 @@ class PingWhenEmptyProfileEmail extends Mailable
     protected $participant;
     public $errors, $profile;
 
+    public $translations = [
+
+        
+    ];
+
     public function __construct(Participant $participant, array $errors)
     {
         $this->participant  = $participant;
@@ -42,9 +47,9 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         $this->url = "https://account.targiehandlu.pl/#login?token=" . $this->participant->token;
 
-        $this->to(trim(strtolower($this->participant->email)));
+        $this->to( trim(strtolower($this->participant->email)) );
 
-        $this->from("targiehandlu@targiehandlu.pl", "Bartek Meller, Targie eHandlu");
+        $this->from("targiehandlu@targiehandlu.pl", "Bartek Meller, Targi eHandlu");
 
         $this->subject("Proszę uzupełnij profil firmy :) [automated message]");
 

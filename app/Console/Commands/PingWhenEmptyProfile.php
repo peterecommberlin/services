@@ -68,7 +68,8 @@ class PingWhenEmptyProfile extends Command
                 continue;
             }
 
-            $this->line("Fields with errors " . count($status));
+            $this->info("Processing " . $ex->company->slug);
+            $this->line("Fields with errors: " . implode(", ", array_keys($status)));
             $this->info("Notifying " . $ex->email);
 
             dispatch(new Job($ex, $eventId));
