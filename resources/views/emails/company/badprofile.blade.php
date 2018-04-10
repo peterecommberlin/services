@@ -2,23 +2,32 @@
 
 @component('mail::message')
  
+# Dzień dobry, {{$profile->translate("[[fname]]")}},
 
-# Hi, {{$p->translate("[[fname]]")}},
+## Sprawdziliśmy [profil Twojej firmy]({{$profileUrl}}) na stronie Targów Ehandlu - prosimy o pilne poprawki. 
 
-## Successful networking is crucial part of every business event. We have developed a tool to have that networking boosted. 
+@foreach ($errors as $f => $p)
+	
+**{{$f}}** {{$p}}
+
+@endforeach
+
+@component('mail::button', ['url' => $accountUrl])
+Chcę poprawić teraz!  
+@endcomponent
+
+Zobacz jak wygląda przykładowy [wypełniony i sformatowany]({{$exampleUrl}}) profil Wystawcy.
 
 @component('mail::panel')
-Selected exhibitors have an exclusive and limited access to the list of names of registered visitors. They are allowed to choose people they would love to meet during an expo. If you receive this message, you were chosen! Now decide if you share that interest...or not :) If you approve the meetup, exhibitor would be able to contact with you directly and schedule the meeting.
+profile firm Wystawców będą **stałe pomiędzy edycjami Targów** więc warto się zaangażować (praca nie pójdzie na marne.) 
+
+na dniach podamy szczegóły konkursu, w którym będzie można wygrać świadczenia promocyjne o wartości ponad 20 000 pln. dobrze wypełniony, ładnie sformatowany profil firmy to możliwość szybkiego startu w rywalizacji.
+
+podczas tej edycji nie będziemy drukowali papierowych planów targowych - informacje online będą podstawowym źródłem decyzji Zwiedzających
 @endcomponent
 
-@component('mail::button', ['url' => $url])
-Approve or reject meetup requests
-@endcomponent
 
-Looking forward to see you! 
-
-Kind Regards, E-commerce Berlin Expo Team.
-
+Pozdrowienia, Bartek Meller
 
 @endcomponent
 

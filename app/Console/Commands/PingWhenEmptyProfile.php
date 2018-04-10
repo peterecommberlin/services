@@ -9,7 +9,7 @@ use Illuminate\Console\Command;
 use Eventjuicer\Services\Resolver;
 use Eventjuicer\Services\GetByRole;
 use Eventjuicer\Services\CompanyData;
-use App\Jobs\PingWhenEmptyProfileJob as Job;
+use Eventjuicer\Jobs\PingWhenEmptyProfileJob as Job;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 
 
@@ -54,7 +54,7 @@ class PingWhenEmptyProfile extends Command
 
             if(!$ex->company_id)
             {
-                $this->error("No company assigned for " . $ex->email);
+                $this->error("No company assigned for " . $ex->email . " - skipped.");
                 continue;
             }
 

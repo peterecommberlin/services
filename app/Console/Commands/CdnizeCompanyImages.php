@@ -14,7 +14,7 @@ class CdnizeCompanyImages extends Command
 
     protected $fieldsWithImageUrl = [
         "logotype",
-     //   "opengraph_image"
+        "opengraph_image"
     ];
 
     /**
@@ -49,13 +49,21 @@ class CdnizeCompanyImages extends Command
     public function handle(CompanyDataRepository $repo)
     {
         $repo->pushCriteria(new WhereIn("name", $this->fieldsWithImageUrl));
+
         $all = $repo->all();
 
         $this->info("Found " . $all->count());
 
         foreach($all as $cd)
         {
-            dispatch(new SendImageToCloudinaryJob($cd));
+           try {
+
+                 dispatch(new SendImageToCloudinaryJob($cd));
+                
+            } catch (Exception $e) {
+                    
+                 $this->error("Error with Company data id:" . $cd->id);
+            }
         }
 
     }
