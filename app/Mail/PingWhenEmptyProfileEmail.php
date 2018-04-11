@@ -43,7 +43,9 @@ class PingWhenEmptyProfileEmail extends Mailable
         "opengraph_image"   => "Obrazek udostępniany na serwisach społecznościowych",
         "products"          => "Kluczowe produkty / usługi",
         "twitter"           => "Profil firmy na Twitter",
-        "website"           => "Adres URL strony firmowej"
+        "website"           => "Adres URL strony firmowej",
+        "lang"              => "Język kontaktu",
+        "event_manager"     => "Osoba do kontaktu w tematach logistycznych"
 
     ];
 
@@ -95,7 +97,7 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         $this->from("targiehandlu@targiehandlu.pl", "Bartek Meller, Targi eHandlu");
 
-        $this->subject("Zadanie na środowy poranek. Proszę popraw profil Wystawcy.");
+        $this->subject("Nadal mamy problem. BARDZO proszę popraw profil Wystawcy.");
 
         return $this->markdown('emails.company.badprofile');
     }

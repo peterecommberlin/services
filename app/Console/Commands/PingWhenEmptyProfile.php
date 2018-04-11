@@ -58,6 +58,14 @@ class PingWhenEmptyProfile extends Command
                 continue;
             }
 
+
+            if($cd->lang($this->participant->company) == "english")
+            {
+                $this->info("Skipped! Lang mismatch. ");
+                 continue;
+            }
+
+
             //check for companydata fields freshness :)
             //check for required fields
 
