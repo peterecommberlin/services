@@ -47,9 +47,14 @@ class PingWhenEmptyProfile extends Command
 
         $done = 0;
 
+
+        $whatWeDo  = $this->anticipate('Dispatch jobs or send reminders? (send | stats)', ['send', 'stats']);
+
+
         foreach($exhibitors as $ex)
         {
 
+            
             //do we have company assigned?
 
             if(!$ex->company_id)
@@ -59,10 +64,10 @@ class PingWhenEmptyProfile extends Command
             }
 
 
-            if($cd->lang($ex->company) == "english")
+            if($cd->lang($ex->company) === "en")
             {
-                $this->info("Skipped! Lang mismatch. ");
-                 continue;
+                $this->error("Skipped! Lang mismatch. ");
+                continue;
             }
 
 
@@ -78,15 +83,19 @@ class PingWhenEmptyProfile extends Command
 
             $this->info("Processing " . $ex->company->slug);
             $this->line("Fields with errors: " . implode(", ", array_keys($status)));
-            $this->info("Notifying " . $ex->email);
 
-            dispatch(new Job($ex, $eventId));
+            if($whatWeDo === "send")
+            {
+                $this->info("Notifying " . $ex->email);
+
+                dispatch(new Job($ex, $eventId));
+            }
 
             $done++;
 
         }   
 
-        $this->info("Dispatched " . $done . " jobs");
+        $this->info("Counted " . $done . " companies with errors...");
 
 
     }
