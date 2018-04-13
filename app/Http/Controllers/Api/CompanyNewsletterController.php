@@ -17,6 +17,7 @@ use App\Mail\ExhibitorInvite;
 use ZipStream\ZipStream;
 
 
+
 class CompanyNewsletterController extends Controller
 {
     protected $user;
@@ -35,38 +36,44 @@ class CompanyNewsletterController extends Controller
 
        $this->user->setToken($participant->token);
 
-       app()->setLocale("en");
+       app()->setLocale("pl");
 
-       config(["app.name" => "E-commerce Berlin #3"]);
- 
+       config(["app.name" => "XIV Targi eHandlu"]);
+
         
     }
 
     public function show(Request $request, int $id)
     {
 
-        $source = $this->user->logotype(); //switchToParent!
+        $companydata = $this->user->companydata(); //switchToParent!
 
-        $filename = md5($source) . ".jpg";
-        $publicSource = asset("storage/" . $filename);
-        $localTarget = storage_path("app/public/" . $filename);
+        $source = array_get(
+        
+          $companydata, "logotype_cdn", 
+          array_get(
+            $companydata, "logotype"
+          )
+        );
 
-        $image =  (new ImageEncode($source , $localTarget))->save();
-
-
+        if( empty($source) )
+        {
+          
+            abort(500, "image not found");
+        }
 
 
        $newsletter = (new ExhibitorInvite(
        
-                   $this->user->user(), 
+                   $this->user->company(), 
                
-                   (string) $publicSource , 
+                   (string) $source , 
                
                    $this->user->trackingLink("email", "button"),
                
-                   "Meet us at the E-Commerce Berlin Expo 2018!",
+                   "Spotkajmy się na XIV Targach eHandlu w Warszawie!",
                
-                   'emails.eb3-exhibitor-' . $id
+                   'emails.exhibitor-invite' . $id
        
                ))->render();
 
