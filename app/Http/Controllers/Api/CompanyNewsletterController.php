@@ -73,7 +73,7 @@ class CompanyNewsletterController extends Controller
                
                    "Spotkajmy się na XIV Targach eHandlu w Warszawie!",
                
-                   'emails.exhibitor-invite' . $id
+                   'emails.exhibitor.invite' . $id
        
                ))->render();
 
