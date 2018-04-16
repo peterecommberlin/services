@@ -16,17 +16,19 @@ use App\Mail\ParticipantInviteMail;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 
 
-class ParticipantInvite implements ShouldQueue
+class ParticipantInvite //implements ShouldQueue
 {
 
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $participant, $eventId;
+    protected $participant, $eventId, $view, $subject;
 
-    public function __construct(Participant $participant, int $eventId)
+    public function __construct(Participant $participant, int $eventId, array $config)
     {
         $this->participant = $participant;
         $this->eventId = $eventId;
+        $this->view = array_get($config, "view");
+        $this->subject = array_get($config, "subject");
     }
 
     /**
@@ -46,7 +48,11 @@ class ParticipantInvite implements ShouldQueue
         }
 
 
-        Mail::send(new ParticipantInviteMail( $this->participant ));
+        Mail::send(new ParticipantInviteMail( 
+            $this->participant, 
+            $this->view, 
+            $this->subject )
+        );
 
        
         if(! env("MAIL_TEST", true) )

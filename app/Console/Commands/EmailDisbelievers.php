@@ -19,7 +19,13 @@ class EmailDisbelievers extends Command
      *
      * @var string
      */
-    protected $signature = 'email:disbelievers {host} {ticketId?}';
+    protected $signature = 'email:disbelievers 
+
+        {--domain=} 
+        {--email=} 
+        {--subject=}
+
+    ';
 
     /**
      * The console command description.
@@ -45,7 +51,33 @@ class EmailDisbelievers extends Command
      */
     public function handle(ParticipantRepository $repo, ParticipantSendable $sendable)
     {
-        $route = new Resolver($this->argument("host"));
+
+        $domain = $this->option("domain");
+        $view = $this->option("email");
+        $subject = $this->option("subject");
+
+        if(empty($domain))
+        {
+            return $this->error("domain must be provided!");
+        }
+
+        if(empty($view))
+        {
+             return $this->error("email view must be provided! --email=...");
+        }
+
+        if(empty($subject))
+        {
+             return $this->error("subject must be provided! --subject='...'");
+        }
+
+
+        if(! view()->exists("emails.visitor." . $view)) {
+            return $this->error("--email= error. View cannot be found!");
+        }
+
+
+        $route = new Resolver($domain);
 
         $eventId  = $route->getEventId();
 
@@ -67,6 +99,8 @@ class EmailDisbelievers extends Command
 
         $this->info( $filtered->count() . " can be notified" );
 
+        $done = 0;
+
         foreach($filtered as $participant)
         {
 
@@ -78,7 +112,17 @@ class EmailDisbelievers extends Command
                 continue;
             }
 
-            dispatch( new ParticipantInvite( $participant, $eventId ) );
+            dispatch( new ParticipantInvite( 
+                $participant, 
+                $eventId,
+                compact("view", "subject") ) );
+
+            if($done % 100 === 0)
+            {
+                $this->info("Dispatched: " . $done);
+            }
+
+            $done++;
         }
        
         $this->info("All dispatched" );

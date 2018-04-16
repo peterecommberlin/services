@@ -20,11 +20,13 @@ class ParticipantInviteMail extends Mailable
     use Queueable, SerializesModels;
 
     protected $participant;
-    public $p, $url;
+    public $subject, $view, $p, $siteUrl, $ticketUrl;
 
-    public function __construct(Participant $participant)
+    public function __construct(Participant $participant, string $view, string $subject)
     {
         $this->participant = $participant;
+        $this->view = $view;
+        $this->subject = $subject;
     }
 
     /**
@@ -40,15 +42,17 @@ class ParticipantInviteMail extends Mailable
 
         $hash = (new Hashids())->encode($this->participant->id);
 
-        $this->url = "https://ecommerceberlin.com/ticket/" . $hash;
+        $this->siteUrl = "https://targiehandlu.pl";
+
+        $this->ticketUrl = $this->siteUrl . "/ticket/" . $hash;
 
         $this->to( strtolower(trim($this->participant->email)) );
 
-        $this->from("visitors+re@ecommerceberlin.com", "Lucas Zarna, E-commerce Berlin Expo");
+        $this->from("zwiedzanie@targiehandlu.pl", "Roman Turaj, Targi eHandlu");
 
-        $this->subject("Are you coming to E-commerce Berlin Expo on Thursday?");
+        $this->subject($this->subject);
 
-        return $this->markdown('emails.tickets.restore2');
+        return $this->markdown('emails.visitor.' . $this->view);
 
 
     }
