@@ -97,7 +97,7 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         $this->from("targiehandlu@targiehandlu.pl", "Bartek Meller, Targi eHandlu");
 
-        $this->subject("BARDZO proszę popraw profil Wystawcy.");
+        $this->subject("Profil, mała rzecz do poprawki.");
 
         return $this->markdown('emails.company.badprofile');
     }
