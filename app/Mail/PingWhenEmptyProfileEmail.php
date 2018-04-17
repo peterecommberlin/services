@@ -99,6 +99,6 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         $this->subject("Profil, mała rzecz do poprawki.");
 
-        return $this->markdown('emails.company.badprofile');
+        return $this->markdown('emails.company.badprofile2');
     }
 }

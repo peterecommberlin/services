@@ -66,7 +66,7 @@ class PingWhenEmptyProfile extends Command
 
             if($cd->lang($ex->company) === "en")
             {
-                $this->error("Skipped! Lang mismatch. ");
+                $this->error("Skipped! Lang mismatch. " . $ex->email);
                 continue;
             }
 

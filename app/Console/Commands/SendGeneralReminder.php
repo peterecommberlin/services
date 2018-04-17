@@ -19,7 +19,11 @@ class SendGeneralReminder extends Command
      *
      * @var string
      */
-    protected $signature = 'email:visitors {host}';
+    protected $signature = 'email:visitors 
+
+        {--domain=}
+
+    ';
 
     /**
      * The console command description.
@@ -48,7 +52,15 @@ class SendGeneralReminder extends Command
         ParticipantSendable $sendable
     )
     {
-        $route = new Resolver($this->argument("host"));
+        $domain = $this->option("domain");
+
+     
+        if(empty($domain))
+        {
+            return $this->error("set --domain=!");
+        }
+
+        $route = new Resolver($domain);
 
         $eventId =  $route->getEventId();
 

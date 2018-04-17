@@ -12,11 +12,11 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 use Eventjuicer\Repositories\ParticipantDeliveryRepository;
 use Eventjuicer\Models\Participant;
-use App\Mail\ParticipantInviteMail;
+use App\Mail\ParticipantInviteMail as EmailConfig;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 
 
-class ParticipantInvite //implements ShouldQueue
+class ParticipantInvite implements ShouldQueue
 {
 
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -48,7 +48,7 @@ class ParticipantInvite //implements ShouldQueue
         }
 
 
-        Mail::send(new ParticipantInviteMail( 
+        Mail::send(new EmailConfig( 
             $this->participant, 
             $this->view, 
             $this->subject )

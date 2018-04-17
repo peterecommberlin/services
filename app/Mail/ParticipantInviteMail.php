@@ -20,7 +20,16 @@ class ParticipantInviteMail extends Mailable
     use Queueable, SerializesModels;
 
     protected $participant;
-    public $subject, $view, $p, $siteUrl, $ticketUrl;
+    
+    public      $subject, 
+                $view, 
+                $p, 
+                $siteUrl, 
+                $ticketUrl, 
+                $exhibitorsURl, 
+                $presentersURl, 
+                $scheduleURl, 
+                $registerURl;
 
     public function __construct(Participant $participant, string $view, string $subject)
     {
@@ -42,9 +51,21 @@ class ParticipantInviteMail extends Mailable
 
         $hash = (new Hashids())->encode($this->participant->id);
 
-        $this->siteUrl = "https://targiehandlu.pl";
 
-        $this->ticketUrl = $this->siteUrl . "/ticket/" . $hash;
+        $baseUrl = "https://targiehandlu.pl";
+        $params  = "?utm_campaign=teh_old_1";
+
+
+        $this->ticketUrl = $baseUrl . "/ticket/" . $hash . $params;
+
+        $this->siteUrl = $baseUrl . $params;
+
+
+        $this->exhibitorsURl = $baseUrl . "/exhibitors" . $params;
+        $this->presentersURl = $baseUrl . "/presenters" . $params;
+        $this->scheduleURl = $baseUrl . "/schedule" . $params;
+        $this->registerURl = $baseUrl . "/visit" . $params;
+
 
         $this->to( strtolower(trim($this->participant->email)) );
 
