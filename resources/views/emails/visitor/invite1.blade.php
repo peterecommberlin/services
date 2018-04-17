@@ -2,7 +2,7 @@
 
 @component('mail::message')
 
-<a href="{{$siteUrl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/v1523951554/og_teh_default.png" style="margin: 10px auto; max-width: 650px;" alt="logotyp Targów eHandlu" /></a>
+<a href="{{$siteUrl}}"><img src="http://res.cloudinary.com/eventjuicer/image/upload/c_fit,w_650/v1523951554/og_teh_default.png" style="margin: 10px auto;" alt="logotyp Targów eHandlu" /></a>
 
 # Cześć {{$p->translate("[[fname]]") }}!
 
@@ -18,7 +18,7 @@ Zarejestruj się teraz
 
 **Jeśli jeszcze nie wiesz to może Cię przekonamy? :)**
 
-<a href="{{$siteUrl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/v1523564269/welcome1.jpg" alt="miłe twarze cudownych Uczestników" style="max-width: 650px; margin: 10px auto;" /></a>
+<a href="{{$siteUrl}}"><img src="http://res.cloudinary.com/eventjuicer/image/upload/c_fit,w_650/v1523564269/welcome1.jpg" alt="miłe twarze cudownych Uczestników" style="margin: 10px auto;" /></a>
 
 
 # Będzie jak zwykle będzie bardzo merytorycznie i na czasie. Tematy dla zaczynających jak i branżowych "wyjadaczy". Próbka? 
@@ -44,7 +44,7 @@ Szybka rejestracja
 
 # Targi eHandlu to przede wszystkim Praktycy, którzy "zjedli zęby" na swoim własnym biznesie
 
-<a href="{{$presentersURl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/v1523951060/teh14_prelegenci.jpg" alt="miłe twarze cudownych Prelegentów" style="margin: 10px auto;" /></a>
+<a href="{{$presentersURl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/c_fit,w_650/v1523951060/teh14_prelegenci.jpg" alt="miłe twarze cudownych Prelegentów" style="margin: 10px auto;" /></a>
 
 ## Maciej Ziemczonek,Performance &amp; Outbound Marketing Manager @ Domodi.pl
 
@@ -80,7 +80,7 @@ Specjalne oferty Wystawców (dłuższe okresy testowe, niższe prowizje)
 
 # Targi eHandlu to również ...Targi! Ta edycja jest rekordowa!
 
-<a href="{{$exhibitorsURl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/v1523952361/teh14_debut.png" alt="marki wystawcy, debiuty" style="max-width: 650px; margin: 10px auto;" /></a>
+<a href="{{$exhibitorsURl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/c_fit,w_650/v1523952361/teh14_debut.png" alt="marki wystawcy, debiuty" style="margin: 10px auto;" /></a>
 
 [Lista wszystkich Wystawców]({{ $exhibitorsURl }})
 
