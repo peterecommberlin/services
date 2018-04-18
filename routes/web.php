@@ -56,11 +56,12 @@ Route::get('/rsvp/{id}/ignore', "RsvpController@ignore");
 
 
 Route::get('/meetup-mute/', "MeetupController@mute");
-
 Route::get('/meetup-block/', "MeetupController@index");
-
 Route::get('/meetup-confirm/', "MeetupController@index");
 
+
+
+Route::get('/email-preview/{name}', "EmailPreviewController@index");
 
 
 
