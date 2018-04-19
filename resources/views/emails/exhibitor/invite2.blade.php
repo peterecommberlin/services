@@ -9,29 +9,24 @@
 </div>
 
 
-# VOTE FOR US!
 
-## We are participating in the CALL FOR PAPERS - CONTEST of the **E-Commerce Berlin Expo 2018!** Winners will be granted a spot on the EBE stage on **February 15, 2018** at Station, Berlin! 
+# Hi,
 
+## We would like to let you know that {{  array_get($companydata, "name") }} is exhibiting at the E-Commerce Cracow Expo 2018 on **April 25th** at EXPO Kraków (Galicyjska str.), Cracow. 
 
-You can help us become part of the agenda by voting for our presentation proposal 
+We’re excited for a day fully dedicated to e-commerce best practices &amp; trends. 
+Come have a chat with us at our stand.
 
-
- {{ array_get($companydata, "name") }} 
-
-  below: 
 
 @component('mail::button', ['url' => $promolink])
-Click here to go to the voting page
+	Register for a free ticket here
 @endcomponent
 
+Let us also mention that there will be 3 stages full of speakers and more than 130 other service providers at their booths. The event is a must-attend! 
 
-We’re looking forward to your support! 
+Looking forward to meet you! 
 
-Thank you!
-
-
- {{ array_get($companydata, "name") }} 
+Kind Regards,
 
 
 @endcomponent

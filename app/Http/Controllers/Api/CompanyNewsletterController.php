@@ -38,7 +38,7 @@ class CompanyNewsletterController extends Controller
 
        app()->setLocale("pl");
 
-       config(["app.name" => "XIV Targi eHandlu"]);
+       config(["app.name" => "XIV Targi eHandlu - 25 kwietnia 2018"]);
 
         
     }
@@ -46,7 +46,7 @@ class CompanyNewsletterController extends Controller
     public function show(Request $request, int $id)
     {
 
-        $companydata = $this->user->companydata(); //switchToParent!
+        $companydata = $this->user->companydata();
 
         $source = array_get(
         
@@ -69,9 +69,11 @@ class CompanyNewsletterController extends Controller
                
                    (string) $source , 
                
+                   $this->user->companyPublicProfile().
+
                    $this->user->trackingLink("email", "button"),
                
-                   "Spotkajmy się na XIV Targach eHandlu w Warszawie!",
+                   "Spotkajmy się na XIV Targach eHandlu w Krakowie!",
                
                    'emails.exhibitor.invite' . $id
        
@@ -101,7 +103,7 @@ class CompanyNewsletterController extends Controller
     public function zip($id, $source)
     {
         
-        $zip = new ZipStream("ecommerce_berlin_expo_newsletter_".$id . ".zip");
+        $zip = new ZipStream("teh14_krk_newsletter_".$id . ".zip");
 
         $images = (new RichContent($source))->images();
 
