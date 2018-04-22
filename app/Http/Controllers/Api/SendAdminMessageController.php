@@ -29,7 +29,8 @@ class SendAdminMessageController extends Controller
         $recipients = $service->make( 
             $data["ids"], 
             array_get($data, "event_id", 0),
-            (bool) array_get($data, "unique", 1) 
+            (bool) array_get($data, "unique", 1),
+            false
         );
 
         $data = $service->legacy($data);
