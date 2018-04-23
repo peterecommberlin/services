@@ -5,13 +5,13 @@
 
 # Cześć {{$p->translate("[[fname]]") }}!
 
-Opublikowaliśmy pełną agendę XIV Targów eHandlu w Krakowie.
+Opublikowaliśmy pełną agendę **XIV Targów eHandlu w Krakowie.**
 
-Co tu dużo pisać, jesteśmy zadowoleni i wierzemy, że każda osoba która wybierze się w środę (25 kwietnia) do EXPO Kraków będzie zadowolona z swojej decyzji.
+Co tu dużo pisać, jesteśmy zadowoleni i wierzemy, że każda osoba która wybierze się w środę **25 kwietnia do EXPO Kraków** będzie zadowolona z swojej decyzji.
 
 To o czym wcześniej nie informowaliśmy to dwa panele dyskusyjne. 
 
-**Pierwszy na temat płatności internetowych, drugi na temat wyboru platformy sprzedażowej. To będzie gorąca debata :)**
+Pierwszy na temat **płatności internetowych**, drugi na temat wyboru **platformy sprzedażowej.** To będzie gorąca debata!
 
 @component('mail::button', ['url' => $registerURl])
 	Chcę bezpłatny bilet
