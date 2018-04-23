@@ -73,6 +73,13 @@ class ParticipantInviteMail extends Mailable
 
         $this->subject($this->subject);
 
+
+        if(view()->exists("emails.visitor." . $this->view . "_text")) {
+                
+            $this->text('emails.visitor.' . $this->view . "_text");
+
+        }
+
         return $this->markdown('emails.visitor.' . $this->view);
 
 

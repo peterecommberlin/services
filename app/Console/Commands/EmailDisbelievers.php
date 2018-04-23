@@ -9,6 +9,7 @@ use Eventjuicer\Services\Resolver;
 use Eventjuicer\Repositories\ParticipantRepository;
 
 use Eventjuicer\Repositories\Criteria\BelongsToGroup;
+use Eventjuicer\Repositories\Criteria\BelongsToOrganizer;
 use Eventjuicer\Repositories\Criteria\SortByDesc;
 
 use Eventjuicer\ValueObjects\EmailAddress;
@@ -27,7 +28,7 @@ class EmailDisbelievers extends Command
         {--domain=} 
         {--email=} 
         {--subject=}
-        {--test=}
+        {--throttle=}
 
     ';
 
@@ -59,56 +60,79 @@ class EmailDisbelievers extends Command
         $domain = $this->option("domain");
         $view = $this->option("email");
         $subject = $this->option("subject");
-        $test = $this->option("test");
+        $throttle = $this->option("throttle");
 
-        $perDay = 19000;
 
-        if(empty($domain))
-        {
-            return $this->error("--domain= must be provided!");
+        $errors = [];
+
+        if(empty( $domain )) {
+            $errors[] = "--domain= must be provided!";
+        }
+     
+        if(empty( $view )) {
+            $errors[] = "--email= (view name) must be provided!";
         }
 
-        if(empty($view))
-        {
-             return $this->error("--email= (view name) must be provided!");
+        if(empty( $subject )) {
+            $errors[] = "--subject='example subject' must be provided!";
         }
 
-        if(empty($subject))
-        {
-             return $this->error("--subject='example subject' must be provided!");
+        if(!is_numeric( $throttle )) {
+            $errors[] = "--throttle=NUMBER must be provided! set 0 for OFF";
         }
 
-    
 
         if(! view()->exists("emails.visitor." . $view)) {
-            return $this->error("--email= error! View cannot be found!");
+            $errors[] = "--email= error! View cannot be found!";
         }
 
 
-        $route = new Resolver($domain);
+        if(!empty($errors))
+        {
+            foreach($errors as $error){
+                $this->error($error);
+            }
+            return;
+        }
 
-        $eventId  = $route->getEventId();
 
-        $this->info("Event id: " . $eventId );
+        $scope = $this->choice('Define Scope?', ['group', 'organizer'], 0);
+        $test = $this->choice('Send test?', ['yes', 'no'], 0);
 
-        //get all from this event and build a list....
 
-        $repo->pushCriteria( new BelongsToGroup( $route->getGroupId() ));
+        $route          = new Resolver($domain);
+        $eventId        = $route->getEventId();
+        $group_id       = $route->getGroupId();
+        $organizer_id   = $route->getOrganizerId();
+
+
+        if($scope === "organizer")
+        {
+            $this->info("Scope: organizer.");
+            $repo->pushCriteria( new BelongsToOrganizer( $organizer_id ));
+        }
+        else
+        {
+            $this->info("Scope: group.");
+            $repo->pushCriteria( new BelongsToGroup( $group_id ));
+        }
+
+        
         $repo->pushCriteria( new SortByDesc("id") );
 
         $all = $repo->all();
 
-        $this->info("Found " . $all->count() . " records in the event group");
+        $this->info("Found " . $all->count() . " records in the this scope!");
 
         $excludes = $all->where("event_id", $eventId )->pluck("email")->all();
 
-        $this->info("Found " . count($excludes) . " records in current event");
+        $this->info("Skipping " . count($excludes) . " matches with active event...");
 
         $sendable->checkUniqueness(true);
 
         $filtered =  $sendable->filter($all, $eventId, $excludes);
 
-        $this->info( $filtered->count() . " can be notified" );
+        $this->info( "Found " . $filtered->count() . " unique emails..." );
 
         $done = 0;
 
@@ -123,7 +147,7 @@ class EmailDisbelievers extends Command
                 continue;
             }
 
-            if($done > $perDay){
+            if($done >  $throttle ){
                 $this->error("Out of daily quota!");
                 break;
             }
@@ -133,12 +157,12 @@ class EmailDisbelievers extends Command
                 $eventId,
                 compact("view", "subject") ) );
 
-            if($test){
+            if($test === "yes"){
                 $this->info("Dispatched test message!");
                 break;
             }
 
-            if($done % 100 === 0)
+            if($done % 1000 === 0)
             {
                 $this->info("Dispatched: " . $done);
             }
