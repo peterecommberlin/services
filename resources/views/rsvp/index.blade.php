@@ -7,7 +7,7 @@
 @section('content')
 
 
-@include('shared.did-you-know', ["title"=>"Hello!", "description" => 'Below find meetup requests sent by most engaged exhibitors. Choose if you would like to meet during the expo or not. Once you choose the appropriate option it cannot be changed. If you click Accept, an exhibitor will get automated email with your contact data.'])
+@include('shared.did-you-know', ["title"=>"cześć!", "description" => 'Poniżej znajdują się propozycje spotkań. Możesz odmówić (REJECT) lub zaakceptować. Akceptacja nie umawia spotkania, Wystawca otrzyma jedynie Twoje dane i będzie próbował się kontaktować. Below find meetup requests sent by most engaged exhibitors. Choose if you would like to meet during the expo or not. Once you choose the appropriate option it cannot be changed. If you click Accept, an exhibitor will get automated email with your contact data.'])
 
  
 <table class="table table-striped">

@@ -33,13 +33,13 @@ class Approved extends Mailable
 
         $this->p = new Personalizer( $this->meetup->participant, "", [
 
-            "cname2"    => "not specified",
-            "phone"     => "not specified",
-            "position"  => "not specified"
+            "cname2"    => "-- nie podano --",
+            "phone"     => "-- nie podano --",
+            "position"  => "-- nie podano --"
         
         ] ) ;
 
-        $this->url = "https://expojuicer.com/#/login?token=" . $this->meetup->admin->token;
+        $this->url = "https://account.targiehandlu.pl/#/login?token=" . $this->meetup->admin->token;
 
         $this->recipient = (string) array_get($this->meetup->data, "from_email", "");
 
@@ -47,7 +47,7 @@ class Approved extends Mailable
         $this->to($this->recipient);
 
 
-        $this->from("rsvp+exhibitor@ecommerceberlin.com", "E-commerce Berlin Expo");
+        $this->from("targiehandlu+rsvp@targiehandlu.pl", "Targi eHandlu");
 
   
         if($this->recipient != $this->meetup->admin->email)
@@ -57,8 +57,8 @@ class Approved extends Mailable
 
         $this->replyto($this->meetup->participant->email);
 
-        $this->subject("Success! Meeting request approved!");
+        $this->subject("Sukces! Potwierdzone spotkanie");
 
-        return $this->markdown('emails.meetups.approved');
+        return $this->markdown('emails.meetups.approved_pl');
     }
 }

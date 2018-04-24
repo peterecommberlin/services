@@ -35,14 +35,14 @@ class Bulk extends Mailable
 
         $this->p = new Personalizer( $this->participant, "") ;
 
-        $this->url = "https://rsvp.ecommerceberlin.com/rsvp?token=" . $this->participant->token;
+        $this->url = "https://rsvp.targiehandlu.pl/rsvp?token=" . $this->participant->token;
 
-        $this->from("rsvp+visitor@ecommerceberlin.com", "E-commerce Berlin Expo");
+        $this->from("zwiedzanie+rsvp@targiehandlu.pl", "XIV Targi eHandlu");
 
         $this->to((string) $this->participant->email);
 
-        $this->subject("New meetup invitations");
+        $this->subject("Oto Wystawcy, którzy chcą się z Tobą spotkać");
 
-        return $this->markdown('emails.meetups.bulk');
+        return $this->markdown('emails.meetups.bulk_pl');
     }
 }
