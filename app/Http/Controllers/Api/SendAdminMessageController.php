@@ -23,6 +23,9 @@ class SendAdminMessageController extends Controller
 
         if(count($errors))
         {
+
+            throw new \Exception("cannot send!" . json_encode($errors) );
+
             return $this->jsonError($errors, 500);
         }
 
