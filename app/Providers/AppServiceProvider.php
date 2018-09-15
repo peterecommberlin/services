@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Facades\View;
 use Eventjuicer\ViewComposers\ParticipantPromoComposer;
-
+use Horizon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,6 +27,11 @@ class AppServiceProvider extends ServiceProvider
         { 
             $this->app['request']->server->set('HTTPS', true); 
         }
+
+        Horizon::auth(function ($request) {
+            return true;
+        });
+
     }
 
     /**
