@@ -86,12 +86,20 @@ return [
                 'processes' => 10,
                 'tries' => 3,
             ],
+
+            'supervisor-legacy' => [
+                'connection' => 'redis',
+                'queue' => ['legacy'],
+                'balance' => 'simple',
+                'processes' => 3,
+                'tries' => 3,
+            ],
         ],
 
         'local' => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
+                'queue' => ['services', 'api'],
                 'balance' => 'simple',
                 'processes' => 3,
                 'tries' => 3,
