@@ -28,9 +28,13 @@ class AppServiceProvider extends ServiceProvider
             $this->app['request']->server->set('HTTPS', true); 
         }
 
+        //use NGINX cookie-based auth!
+
         Horizon::auth(function ($request) {
             return true;
         });
+
+        Horizon::routeSlackNotificationsTo(env("QUEUE_SLACK_URL"), '#dev');
 
     }
 
