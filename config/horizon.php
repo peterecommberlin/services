@@ -72,9 +72,16 @@ return [
 
     'environments' => [
         'production' => [
-            'supervisor-1' => [
+            'supervisor-services' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
+                'queue' => ['services'],
+                'balance' => 'simple',
+                'processes' => 10,
+                'tries' => 3,
+            ],
+             'supervisor-api' => [
+                'connection' => 'redis',
+                'queue' => ['api'],
                 'balance' => 'simple',
                 'processes' => 10,
                 'tries' => 3,
