@@ -12,7 +12,14 @@ use Eventjuicer\Services\CompanyData;
 use Eventjuicer\Jobs\PingWhenEmptyProfileJob as Job;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 
+/*
 
+changes
+===========================
+use event_manager as CC contact
+handle language differently
+
+*/
 
 class PingWhenEmptyProfile extends Command
 {
@@ -39,7 +46,7 @@ class PingWhenEmptyProfile extends Command
 
         $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
 
-        $sendable->checkUniqueness(false);
+        $sendable->checkUniqueness(true);
 
         $filtered = $sendable->filter($exhibitors, $eventId);
 
@@ -48,13 +55,13 @@ class PingWhenEmptyProfile extends Command
         $done = 0;
 
 
-        $whatWeDo  = $this->anticipate('Dispatch jobs or send reminders? (send | stats)', ['send', 'stats']);
+        $whatWeDo  = $this->anticipate('Send or stats?', ['send', 'stats']);
 
 
         foreach($exhibitors as $ex)
         {
-
             
+        
             //do we have company assigned?
 
             if(!$ex->company_id)
@@ -63,12 +70,18 @@ class PingWhenEmptyProfile extends Command
                 continue;
             }
 
+            $companyProfile = $cd->toArray($ex->company);
 
-            if($cd->lang($ex->company) === "en")
-            {
-                $this->error("Skipped! Lang mismatch. " . $ex->email);
-                continue;
-            }
+            $lang = isset($companyProfile["lang"]) ? $companyProfile["lang"] : "";
+            $event_manager = isset($companyProfile["event_manager"]) ? $companyProfile["event_manager"] : "";
+
+            //we actually should handle this by view name...
+
+            // if( === "en")
+            // {
+            //     $this->error("Skipped! Lang mismatch. " . $ex->email);
+            //     continue;
+            // }
 
 
             //check for companydata fields freshness :)
@@ -81,14 +94,15 @@ class PingWhenEmptyProfile extends Command
                 continue;
             }
 
-            $this->info("Processing " . $ex->company->slug);
+            $this->info("Processing " . $ex->company->slug . " lang: " . $lang);
+
             $this->line("Fields with errors: " . implode(", ", array_keys($status)));
 
             if($whatWeDo === "send")
             {
                 $this->info("Notifying " . $ex->email);
 
-                dispatch(new Job($ex, $eventId));
+                dispatch(new Job($ex, $eventId, $lang, $event_manager));
             }
 
             $done++;
