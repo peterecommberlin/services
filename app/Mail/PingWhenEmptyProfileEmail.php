@@ -67,7 +67,7 @@ class PingWhenEmptyProfileEmail extends Mailable
             "twitter"           => "Twitter profile URL",
             "website"           => "Company website URL",
             "lang"              => "Language",
-            "event_manager"     => "Email address to Event Manager (if different)"
+            "event_manager"     => "Email address to Event Manager (if differs)"
         ]
     ];
 
@@ -94,11 +94,11 @@ class PingWhenEmptyProfileEmail extends Mailable
     public $settings = [
 
         "pl" => [
-            "subject" => "Profil, mała rzecz do poprawki.",
+            "subject" => "Profil Firmy na stronie Targów - wymagane działanie.",
             "accountUrl" => "https://account.targiehandlu.pl/#login?token=",
         ],
         "en" => [
-            "subject" => "public profile needs attention. ...and action",
+            "subject" => "Exhibitor's public profile needs your attention. ...and action",
              "accountUrl" => "https://account.ecommercewarsaw.com/#login?token=",
         ]
     ];

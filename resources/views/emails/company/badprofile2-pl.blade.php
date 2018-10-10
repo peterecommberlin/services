@@ -2,9 +2,9 @@
 
 @component('mail::message')
  
-# Dzień dobry, {{$profile->translate("[[fname]]")}},
+# Dzień dobry {{$profile->translate("[[fname]]")}},
 
-## Sprawdziliśmy profil Twojej firmy na stronie Targów Ehandlu - **wymaga poprawek**.
+## sprawdziliśmy profil Twojej firmy na stronie Targów Ehandlu - **wymaga poprawek**.
 
 @foreach ($errors as $f => $p)
 	

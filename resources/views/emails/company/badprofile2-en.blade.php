@@ -2,7 +2,7 @@
 
 @component('mail::message')
  
-# Hello {{$profile->translate("[[fname]]")}},
+# Hello {{$profile->translate("[[fname]]")}}!
 
 ## We have checked your company's online profile on Targi ehandlu website - there is some work to be done.
 
@@ -21,11 +21,11 @@ Your company profile  [link]({{$profileUrl}})
 
 
 @component('mail::panel')
-It is very import to have the online profile updated. It is required in order to proceed with next step of exhibitor's involvent.
+It is very import to have online profile updated. It is required in order to proceed with next steps of exhibitor's involvent.
 
 @endcomponent
 
-**Please edit your profile to stop receiving this automated message**
+**Please edit your profile to stop receiving this message**
 
 Regards, Adam Zygadlewicz 
 
