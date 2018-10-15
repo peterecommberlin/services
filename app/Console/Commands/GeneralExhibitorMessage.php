@@ -23,7 +23,7 @@ class GeneralExhibitorMessage extends Command
         {--domain=} 
         {--email=} 
         {--subject=}
-        {--lang=pl} 
+        {--lang=} 
         {--throttle=1}';
     
     protected $description = 'Send general email message to Exhibitors';
@@ -91,8 +91,14 @@ class GeneralExhibitorMessage extends Command
                 continue;
             }
 
+            $companyProfile = $cd->toArray($ex->company);
 
-            if($cd->lang($ex->company) === $this->option("lang"))
+            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "pl";
+
+            $event_manager = isset($companyProfile["event_manager"]) ? $companyProfile["event_manager"] : "";
+
+
+            if($lang === $this->option("lang"))
             {
                 $this->error("Skipped! Lang mismatch. ");
                 continue;
@@ -102,13 +108,17 @@ class GeneralExhibitorMessage extends Command
 
             $this->info("Notifying " . $ex->email);
 
-            dispatch(new Job($ex, $eventId, compact("email", "subject") ) );
+            dispatch(new Job(
+                $ex, 
+                $eventId, 
+                compact("email", "subject", "event_manager", "lang") 
+            ));
             
             $done++;
 
         }   
 
-        $this->info("Counted " . $done . " companies with errors...");
+        $this->info("Delivered " . $done . " messages");
 
 
     }

@@ -24,17 +24,22 @@ class GeneralExhibitorEmail extends Mailable
 
     protected $participant;
 
-    public  $profile, 
+    public  $subject,
+            $view,
+            $lang,
+            $event_manager,
+            $profile, 
             $profileUrl, 
             $trackingLink,
             $accountUrl;
 
 
-    public function __construct(Participant $participant, string $subject, string $view)
+    public function __construct(Participant $participant, string $subject, string $view, string $lang, string $event_manager)
     {
         $this->participant  = $participant;
         $this->view       = $view;
         $this->subject    = $subject;
+        $this->event_manager = $event_manager;
 
     }
 
@@ -53,15 +58,25 @@ class GeneralExhibitorEmail extends Mailable
                 ",c,". 
                 $this->participant->company_id;
 
+
         $this->accountUrl = "https://account.targiehandlu.pl/#login?token=" . $this->participant->token;
        
+        if($this->lang == "en"){
+
+            $this->accountUrl = "https://account.ecommercewarsaw.com/#login?token=" . $this->participant->token;
+        }
+
         $this->trackingLink = $this->profileUrl . sprintf("?utm_source=company_%s&utm_medium=link&utm_campaign=teh14c&utm_content=raw", $this->participant->company_id);
 
         $this->to( trim(strtolower($this->participant->email)) );
 
+        if($this->event_manager && strpos($this->event_manager, "@")){
+            $this->cc( $this->event_manager ); 
+        }
+
         $this->cc( "targiehandlu+auto@targiehandlu.pl" ); 
 
-        $this->from("targiehandlu@targiehandlu.pl", "Bartek Meller, Targi eHandlu");
+        $this->from("adam.zygadlewicz@targiehandlu.pl", "Adam Zygadlewicz (Targi eHandlu - Ecommerce Poland Expo)");
 
         $this->subject($this->subject);
 
