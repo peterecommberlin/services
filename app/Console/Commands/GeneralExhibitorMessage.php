@@ -98,7 +98,7 @@ class GeneralExhibitorMessage extends Command
             $event_manager = isset($companyProfile["event_manager"]) ? $companyProfile["event_manager"] : "";
 
 
-            if($lang === $this->option("lang"))
+            if($lang !== $this->option("lang"))
             {
                 $this->error("Skipped! Lang mismatch. ");
                 continue;
