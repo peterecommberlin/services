@@ -2,30 +2,30 @@
 
 @component('mail::message')
  
-# Cześć {{$profile->translate("[[fname]]")}},
+# Hello {{$profile->translate("[[fname]]")}},
 
-**W panelu Wystawcy możesz rozszerzyć swoje zamówienie o dodatkowe usługi.**
+**In your exhibitor's account admin panel you can now order additional services.**
 
-Lista aktualnych usług to:
+List of available options is as follows:
 
-* Prawo do dystrybucji ulotek poza stoiskiem
-* Niezależne podłączenie prądu 3000W (zamiast 300W)
-* 2 dodatkowe vouchery + 1 karta parkingowa (standardowo otrzymujesz 4 vouchery i 1 kartę parkingową)
-* Ekran LED 50 cali
+* Permission to distribute leaflets outside booth (think hostess is welcoming visitors near the entrance)
+* Additional electricity connection - 3000 Watts (instead 300 W)
+* 2 additional catering vouchers and 1 parking card
+* 50 inch LED display (HDMI + USB)
 
-oraz 
+and booth arrangement related: 
 
-* Kompleksowa zabudowa przestrzeni stoiska w wersji FULLPRINT
-* Kompleksowa zabudowa przestrzeni stoiska w wersji OSB+logotyp
-* Lada z nadrukiem + wykładzina
-* Dodatkowe meble + wykładzina
+* Complete booth arrangement with fullsize fullcolor print, counter, leaflet holder
+* same as above but with OSB back wall and logotype
+* counter with branding and flooring
+* additional furniture and flooring
 
-Uwaga: Niektóre świadczenia są **ograniczone ilościowo** jak i **czasowo** (np zamówienie związane z zabudową tylko do piątku)
+We need to emphasize that **some services are limited by quantity and order date**. For instance the booth arrangement options must be ordered till upcoming Friday.
 
-Sprawdź szczegóły korzystając z przycisku poniżej (przejdź na podstronę "Usługi dodatkowe")
+Check out prices, images, specs by clicking the button below. 
 
 @component('mail::button', ['url' => $accountUrl])
-Zaloguj się do Panelu Wystawcy 
+Sign Into My Account
 @endcomponent
 
 Pozdrawiam, Adam Zygadlewicz
