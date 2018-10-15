@@ -39,7 +39,7 @@ class GeneralExhibitorEmail extends Mailable
         $this->participant  = $participant;
         $this->view       = $view;
         $this->subject    = $subject;
-        $this->event_manager = $event_manager;
+        $this->event_manager = trim($event_manager);
 
     }
 
@@ -70,7 +70,7 @@ class GeneralExhibitorEmail extends Mailable
 
         $this->to( trim(strtolower($this->participant->email)) );
 
-        if($this->event_manager && strpos($this->event_manager, "@")){
+        if($this->event_manager && filter_var($this->event_manager, FILTER_VALIDATE_EMAIL) ){
             $this->cc( $this->event_manager ); 
         }
 
