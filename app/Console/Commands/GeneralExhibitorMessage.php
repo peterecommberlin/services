@@ -75,7 +75,9 @@ class GeneralExhibitorMessage extends Command
 
         $sendable->checkUniqueness(false);
 
-        //$exhibitors = $sendable->filter($exhibitors, $eventId);
+        $sendable->setMuteTime(1); //1hr snooze time
+
+        $exhibitors = $sendable->filter($exhibitors, $eventId);
 
         $this->info("Exhibitors that can be notified: " . $exhibitors->count() );
 
@@ -96,6 +98,13 @@ class GeneralExhibitorMessage extends Command
             $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "pl";
 
             $event_manager = isset($companyProfile["event_manager"]) ? $companyProfile["event_manager"] : "";
+
+
+            if($event_manager && !filter_var($event_manager, FILTER_VALIDATE_EMAIL)){
+
+                $this->error($ex->email . " - bad event manager email");
+                $event_manager = "";
+            }
 
 
             if($lang !== $this->option("lang"))
