@@ -58,7 +58,7 @@ class migrateCompanyReps extends Command
 
         $oldSubaccounts = $participants->all();
 
-        $this->info("Number of reps from current event: " . $oldSubaccounts->count() );
+        $this->info("Number of reps from previous event: " . $oldSubaccounts->count() );
 
         $repTicketId = 1;
 
@@ -72,12 +72,12 @@ class migrateCompanyReps extends Command
             $company_id = !empty($oldSub->company_id) ? $oldSub->company_id : $oldSub->parent->company_id;
 
             if(empty($company_id)){
-                $this->error("No company Id @" . $oldSub->email );
+                $this->error("No company Id for: " . $oldSub->email );
                 continue;
             }
 
             if(!in_array($company_id, $companies)){
-                $this->info("Company not present...skipping... ");
+                $this->info($oldSub->email . " Company lost?");
                 continue;
             }
 
