@@ -144,6 +144,9 @@ class migrateCompanyReps extends Command
                 $exh->id            
             );
 
+            $this->line($oldSub->email . " to " . $exh->email);
+
+
            } catch (Exception $e) {
                
            }
