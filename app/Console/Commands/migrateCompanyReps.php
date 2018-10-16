@@ -10,7 +10,7 @@ use Eventjuicer\Services\Resolver;
 use Eventjuicer\Services\GetByRole;
 use Eventjuicer\Services\SaveOrder;
 
-
+use Eventjuicer\Models\Ticket;
 
 use Eventjuicer\Repositories\ParticipantRepository;
 use Eventjuicer\Repositories\Criteria\BelongsToEvent;
@@ -20,18 +20,42 @@ use Eventjuicer\Repositories\Criteria\WhereIn;
 class migrateCompanyReps extends Command
 {
    
-    protected $signature = 'exhibitors:migrateReps {host}';
+    protected $signature = 'exhibitors:migrateReps {host} {ticketId}';
     protected $description = 'Command description';
  
     public function __construct()
     {
         parent::__construct();
     }
+
+
+    protected function getSubsFromPrevEvent($repo, $prev){
+
+        $repo->makeModel();
+
+        $repo->pushCriteria(new BelongsToEvent($prev));
+        $repo->pushCriteria(new ColumnGreaterThanZero("parent_id"));
+        $repo->with(["fields", "parent"]);
+
+        return $repo->all();
+
+    }
+
+     protected function getSubsFromCurrentEvent($repo, $eventId){
+
+        $repo->makeModel();
+        $repo->pushCriteria(new BelongsToEvent($eventId));
+        $repo->pushCriteria(new ColumnGreaterThanZero("parent_id"));
+        return $repo->all()->pluck("email")->all();
+
+    }
+
  
     public function handle(GetByRole $repo, ParticipantRepository $participants, SaveOrder $order)
     {
 
         $route = new Resolver( $this->argument("host") );
+        $ticketId = $this->argument("ticketId");
 
         $eventId =  $route->getEventId();
         $groupId = $route->getGroupId();
@@ -52,22 +76,25 @@ class migrateCompanyReps extends Command
 
         $this->info("Previous event id: " . $prev);
 
-        $participants->pushCriteria(new BelongsToEvent($prev));
-        $participants->pushCriteria(new ColumnGreaterThanZero("parent_id"));
-        $participants->with(["fields", "parent"]);
-
-        $oldSubaccounts = $participants->all();
+        $oldSubaccounts = $this->getSubsFromPrevEvent($participants,  $prev);
 
         $this->info("Number of reps from previous event: " . $oldSubaccounts->count() );
 
-        $repTicketId = 1;
+        $currentSubaccounts = $this->getSubsFromCurrentEvent($participants,  $eventId);
+
+        $this->info("Number of reps from current event: " . count($currentSubaccounts) );
+
+        if(Ticket::find($ticketId)->event_id != $eventId){
+            $this->error("Rep Ticket ID must be from current event!!!!");
+            return;
+        }
 
         $whatWeDo  = $this->anticipate('Simulate or run?', ['simulate', 'run']);
 
         foreach($oldSubaccounts as $oldSub){
 
             $profile = $oldSub->profile();
-            $profile["email"] = $oldSub->email;
+            $profile["email"] = strtolower(trim($oldSub->email));
 
             $company_id = !empty($oldSub->company_id) ? $oldSub->company_id : $oldSub->parent->company_id;
 
@@ -77,26 +104,45 @@ class migrateCompanyReps extends Command
             }
 
             if(!in_array($company_id, $companies)){
-                $this->info($oldSub->email . " Company lost?");
+                $this->line($oldSub->email);
+                continue;
+            }
+
+            //we shall avoid doubles...
+
+            if(in_array($oldSub->email, $currentSubaccounts)){
+                $this->error("Already added!" . $oldSub->email );
+                continue;
+            }
+
+            //try to determine PARENT
+
+            $exh = $exhibitors->where("company_id", $company_id)->first();
+
+            if(is_null($exh)){
+                $this->error("Cannot assign current exhibitor!" . $oldSub->email );
                 continue;
             }
 
             if($whatWeDo === "simulate"){
+
+                $this->line($oldSub->email . " to " . $exh->email);
+
                 continue;
             }
 
+            //always ec
+
            try {
                
-            // $order->make(
-
-            //     $eventId, 
-            //     0, 
-            //     $tickets, 
-            //     $data["fields"],
-            //     false,
-            //     $this->user->user()->id
-            
-            // );
+            $order->make(
+                $eventId, 
+                0, 
+                [ $ticketId => 1], 
+                $profile,
+                false,
+                $exh->id            
+            );
 
            } catch (Exception $e) {
                
