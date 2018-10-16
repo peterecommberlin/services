@@ -91,6 +91,8 @@ class migrateCompanyReps extends Command
 
         $whatWeDo  = $this->anticipate('Simulate or run?', ['simulate', 'run']);
 
+        $absent = [];
+
         foreach($oldSubaccounts as $oldSub){
 
             $profile = $oldSub->profile();
@@ -104,6 +106,7 @@ class migrateCompanyReps extends Command
             }
 
             if(!in_array($company_id, $companies)){
+                $absent[] = $oldSub->email;
                 $this->line($oldSub->email);
                 continue;
             }
@@ -126,7 +129,7 @@ class migrateCompanyReps extends Command
 
             if($whatWeDo === "simulate"){
 
-                $this->line($oldSub->email . " to " . $exh->email);
+                $this->info($oldSub->email . " to " . $exh->email);
 
                 continue;
             }
@@ -144,13 +147,15 @@ class migrateCompanyReps extends Command
                 $exh->id            
             );
 
-            $this->line($oldSub->email . " to " . $exh->email);
+            $this->info($oldSub->email . " to " . $exh->email);
 
 
            } catch (Exception $e) {
                
            }
         }
+
+        $this->error(implode("\n", $absent));
 
         return;
 
