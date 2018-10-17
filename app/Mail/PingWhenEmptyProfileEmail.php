@@ -167,7 +167,7 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         }
 
-        $this->from("adam.zygadlewicz@targiehandlu.pl", "Adam Zygadlewicz (Targi eHandlu - Ecommerce Poland Expo)");
+        $this->from("targiehandlu@targiehandlu.pl", "Adam Zygadlewicz, Targi eHandlu - Ecommerce Poland Expo");
 
         $this->subject( $this->getSetting("subject") );
 
