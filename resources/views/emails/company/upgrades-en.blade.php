@@ -8,17 +8,17 @@
 
 List of available options is as follows:
 
-* Permission to distribute leaflets outside booth (think hostess is welcoming visitors near the entrance)
-* Additional electricity connection - 3000 Watts (instead 300 W)
+* Permission to distribute leaflets outside booth (for instance: a hostess is welcoming visitors near the entrance)
+* Additional electricity connection - 3000 Watts (instead 300 W) if you plan something more than laptop on your booth
 * 2 additional catering vouchers and 1 parking card
-* 50 inch LED display (HDMI + USB)
+* 50 inch LED display (HDMI + USB) on the stand
 
-and booth arrangement related: 
+and booth arrangement related services: 
 
 * Complete booth arrangement with fullsize fullcolor print, counter, leaflet holder
 * same as above but with OSB back wall and logotype
-* counter with branding and flooring
-* additional furniture and flooring
+* counter with branding and flooring carpet
+* additional furniture (2 high chairs) and flooring carpet
 
 We need to emphasize that **some services are limited by quantity and order date**. For instance the booth arrangement options must be ordered till upcoming Friday.
 

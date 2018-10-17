@@ -4,14 +4,14 @@
  
 # Cześć {{$profile->translate("[[fname]]")}},
 
-**W panelu Wystawcy możesz rozszerzyć swoje zamówienie o dodatkowe usługi.**
+**Przypominamy, że w panelu Wystawcy możesz rozszerzyć swoje zamówienie o dodatkowe usługi.**
 
 Lista aktualnych usług to:
 
-* Prawo do dystrybucji ulotek poza stoiskiem
-* Niezależne podłączenie prądu 3000W (zamiast 300W)
+* Prawo do dystrybucji ulotek poza stoiskiem (np przy wejściu albo w strefie networkingu)
+* Niezależne podłączenie prądu 3000W (zamiast 300W) jeśli planujesz wyposażenie stoiska inne niż 1-2 laptopy i TV
 * 2 dodatkowe vouchery + 1 karta parkingowa (standardowo otrzymujesz 4 vouchery i 1 kartę parkingową)
-* Ekran LED 50 cali
+* Ekran LED 50 cali ze statywem
 
 oraz 
 
