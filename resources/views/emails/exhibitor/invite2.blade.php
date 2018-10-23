@@ -12,7 +12,7 @@
 
 # Hi,
 
-## We would like to let you know that {{  array_get($companydata, "name") }} is exhibiting at the E-Commerce Cracow Expo 2018 on **April 25th** at EXPO Kraków (Galicyjska str.), Cracow. 
+## We would like to let you know that {{  array_get($companydata, "name") }} is exhibiting at the E-Commerce Warsaw Expo 2018 on **November 7th** at EXPO XXI (Prądzyńskiego str.), Warsaw. 
 
 We’re excited for a day fully dedicated to e-commerce best practices &amp; trends. 
 Come have a chat with us at our stand.

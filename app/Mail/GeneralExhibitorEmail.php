@@ -66,7 +66,7 @@ class GeneralExhibitorEmail extends Mailable
             $this->accountUrl = "https://account.ecommercewarsaw.com/#login?token=" . $this->participant->token;
         }
 
-        $this->trackingLink = $this->profileUrl . sprintf("?utm_source=company_%s&utm_medium=link&utm_campaign=teh14c&utm_content=raw", $this->participant->company_id);
+        $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th3rCMiM_%s&utm_medium=link&utm_campaign=teh15c&utm_content=raw", $this->participant->company_id);
 
         $this->to( trim(strtolower($this->participant->email)) );
 
