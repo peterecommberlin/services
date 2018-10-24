@@ -53,8 +53,7 @@ class ParticipantInviteMail extends Mailable
 
 
         $baseUrl = "https://targiehandlu.pl";
-        $params  = "?utm_campaign=marketer";
-
+        $params  = "?utm_campaign=oldparticipant";
 
         $this->ticketUrl = $baseUrl . "/ticket/" . $hash . $params;
 
@@ -69,10 +68,9 @@ class ParticipantInviteMail extends Mailable
 
         $this->to( strtolower(trim($this->participant->email)) );
 
-        $this->from("zwiedzanie@targiehandlu.pl", "Roman Turaj, Targi eHandlu");
+        $this->from("zwiedzanie@targiehandlu.pl", "Adam Zygadlewicz - Targi eHandlu");
 
         $this->subject($this->subject);
-
 
         if(view()->exists("emails.visitor." . $this->view . "_text")) {
                 
