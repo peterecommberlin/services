@@ -56,6 +56,8 @@ Na państwa stoiskach znajdować będzie się pakiet powitalny w którego skład
 
 ** Prosimy o wzięcie własnych listew zasilających **
 
+** Prosimy pamiętać, że standardowe przyłącze prądu to tylko 300W** jeśli planujesz coś więcej niż korzystanie z 2 laptopów i ew. TV trzeba dokupić indywidualne przyłącze. Prosimy o kontakt jeśli masz wątpliwości.
+
 @component('mail::panel')
 
 UWAGA: W przypadku podklejania wykładzin we własnym zakresie (brak wykupienia stosownej usługi od nas) jedyną rekomendowaną opcją jest profesjonalna taśma dwustronna ETG firmy Imawex. Typowa (=marketowa) taśma dwustronna jest nie do usunięcia po wydarzeniu co generuje dodatkowe koszty sprzątania.
