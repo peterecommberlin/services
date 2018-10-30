@@ -8,6 +8,7 @@ use Illuminate\Console\Command;
 use Eventjuicer\Repositories\MeetupRepository;
 use Eventjuicer\Repositories\Criteria\ColumnIsNull;
 use Eventjuicer\Repositories\Criteria\ColumnLessThan;
+use Eventjuicer\Repositories\Criteria\ColumnGreaterThan;
 
 use App\Jobs\Meetups\BulkNotify;
 use Eventjuicer\Services\Meetups\Sendable;
@@ -60,8 +61,12 @@ class SendBulkMeetupRequests extends Command
             return;
         }
 
+
+
+
         $meetups->pushCriteria(new ColumnIsNull("responded_at"));
         $meetups->pushCriteria(new ColumnLessThan("retries", 3));
+        $meetups->pushCriteria(new ColumnGreaterThan("created_at", "2018-10-24 00:00:00"));
 
         $all = $meetups->all();
 
