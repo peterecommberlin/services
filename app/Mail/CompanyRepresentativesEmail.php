@@ -56,7 +56,6 @@ class CompanyRepresentativesEmail extends Mailable
     public function build()
     {
 
-      
 
         $this->profile = new Personalizer( $this->participant, "");
 
@@ -80,9 +79,19 @@ class CompanyRepresentativesEmail extends Mailable
 
         }
 
-        $this->from("targiehandlu@targiehandlu.pl", "Adam Zygadlewicz, Targi eHandlu - Ecommerce Poland Expo");
+        $this->from("targiehandlu@targiehandlu.pl", "Adam Zygadlewicz - Targi eHandlu / Ecommerce Poland Expo");
 
-        $this->subject( "asdasda" );
+
+        if($this->lang == "en"){
+
+            $this->subject( "Last call: add/modify exhibitor representatives!" );
+        
+        }else{
+            
+            $this->subject( "Ostatnia szansa: dodaj/edytuj przedstawicieli Wystawcy..." );
+        }
+
+        
 
         return $this->markdown('emails.company.representatives-list-' . $this->lang);
     }

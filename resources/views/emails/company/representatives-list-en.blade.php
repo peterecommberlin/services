@@ -2,21 +2,32 @@
 
 @component('mail::message')
  
-# Hello {{$profile->translate("[[fname]]")}},
+# Hi {{$profile->translate("[[fname]]")}},
 
-**You can now add/edit/delete exhibitor's representatives (company staff that will be present at the booth) in your exhibitor's account**
+**Please be reminded that in your exhibitor account one can add/modify/delete exhibitor representatives. Only defined representatives will have printed badges.**
+
+**Deadline is TODAY 5 pm CET**
+
+# The list of already defined representatives is as follows:
+
+@forelse($representatives as $rep)
+
+	{{$rep->translate("[[fname]] [[lname]] [[position]]")}}
+
+@empty
+
+**Not yet defined!**
+
+@endforelse
+
 
 @component('mail::button', ['url' => $accountUrl])
-Sign Into My Account
+Sing In to add or edit
 @endcomponent
 
-Please be reminded that in the standard offering you will get 4 catering vouchers and 1 parking card. 
+Please remember that in our standard offering you get 4 catering vouchers unless separately ordered.
 
-**If you add more that 4 representatives we will contact you whether you would like to purchase additional catering vouchers (10 EUR net / person)** 
-
-(You can of course reply to this email and proactively let us know :-)
-
-Pozdrawiam, Adam Zygadlewicz
+Regards, Pozdrawiam! Adam Zygadlewicz
 
 @endcomponent
 
