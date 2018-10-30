@@ -47,7 +47,7 @@ class Approved extends Mailable
         $this->to($this->recipient);
 
 
-        $this->from("targiehandlu+rsvp@targiehandlu.pl", "Targi eHandlu");
+        $this->from("targiehandlu+rsvp@targiehandlu.pl", "Adam Zygadlewicz - Targi eHandlu");
 
   
         if($this->recipient != $this->meetup->admin->email)

@@ -37,7 +37,7 @@ class Bulk extends Mailable
 
         $this->url = "https://rsvp.targiehandlu.pl/rsvp?token=" . $this->participant->token;
 
-        $this->from("zwiedzanie+rsvp@targiehandlu.pl", "XIV Targi eHandlu");
+        $this->from("zwiedzanie+rsvp@targiehandlu.pl", "Jan Selga, XV Targi eHandlu w Warszawie");
 
         $this->to((string) $this->participant->email);
 
