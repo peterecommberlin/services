@@ -75,7 +75,7 @@ class GeneralExhibitorMessage extends Command
 
         $sendable->checkUniqueness(false);
 
-        $sendable->setMuteTime(1); //1hr snooze time
+        $sendable->setMuteTime(20); //minutes!!!!
 
         $exhibitors = $sendable->filter($exhibitors, $eventId);
 
