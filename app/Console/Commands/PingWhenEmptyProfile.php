@@ -48,6 +48,8 @@ class PingWhenEmptyProfile extends Command
 
         $sendable->checkUniqueness(true);
 
+        $sendable->setMuteTime(20); //minutes!!!!
+
         $filtered = $sendable->filter($exhibitors, $eventId);
 
         $this->info("Exhibitors that can be notified: " . $filtered->count() );
