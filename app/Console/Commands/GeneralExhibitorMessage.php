@@ -77,7 +77,7 @@ class GeneralExhibitorMessage extends Command
 
         $sendable->setMuteTime(20); //minutes!!!!
 
-      //  $exhibitors = $sendable->filter($exhibitors, $eventId);
+        $exhibitors = $sendable->filter($exhibitors, $eventId);
 
         $this->info("Exhibitors that can be notified: " . $exhibitors->count() );
 
