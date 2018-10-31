@@ -16,15 +16,15 @@ Gratulujemy i dziękujemy za zaangażowanie!
 
 Konkurs trwa do 23:59 6 listopada i **nadal można wygrać bardzo cenne świadczenia**:
 
-Mega pakiet zaproszeń w aplikacji do zapraszania Zwiedzających (**standardowo możesz zaprosić tylko 5 Zwiedzających...** uzyskując wynik min 20 punktów masz już 55 zaproszeń!)
+Mega pakiet zaproszeń w aplikacji do zapraszania Zwiedzających (**standardowo możesz zaprosić tylko 5 Zwiedzających...** uzyskując wynik min 20 punktów masz już 55 zaproszeń - limit zwiększa się automatycznie!)
 
 Wywiad wideo z przedstawicielem firmy na stoisku
 
 Dostęp do najtańszej puli sprzedaży na kolejne Targi
 
-Aplikacja do skanowania badgów
+Aplikacja do skanowania badgów (identyfikatorów Zwiedzających) - dzięki czemu masz ich dane kontaktowe
 
-Roll-up w strefie Business Lounge
+Roll-up w strefie Cateringowej dla Zwiedzających
 
 
 # Poniżej info o co chodzi w Konkursie
