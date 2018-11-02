@@ -16,16 +16,17 @@ use App\Mail\GeneralReminder as Email;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 
 
-class SendGeneralReminder implements ShouldQueue
+class SendGeneralReminder// implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $participant, $eventId;
+    protected $participant, $eventId, $config;
 
-    public function __construct(Participant $participant, int $eventId)
+    public function __construct(Participant $participant, int $eventId, array $config)
     {
         $this->participant = $participant;
         $this->eventId = $eventId;
+        $this->config = $config;
     }
 
     /**
@@ -45,7 +46,10 @@ class SendGeneralReminder implements ShouldQueue
         }
 
 
-        Mail::send(new Email( $this->participant ));
+        Mail::send(new Email( 
+            $this->participant, 
+            $this->config 
+        ));
 
 
         if(! env("MAIL_TEST", true))
@@ -57,3 +61,7 @@ class SendGeneralReminder implements ShouldQueue
        
     }
 }
+
+
+
+

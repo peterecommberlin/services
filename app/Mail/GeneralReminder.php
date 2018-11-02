@@ -19,12 +19,15 @@ class GeneralReminder extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $participant;
+    protected $participant, $email, $subject;
     public $p, $url;
 
-    public function __construct(Participant $participant)
+    public function __construct(Participant $participant, array $config)
     {
         $this->participant = $participant;
+        $this->email = !empty($config["email"]) ? $config["email"] : "";
+        $this->subject = !empty($config["subject"]) ? $config["subject"] : "";
+
     }
 
     /**
@@ -40,15 +43,15 @@ class GeneralReminder extends Mailable
 
         $hash = (new Hashids())->encode($this->participant->id);
 
-        $this->url = "https://ecommerceberlin.com/ticket/" . $hash;
+        $this->url = "https://targiehandlu.pl/ticket," . $hash;
 
         $this->to(trim(strtolower($this->participant->email)));
 
-        $this->from("visitors@ecommerceberlin.com", "Lucas Zarna, E-commerce Berlin Expo");
+        $this->from("zwiedzanie@targiehandlu.pl", "Adam Zygadlewicz - Targi eHandlu");
 
       //  $this->subject("Your ticket is ready! Download and print!");
 
-        $this->subject("Tomorrow! Presentations, parking info and more...");
+        $this->subject("Twój bilet na Targi");
 
         return $this->markdown('emails.tickets.reminder3');
 

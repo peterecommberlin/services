@@ -22,6 +22,8 @@ class SendGeneralReminder extends Command
     protected $signature = 'email:visitors 
 
         {--domain=}
+        {--email=} 
+        {--subject=}
 
     ';
 
@@ -52,13 +54,29 @@ class SendGeneralReminder extends Command
         ParticipantSendable $sendable
     )
     {
-        $domain = $this->option("domain");
 
-     
-        if(empty($domain))
-        {
-            return $this->error("set --domain=!");
+
+        $domain = $this->option("domain");
+        $email =  $this->option("email");
+        $subject =  $this->option("subject");
+
+        if(empty($domain)) {
+            return $this->error("--domain= must be set!");
         }
+
+        if(empty($subject)) {
+            return $this->error("--subject= must be set!");
+        }
+    
+        
+        if(empty($email)) {
+            return $this->error("--email= must be set!");
+        }
+
+        if(! view()->exists("emails.visitor." . $email)) {
+            return $this->error("--email= error. View cannot be found!");
+        }
+
 
         $route = new Resolver($domain);
 
@@ -76,9 +94,27 @@ class SendGeneralReminder extends Command
 
         $this->info("Visitors that can be notified: " . $filtered->count() );
 
+
+        $whatWeDo  = $this->anticipate('Send or stats?', ['send', 'stats']);
+
+        if($whatWeDo !== "send"){
+            return;
+        }
+
         foreach($filtered as $participant)
         {
-          dispatch(new Job($participant, $eventId));
+
+            if(!filter_var($participant->email, FILTER_VALIDATE_EMAIL)){
+                $this->error("Wrong email address: " . $participant->email);
+                continue;
+            }
+
+
+          dispatch(new Job(
+            $participant, 
+            $eventId,
+            compact("subject", "email")
+            ));
         }
 
         $this->info("Done.");
