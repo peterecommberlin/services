@@ -81,6 +81,12 @@ class SendTicketReminder extends Command
 
         foreach($participants as $participant)
         {
+
+            if(!filter_var($participant->email, FILTER_VALIDATE_EMAIL)){
+                $this->error($participant->email);
+                continue;
+            }
+
            dispatch(new SendTicketDownloadReminder($participant, $eventId));
         }
 
