@@ -11,7 +11,7 @@ Pobierz bilet
 @endcomponent
 
 {{$p->translate("[[fname]]") }}, na stronie z biletem znajdują się przyciski do pochwalenia się na Facebook, Twitter i Linkedin, że będziesz na Targach.
-Być może Twoi znajomi jeszcze nie widzą o tym wydarzeniua interesują się ehandlem?  
+Być może Twoi znajomi jeszcze nie widzą o tym wydarzeniu a **interesują się ehandlem?**
 
 Na stronie z biletem znajduje się także **szczegółowa agenda prezentacji na 3 scenach** (tak! ...będą aż 3 sceny!).
 
