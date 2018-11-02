@@ -21,7 +21,7 @@ class SendTicketReminder extends Command
      *
      * @var string
      */
-    protected $signature = 'tickets:reminder {host}';
+    protected $signature = 'visitors:ticket-reminder {host}';
 
     /**
      * The console command description.

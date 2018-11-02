@@ -19,7 +19,7 @@ class SendAnkieta extends Command
      *
      * @var string
      */
-    protected $signature = 'email:ankieta {host}';
+    protected $signature = 'visitors:poll {host}';
 
     /**
      * The console command description.

@@ -24,7 +24,7 @@ class SmsDisbelievers extends Command
      *
      * @var string
      */
-    protected $signature = 'sms:disbelievers 
+    protected $signature = 'visitors:sms-to-old-events 
 
         {--domain=} 
     

@@ -18,7 +18,7 @@ class GeneralExhibitorMessage extends Command
 {
 
  
-    protected $signature = 'exhibitors:send 
+    protected $signature = 'exhibitors:current-event 
 
         {--domain=} 
         {--email=} 

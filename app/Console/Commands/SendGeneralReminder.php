@@ -19,7 +19,7 @@ class SendGeneralReminder extends Command
      *
      * @var string
      */
-    protected $signature = 'email:visitors 
+    protected $signature = 'visitors:current-event
 
         {--domain=}
         {--email=} 

@@ -17,7 +17,7 @@ class migrateCompanyData extends Command
      *
      * @var string
      */
-    protected $signature = 'companies:migrate {host}';
+    protected $signature = 'exhibitors:migrate {host}';
 
     /**
      * The console command description.

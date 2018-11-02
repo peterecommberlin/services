@@ -23,7 +23,7 @@ class EmailDisbelievers extends Command
      *
      * @var string
      */
-    protected $signature = 'email:disbelievers 
+    protected $signature = 'visitors:restore-from-old-events 
 
         {--domain=} 
         {--email=} 

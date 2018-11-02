@@ -20,7 +20,7 @@ class TicketStats extends Command
      *
      * @var string
      */
-    protected $signature = 'tickets:stats {host}';
+    protected $signature = 'visitors:ticket-stats {host}';
 
     /**
      * The console command description.
