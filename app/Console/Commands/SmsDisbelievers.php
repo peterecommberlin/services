@@ -122,7 +122,7 @@ class SmsDisbelievers extends Command
                 continue;
             }
 
-            if(!filter_var($participant->email, FILTER_VALIDATE_EMAIL)){
+            if(!filter_var(trim($participant->email), FILTER_VALIDATE_EMAIL)){
 
                 $this->error("bad email: " . $participant->email);
                 continue;
@@ -130,7 +130,7 @@ class SmsDisbelievers extends Command
 
             $phone = trim( $query->first()->field_value );
 
-            $phone = str_replace(" ", "", $phone);
+            $phone = str_replace([" ", "-"], "", $phone);
 
             if(empty($phone)){
                 continue;
