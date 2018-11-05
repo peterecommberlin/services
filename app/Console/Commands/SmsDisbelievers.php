@@ -16,7 +16,6 @@ use Eventjuicer\Services\Revivers\ParticipantSendable;
 
 use Eventjuicer\Models\ParticipantFields;
 
-
 class SmsDisbelievers extends Command
 {
     /**
@@ -120,6 +119,12 @@ class SmsDisbelievers extends Command
             $query = ParticipantFields::where("participant_id", $participant->id)->where("field_id", 8)->get();
 
             if(!$query->count()){
+                continue;
+            }
+
+            if(!filter_var($participant->email, FILTER_VALIDATE_EMAIL)){
+
+                $this->error("bad email: " . $participant->email);
                 continue;
             }
 
