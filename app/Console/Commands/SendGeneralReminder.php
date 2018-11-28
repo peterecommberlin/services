@@ -95,11 +95,13 @@ class SendGeneralReminder extends Command
         $this->info("Visitors that can be notified: " . $filtered->count() );
 
 
-        $whatWeDo  = $this->anticipate('Send or stats?', ['send', 'stats']);
+        $whatWeDo  = $this->anticipate('Send, stats, test?', ['test', 'send', 'stats']);
 
-        if($whatWeDo !== "send"){
+        if($whatWeDo === "stats"){
             return;
         }
+
+        $counter = 1;
 
         foreach($filtered as $participant)
         {
@@ -109,12 +111,22 @@ class SendGeneralReminder extends Command
                 continue;
             }
 
+            if($counter % 100 === 0){
 
-          dispatch(new Job(
-            $participant, 
-            $eventId,
-            compact("subject", "email")
+                $this->info("Dispatched " . $counter);
+            }
+
+            dispatch(new Job(
+                $participant, 
+                $eventId,
+                compact("subject", "email")
             ));
+
+            if($whatWeDo === "test"){
+                break;
+            }
+
+            $counter++;
         }
 
         $this->info("Done.");

@@ -19,8 +19,8 @@ class GeneralReminder extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $participant, $email, $subject;
-    public $p, $url;
+    protected $participant, $email;
+    public $p, $url, $subject;
 
     public function __construct(Participant $participant, array $config)
     {
@@ -51,9 +51,9 @@ class GeneralReminder extends Mailable
 
       //  $this->subject("Your ticket is ready! Download and print!");
 
-        $this->subject("Twój bilet na Targi");
+        $this->subject($this->subject);
 
-        return $this->markdown('emails.tickets.reminder3');
+        return $this->markdown('emails.visitor.' . $this->email);
 
 
     }
