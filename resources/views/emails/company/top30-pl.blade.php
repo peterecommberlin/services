@@ -12,6 +12,8 @@ Rezerwacji będzie można dokonać do godziny 11:30 (O 12:00 startuje sprzedaż 
 Tajna strona do rezerwacji
 @endcomponent
 
+**O 10:00 musisz korzystać z powyższej strony. Rezerwacja przez stronę główną nie będzie możliwa**.
+
 Pozdrawiam, Adam Zygadlewicz
 
 @endcomponent

@@ -93,6 +93,7 @@ class AwardMessage extends Command
         }
 
         
+        $whatWeDo  = $this->anticipate('Send, stats, test?', ['test', 'send', 'stats']);
 
         //PARTNER PERFORMANCE
 
@@ -201,11 +202,13 @@ class AwardMessage extends Command
 
             $this->line("Notifying " . $ex->email);
 
-            dispatch(new Job(
-                $ex, 
-                $eventId, 
-                compact("email", "subject", "event_manager", "lang") 
-            ));
+            if($whatWeDo === "send"){
+                dispatch(new Job(
+                    $ex, 
+                    $eventId, 
+                    compact("email", "subject", "event_manager", "lang") 
+                ));
+            }
             
             $done++;
 
