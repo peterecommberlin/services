@@ -117,10 +117,12 @@ class AwardMessage extends Command
 
         $ranking = $json["data"];
 
-        $assigned = 0;
 
         foreach($exhibitors as $ex)
         {
+
+            $assigned = 0;
+
             //do we have company assigned?
 
             if(!$ex->company_id)
@@ -156,10 +158,13 @@ class AwardMessage extends Command
 
                     $this->info("Assigned for " . $ex->email);
 
-                    $assigned++;
-                   
+                    $assigned = 1;
                 }
 
+            }
+
+            if(!$assigned){
+                continue;
             }
 
 
@@ -197,8 +202,7 @@ class AwardMessage extends Command
 
         }   
 
-        $this->info("Assigned " . $assigned . " awards");
-        $this->info("Delivered " . $done . " messages");
+        $this->info("Checked " . $done . " exhibitors");
 
     }
 }
