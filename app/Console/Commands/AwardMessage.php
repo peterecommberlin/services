@@ -117,7 +117,7 @@ class AwardMessage extends Command
 
         $ranking = $json["data"];
 
-       
+        $assigned = 0;
 
         foreach($exhibitors as $ex)
         {
@@ -156,6 +156,7 @@ class AwardMessage extends Command
 
                     $this->info("Assigned for " . $ex->email);
 
+                    $assigned++;
                    
                 }
 
@@ -196,8 +197,8 @@ class AwardMessage extends Command
 
         }   
 
+        $this->info("Assigned " . $assigned . " awards");
         $this->info("Delivered " . $done . " messages");
-
 
     }
 }
