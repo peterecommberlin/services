@@ -26,8 +26,7 @@ class AwardMessage extends Command
         {--subject=}
         {--lang=}
         {--previous}
-        {--reverse}
-        {--throttle=1}';
+        {--reverse}';
     
     protected $description = 'Send email message to awarded Exhibitors';
  
