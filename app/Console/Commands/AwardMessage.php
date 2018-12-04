@@ -133,13 +133,30 @@ class AwardMessage extends Command
 
             foreach($ranking as $position => $companyRankingData){
 
+                //remember that position is ZERO-based!!!!
+
+                $realPosition = $position + 1;
+
                 if($companyRankingData["id"] == $ex->company_id){
-                    dd(
-                        $ex->email,
-                        $awardRules,
-                        $position, 
-                        $companyRankingData["stats"]
-                    );
+
+                    if($companyRankingData["stats"]["sessions"] < $awardRules["level"]){
+                        $this->error("Not assigned - level" . $ex->email);
+                        continue;
+                    }
+
+                    if($realPosition < $awardRules["min"]){
+                        $this->error("Not assigned - level" . $ex->email);
+                        continue;
+                    }
+
+                    if($realPosition > $awardRules["max"]){
+                        $this->error("Not assigned - level" . $ex->email);
+                        continue;
+                    }
+
+                    $this->info("Assigned for " . $ex->email);
+
+                   
                 }
 
             }
