@@ -24,7 +24,8 @@ class AwardMessage extends Command
         {--domain=} 
         {--email=} 
         {--subject=}
-        {--lang=} 
+        {--lang=}
+        {--previous}
         {--throttle=1}';
     
     protected $description = 'Send email message to awarded Exhibitors';
@@ -52,6 +53,7 @@ class AwardMessage extends Command
         $domain = $this->option("domain");
         $email =  $this->option("email");
         $subject =  $this->option("subject");
+        $previous =  $this->option("previous");
 
         if(empty($award)) {
             return $this->error("--award= must be set");
@@ -81,7 +83,15 @@ class AwardMessage extends Command
 
         $route = new Resolver( $domain );
 
-        $eventId =  $route->getEventId();
+        if(!empty($previous)){
+
+            $eventId =  $route->previousEvent();
+        }else{
+
+            $eventId =  $route->getEventId();
+        }
+
+        
 
         //PARTNER PERFORMANCE
 
