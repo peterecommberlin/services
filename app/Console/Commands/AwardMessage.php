@@ -26,6 +26,7 @@ class AwardMessage extends Command
         {--subject=}
         {--lang=}
         {--previous}
+        {--reverse}
         {--throttle=1}';
     
     protected $description = 'Send email message to awarded Exhibitors';
@@ -200,11 +201,11 @@ class AwardMessage extends Command
 
             $this->line("Notifying " . $ex->email);
 
-            // dispatch(new Job(
-            //     $ex, 
-            //     $eventId, 
-            //     compact("email", "subject", "event_manager", "lang") 
-            // ));
+            dispatch(new Job(
+                $ex, 
+                $eventId, 
+                compact("email", "subject", "event_manager", "lang") 
+            ));
             
             $done++;
 
