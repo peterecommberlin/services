@@ -142,21 +142,21 @@ class AwardMessage extends Command
                 if($companyRankingData["id"] == $ex->company_id){
 
                     if($companyRankingData["stats"]["sessions"] < $awardRules["level"]){
-                        $this->error("Not assigned - level" . $ex->email);
+                        $this->error("Not assigned - points. " . $ex->email);
                         continue;
                     }
 
                     if($realPosition < $awardRules["min"]){
-                        $this->error("Not assigned - level" . $ex->email);
+                        $this->error("Not assigned - min position. " . $ex->email);
                         continue;
                     }
 
                     if($realPosition > $awardRules["max"]){
-                        $this->error("Not assigned - level" . $ex->email);
+                        $this->error("Not assigned - max position. " . $ex->email);
                         continue;
                     }
 
-                    $this->info("Assigned for " . $ex->email);
+                    $this->info("Assigned for " . $ex->company->slug);
 
                     $assigned = 1;
                 }
@@ -188,9 +188,7 @@ class AwardMessage extends Command
                 continue;
             }
 
-            $this->info("Processing " . $ex->company->slug);
-
-            $this->info("Notifying " . $ex->email);
+            $this->line("Notifying " . $ex->email);
 
             // dispatch(new Job(
             //     $ex, 
