@@ -55,6 +55,7 @@ class AwardMessage extends Command
         $email =  $this->option("email");
         $subject =  $this->option("subject");
         $previous =  $this->option("previous");
+        $reverse =  $this->option("reverse");
 
         if(empty($award)) {
             return $this->error("--award= must be set");
@@ -173,6 +174,10 @@ class AwardMessage extends Command
                     $assigned = 1;
                 }
 
+            }
+
+            if($reverse){
+                $assigned = !$assigned;
             }
 
             if(!$assigned){

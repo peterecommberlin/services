@@ -4,19 +4,15 @@
  
 # Cześć {{$profile->translate("[[fname]]")}},
 
-** W środę 5 grudnia startuje sprzedaż Early Bird na XVI Targi eHandlu w Krakowie, które odbędą się 17 kwietnia 2019 roku** 
+W środę **5 grudnia** o godzinie **12:00** startuje sprzedaż Early Bird dla Wystawców poprzedniej edycji Targów (spoza TOP30 Konkursu dla Wystawców)
 
-Pula Early-Bird przewidziana jest **tylko i wyłącznie dla Wystawców minionych Targów** więc rezerwacja będzie możliwa przez dedykowany adres, który zostanie wysłany 20 minut przed startem sprzedaży.
+Rezerwacji będzie można dokonać do godziny 12:59 lub wyczerpania stoisk (o godzinie 13:00 startuje publiczna sprzedaż stoisk dla wszystkich zainteresowanych).
 
-Od **10:00** do 11:30 rezerwacji będą mogli dokonać Wystawcy z TOP 30 Rankingu Konkursu dla Wystawców
-
-0 **12:00** rozpocznie się możliwość rezerwacji dla pozostałych Wystawców minionych Targów.
-
-O **13:00** startuje regularna, publiczna, sprzedaż stoisk dla Wszystkich zainteresowanych, która potrwa do końca roku lub wyczerpania puli.
-
-@component('mail::button', ['url' => "https://res.cloudinary.com/eventjuicer/image/upload/v1543500169/teh16krk.jpg"])
-Zobacz orientacyjny plan stoisk
+@component('mail::button', ['url' => "https://targiehandlu.pl/"])
+Mapka stoisk
 @endcomponent
+
+**Link do tajnej strony, na której będzie można dokonać rezerwacji otrzymasz jutro ok. 11:45**.
 
 Pozdrawiam, Adam Zygadlewicz
 
