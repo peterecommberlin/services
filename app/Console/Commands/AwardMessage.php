@@ -134,7 +134,12 @@ class AwardMessage extends Command
             foreach($ranking as $position => $companyRankingData){
 
                 if($companyRankingData["id"] == $ex->company_id){
-                    dd($position, $companyRankingData["stats"]);
+                    dd(
+                        $ex->email,
+                        $awardRules,
+                        $position, 
+                        $companyRankingData["stats"]
+                    );
                 }
 
             }
