@@ -38,9 +38,8 @@ class CompanyNewsletterController extends Controller
 
        app()->setLocale("pl");
 
-       config(["app.name" => "XV Targi eHandlu - 07.11.2018"]);
+       config(["app.name" => "XVI Targi eHandlu - 17.04.2019"]);
 
-        
     }
 
     public function show(Request $request, int $id)
