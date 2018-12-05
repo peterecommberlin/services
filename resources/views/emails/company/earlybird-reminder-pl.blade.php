@@ -4,12 +4,12 @@
  
 # Cześć {{$profile->translate("[[fname]]")}},
 
-Dzisiaj o godzinie **12:00** startuje sprzedaż Early Bird dla Wystawców poprzedniej edycji Targów (spoza TOP30 Konkursu dla Wystawców)
+Dzisiaj o godzinie **12:00** startuje sprzedaż Early Bird dla Wystawców poprzedniej edycji Targów (spoza TOP30 Konkursu dla Wystawców - Ci rezerwowali stoiska o 10:00)
 
-Rezerwacji będzie można dokonać do godziny 12:59 **lub wyczerpania stoisk w tej puli** 
+Rezerwacji będzie można dokonać do godziny 12:59 **lub wyczerpania stoisk w tej puli** (kolejna pula wystartuje o 13:00)
 
 @component('mail::button', ['url' => "https://targiehandlu.pl/teh16top30erlbrd"])
-Rezerwacja tylko tutaj
+Rezerwacja tylko na tej stronie
 @endcomponent
 
 **O 12:00 musisz korzystać z powyższej strony. Rezerwacja przez stronę główną nie będzie możliwa**.
