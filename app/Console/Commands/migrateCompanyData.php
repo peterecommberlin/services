@@ -55,13 +55,15 @@ class migrateCompanyData extends Command
         $p->pushCriteria(new ColumnGreaterThan("company_id", 0));
         $p->with(["fields"]);
 
+        $force  = $this->anticipate('Force update?', ['new', 'all']);
+
         $participants = $p->all();
 
         $this->info($participants->count() . " participants found.");
 
         foreach($participants as $participant)
         {
-           $fieldsUpdated = $cd->migrate($participant);
+           $fieldsUpdated = $cd->migrate($participant, ($force === "all") );
 
            $this->line("Processing: " . $participant->email);
 
