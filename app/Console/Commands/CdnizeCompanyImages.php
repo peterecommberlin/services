@@ -7,7 +7,10 @@ use Illuminate\Console\Command;
 
 use Eventjuicer\Repositories\CompanyDataRepository;
 use Eventjuicer\Repositories\Criteria\WhereIn;
+use Eventjuicer\Repositories\Criteria\BelongsToGroup;
+
 use Eventjuicer\Jobs\SendImageToCloudinaryJob;
+use Eventjuicer\Services\Resolver;
 
 class CdnizeCompanyImages extends Command
 {
@@ -22,7 +25,7 @@ class CdnizeCompanyImages extends Command
      *
      * @var string
      */
-    protected $signature = 'companies:cdnize';
+    protected $signature = 'companies:cdnize {host}';
 
     /**
      * The console command description.
@@ -48,7 +51,13 @@ class CdnizeCompanyImages extends Command
      */
     public function handle(CompanyDataRepository $repo)
     {
+
+        $route = new Resolver($this->argument("host"));
+        $groupId =  $route->getGroupId()();
+        $this->info("Group id: " . $groupId);
+
         $repo->pushCriteria(new WhereIn("name", $this->fieldsWithImageUrl));
+        $repo->pushCriteria(new BelongsToGroup($groupId));
 
         $all = $repo->all();
 

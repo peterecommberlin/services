@@ -55,7 +55,7 @@ class migrateCompanyData extends Command
         $p->pushCriteria(new ColumnGreaterThan("company_id", 0));
         $p->with(["fields"]);
 
-        $force  = $this->anticipate('Force update?', ['new', 'all']);
+        $force  = $this->anticipate('Force update? (type new or all)', ['new', 'all']);
 
         $participants = $p->all();
 
