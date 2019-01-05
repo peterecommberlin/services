@@ -9,6 +9,8 @@ use Eventjuicer\Repositories\ParticipantRepository;
 use Eventjuicer\Repositories\Criteria\BelongsToEvent;
 use Eventjuicer\Repositories\Criteria\ColumnGreaterThan;
 use Eventjuicer\Services\CompanyData;
+use Eventjuicer\Services\GetByRole;
+
 
 class migrateCompanyData extends Command
 {
@@ -41,7 +43,7 @@ class migrateCompanyData extends Command
      *
      * @return mixed
      */
-    public function handle(ParticipantRepository $p, CompanyData $cd)
+    public function handle(GetByRole $gbr, ParticipantRepository $p, CompanyData $cd)
     {
         $route = new Resolver($this->argument("host"));
 
@@ -50,20 +52,26 @@ class migrateCompanyData extends Command
         $this->info("Event id: " . $eventId);
 
         //fetch all participants with company_id > 0
+        //this is wrong as company may be assigned to non-exhibitor fields....
 
-        $p->pushCriteria(new BelongsToEvent($eventId));
-        $p->pushCriteria(new ColumnGreaterThan("company_id", 0));
-        $p->with(["fields"]);
+        $participants = $gbr->get(
+                $eventId, 
+                "exhibitor", 
+                ["company.data", "fields"]
+        );
 
-        $force  = $this->anticipate('Force update? (type new or all)', ['new', 'all']);
+        // $p->pushCriteria(new BelongsToEvent($eventId));
+        // $p->pushCriteria(new ColumnGreaterThan("company_id", 0));
+        // $p->with(["fields"]);
+        // $participants = $p->all();
 
-        $participants = $p->all();
+        $force  = $this->anticipate('Add or replace?', ['add', 'replace']);
 
-        $this->info($participants->count() . " participants found.");
+        $this->info($participants->count() . " exhibitors found.");
 
         foreach($participants as $participant)
         {
-           $fieldsUpdated = $cd->migrate($participant, ($force === "all") );
+           $fieldsUpdated = $cd->migrate($participant, ($force === "replace") );
 
            $this->line("Processing: " . $participant->email);
 
