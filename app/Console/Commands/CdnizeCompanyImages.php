@@ -53,8 +53,9 @@ class CdnizeCompanyImages extends Command
     {
 
         $route = new Resolver($this->argument("host"));
-        $groupId =  $route->getGroupId()();
+        $groupId =  $route->getGroupId();
         $this->info("Group id: " . $groupId);
+
 
         $repo->pushCriteria(new WhereIn("name", $this->fieldsWithImageUrl));
         $repo->pushCriteria(new BelongsToGroup($groupId));
