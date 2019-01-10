@@ -131,16 +131,16 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         "pl" => [
             "subject" => "Profil Firmy na stronie Targów - wymagane działanie.",
-            "accountUrl" => "https://account.ecommerceberlin.com/#login?token=",
+            "accountUrl" => "https://account.ecommerceberlin.com/#/login?token=",
         ],
         "en" => [
             "subject" => "Exhibitor's public profile needs your attention. ...and action",
-             "accountUrl" => "https://account.ecommerceberlin.com/#login?token=",
+             "accountUrl" => "https://account.ecommerceberlin.com/#/login?token=",
         ],
 
         "de" => [
             "subject" => "Das Ausstellerprofil muss vervollständigt werden",
-             "accountUrl" => "https://account.ecommerceberlin.com/#login?token=",
+             "accountUrl" => "https://account.ecommerceberlin.com/#/login?token=",
         ]
     ];
 
