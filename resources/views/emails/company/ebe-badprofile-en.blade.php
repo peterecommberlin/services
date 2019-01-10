@@ -4,7 +4,7 @@
  
 # Hello {{$profile->translate("[[fname]]")}}!
 
-## We have checked your company's online profile on Targi ehandlu website - there is some work to be done.
+## We have checked your company's online profile on E-commerce Berlin Expo website - there is some work to be done.
 
 @foreach ($errors as $f => $p)
 	
@@ -17,7 +17,7 @@ I want to sign in and edit
 @endcomponent
 
 
-Your company profile  [link]({{$profileUrl}})
+Your company profile [link]({{$profileUrl}})
 
 
 @component('mail::panel')
@@ -27,7 +27,7 @@ It is very import to have online profile updated. It is required in order to pro
 
 **Please edit your profile to stop receiving this message**
 
-Regards, Adam Zygadlewicz 
+Regards, E-commerce Berlin Expo Team
 
 @endcomponent
 

@@ -96,7 +96,7 @@ class PingWhenEmptyProfileEmail extends Mailable
             "sales_manager"     => "Kontaktperson für Besucher",
             "xing"              => "Xing Firmenprofil"
         ],
-        ]
+        
     ];
 
     public $translations = [
@@ -116,6 +116,13 @@ class PingWhenEmptyProfileEmail extends Mailable
             "nohtml"    => "this field accepts basic formatting - why not use it?"
         ],
 
+        "de" => [
+
+            "empty"    =>  "dieses Feld ist noch leer oder zu kurz",
+            "badformat" =>  "Inhalt des Feldes ist unpassend. Bitte korrigieren",
+            "nohtml"    => "Dieses Feld akzeptiert Standardformatierung"
+        ],
+
 
     ];
 
@@ -132,7 +139,7 @@ class PingWhenEmptyProfileEmail extends Mailable
         ],
 
         "de" => [
-            "subject" => "Exhibitor's public profile needs your attention. ...and action",
+            "subject" => "Das Ausstellerprofil muss vervollständigt werden",
              "accountUrl" => "https://account.ecommerceberlin.com/#login?token=",
         ]
     ];
