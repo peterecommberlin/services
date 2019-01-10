@@ -22,7 +22,7 @@ class PingWhenEmptyProfileEmail extends Mailable
      * @return void
      */
 
-    protected $participant, $lang = "pl", $event_manager;
+    protected $participant, $lang = "pl", $event_manager, $host;
 
     public  $errors, 
             $profile, 
@@ -48,7 +48,9 @@ class PingWhenEmptyProfileEmail extends Mailable
             "twitter"           => "Profil firmy na Twitter",
             "website"           => "Adres URL strony firmowej",
             "lang"              => "Język kontaktu",
-            "event_manager"     => "Osoba do kontaktu w tematach logistycznych"
+            "event_manager"     => "Osoba do kontaktu w tematach logistycznych",
+            "pr_manager"        => "PR Manager",
+            "sales_manager"     => "Kontakt ds. sprzedaży"
 
         ],
         
@@ -67,7 +69,33 @@ class PingWhenEmptyProfileEmail extends Mailable
             "twitter"           => "Twitter profile URL",
             "website"           => "Company website URL",
             "lang"              => "Language",
-            "event_manager"     => "Email address to Event Manager (if differs)"
+            "event_manager"     => "Email address to Event Manager (if differs)",
+            "pr_manager"        => "PR Manager",
+            "sales_manager"     => "Contact person for Visitors",
+            "xing"              => "Xing Company Profile"
+        ],
+
+        "de" => [
+
+
+            "about"             => "Unternehmensbeschreibung",
+            "countries"         => "Aktive Operationsregionen",
+            "expo"              => "Angebot für die Expo",
+            "facebook"          => "Facebook Firmenseite",
+            "keywords"          => "Stichwörter",
+            "linkedin"          => "LinkedIn Firmenprofil",
+            "logotype"          => "URL zum Logo (.png, .gif, .jpg)",
+            "name"              => "Firmenname",
+            "opengraph_image"   => "Angepasstes Bild für soziale Netzwerkaktivitäten",
+            "products"          => "Produkt / Dienstleistung",
+            "twitter"           => "Twitter Firmenseite",
+            "website"           => "URL der Homepage",
+            "lang"              => "Bevorzugte Kommunikationssprache",
+            "event_manager"     => "E-Mail Adresse - Kontaktperson",
+            "pr_manager"        => "PR Manager",
+            "sales_manager"     => "Kontaktperson für Besucher",
+            "xing"              => "Xing Firmenprofil"
+        ],
         ]
     ];
 
@@ -86,7 +114,8 @@ class PingWhenEmptyProfileEmail extends Mailable
             "empty"    =>  "this field is empty or seems to be to short",
             "badformat" =>  "field value has bad format - please fix it",
             "nohtml"    => "this field accepts basic formatting - why not use it?"
-        ]
+        ],
+
 
     ];
 
@@ -95,23 +124,39 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         "pl" => [
             "subject" => "Profil Firmy na stronie Targów - wymagane działanie.",
-            "accountUrl" => "https://account.targiehandlu.pl/#login?token=",
+            "accountUrl" => "https://account.ecommerceberlin.com/#login?token=",
         ],
         "en" => [
             "subject" => "Exhibitor's public profile needs your attention. ...and action",
-             "accountUrl" => "https://account.ecommercewarsaw.com/#login?token=",
+             "accountUrl" => "https://account.ecommerceberlin.com/#login?token=",
+        ],
+
+        "de" => [
+            "subject" => "Exhibitor's public profile needs your attention. ...and action",
+             "accountUrl" => "https://account.ecommerceberlin.com/#login?token=",
         ]
     ];
 
-    public function __construct(Participant $participant, array $errors, string $lang, string $event_manager)
+    public function __construct(
+        Participant $participant, 
+        array $errors, 
+        string $lang, 
+        string $event_manager,
+        string $host
+    )
     {
         $this->participant  = $participant;
         $this->errors       = $errors;
         $this->event_manager = $event_manager;
+        $this->event_manager = $host;
 
-        if( $lang === "en" ){
+        $this->lang = $lang;
+
+        if( $this->lang !== "de" ){
             $this->lang = "en";
         }
+
+
 
     }
 
@@ -130,6 +175,9 @@ class PingWhenEmptyProfileEmail extends Mailable
     public function build()
     {
 
+        app()->setLocale("en");
+
+        config(["app.name" => "E-commerce Berlin Expo"]);
       
 
         $this->profile = new Personalizer( $this->participant, "");
@@ -147,18 +195,18 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         $this->errors = $arr;
 
-        $this->profileUrl = "https://targiehandlu.pl/" . 
+        $this->profileUrl = "https://ecommerceberlin.com/" . 
                 $this->participant->company->slug . 
                 ",c,". 
                 $this->participant->company_id;
 
         $this->accountUrl = $this->getSetting("accountUrl")  . $this->participant->token;
 
-        $this->exampleUrl = "https://targiehandlu.pl/nazwa-firmy-company-name,c,1216";
+        $this->exampleUrl = "https://ecommerceberlin.com/company-name,c,1054";
 
         $this->to( trim(strtolower($this->participant->email)) );
 
-        $this->cc( "targiehandlu+auto@targiehandlu.pl" ); 
+        $this->cc( "ecommerceberlin+auto@ecommerceberlin.com" ); 
 
 
         if(strpos($this->event_manager, "@")!==false && trim($this->event_manager)!== $this->participant->email){
@@ -167,10 +215,10 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         }
 
-        $this->from("targiehandlu@targiehandlu.pl", "Adam Zygadlewicz, Targi eHandlu - Ecommerce Poland Expo");
+        $this->from("ecommerceberlin@ecommerceberlin.com", "Jan Sobczak - E-commerce Berlin Expo");
 
         $this->subject( $this->getSetting("subject") );
 
-        return $this->markdown('emails.company.badprofile2-' . $this->lang);
+        return $this->markdown('emails.company.ebe-badprofile-' . $this->lang);
     }
 }

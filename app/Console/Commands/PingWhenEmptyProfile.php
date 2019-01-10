@@ -36,7 +36,9 @@ class PingWhenEmptyProfile extends Command
     public function handle(GetByRole $repo, CompanyData $cd, ParticipantSendable $sendable)
     {
 
-        $route = new Resolver( $this->argument("host") );
+        $host = $this->argument("host");
+
+        $route = new Resolver( $host );
 
         $eventId =  $route->getEventId();
 
@@ -104,7 +106,7 @@ class PingWhenEmptyProfile extends Command
             {
                 $this->info("Notifying " . $ex->email);
 
-                dispatch(new Job($ex, $eventId, $lang, $event_manager));
+                dispatch(new Job($ex, $eventId, $lang, $event_manager, $host));
             }
 
             $done++;
