@@ -22,7 +22,7 @@ class GeneralExhibitorEmail extends Mailable
      * @return void
      */
 
-    protected $participant;
+    protected $participant, $domain;
 
     public  $subject,
             $view,
@@ -34,12 +34,13 @@ class GeneralExhibitorEmail extends Mailable
             $accountUrl;
 
 
-    public function __construct(Participant $participant, string $subject, string $view, string $lang, string $event_manager)
+    public function __construct(Participant $participant, string $subject, string $view, string $lang, string $event_manager, string $domain)
     {
         $this->participant  = $participant;
         $this->view       = $view;
         $this->subject    = $subject;
         $this->event_manager = trim($event_manager);
+        $this->domain       = $domain;
 
     }
 
@@ -51,20 +52,23 @@ class GeneralExhibitorEmail extends Mailable
     public function build()
     {
 
+        if(strpos($this->domain, "ecommerceberlin") !== false){
+
+            app()->setLocale("en");
+            config(["app.name" => "E-commerce Berlin Expo"]);
+        }
+
+
         $this->profile = new Personalizer( $this->participant, "");
 
-        $this->profileUrl = "https://targiehandlu.pl/" . 
+        $this->profileUrl = "https://ecommerceberlin.com/" . 
                 $this->participant->company->slug . 
                 ",c,". 
                 $this->participant->company_id;
 
 
-        $this->accountUrl = "https://account.targiehandlu.pl/#login?token=" . $this->participant->token;
+        $this->accountUrl = "https://account.ecommerceberlin.com/#/login?token=" . $this->participant->token;
        
-        if($this->lang == "en"){
-
-            $this->accountUrl = "https://account.ecommercewarsaw.com/#login?token=" . $this->participant->token;
-        }
 
         $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th3rCMiM_%s&utm_medium=link&utm_campaign=teh15c&utm_content=raw", $this->participant->company_id);
 
@@ -74,9 +78,16 @@ class GeneralExhibitorEmail extends Mailable
             $this->cc( $this->event_manager ); 
         }
 
-        $this->cc( "targiehandlu+auto@targiehandlu.pl" ); 
+        if($this->lang == "de"){
 
-        $this->from("targiehandlu@targiehandlu.pl", "Adam Zygadlewicz, Targi eHandlu - Ecommerce Poland Expo");
+            $this->from("ecommerceberlin@ecommerceberlin.com", "Jan Sobczak - E-commerce Berlin Expo");
+        }else{
+             
+
+             $this->from("ecommerceberlin@ecommerceberlin.com", "Aleksandra Miedzynska - E-commerce Berlin Expo");
+        }
+
+        $this->cc( "ecommerceberlin+auto@ecommerceberlin.com"); 
 
         $this->subject($this->subject);
 

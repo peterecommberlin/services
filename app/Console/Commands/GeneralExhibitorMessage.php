@@ -95,7 +95,7 @@ class GeneralExhibitorMessage extends Command
 
             $companyProfile = $cd->toArray($ex->company);
 
-            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "pl";
+            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "en";
 
             $event_manager = isset($companyProfile["event_manager"]) ? $companyProfile["event_manager"] : "";
 
@@ -120,7 +120,7 @@ class GeneralExhibitorMessage extends Command
             dispatch(new Job(
                 $ex, 
                 $eventId, 
-                compact("email", "subject", "event_manager", "lang") 
+                compact("email", "subject", "event_manager", "lang", "domain") 
             ));
             
             $done++;
