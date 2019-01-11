@@ -41,7 +41,7 @@ class GeneralExhibitorEmail extends Mailable
         $this->subject    = $subject;
         $this->event_manager = trim($event_manager);
         $this->domain       = $domain;
-
+        $this->lang       = $lang;
     }
 
     /**
