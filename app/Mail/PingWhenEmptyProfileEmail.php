@@ -189,6 +189,11 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         $this->profile = new Personalizer( $this->participant, "");
 
+
+        $admin = $this->participant->company->admin;
+
+        $admin_name = $admin->fname . ' ' . $admin->lname . ' ';
+
         //////////
 
         $arr = [];
@@ -222,7 +227,7 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         }
 
-        $this->from("ecommerceberlin@ecommerceberlin.com", "Jan Sobczak - E-commerce Berlin Expo");
+        $this->from("ecommerceberlin@ecommerceberlin.com", $admin_name . "E-commerce Berlin Expo");
 
         $this->subject( $this->getSetting("subject") );
 
