@@ -91,9 +91,9 @@ class PingWhenEmptyProfileEmail extends Mailable
             "twitter"           => "Twitter Firmenseite",
             "website"           => "URL der Homepage",
             "lang"              => "Bevorzugte Kommunikationssprache",
-            "event_manager"     => "E-Mail Adresse - Kontaktperson",
+            "event_manager"     => "Event Manager",
             "pr_manager"        => "PR Manager",
-            "sales_manager"     => "Kontaktperson für Besucher",
+            "sales_manager"     => "(Sales Manager) Kontaktperson für Besucher",
             "xing"              => "Xing Firmenprofil"
         ],
         
@@ -120,7 +120,7 @@ class PingWhenEmptyProfileEmail extends Mailable
 
             "empty"    =>  "dieses Feld ist noch leer oder zu kurz",
             "badformat" =>  "Inhalt des Feldes ist unpassend. Bitte korrigieren",
-            "nohtml"    => "Dieses Feld akzeptiert Standardformatierung"
+            "nohtml"    => "dieses Feld akzeptiert Standardformatierung. Warum nicht verwenden?"
         ],
 
 
