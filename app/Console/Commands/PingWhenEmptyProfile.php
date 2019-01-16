@@ -98,6 +98,7 @@ class PingWhenEmptyProfile extends Command
                 continue;
             }
 
+            $this->line("----");
             $this->info("Processing " . $ex->company->slug . " lang: " . $lang);
 
             $this->line("Fields with errors: " . implode(", ", array_keys($status)));
@@ -105,6 +106,7 @@ class PingWhenEmptyProfile extends Command
             if($whatWeDo === "send")
             {
                 $this->info("Notifying " . $ex->email);
+                $this->line("----");
 
                 dispatch(new Job($ex, $eventId, $lang, $event_manager, $host));
             }
