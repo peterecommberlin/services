@@ -59,6 +59,14 @@ class GeneralExhibitorEmail extends Mailable
         }
 
 
+        $admin = $this->participant->company->admin;
+
+        $admin_name = $admin->fname . ' ' . $admin->lname;
+        $admin_email = $admin->email;
+
+
+
+
         $this->profile = new Personalizer( $this->participant, "");
 
         $this->profileUrl = "https://ecommerceberlin.com/" . 
@@ -74,18 +82,12 @@ class GeneralExhibitorEmail extends Mailable
 
         $this->to( trim(strtolower($this->participant->email)) );
 
-        if($this->event_manager && filter_var($this->event_manager, FILTER_VALIDATE_EMAIL) ){
-            $this->cc( $this->event_manager ); 
+        if($this->participant->email !== $this->event_manager && filter_var($this->event_manager, FILTER_VALIDATE_EMAIL) ){
+            $this->cc( trim($this->event_manager) ); 
         }
 
-        if($this->lang == "de"){
 
-            $this->from("ecommerceberlin@ecommerceberlin.com", "Jan Sobczak - E-commerce Berlin Expo");
-        }else{
-             
-
-             $this->from("ecommerceberlin@ecommerceberlin.com", "Aleksandra Miedzynska - E-commerce Berlin Expo");
-        }
+        $this->from($admin_email, $admin_name . " - E-commerce Berlin Expo");
 
         $this->cc( "ecommerceberlin+auto@ecommerceberlin.com"); 
 
