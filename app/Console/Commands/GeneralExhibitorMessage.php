@@ -36,6 +36,8 @@ class GeneralExhibitorMessage extends Command
     public function handle(GetByRole $repo, ParticipantSendable $sendable, CompanyData $cd)
     {
 
+        $pattern = '/[a-z\d._%+-]+@[a-z\d.-]+\.[a-z]{2,4}\b/i';
+
         $domain = $this->option("domain");
         $email =  $this->option("email");
         $subject =  $this->option("subject");
@@ -97,8 +99,7 @@ class GeneralExhibitorMessage extends Command
 
             $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "en";
 
-            $event_manager = isset($companyProfile["event_manager"]) ? $companyProfile["event_manager"] : "";
-
+            preg_match($pattern, $companyProfile["event_manager"], $event_manager);
 
             if($event_manager && !filter_var($event_manager, FILTER_VALIDATE_EMAIL)){
 

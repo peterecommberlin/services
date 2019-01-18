@@ -9,7 +9,7 @@ euer Standardpaket beinhaltet folgendes Equipment für euren Stand auf der Expo:
 * Startup, Standard, Hot & SuperHot Fläche (9sqm) - 4 Stühle & 2 Stehtische (Ohne Rückwand, ohne Teppich)
 * Grand Fläche (18 sqm) - 6 Stühle & 2 Stehtische (Ohne Rückwand, ohne Teppich)
 
-Weitere Dienste können auf eurem Ausstellerpanel erworben werden **WICHTIG:** Erwerbsfrist 18. Januar 2019
+Weitere Dienste können auf eurem Ausstellerpanel erworben werden **WICHTIG: Erwerbsfrist 21. Januar 2019**
 
 Liste der verfügbaren Dienste:
 
@@ -23,7 +23,7 @@ Weitere Standdienste:
 * Vollständiger Stand mit bedruckter Rückwand, Tresen, Magazinständer
 * Vollständiger Stand mit OSB Rückwand und Logo
 
-Weitere Dienste **WICHTIG:** Erwerbsfrist 31. Januar 2019
+Weitere Dienste **WICHTIG: Erwerbsfrist 31. Januar 2019**
 
 * 50 Zoll LED Monitor (HDMI + USB)
 * Teppich
@@ -36,7 +36,9 @@ Zu meinem Account gelangen
 @endcomponent
 
 Jan Sobczak - Key Account Manager
+
 E-commerce Berlin Expo
+
 +49 30 2555 9875
 
 @endcomponent
