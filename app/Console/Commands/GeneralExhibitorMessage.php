@@ -99,9 +99,9 @@ class GeneralExhibitorMessage extends Command
 
             $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "en";
 
-            preg_match($pattern, $companyProfile["event_manager"], $event_manager);
+            preg_match($pattern, $companyProfile["event_manager"], $matches);
 
-            $event_manager = trim($event_manager);
+            $event_manager = !empty($matches[0]) ? trim($matches[0]) : "";
 
             if($event_manager && !filter_var($event_manager, FILTER_VALIDATE_EMAIL)){
 
