@@ -101,6 +101,8 @@ class GeneralExhibitorMessage extends Command
 
             preg_match($pattern, $companyProfile["event_manager"], $event_manager);
 
+            $event_manager = trim($event_manager);
+
             if($event_manager && !filter_var($event_manager, FILTER_VALIDATE_EMAIL)){
 
                 $this->error($ex->email . " - bad event manager email");
