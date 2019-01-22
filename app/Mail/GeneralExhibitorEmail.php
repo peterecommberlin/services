@@ -65,8 +65,6 @@ class GeneralExhibitorEmail extends Mailable
         $admin_email = $admin->email;
 
 
-
-
         $this->profile = new Personalizer( $this->participant, "");
 
         $this->profileUrl = "https://ecommerceberlin.com/" . 
@@ -78,14 +76,18 @@ class GeneralExhibitorEmail extends Mailable
         $this->accountUrl = "https://account.ecommerceberlin.com/#/login?token=" . $this->participant->token;
        
 
-        $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th3rCMiM_%s&utm_medium=link&utm_campaign=teh15c&utm_content=raw", $this->participant->company_id);
+        $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th3rCMiM_%s&utm_medium=link&utm_campaign=ebe4exh&utm_content=raw", $this->participant->company_id);
 
-        $this->to( trim(strtolower($this->participant->email)) );
 
-        if($this->participant->email !== $this->event_manager && filter_var($this->event_manager, FILTER_VALIDATE_EMAIL) ){
-            $this->cc( trim($this->event_manager) ); 
+        if($this->event_manager && $this->participant->email !== $this->event_manager){
+
+            $this->to( $this->event_manager );
         }
+        else{
 
+            $this->to( trim(strtolower($this->participant->email)) );
+
+        }
 
         $this->from($admin_email, $admin_name . " - E-commerce Berlin Expo");
 

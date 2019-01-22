@@ -16,6 +16,10 @@ use Eventjuicer\Repositories\Criteria\ColumnGreaterThanZero;
 use Eventjuicer\Repositories\Criteria\BelongsToEvent;
 use Eventjuicer\Services\Personalizer;
 
+
+use Eventjuicer\ValueObjects\EmailAddress;
+
+
 /*
 
 changes
@@ -29,7 +33,7 @@ class CompanyRepresentatives extends Command
 {
 
  
-    protected $signature = 'exhibitors:reps {host}';
+    protected $signature = 'exhibitors:reps {host} {--lang=}';
     protected $description = 'Command description';
  
     public function __construct()
@@ -96,21 +100,22 @@ class CompanyRepresentatives extends Command
 
             $companyProfile = $cd->toArray($ex->company);
 
-            $lang = isset($companyProfile["lang"]) ? $companyProfile["lang"] : "";
-    
-            $event_manager = isset($companyProfile["event_manager"]) ? $companyProfile["event_manager"] : "";
+            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "en";
+
+
+            if($lang !== $this->option("lang"))
+            {
+                $this->info("Skipped! Lang mismatch. ");
+                continue;
+            }
+
+
+            $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
 
             $cReps = array_get($reps, $ex->company_id, collect([]))->mapInto(Personalizer::class);
+    
+            $this->line("Processing " . $ex->company->slug . " lang: " . $lang);
 
-            // foreach($cReps as $cRep){
-                
-            //     $sth = $cRep->translate("[[fname]]");
-
-            //     $this->info("Person: " . $sth);
-            // }
-
-
-            $this->info("Processing " . $ex->company->slug . " lang: " . $lang);
             $this->info("Reps: " . $cReps->count());
 
             if($whatWeDo === "send")

@@ -12,7 +12,7 @@ use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 use Eventjuicer\Services\CompanyData;
 
-
+use Eventjuicer\ValueObjects\EmailAddress;
 
 class GeneralExhibitorMessage extends Command
 {
@@ -35,8 +35,6 @@ class GeneralExhibitorMessage extends Command
  
     public function handle(GetByRole $repo, ParticipantSendable $sendable, CompanyData $cd)
     {
-
-        $pattern = '/[a-z\d._%+-]+@[a-z\d.-]+\.[a-z]{2,4}\b/i';
 
         $domain = $this->option("domain");
         $email =  $this->option("email");
@@ -99,26 +97,19 @@ class GeneralExhibitorMessage extends Command
 
             $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "en";
 
-            preg_match($pattern, $companyProfile["event_manager"], $matches);
 
-            $event_manager = !empty($matches[0]) ? trim($matches[0]) : "";
-
-            if($event_manager && !filter_var($event_manager, FILTER_VALIDATE_EMAIL)){
-
-                $this->error($ex->email . " - bad event manager email");
-                $event_manager = "";
-            }
+            $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
 
 
             if($lang !== $this->option("lang"))
             {
-                $this->error("Skipped! Lang mismatch. ");
+                $this->info("Skipped! Lang mismatch. ");
                 continue;
             }
 
-            $this->info("Processing " . $ex->company->slug);
+            $this->line("Processing " . $ex->company->slug);
 
-            $this->info("Notifying " . $ex->email);
+            $this->line("Notifying " . $ex->email);
 
             dispatch(new Job(
                 $ex, 
