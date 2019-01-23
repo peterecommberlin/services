@@ -100,7 +100,7 @@ class CompanyNewsletterController extends Controller
 
         if($request->input("dl"))
         {
-            return response()->downloadViewAsHtml( $newsletter, request()->getHttpHost() );
+            return response()->downloadViewAsHtml( $newsletter, str_slug($this->appName) );
         }
 
         if($request->input("zip"))
@@ -113,7 +113,7 @@ class CompanyNewsletterController extends Controller
             return $newsletter;
         }
 
-        return response()->outputAsPlainText( $newsletter, request()->getHttpHost() );
+        return response()->outputAsPlainText( $newsletter, str_slug($this->appName) );
 
     }
 
