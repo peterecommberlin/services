@@ -13,9 +13,9 @@
 
 Hallo,
 
-Gerne möchten wir Ihnen mitteilen, dass {{COMPANY}} als Aussteller auf der E-commerce Berlin Expo 2019 am 20. February dabei sein wird.
+Gerne möchten wir Ihnen mitteilen, dass {{  array_get($companydata, "name") }} als Aussteller auf der E-commerce Berlin Expo 2019 am 20. February dabei sein wird.
 
-Wir freuen uns auf einen Tag rund um den E-commerce und die neuesten Trends der Industrie. Treffen Sie uns an unserem Stand  {{BOOTH}}!
+Wir freuen uns auf einen Tag rund um den E-commerce und die neuesten Trends der Industrie. Treffen Sie uns an unserem Stand  {{  array_get($companydata, "booth") }} !
 
 Des Weiteren werden Speaker auf 4 verschiedenen Bühnen auftreten und mehr als 150 Dienstleister ausstellen. Wir freuen uns Sie auf der Veranstaltung persönlich zu treffen!
 

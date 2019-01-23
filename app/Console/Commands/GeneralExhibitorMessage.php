@@ -53,7 +53,8 @@ class GeneralExhibitorMessage extends Command
             return $this->error("--email= must be set!");
         }
 
-        if(! view()->exists("emails.company." . $email)) {
+
+        if(! view()->exists("emails.company." . $email . "-" . $this->option("lang"))) {
             return $this->error("--email= error. View cannot be found!");
         }
 

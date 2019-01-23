@@ -95,6 +95,6 @@ class GeneralExhibitorEmail extends Mailable
 
         $this->subject($this->subject);
 
-        return $this->markdown('emails.company.' . $this->view);
+        return $this->markdown('emails.company.' . $this->view . "-" . $this->lang);
     }
 }
