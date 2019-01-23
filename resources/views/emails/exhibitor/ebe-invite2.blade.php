@@ -20,7 +20,7 @@ Come have a chat with us at our stand.
 	Register for a free ticket here
 @endcomponent
 
-There will be 4 stages full of speakers and more than 150 other service providers at their booths. The event is a must-attend!
+There will be **4 stages** full of speakers and more than **150 other service providers** at their booths. The event is a must-attend!
 
 Looking forward to meet you! 
 

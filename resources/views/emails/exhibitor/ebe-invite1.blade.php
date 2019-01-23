@@ -15,7 +15,7 @@
 
 Wir freuen uns auf einen Tag rund um den E-commerce und die neuesten Trends der Industrie. Treffen Sie uns an unserem Stand!
 
-Des Weiteren werden Speaker auf 4 verschiedenen Bühnen auftreten und mehr als 150 Dienstleister ausstellen. Wir freuen uns Sie auf der Veranstaltung persönlich zu treffen!
+Des Weiteren werden **Speaker auf 4 verschiedenen Bühnen** auftreten und mehr als **150 Dienstleister** ausstellen. Wir freuen uns Sie auf der Veranstaltung persönlich zu treffen!
 
 @component('mail::button', ['url' => $promolink])
 	Register for a free ticket here
