@@ -53,10 +53,10 @@ Ob dein Unternehmen alle Konditionen erfüllt, findest du in der Preisliste im A
 2 E-Mail Vorlagen (deutsch/englisch), welche deine Anwesenheit auf der Expo promoten. Du kannst diese als HTML Datei oder Zip Datei herunterladen oder zu GetResponse / Mailchimp-ähnliche Softwaren exportieren. 
 
 ## PROMO MATERIALIEN
-3 Links, welche du mit verschiedenen Grafiken teilen kannst.
-Euer Logo auf unseren Hintergrund mit Einladung zum Event auf deutsch/englisch
-Persönliches Design ( Hierzu musst du unter ‘Firma’ eine URL angeben)y
-Jeder Link kann kopiert werden und via Messenger oder in deinem eigenen Newsletter verwendet werden. 
+
+3 Links, welche du mit verschiedenen Grafiken teilen kannst. Euer Logo auf unseren Hintergrund mit Einladung zum Event auf deutsch/englisch
+
+Persönliches Design ( Hierzu musst du unter ‘Firma’ eine URL angeben). Jeder Link kann kopiert werden und via Messenger oder in deinem eigenen Newsletter verwendet werden. 
 
 
 @component('mail::button', ['url' => $accountUrl])
