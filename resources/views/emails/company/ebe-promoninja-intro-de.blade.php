@@ -22,20 +22,17 @@ Du kannst Punkte sammeln, indem du die Anwesenheit deines Unternehmens auf der E
 
 Finde unten deinen persönlich angefertigten Link. Nutze diesen Link für Newsletter, E-Mails, Social Media Kanäle oder bei direkten Benachrichtigungen an Kunden. 
 
-
 @component('mail::panel')
 [{{ $trackingLink }}]({{ $trackingLink }}) 
 @endcomponent
 
+**WICHTIG: Der Wettbewerb läuft bis zum 12. Februar 12:00 CET.**
 
-**WICHTIG: Der höchste Preis - 1 Präsentation - wird am Dienstag, den 12. Februar um 12:00 CET verkündet. Der Wettbewerb läuft bis zum 12. Februar 12:00 CET. 
-In deinem Ausstellerpanel findest du 4 wichtige Bereiche bezüglich des Wettbewerbs.**
-
+In deinem Ausstellerpanel findest du 4 wichtige Bereiche bezüglich des Wettbewerbs.
 
 @component('mail::button', ['url' => $accountUrl])
 Sign In
 @endcomponent
-
 
 # Platzierung
 

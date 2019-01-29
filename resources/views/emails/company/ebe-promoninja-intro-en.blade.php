@@ -18,16 +18,17 @@ The market value of the services we put to the challenge is higher that 15 000 E
 
 @endcomponent
 
-The Challenge consists in using special link which give you points.
+You can win points by sharing a customized link which promotes your participation in the expo. Every click equals one point. 
 
-Below please find your special link to your company profile on expo website. Use it when creating newsletters, email footers, advertisement (fb ads, adwords) or directly when informing / promoting on social websites. 
+Please find your customized link below. Use it when creating newsletters, email footers, advertisement (fb ads, adwords, social media) or when directly informing your clients.
+
 
 @component('mail::panel')
 [{{ $trackingLink }}]({{ $trackingLink }}) 
 @endcomponent
 
 
-**IMPORTANT: The most precious rewards - 2 presentation slots - will be assigned on Wednesday - 31 OCT at 12:00 CET. The rest of the competition will be enabled till 6 NOV 12:00 CET**
+**  IMPORTANT: The competition will be enabled till 12 February 12:00 CET.**
 
 # In your Exhibitor's account you will find 4 important sections related to the Challenge.
 
@@ -69,9 +70,9 @@ Sign In
 
 # Some of the PRIZES
 
-## Presentation slot on one of the 2 main stages
+## Presentation slot on one of our stages
 
-15-minute presentation slot during upcoming expo. Your presentation will be added to the official agenda and promoted. (That is the reason that this prize will be assigned 31 OCT)
+30-minute presentation slot during upcoming expo. Your presentation will be added to the official agenda and promoted. (That is the reason that this prize will be assigned 31 OCT)
 
 ## VIDEO interview
 
@@ -83,15 +84,8 @@ Next edition of E-commerce Poland Expo will be held in Cracow in April 2019. Onl
 
 ## Promotion of the company logo on our website
 
-Your logotype will be promoted during next 5 months - till the next event.
+Your logotype will be promoted during next 11 months - till the next event.
 
-## Mobile app to scan visitors' badges
-
-All your representatives can install iOS / Android apps allowing them to scan visitors' badges (tickets) and collect their contact details. You will be able to download XLS file directly from Exhibitor's account with all scanned visitors from all your connected devices.
-
-## Roll-up in catering zone
-
-Bring your roll-up and place it among visitors in their catering zone. Have some additional traffic at your booth.
 
 ## Want to use your own promo materials? Great. Always use the provided link!
 
@@ -101,7 +95,7 @@ Bring your roll-up and place it among visitors in their catering zone. Have some
 
 Regards, 
 
-Adam Zygadlewicz
+E-commerce Berlin Expo
 
 @endcomponent
 
