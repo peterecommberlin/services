@@ -43,7 +43,7 @@ class GeneralExhibitorMessage extends Command
         $subject    = $this->option("subject");
 
 
-        if(empty($lang)) {
+        if(empty($viewlang)) {
             return $this->error("--lang= must be set!");
         }
 
