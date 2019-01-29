@@ -36,9 +36,17 @@ class GeneralExhibitorMessage extends Command
     public function handle(GetByRole $repo, ParticipantSendable $sendable, CompanyData $cd)
     {
 
-        $domain = $this->option("domain");
-        $email =  $this->option("email");
-        $subject =  $this->option("subject");
+
+        $viewlang   = $this->option("lang");
+        $domain     = $this->option("domain");
+        $email      = $this->option("email");
+        $subject    = $this->option("subject");
+
+
+        if(empty($lang)) {
+            return $this->error("--lang= must be set!");
+        }
+
 
         if(empty($domain)) {
             return $this->error("--domain= must be set!");
@@ -54,7 +62,7 @@ class GeneralExhibitorMessage extends Command
         }
 
 
-        if(! view()->exists("emails.company." . $email . "-" . $this->option("lang"))) {
+        if(! view()->exists("emails.company." . $email . "-" . $viewlang)) {
             return $this->error("--email= error. View cannot be found!");
         }
 
@@ -102,7 +110,7 @@ class GeneralExhibitorMessage extends Command
             $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
 
 
-            if($lang !== $this->option("lang"))
+            if($lang !== $viewlang)
             {
                 $this->info("Skipped! Lang mismatch. ");
                 continue;
@@ -115,7 +123,7 @@ class GeneralExhibitorMessage extends Command
             dispatch(new Job(
                 $ex, 
                 $eventId, 
-                compact("email", "subject", "event_manager", "lang", "domain") 
+                compact("email", "subject", "event_manager", "viewlang", "lang", "domain") 
             ));
             
             $done++;

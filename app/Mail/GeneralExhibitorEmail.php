@@ -34,11 +34,12 @@ class GeneralExhibitorEmail extends Mailable
             $accountUrl;
 
 
-    public function __construct(Participant $participant, string $subject, string $view, string $lang, string $event_manager, string $domain)
+    public function __construct(Participant $participant, string $subject, string $view, string $viewlang, string $lang, string $event_manager, string $domain)
     {
         $this->participant  = $participant;
-        $this->view       = $view;
-        $this->subject    = $subject;
+        $this->view         = $view;
+        $this->viewlang     = $viewlang;
+        $this->subject      = $subject;
         $this->event_manager = trim($event_manager);
         $this->domain       = $domain;
         $this->lang       = $lang;
@@ -95,6 +96,6 @@ class GeneralExhibitorEmail extends Mailable
 
         $this->subject($this->subject);
 
-        return $this->markdown('emails.company.' . $this->view . "-" . $this->lang);
+        return $this->markdown('emails.company.' . $this->view . "-" . $this->viewlang);
     }
 }
