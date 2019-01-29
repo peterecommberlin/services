@@ -28,7 +28,7 @@ Finde unten deinen persönlich angefertigten Link. Nutze diesen Link für Newsle
 
 **WICHTIG: Der Wettbewerb läuft bis zum 12. Februar 12:00 CET.**
 
-In deinem Ausstellerpanel findest du 4 wichtige Bereiche bezüglich des Wettbewerbs.
+# In deinem Ausstellerpanel findest du 4 wichtige Bereiche bezüglich des Wettbewerbs.
 
 @component('mail::button', ['url' => $accountUrl])
 Sign In
@@ -42,9 +42,8 @@ Die Platzierung wird durch Google Analytics generiert. Die Updates zu den Platzi
 
 Alle Preise können nur mit der Erfüllung der Konditionen erhalten werden.
 
-Minimale Anzahl der Punkte (= Anzahl der Klicks auf deinen persönlich erstellten Link)
-
-Position im Ranking
+* Minimale Anzahl der Punkte (= Anzahl der Klicks auf deinen persönlich erstellten Link)
+* Position im Ranking
 
 Ob dein Unternehmen alle Konditionen erfüllt, findest du in der Preisliste im Ausstellerpanel. Erinnerung: Platzierungen können sich jeden Tag aufs Neue ändern. 
 
@@ -54,9 +53,13 @@ Ob dein Unternehmen alle Konditionen erfüllt, findest du in der Preisliste im A
 
 ## PROMO MATERIALIEN
 
-3 Links, welche du mit verschiedenen Grafiken teilen kannst. Euer Logo auf unseren Hintergrund mit Einladung zum Event auf deutsch/englisch
+3 Links, welche du mit verschiedenen Grafiken teilen kannst. 
 
-Persönliches Design ( Hierzu musst du unter ‘Firma’ eine URL angeben). Jeder Link kann kopiert werden und via Messenger oder in deinem eigenen Newsletter verwendet werden. 
+* Euer Logo auf unseren Hintergrund mit Einladung zum Event auf deutsch
+* ... auf englisch
+* Persönliches Design ( Hierzu musst du unter ‘Firma’ eine URL angeben). 
+
+Jeder Link kann kopiert werden und via Messenger oder in deinem eigenen Newsletter verwendet werden. 
 
 
 @component('mail::button', ['url' => $accountUrl])
