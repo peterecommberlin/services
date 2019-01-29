@@ -2,106 +2,93 @@
 
 @component('mail::message')
  
-# Hi {{$profile->translate("[[fname]]")}},
+Hallo {{$profile->translate("[[fname]]")}},
 
-**We have enabled a challenge / competition in your exhibitor's account**
+**Wir haben einen Wettbewerb im Ausstellerpanel aktiviert. **
 
-What's the idea behind it?
+Was verbirgt sich dahinter?
 
 @component('mail::panel')
 
-Some of our premium services are available only for Exhibitors that are promoting their participation in the Expo. 
+Wir haben zusätzliche Dienste für Aussteller, welche ihre Anwesenheit auf der diesjährigen Expo promoten. 
 
-We believe that a successful event is not only getting to know new customers, but also strengthening relationships with existing clients.
+Auf unserer Expo sollen nicht nur neue Kunden getroffen werden, sondern auch existierende Beziehungen gestärkt werden. 
 
-The market value of the services we put to the challenge is higher that 15 000 EUR.
+Der Marktwert unserer angebotenen Dienste in diesem Wettbewerb betragen mehr als 15.000,-€.
 
 @endcomponent
 
-The Challenge consists in using special link which give you points.
+Du kannst Punkte sammeln, indem du die Anwesenheit deines Unternehmens auf der Expo promotest. Jeder Klick ergibt einen Punkt.
 
-Below please find your special link to your company profile on expo website. Use it when creating newsletters, email footers, advertisement (fb ads, adwords) or directly when informing / promoting on social websites. 
+Finde unten deinen persönlich angefertigten Link. Nutze diesen Link für Newsletter, E-Mails, Social Media Kanäle oder bei direkten Benachrichtigungen an Kunden. 
+
 
 @component('mail::panel')
 [{{ $trackingLink }}]({{ $trackingLink }}) 
 @endcomponent
 
 
-**IMPORTANT: The most precious rewards - 2 presentation slots - will be assigned on Wednesday - 31 OCT at 12:00 CET. The rest of the competition will be enabled till 6 NOV 12:00 CET**
+**WICHTIG: Der höchste Preis - 1 Präsentation - wird am Dienstag, den 12. Februar um 12:00 CET verkündet. Der Wettbewerb läuft bis zum 12. Februar 12:00 CET. 
+In deinem Ausstellerpanel findest du 4 wichtige Bereiche bezüglich des Wettbewerbs.**
 
-# In your Exhibitor's account you will find 4 important sections related to the Challenge.
 
 @component('mail::button', ['url' => $accountUrl])
 Sign In
 @endcomponent
 
-# RANKING
 
-The ranking is created on the basis of data from google analytics with a **24-hour delay.**
-When you check the results, you actually see the results from the previous day.
+# Platzierung
 
-## REWARDS
+Die Platzierung wird durch Google Analytics generiert. Die Updates zu den Platzierungen werden alle 24 Stunden aktualisiert.  
 
-Each of the prizes requires fulfillment of the conditions for its granting.
+## Preise
 
-* minimal number of points (= pageviews of your public exhibitor's profile)
-* position in the ranking
+Alle Preise können nur mit der Erfüllung der Konditionen erhalten werden.
 
-Looking at every listed prize you can see whether your company meets the conditions or not. Please remember that everything may change till the end of the Challenge so it is recommended not to open the champagne until the end of the competition.
+Minimale Anzahl der Punkte (= Anzahl der Klicks auf deinen persönlich erstellten Link)
 
-## EMAIL TEMPLATES
+Position im Ranking
 
-2 ready-to-send newsletters (polish and english), which are designed to inform your clients and partners about your participation in the event. You can copy HTML or download a zip file that can be easily imported by GetResponse / Mailchimp-like software.
+Ob dein Unternehmen alle Konditionen erfüllt, findest du in der Preisliste im Ausstellerpanel. Erinnerung: Platzierungen können sich jeden Tag aufs Neue ändern. 
 
-## PROMOTIONAL MATERIALS
+## EMAIL VORLAGEN
 
-3 separate links, which you can share on social websites will render different image
+2 E-Mail Vorlagen (deutsch/englisch), welche deine Anwesenheit auf der Expo promoten. Du kannst diese als HTML Datei oder Zip Datei herunterladen oder zu GetResponse / Mailchimp-ähnliche Softwaren exportieren. 
 
-* your logotype on our background with polish invitation
-* as above but with english
-* custom design (you will need to give full URL to your design in Company Data)
+## PROMO MATERIALIEN
+3 Links, welche du mit verschiedenen Grafiken teilen kannst.
+Euer Logo auf unseren Hintergrund mit Einladung zum Event auf deutsch/englisch
+Persönliches Design ( Hierzu musst du unter ‘Firma’ eine URL angeben)y
+Jeder Link kann kopiert werden und via Messenger oder in deinem eigenen Newsletter verwendet werden. 
 
-Every link can be copied to clipboard, sent via messenger / @ or used in your designed-from-scratch newsletters.
 
 @component('mail::button', ['url' => $accountUrl])
-Sign In  
+Sign In
 @endcomponent
 
-# Some of the PRIZES
+# Ausgewählte Preise
 
-## Presentation slot on one of the 2 main stages
+## Präsentation
 
-15-minute presentation slot during upcoming expo. Your presentation will be added to the official agenda and promoted. (That is the reason that this prize will be assigned 31 OCT)
+Eine 30-minütige Präsentation auf einen der vier Bühnen. Eure Präsentation wird in die offizielle E-commerce Berlin Expo 2019 Agenda mit aufgenommen.
 
-## VIDEO interview
+## Video Interview
 
-Your company will be video-interviewed at your booth during Expo! You will own the resulting material and also can expect we will promote it after the event. 
+Ein Video Interview wird mit einem Vertreter eurer Firma auf der Expo durchgeführt. Das Video Interview wird auf dem EBE Youtube Kanal sowie sämtlichen Social Media Kanälen veröffentlicht.
 
-## Access to the Early Bird Sales 
+## Zugang zu Early-Bird Sales
 
-Next edition of E-commerce Poland Expo will be held in Cracow in April 2019. Only 30 most ranked companies will benefit from lowest prices and best locations.
+Erhalte Early-Bird Preise für die Stände auf der nächsten E-commerce Berlin Expo im Februar 2020. Du bekommst Zugang zur gesamten Ausstellungsfläche um die beste Location für deinen Stand zu wählen, vor allen anderen!
 
-## Promotion of the company logo on our website
-
-Your logotype will be promoted during next 5 months - till the next event.
-
-## Mobile app to scan visitors' badges
-
-All your representatives can install iOS / Android apps allowing them to scan visitors' badges (tickets) and collect their contact details. You will be able to download XLS file directly from Exhibitor's account with all scanned visitors from all your connected devices.
-
-## Roll-up in catering zone
-
-Bring your roll-up and place it among visitors in their catering zone. Have some additional traffic at your booth.
-
-## Want to use your own promo materials? Great. Always use the provided link!
+Du möchtest dein eigenes Promomaterial nutzen? Super! Nutze stets den persönlich angefertigten Link!
 
 @component('mail::panel')
 [{{ $trackingLink }}]({{ $trackingLink }}) 
 @endcomponent
 
-Regards, 
+Regards,
 
-Adam Zygadlewicz
+E-commerce Berlin Expo
 
 @endcomponent
 
