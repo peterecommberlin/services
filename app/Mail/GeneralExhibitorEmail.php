@@ -76,7 +76,7 @@ class GeneralExhibitorEmail extends Mailable
         $this->accountUrl = "https://account.ecommerceberlin.com/#/login?token=" . $this->participant->token;
        
 
-        $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th3rCMiM_%s&utm_medium=link&utm_campaign=ebe4exh&utm_content=raw", $this->participant->company_id);
+        $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th3rCMiM_%s&utm_medium=link&utm_campaign=promoninja&utm_content=raw", $this->participant->company_id);
 
 
         if($this->event_manager && $this->participant->email !== $this->event_manager){
