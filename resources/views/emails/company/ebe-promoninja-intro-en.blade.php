@@ -72,7 +72,7 @@ Sign In
 
 ## Presentation slot on one of our stages
 
-30-minute presentation slot during upcoming expo. Your presentation will be added to the official agenda and promoted. (That is the reason that this prize will be assigned 31 OCT)
+30-minute presentation slot during upcoming expo. Your presentation will be added to the official agenda and promoted. 
 
 ## VIDEO interview
 
@@ -80,7 +80,7 @@ Your company will be video-interviewed at your booth during Expo! You will own t
 
 ## Access to the Early Bird Sales 
 
-Next edition of E-commerce Poland Expo will be held in Cracow in April 2019. Only 30 most ranked companies will benefit from lowest prices and best locations.
+Next edition of the E-commerce Berlin Expo will take place in February 2020. Only 30 of the highest ranked companies will be able to choose from the early bird prices and best locations for their booth at the next expo. 
 
 ## Promotion of the company logo on our website
 
