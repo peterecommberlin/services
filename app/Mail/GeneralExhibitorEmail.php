@@ -62,8 +62,17 @@ class GeneralExhibitorEmail extends Mailable
 
         $admin = $this->participant->company->admin;
 
-        $admin_name = $admin->fname . ' ' . $admin->lname;
-        $admin_email = $admin->email;
+        if($admin){
+            $admin_name = $admin->fname . ' ' . $admin->lname;
+            $admin_email = $admin->email;
+        }
+        else
+        {
+            $admin_name = "";
+            $admin_email = "ecommerceberlin@ecommerceberlin.com";
+        }
+
+       
 
 
         $this->profile = new Personalizer( $this->participant, "");
