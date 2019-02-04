@@ -84,12 +84,12 @@ class CompanyRepresentatives extends Command
 
         $this->info("Reps found: " . $reps->count() );
 
-        $whatWeDo  = $this->anticipate('Send or stats?', ['send', 'stats']);
+        $whatWeDo  = $this->anticipate('Send, stats, empty?', ['send', 'stats', 'empty']);
 
 
         foreach($exhibitors as $ex)
-        {
-        
+        {   
+
             //do we have company assigned?
 
             if(!$ex->company_id)
@@ -97,26 +97,34 @@ class CompanyRepresentatives extends Command
                 $this->error("No company assigned for " . $ex->email . " - skipped.");
                 continue;
             }
-
+            
             $companyProfile = $cd->toArray($ex->company);
 
             $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "en";
 
+            $cReps = array_get($reps, $ex->company_id, collect([]))->mapInto(Personalizer::class);
 
-            if($lang !== $this->option("lang"))
-            {
-                $this->info("Skipped! Lang mismatch. ");
+            if($whatWeDo === "empty"){
+
+                if(!$cReps->count()){
+                    $this->error("No reps " . array_get($companyProfile, "name") . " lang: " . $lang);
+                }
+
                 continue;
             }
 
-
-            $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
-
-            $cReps = array_get($reps, $ex->company_id, collect([]))->mapInto(Personalizer::class);
-    
             $this->line("Processing " . $ex->company->slug . " lang: " . $lang);
 
             $this->info("Reps: " . $cReps->count());
+          
+            if($lang !== $this->option("lang"))
+            {
+                $this->info("Skipped! Lang mismatch. ");
+                //continue;
+            }
+
+            $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
+
 
             if($whatWeDo === "send")
             {
