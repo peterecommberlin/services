@@ -102,18 +102,20 @@ class CompanyRepresentatives extends Command
 
             $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "en";
 
+            $name = !empty($companyProfile["name"]) ? $companyProfile["name"] : $ex->slug;
+
             $cReps = array_get($reps, $ex->company_id, collect([]))->mapInto(Personalizer::class);
 
             if($whatWeDo === "empty"){
 
                 if(!$cReps->count()){
-                    $this->error("No reps " . array_get($companyProfile, "name") . " lang: " . $lang);
+                    $this->error("No reps " . $name . " lang: " . $lang);
                 }
 
                 continue;
             }
 
-            $this->line("Processing " . $ex->company->slug . " lang: " . $lang);
+            $this->line("Processing " . $name . " lang: " . $lang);
 
             $this->info("Reps: " . $cReps->count());
           
