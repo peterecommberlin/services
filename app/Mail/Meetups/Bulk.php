@@ -18,8 +18,10 @@ class Bulk extends Mailable {
     protected $sender_email     = "zwiedzanie+rsvp@targiehandlu.pl";
     protected $sender_name      = "Adam Zygadlewicz";
     protected $domain           = "targiehandlu.pl";
-    protected $subject          = "Oto Wystawcy, którzy chcą się z Tobą spotkać";
-    protected $view             = "bulk_pl";
+    
+    public    $subject          = "Oto Wystawcy, którzy chcą się z Tobą spotkać";
+    public $view             = "bulk_pl";
+    
     protected $participant;
 
     public $p;
