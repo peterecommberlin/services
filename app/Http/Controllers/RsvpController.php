@@ -49,6 +49,12 @@ class RsvpController extends Controller
 
     function index(Request $request)
     {
+
+        // if(){
+        //     app()->setLocale("en");
+        //     config(["app.name" => "E-commerce Berlin Expo"]);
+        // }
+        
         //remove token from URL for security purposes...
         if($request->input("token", false))
         {
@@ -73,7 +79,9 @@ class RsvpController extends Controller
             ["admin.fields", "company.data"]
         )->all();
 
-        return view("rsvp.index", ["meetups" => $meetups]);
+        return view("rsvp.index", [
+            "meetups" => $meetups
+        ]);
 
     }
 
