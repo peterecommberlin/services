@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Eventjuicer\Services\ApiUser;
 use Eventjuicer\Repositories\MeetupRepository;
+use Eventjuicer\Repositories\ParticipantRepository;
 use Eventjuicer\Repositories\Criteria\BelongsToParticipant;
 use Eventjuicer\Repositories\Criteria\SortByDesc;
 
@@ -17,19 +17,21 @@ use Illuminate\Support\Facades\Mail;
 class RsvpController extends Controller
 {
 
-    protected $user, $meetups;
+    protected $user;
+    protected $meetups;
+    protected $participants;
 
+    function __construct(
+        ParticipantRepository $participants, 
+        MeetupRepository $meetups) {
 
-    function __construct(ApiUser $user, MeetupRepository $meetups)
-    {
-
-        $this->user = $user;
+        $this->participants = $participants;
         $this->meetups = $meetups;
 
         $this->middleware(function($request, $next)
         {
 
-            $token = $request->input("token", false);
+            $token = trim( $request->input("token", "") );
 
             if($token)
             {
@@ -47,25 +49,31 @@ class RsvpController extends Controller
 
     function index(Request $request)
     {
-
+        //remove token from URL for security purposes...
         if($request->input("token", false))
         {
             return redirect()->action("RsvpController@index");
         }
 
-        
         $this->restoreUserFromSession();
-        
-        $this->user->check();   
 
+        if(!$this->user){
+            abort(404);
+        }
 
-       $this->meetups->pushCriteria(new BelongsToParticipant($this->user->id));
+        $this->meetups->pushCriteria(
+            new BelongsToParticipant($this->user->id)
+        );
 
-       $this->meetups->pushCriteria(new SortByDesc("created_at"));
+        $this->meetups->pushCriteria(
+            new SortByDesc("created_at")
+        );
 
-       $meetups = $this->meetups->with(["admin.fields", "company"])->all();
+        $meetups = $this->meetups->with(
+            ["admin.fields", "company.data"]
+        )->all();
 
-       return view("rsvp.index", ["meetups" => $meetups]);
+        return view("rsvp.index", ["meetups" => $meetups]);
 
     }
 
@@ -86,7 +94,7 @@ class RsvpController extends Controller
     {
        if($this->updateStatus($id))
         {
-            return redirect()->action("RsvpController@index")->withStatus("Thanks!");
+            return redirect()->action("RsvpController@index")->withStatus("Roger that!");
         }
 
         return redirect()->action("RsvpController@index")->withError("Cannot access!");
@@ -130,16 +138,10 @@ class RsvpController extends Controller
     }
 
 
-
-
     function restoreUserFromSession()
     {
-        $loggedinUser = session("token");
 
-        if($loggedinUser)
-        {
-            $this->user->setToken($loggedinUser);
-        }
+        $this->user = $this->participants->findBy("token", session("token"));
     }   
   
 

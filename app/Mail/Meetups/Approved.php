@@ -17,7 +17,14 @@ class Approved extends Mailable
 {
     use Queueable, SerializesModels;
 
+
     protected $meetup;
+    protected $not_provided = "nie podano";
+    protected $domain = "targiehandlu.pl";
+    protected $sender_email = "targiehandlu+rsvp@targiehandlu.pl";
+    protected $sender_name = "Adam Zygadlewicz - Targi eHandlu";
+    protected $subject = "Sukces! Potwierdzone spotkanie";
+    protected $view = "approved_pl";
 
     public $p, $url, $recipient;
 
@@ -31,25 +38,40 @@ class Approved extends Mailable
     public function build()
     {
 
+        if($this->meetup->group_id > 1){
+
+            app()->setLocale("en");
+            config(["app.name" => "E-commerce Berlin Expo"]);
+
+            $this->domain = "ecommerceberlin.com";
+
+            $this->sender_email = "rsvp@ecommerceberlin.com";
+            $this->sender_name = "Charlene Pham - E-commerce Berlin Expo";
+            $this->subject = "Invitation accepted! Contact details attached.";
+            $this->view = "approved_en";
+
+        }
+
         $this->p = new Personalizer( $this->meetup->participant, "", [
 
-            "cname2"    => "-- nie podano --",
-            "phone"     => "-- nie podano --",
-            "position"  => "-- nie podano --"
+            "cname2"    => "-- ".$this->not_provided." --",
+            "phone"     => "-- ".$this->not_provided." --",
+            "position"  => "-- ".$this->not_provided." --"
         
         ] ) ;
 
-        $this->url = "https://account.targiehandlu.pl/#/login?token=" . $this->meetup->admin->token;
+        $this->url = "https://account.".$this->domain."/#/login?token=" . $this->meetup->admin->token;
 
         $this->recipient = (string) array_get($this->meetup->data, "from_email", "");
 
+        if(filter_var($this->recipient, FILTER_VALIDATE_EMAIL)){
+            $this->to($this->recipient);
+        }else{
+            $this->to($this->meetup->admin->email);
+        }   
 
-        $this->to($this->recipient);
+        $this->from($this->sender_email, $this->sender_name);
 
-
-        $this->from("targiehandlu+rsvp@targiehandlu.pl", "Adam Zygadlewicz - Targi eHandlu");
-
-  
         if($this->recipient != $this->meetup->admin->email)
         {
             $this->cc($this->meetup->admin->email);
@@ -57,8 +79,8 @@ class Approved extends Mailable
 
         $this->replyto($this->meetup->participant->email);
 
-        $this->subject("Sukces! Potwierdzone spotkanie");
+        $this->subject($this->subject);
 
-        return $this->markdown('emails.meetups.approved_pl');
+        return $this->markdown('emails.meetups.' . $this->view);
     }
 }

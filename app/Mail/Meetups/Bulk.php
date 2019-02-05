@@ -11,16 +11,23 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Eventjuicer\Models\Participant;
 use Eventjuicer\Services\Personalizer;
 
-class Bulk extends Mailable
-{
+class Bulk extends Mailable {
+
     use Queueable, SerializesModels;
 
+    protected $sender_email     = "zwiedzanie+rsvp@targiehandlu.pl";
+    protected $sender_name      = "Adam Zygadlewicz";
+    protected $domain           = "targiehandlu.pl";
+    protected $subject          = "Oto Wystawcy, którzy chcą się z Tobą spotkać";
+    protected $view             = "bulk_pl";
     protected $participant;
 
-    public $p, $url, $howmanyMeetups = 1;
+    public $p;
+    public $url;
+    public $howmanyMeetups = 1;
 
-    public function __construct(Participant $participant, $howmanyMeetups = 1)
-    {
+    public function __construct(Participant $participant, $howmanyMeetups = 1){
+
         $this->participant = $participant;
         $this->howmanyMeetups = $howmanyMeetups;
     }
@@ -33,16 +40,28 @@ class Bulk extends Mailable
     public function build()
     {
 
-        $this->p = new Personalizer( $this->participant, "") ;
+        if($this->participant->group_id > 1){
 
-        $this->url = "https://rsvp.targiehandlu.pl/rsvp?token=" . $this->participant->token;
+            app()->setLocale("en");
+            config(["app.name" => "E-commerce Berlin Expo"]);
 
-        $this->from("zwiedzanie+rsvp@targiehandlu.pl", "Jan Selga, XV Targi eHandlu w Warszawie");
+            $this->domain = "ecommerceberlin.com";
+            $this->sender_email = "rsvp@ecommerceberlin.com";
+            $this->sender_name = "Charlene Pham - E-commerce Berlin Expo";
+            $this->subject = "Exhibitors that want to meet you. Your action needed.";
+            $this->view = "bulk_en";
+        }
+
+        $this->p = new Personalizer( $this->participant, "");
+
+        $this->url = "https://rsvp.".$this->domain."/rsvp?token=" . $this->participant->token;
+
+        $this->from($this->sender_email, $this->sender_name);
 
         $this->to((string) $this->participant->email);
 
-        $this->subject("Oto Wystawcy, którzy chcą się z Tobą spotkać");
+        $this->subject($this->subject);
 
-        return $this->markdown('emails.meetups.bulk_pl');
+        return $this->markdown('emails.meetups.' . $this->view);
     }
 }
