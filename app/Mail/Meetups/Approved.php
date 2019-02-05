@@ -23,8 +23,8 @@ class Approved extends Mailable
     protected $domain = "targiehandlu.pl";
     protected $sender_email = "targiehandlu+rsvp@targiehandlu.pl";
     protected $sender_name = "Adam Zygadlewicz - Targi eHandlu";
-    protected $subject = "Sukces! Potwierdzone spotkanie";
-    protected $view = "approved_pl";
+    public $subject = "Sukces! Potwierdzone spotkanie";
+    public $view = "approved_pl";
 
     public $p, $url, $recipient;
 
