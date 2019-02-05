@@ -91,7 +91,7 @@ class RsvpController extends Controller
     	if($this->updateStatus($id, true))
         {
 
-            return redirect()->action("RsvpController@index")->withStatus("Thanks! We will notify an exhbitor!");
+            return redirect()->action("RsvpController@index")->withStatus("Thanks! We will notify an exhibitor!");
         }
 
         return redirect()->action("RsvpController@index")->withError("Cannot access!");
