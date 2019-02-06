@@ -36,6 +36,7 @@ Access to dashboard
 regards,
 
 Aleksandra Miedzynska
+
 Jan Sobczak
 
 E-commerce Berlin Team

@@ -5,7 +5,7 @@
 
 # Hallo {{$profile->translate("[[fname]]")}},
 
-# in deinem Ausstellerprofil hast du nun die Möglichkeit, die Besucher der Expo zu sehen und diese zu Gesprächen an deinen Stand einzuladen 
+# In deinem Ausstellerprofil hast du nun die Möglichkeit, die Besucher der Expo zu sehen und diese zu Gesprächen an deinen Stand einzuladen 
 
 @component('mail::button', ['url' => $accountUrl])
 Zugang zum Profil
@@ -35,6 +35,7 @@ Zugang zum Profil
 regards,
 
 Aleksandra Miedzynska
+
 Jan Sobczak
 
 E-commerce Berlin Team
