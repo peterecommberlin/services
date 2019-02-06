@@ -17,36 +17,36 @@ use Eventjuicer\Services\Personalizer;
 
 class CompanyRepresentativesEmail extends Mailable
 {
+
+
     use Queueable, SerializesModels;
 
-    /**
-     * Create a new message instance.
-     *
-     * @return void
-     */
-
-    protected $participant, $lang = "pl", $event_manager;
+    protected $participant, $event_manager, $viewlang;
 
     public  $representatives,
             $profile, 
-            $accountUrl;
+            $accountUrl,
+            $view,
+            $subject;
 
 
     public function __construct(
         Participant $participant, 
         Collection $representatives,
-        string $lang, 
-        string $event_manager
-    ){
+        array $config){
+
         $this->participant  = $participant;
         $this->representatives = $representatives;
-        $this->event_manager = $event_manager;
+       
 
-        if( $lang === "en" ){
-            $this->lang = "en";
-        }
+        $this->view = array_get($config, "view");
+        $this->event_manager = array_get($config, "event_manager");
+        $this->viewlang = array_get($config, "viewlang", "en");
+        $this->subject = array_get($config, "subject");
+
 
     }
+
 
     /**
      * Build the message.
@@ -56,43 +56,57 @@ class CompanyRepresentativesEmail extends Mailable
     public function build()
     {
 
+        if( $this->participant->group_id > 1 ){
+
+            app()->setLocale("en");
+            config(["app.name" => "E-commerce Berlin Expo"]);
+        }
+
+
+        $admin = $this->participant->company->admin;
+
+        if($admin){
+            $admin_name = $admin->fname . ' ' . $admin->lname;
+            $admin_email = $admin->email;
+        }
+        else
+        {
+            $admin_name = "";
+            $admin_email = "ecommerceberlin@ecommerceberlin.com";
+        }
+
+       
+
 
         $this->profile = new Personalizer( $this->participant, "");
 
+        $this->profileUrl = "https://ecommerceberlin.com/" . 
+                $this->participant->company->slug . 
+                ",c,". 
+                $this->participant->company_id;
 
-        $this->accountUrl = "https://account.targiehandlu.pl/#login?token=" . $this->participant->token;
+
+        $this->accountUrl = "https://account.ecommerceberlin.com/#/login?token=" . $this->participant->token;
        
-        if($this->lang == "en"){
 
-            $this->accountUrl = "https://account.ecommercewarsaw.com/#login?token=" . $this->participant->token;
+        if($this->event_manager && $this->participant->email !== $this->event_manager){
+
+            $this->to( $this->event_manager );
         }
+        else{
 
-
-        $this->to( trim(strtolower($this->participant->email)) );
-
-        $this->cc( "targiehandlu+auto@targiehandlu.pl" ); 
-
-
-        if(strpos($this->event_manager, "@")!==false && trim($this->event_manager)!== $this->participant->email){
-
-            $this->cc( $this->event_manager ); 
+            $this->to( trim(strtolower($this->participant->email)) );
 
         }
 
-        $this->from("targiehandlu@targiehandlu.pl", "Adam Zygadlewicz - Targi eHandlu / Ecommerce Poland Expo");
+        $this->from($admin_email, $admin_name . " - E-commerce Berlin Expo");
 
+        $this->cc( "ecommerceberlin+auto@ecommerceberlin.com"); 
 
-        if($this->lang == "en"){
+        $this->subject($this->subject);
 
-            $this->subject( "Last call: add/modify exhibitor representatives!" );
-        
-        }else{
-            
-            $this->subject( "Ostatnia szansa: dodaj/edytuj przedstawicieli Wystawcy..." );
-        }
-
-        
-
-        return $this->markdown('emails.company.representatives-list-' . $this->lang);
+        return $this->markdown('emails.company.' . $this->view . "-" . $this->viewlang);
     }
+
+
 }

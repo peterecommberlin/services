@@ -33,7 +33,13 @@ class CompanyRepresentatives extends Command
 {
 
  
-    protected $signature = 'exhibitors:reps {host} {--lang=}';
+    protected $signature = 'exhibitors:reps 
+        {--domain=} 
+        {--email=} 
+        {--subject=}
+        {--min=}
+        {--lang=}';
+
     protected $description = 'Command description';
  
     public function __construct()
@@ -45,10 +51,46 @@ class CompanyRepresentatives extends Command
             GetByRole $getByRole, 
             CompanyData $cd, 
             ParticipantSendable $sendable, 
-            CompanyRepresentativeRepository $repo
+            CompanyRepresentativeRepository $repsRepo
     ){
 
-        $route = new Resolver( $this->argument("host") );
+
+
+        $viewlang   = $this->option("lang");
+        $domain     = $this->option("domain");
+        $email      = $this->option("email");
+        $subject    = $this->option("subject");
+        $min        = $this->option("min");
+
+
+        if(empty($viewlang)) {
+            return $this->error("--lang= must be set!");
+        }
+
+
+        if(empty($domain)) {
+            return $this->error("--domain= must be set!");
+        }
+
+        if(empty($subject)) {
+            return $this->error("--subject= must be set!");
+        }
+    
+        
+        if(empty($email)) {
+            return $this->error("--email= must be set!");
+        }
+
+        if(empty($min)) {
+            return $this->error("--min= must be set!");
+        }
+
+        if(! view()->exists("emails.company." . $email . "-" . $viewlang)) {
+            return $this->error("--email= error. View cannot be found!");
+        }
+
+
+        $route = new Resolver( $domain );
 
         $eventId =  $route->getEventId();
 
@@ -58,20 +100,25 @@ class CompanyRepresentatives extends Command
 
         $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
 
-        $sendable->checkUniqueness(true);
+        $sendable->checkUniqueness(false);
+
+        $sendable->setMuteTime(20); //minutes!!!!
+
 
         $filtered = $sendable->filter($exhibitors, $eventId);
 
+
         $this->info("Exhibitors that can be notified: " . $filtered->count() );
+
 
         $done = 0;
 
         /*get representatives*/
 
-        $repo->pushCriteria( new BelongsToEvent($eventId));
-        $repo->pushCriteria( new ColumnGreaterThanZero("parent_id") );
-        $repo->with(["fields", "purchases"]);
-        $reps = $repo->all();
+        $repsRepo->pushCriteria( new BelongsToEvent($eventId));
+        $repsRepo->pushCriteria( new ColumnGreaterThanZero("parent_id") );
+        $repsRepo->with(["fields", "purchases"]);
+        $reps = $repsRepo->all();
 
 
         $reps = $reps->filter(function($participant){
@@ -82,7 +129,8 @@ class CompanyRepresentatives extends Command
 
         /*get representatives*/
 
-        $this->info("Reps found: " . $reps->count() );
+        $this->info("Total reps found: " . $reps->count() );
+
 
         $whatWeDo  = $this->anticipate('Send, stats, empty?', ['send', 'stats', 'empty']);
 
@@ -98,14 +146,18 @@ class CompanyRepresentatives extends Command
                 continue;
             }
             
+
             $companyProfile = $cd->toArray($ex->company);
 
             $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "en";
 
             $name = !empty($companyProfile["name"]) ? $companyProfile["name"] : $ex->slug;
 
+            $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
+
             $cReps = array_get($reps, $ex->company_id, collect([]))->mapInto(Personalizer::class);
 
+        
             if($whatWeDo === "empty"){
 
                 if(!$cReps->count()){
@@ -115,24 +167,40 @@ class CompanyRepresentatives extends Command
                 continue;
             }
 
+            if($cReps->count() > $min){
+                 $this->info("Skipped! Has more reps than " . $min);
+                 continue;
+            }
+
+            if($lang !== $viewlang)
+            {
+                $this->info("Skipped! Lang mismatch. ");
+                continue;
+            }
+
+
+
             $this->line("Processing " . $name . " lang: " . $lang);
 
             $this->info("Reps: " . $cReps->count());
           
-            if($lang !== $this->option("lang"))
-            {
-                $this->info("Skipped! Lang mismatch. ");
-                //continue;
-            }
-
-            $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
-
+        
 
             if($whatWeDo === "send")
             {
                 $this->info("Notifying " . $ex->email);
 
-                dispatch(new Job($ex, $cReps, $eventId, $lang, $event_manager));
+                dispatch(new Job(
+                        $ex, 
+                        $cReps, 
+                        $eventId,
+                        array(
+                            "viewlang" => $viewlang, 
+                            "event_manager" => $event_manager,
+                            "subject" => $subject,
+                            "view" => $email
+                        )
+                ));
             }
 
             $done++;
