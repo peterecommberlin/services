@@ -167,28 +167,25 @@ class CompanyRepresentatives extends Command
                 continue;
             }
 
+            $this->info("Processing " . $name . " lang: " . $lang);
+
+            $this->line("Reps: " . $cReps->count());
+
             if($cReps->count() > $min){
-                 $this->info("Skipped! Has more reps than " . $min);
+                 $this->line("Skipped! Has more reps than " . $min);
                  continue;
             }
 
             if($lang !== $viewlang)
             {
-                $this->info("Skipped! Lang mismatch. ");
+                $this->line("Skipped! Lang mismatch. ");
                 continue;
             }
 
-
-
-            $this->line("Processing " . $name . " lang: " . $lang);
-
-            $this->info("Reps: " . $cReps->count());
-          
         
-
-            if($whatWeDo === "send")
+            if($whatWeDo == "send")
             {
-                $this->info("Notifying " . $ex->email);
+                $this->info("Notified");
 
                 dispatch(new Job(
                         $ex, 
@@ -207,7 +204,7 @@ class CompanyRepresentatives extends Command
 
         }   
 
-        $this->info("Counted " . $done . " companies with errors...");
+        $this->info("Counted " . $done . " companies with reps <= " . $min);
 
 
     }
