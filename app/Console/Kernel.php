@@ -24,7 +24,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('meetups:bulk all')->weekdays()->dailyAt('14:00');
+
+        $schedule->command('meetups:bulk all')->weekdays()->dailyAt('10:00');
+
+        $schedule->command('meetups:bulk all')->weekdays()->dailyAt('14:30');
+
+        $schedule->command('meetups:bulk all')->weekdays()->dailyAt('19:00');
+
     }
 
     /**
