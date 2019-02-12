@@ -11,6 +11,7 @@
 @component('mail::panel')
 
 STATION Berlin Luckenwalder Str 4-6 
+
 10963 Berlin
 
 Contact person: Nadin Geyer
@@ -25,15 +26,18 @@ Parcel can reach the place no earlier than February, the 18th! All parcels will 
 
 STATION Berlin  - Luckenwalder Str. 4-6, 10963 Berlin 
 
+
 ## Parking during assembly day (Tuesday / 19 Feb)
 
 You can park your car at the venue during the assembly day in front of the restrictive halls. 
 
-** If your exhibition space is at hall 1 (right floor on the map), you can park your car entering from Luckenwalder Str. **
+If your exhibition space is at **hall 1** (right floor on the map), you can park your car entering from **Luckenwalder Str.** 
 
-** If your exhibition space is in hall 2 (the left one on the map) you can park your car entering from Trebbiner Str.**
+If your exhibition space is in **hall 2** (the left one on the map) you can park your car entering from **Trebbiner Str.**
 
-** The venue owner will take a deposit for cars worth 50€ and for trucks 100€. The deposit will be given back when you leave the venue during the assembly day. **
+The venue owner will take a **deposit** for cars worth **50€** and for **trucks 100€**. The deposit will be given back when you leave the venue during the assembly day.
+
+<img src="https://res.cloudinary.com/ecommerceberlin/image/upload/w_650,c_fit/v1549965815/images/SBWEB_Grundriss_1024x768_151102_Loft.png" alt="map" style="max-width: 650px; " />
 
 ## Parking during EXPO day (Wednesday / 20 Feb)
 
@@ -43,18 +47,14 @@ Next to the STATION Berlin, there is a multilevel parking house which can be use
 
 The one-day-ticket is 10€ worth. 
 
-
 ## Assembly day 
 
 * 19th of February from 2:00 PM to Midnight
 * 20th of February from 8:00 AM to 9:30 AM.
 
+After entering the hall you need to go to one of the two **information points for the exhibitors** (one info point per hall). Your Account Manager will await :)
 
-After entering the hall you need to go to the information point for the exhibitors.
-
-There will be two of them - one in each hall. Your Account Manager will await :)
-
-There, you will get your exhibitor welcoming package which includes: 
+There, you will get your exhibitor **welcoming package** which includes: 
 
 * the badges of your representatives if you have added them before the deadline at your exhibitor's panel,
 * lunch vouchers,
@@ -62,11 +62,9 @@ There, you will get your exhibitor welcoming package which includes:
 * contact numbers to the staff of Expo,
 
 
-** Remember, that standard power access is:** 
-a) only 500 Watts (for the categories Start-Up, Hot/Super Hot). b) The grand space has 1000 Watts. 
+** Remember, that standard power access is:**  a) only 500 Watts (for the categories Start-Up, Hot/Super Hot). b) The grand space has 1000 Watts. 
 
 If you plan to use something more and it needs more electricity, please contact us as soon as possible. If you want to consult power usage of your equipment, please contact us.
-
 
 ## Expo day
 

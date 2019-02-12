@@ -26,18 +26,20 @@ Kleinere Pakete werden bei den Infopunkten auf dem Messegelände warten und kön
 
 STATION Berlin, Luckenwalder Str. 4-6, 10963 Berlin 
 
+
 # Parksituation: 
 
 Das Parken auf dem Gelände der Expo ist am Tag der Expo nicht möglich. 
 Neben dem Expogelände gibt es ein Parkhaus, welches benutzt werden kann. Das Tagesticket kostet 10€. 
 
+<img src="https://res.cloudinary.com/ecommerceberlin/image/upload/w_650,c_fit/v1549965815/images/SBWEB_Grundriss_1024x768_151102_Loft.png" alt="map" style="max-width: 650px; " />
+
 Ihr könnt am Aufbautag (19.02.2019) mit den Autos auf dem Gelände vor den Hallen parken.
 
-Wenn deine Ausstellungsfläche in der ersten Halle ist (rechts auf der Mappe), dann kannst du von der Luckenwalder Straße aus reinfahren und dort parken. 
-Wenn deine Ausstellungsfläche in der zweiten Halle ist (links auf der Mappe) dann kannst du von der Trebbine Straße aus reinfahren und dort parken. 
+Wenn deine Ausstellungsfläche in der **ersten Halle** ist (rechts auf der Mappe), dann kannst du von der **Luckenwalder Straße** aus reinfahren und dort parken. 
+Wenn deine Ausstellungsfläche in der **zweiten Halle** ist (links auf der Mappe) dann kannst du von der **Trebbine Straße** aus reinfahren und dort parken. 
 
-Beim Reinfahren wird eine Kaution iHv. 50€ für PKW’s und 100€ für LKW’s genommen. Die Kaution wird zurückgezahlt beim Rausfahren während des Aufbautages. 
-
+Beim Reinfahren wird eine **Kaution iHv. 50€ für PKW’s und 100€ für LKW’s** genommen. Die Kaution wird **zurückgezahlt beim Rausfahren** während des Aufbautages. 
 
 ## Aufbautage:
 
