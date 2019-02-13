@@ -14,6 +14,10 @@ Wcześniej bo już **w przyszłym tygodniu** możemy zobaczyć się **E-commerce
 
 Wydarzenie jest organizowane z myślą **o Profesjonalistach**, którzy myślą o handlu międzynarodowym, skalowaniu i automatyzacji. Wydarzenie jest oczywiście anglojęzyczne.
 
+@component('mail::button', ['url' => "https://ecommerceberlin.com/visit?utm_campaign=teh"])
+Register here for E-commerce Berlin Expo
+@endcomponent
+
 Oficjalne zaproszenie poniżej.
 
 # Hi E-commerce Professional!

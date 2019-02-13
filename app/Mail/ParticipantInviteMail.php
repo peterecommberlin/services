@@ -47,6 +47,11 @@ class ParticipantInviteMail extends Mailable
     {
 
 
+
+        app()->setLocale("pl");
+        config(["app.name" => "Targi eHandlu"]);
+
+        
         $this->p = new Personalizer( $this->participant, "");
 
         $hash = (new Hashids())->encode($this->participant->id);
