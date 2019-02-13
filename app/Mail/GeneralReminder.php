@@ -38,6 +38,8 @@ class GeneralReminder extends Mailable
     public function build()
     {
 
+        app()->setLocale("pl");
+        config(["app.name" => "Targi eHandlu"]);
 
         $this->p = new Personalizer( $this->participant, "");
 
