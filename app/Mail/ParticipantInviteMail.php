@@ -48,10 +48,10 @@ class ParticipantInviteMail extends Mailable
 
 
 
-        app()->setLocale("pl");
-        config(["app.name" => "Targi eHandlu"]);
+        app()->setLocale("en");
+        config(["app.name" => "E-commerce Berlin Expo"]);
 
-        
+
         $this->p = new Personalizer( $this->participant, "");
 
         $hash = (new Hashids())->encode($this->participant->id);
@@ -64,7 +64,6 @@ class ParticipantInviteMail extends Mailable
 
         $this->siteUrl = $baseUrl . $params;
 
-
         $this->exhibitorsURl = $baseUrl . "/exhibitors" . $params;
         $this->presentersURl = $baseUrl . "/presenters" . $params;
         $this->scheduleURl = $baseUrl . "/schedule" . $params;
@@ -73,7 +72,7 @@ class ParticipantInviteMail extends Mailable
 
         $this->to( strtolower(trim($this->participant->email)) );
 
-        $this->from("zwiedzanie@targiehandlu.pl", "Adam Zygadlewicz - Targi eHandlu");
+        $this->from("visitors@ecommerceberlin.com", "Lucas Zarna - E-commerce Berlin Expo");
 
         $this->subject($this->subject);
 
