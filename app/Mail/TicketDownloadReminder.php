@@ -35,22 +35,46 @@ class TicketDownloadReminder extends Mailable
     public function build()
     {
 
-
         $this->p = new Personalizer( $this->participant, "");
 
         $hash = (new Hashids())->encode($this->participant->id);
 
-        $this->url = "https://targiehandlu.pl/ticket," . $hash;
+
+      //  if($this->participant->group_id > 1){
+
+          app()->setLocale("en");
+
+          config(["app.name" => "E-commerce Berlin Expo"]);
+
+          $this->url = "https://ecommerceberlin.com/ticket," . $hash;
+
+          $this->from("visitors@ecommerceberlin.com", "Lucas Zarna - E-commerce Berlin Expo");
+
+          $this->subject("I have your ticket :) Download (and print) it please.");
+
+
+        // }else{
+
+        //   app()->setLocale("pl");
+
+        //   config(["app.name" => "Targi eHandlu"]);
+
+        //   $this->url = "https://targiehandlu.pl/ticket," . $hash;
+
+        //   $this->from("zwiedzanie@targiehandlu.pl", "Adam Zygadlewicz - Targi eHandlu");
+
+        //   $this->subject("Twój na Targi eHandlu jest gotowy!");
+
+        // }
+
 
         $this->to(trim(strtolower($this->participant->email)));
 
-        $this->from("zwiedzanie@targiehandlu.pl", "Adam Zygadlewicz - Targi eHandlu");
 
       //  $this->subject("Your ticket is ready! Download and print!");
 
-        $this->subject("Twój bilet na środowe Targi eHandlu jest gotowy!");
 
-        return $this->markdown('emails.visitor.teh15-ticket-reminder');
+        return $this->markdown('emails.visitor.ebe-ticket-reminder');
 
     }
 }
