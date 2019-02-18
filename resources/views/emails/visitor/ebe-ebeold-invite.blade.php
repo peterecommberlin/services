@@ -8,13 +8,14 @@ We reach to you because you had registered for (and hopefully attended :-) previ
 
 # Join us on **20th of February at STATION Berlin** (Luckenwalder Str. 4-6) during 2019 E-commerce Berlin Expo.
 
+@component('mail::button', ['url' => "https://ecommerceberlin.com/visit?utm_source=former_visitors_resend_az&utm_medium=email&utm_campaign=badge_az"])
+Register as visitor for 0 EUR
+@endcomponent
+
 This time we will occupy to **two expo halls** to bring unprecedented quality of listening to the **36 presentations** and learning an offer of **almost 150 exhibitors.**
 
 # More then **6000 participants** from 8 countries have already registered to attend.
 
-@component('mail::button', ['url' => "https://ecommerceberlin.com/visit?utm_source=former_visitors_resend_az&utm_medium=email&utm_campaign=badge_az"])
-Register as visitor for 0 EUR
-@endcomponent
 
 <img src="https://res.cloudinary.com/ecommerceberlin/image/upload/c_fit,w_650/v1550148845/ebe2019_presenters.png" alt="" style="margin: 20px auto; " />
 
