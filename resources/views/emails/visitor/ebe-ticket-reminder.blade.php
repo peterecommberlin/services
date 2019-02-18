@@ -2,7 +2,7 @@
 
 @component('mail::message')
 
-# Hi, {{$p->translate("[[fname]]") }} 
+# Hi {{$p->translate("[[fname]]") }} 
 
 Your ticket for E-commerce Berlin Expo 2019 is ready. 
 
