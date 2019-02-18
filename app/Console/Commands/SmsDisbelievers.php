@@ -27,7 +27,7 @@ class SmsDisbelievers extends Command
 
         {--domain=} 
         {--prefix=}
-        {--limit}
+        {--limit=}
     
     ';
 
