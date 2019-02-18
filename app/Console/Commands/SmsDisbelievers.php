@@ -147,7 +147,7 @@ class SmsDisbelievers extends Command
                 continue;
             }
 
-            if(strpos($phone, "00") > 0 false || strpos($phone, "+") === false){
+            if(strpos($phone, "00") > 0 || strpos($phone, "+") === false){
                 $phone = $prefix . $phone;
             }
 
