@@ -26,6 +26,8 @@ class SmsDisbelievers extends Command
     protected $signature = 'visitors:sms-to-old-events 
 
         {--domain=} 
+        {--prefix=}
+        {--limit}
     
     ';
 
@@ -55,12 +57,19 @@ class SmsDisbelievers extends Command
     {
 
         $domain = $this->option("domain");
-    
+        $prefix = $this->option("prefix");
+        $limit = $this->option("limit");
+
         $errors = [];
 
         if(empty( $domain )) {
             $errors[] = "--domain= must be provided!";
         }
+
+        if(empty( $prefix )) {
+            $errors[] = "--prefix= default prefix must be provided!";
+        }
+
 
         if(!empty($errors))
         {
@@ -71,7 +80,7 @@ class SmsDisbelievers extends Command
         }
 
 
-        $scope = $this->choice('Define scope: ', ['group', 'organizer'], 0);
+        $scope = $this->anticipate('Define scope group/organizer: ', ['group', 'organizer']);
 
         $route          = new Resolver($domain);
 
@@ -122,17 +131,29 @@ class SmsDisbelievers extends Command
                 continue;
             }
 
-            if(!filter_var(trim($participant->email), FILTER_VALIDATE_EMAIL)){
+            // if(!filter_var(trim($participant->email), FILTER_VALIDATE_EMAIL)){
 
-                $this->error("bad email: " . $participant->email);
+            //     $this->error("bad email: " . $participant->email);
+            //     continue;
+            // }
+
+            $phone = $query->first()->field_value;
+
+           // $phone = str_replace([" ", "-", "."], "", $phone);
+
+            $phone = trim(preg_replace("/[^\+0-9]+/", "", $phone));
+
+            if(empty($phone) || strlen($phone) < 9){
                 continue;
             }
 
-            $phone = trim( $query->first()->field_value );
+            if(strpos($phone, "00") > 0 false || strpos($phone, "+") === false){
+                $phone = $prefix . $phone;
+            }
 
-            $phone = str_replace([" ", "-"], "", $phone);
+            if(!empty($limit) && $limit !== "*" && ( 
 
-            if(empty($phone)){
+                strpos($phone, "00".$limit) === false || strpos($phone, "+".$limit)===false )){
                 continue;
             }
 
@@ -140,7 +161,6 @@ class SmsDisbelievers extends Command
 
             if($done % 1000 === 0)
             {
-        
                 $this->info("Dispatched: " . $done);
             }
 
@@ -148,7 +168,6 @@ class SmsDisbelievers extends Command
         }
 
         $filename = "export".md5(time() . $eventId).".txt";
-
 
         file_put_contents(
             app()->basePath("storage/app/public/" . $filename), 
