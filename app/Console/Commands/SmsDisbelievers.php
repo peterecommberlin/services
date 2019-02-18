@@ -147,15 +147,15 @@ class SmsDisbelievers extends Command
                 continue;
             }
 
-            if(strpos($phone, "00") > 0 || strpos($phone, "+") === false){
+            if(strpos($phone, "00") > 1 || strpos($phone, "+") === false){
                 $phone = $prefix . $phone;
             }
 
-            if(!empty($limit) && $limit !== "*" && ( 
+            // if(!empty($limit) && $limit !== "*" && ( 
 
-                strpos($phone, "00".$limit) === false || strpos($phone, "+".$limit)===false )){
-                continue;
-            }
+            //     strpos($phone, "00".$limit) ===false || strpos($phone, "+".$limit)===false )){
+            //     continue;
+            // }
 
             $phones[] = $phone;
 
