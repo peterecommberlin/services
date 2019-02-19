@@ -112,25 +112,27 @@ class SmsTicketReminder extends Command
                 continue;
             }
 
-            $query = ParticipantFields::where("participant_id", $participant->id)->where("field_id", 8)->get();
+            $phone = "";
 
-            if(!$query->count()){
-                continue;
-            }
+           //  $query = ParticipantFields::where("participant_id", $participant->id)->where("field_id", 8)->get();
 
-            $phone = $query->first()->field_value;
+           //  if(!$query->count()){
+           //      continue;
+           //  }
 
-           // $phone = str_replace([" ", "-", "."], "", $phone);
+           //  $phone = $query->first()->field_value;
 
-            $phone = trim(preg_replace("/[^\+0-9]+/", "", $phone));
+           // // $phone = str_replace([" ", "-", "."], "", $phone);
 
-            if(empty($phone) || strlen($phone) < 9){
-                continue;
-            }
+           //  $phone = trim(preg_replace("/[^\+0-9]+/", "", $phone));
 
-            if(strpos($phone, "00") !== 0 && strpos($phone, "+") === false){
-                $phone = $prefix . $phone;
-            }
+           //  if(empty($phone) || strlen($phone) < 9){
+           //      continue;
+           //  }
+
+           //  if(strpos($phone, "00") !== 0 && strpos($phone, "+") === false){
+           //      $phone = $prefix . $phone;
+           //  }
 
             $profile = new Personalizer($participant);
 
