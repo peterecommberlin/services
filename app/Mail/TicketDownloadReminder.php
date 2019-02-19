@@ -48,9 +48,11 @@ class TicketDownloadReminder extends Mailable
 
           $this->url = "https://ecommerceberlin.com/ticket," . $hash;
 
-          $this->from("visitors@ecommerceberlin.com", "Lucas Zarna - E-commerce Berlin Expo");
+          $this->from("lucas.zarna@ecommerceberlin.com", "Lucas Zarna");
 
-          $this->subject("I have your ticket :) Download (and print) it please.");
+          $this->replyTo("visitors@ecommerceberlin.com");
+
+          $this->subject("Your Ticket for E-commerce Belin Expo 2019");
 
 
         // }else{
@@ -74,7 +76,14 @@ class TicketDownloadReminder extends Mailable
       //  $this->subject("Your ticket is ready! Download and print!");
 
 
-        return $this->markdown('emails.visitor.ebe-ticket-reminder');
+        // if(view()->exists("emails.visitor." . $this->view . "_text")) {
+                
+          
+        // }
+
+        $this->text('emails.visitor.ebe-ticket-final-reminder_text');
+
+        return $this->markdown('emails.visitor.ebe-ticket-final-reminder');
 
     }
 }
