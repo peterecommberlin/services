@@ -106,6 +106,12 @@ class SmsTicketReminder extends Command
         foreach($participants as $participant)
         {
 
+
+            if(!filter_var($participant->email, FILTER_VALIDATE_EMAIL)){
+                $this->error($participant->email);
+                continue;
+            }
+
             $query = ParticipantFields::where("participant_id", $participant->id)->where("field_id", 8)->get();
 
             if(!$query->count()){
@@ -128,7 +134,15 @@ class SmsTicketReminder extends Command
 
             $profile = new Personalizer($participant);
 
-            $phones[] = '"'.$profile->translate("[[fname]]").'","'.$phone.'","https://ecommerceberlin.com/ticket,'.$profile->translate("[[code]]").'"';
+            $email = trim($participant->email);
+
+            $fname = ucwords(
+                str_replace(
+                    array(","), " ", $profile->translate("[[fname]]")
+                )
+            );
+
+            $phones[] = '"'.$email.'","'.$fname.'","'.$phone.'","https://'.$domain.'/ticket,'.$profile->translate("[[code]]").'"';
 
             if($counter % 100 === 0){
 
