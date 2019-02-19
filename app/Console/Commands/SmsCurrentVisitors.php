@@ -120,7 +120,7 @@ class SmsCurrentVisitors extends Command
 
             $profile = new Personalizer($participant);
 
-            $phones[] = '"'.$profile->translate("[[fname]]").'","'.$phone.'","https://ecommerceberlin.com/ticket,'.$profile->translate("[[code]]").'"';
+            $phones[] = '"'.$profile->translate("[[fname]]").'","'.$phone.'", "https://'. $domain . '/ticket,'.$profile->translate("[[code]]").'"';
 
             if($counter % 100 === 0){
 
