@@ -120,11 +120,19 @@ class SmsCurrentVisitors extends Command
 
             $profile = new Personalizer($participant);
 
-            $phones[] = '"'.$profile->translate("[[fname]]").'","'.$phone.'", "https://'. $domain . '/ticket,'.$profile->translate("[[code]]").'"';
+            $fname = ucwords(
+                str_replace(
+                    array(",",";"), 
+                    " ", 
+                    $profile->translate("[[fname]]")
+                )
+            );
+
+            $phones[] = '"'.$fname.'","'.$phone.'","https://'. $domain . '/ticket,'.$profile->translate("[[code]]").'"';
 
             if($counter % 100 === 0){
 
-                $this->info("Dispatched " . $counter);
+                $this->info("Processed " . $counter);
             }
 
 
