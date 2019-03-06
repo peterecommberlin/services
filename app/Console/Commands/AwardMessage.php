@@ -47,7 +47,7 @@ class AwardMessage extends Command
         $subject =  $this->option("subject");
         $viewLang = $this->option("lang");
 
-        
+
         $previous =  $this->option("previous");
         $reverse =  $this->option("reverse");
 
@@ -225,7 +225,14 @@ class AwardMessage extends Command
                 dispatch(new Job(
                     $ex, 
                     $eventId, 
-                    compact("email", "subject", "event_manager", "lang") 
+                    compact(
+                        "email", 
+                        "subject", 
+                        "event_manager", 
+                        "viewlang", 
+                        "lang", 
+                        "domain"
+                    )
                 ));
             }
             

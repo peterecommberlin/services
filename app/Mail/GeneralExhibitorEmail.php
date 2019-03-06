@@ -32,7 +32,17 @@ class GeneralExhibitorEmail extends Mailable
             $profileUrl, 
             $trackingLink,
             $accountUrl;
+    /*
 
+        $this->participant, 
+        $this->subject, 
+        $this->view,
+        $this->viewlang,
+        $this->lang,
+        $this->event_manager,
+        $this->domain
+
+    */
 
     public function __construct(Participant $participant, string $subject, string $view, string $viewlang, string $lang, string $event_manager, string $domain)
     {
