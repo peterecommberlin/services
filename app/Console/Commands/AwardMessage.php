@@ -13,7 +13,8 @@ use Eventjuicer\Services\Revivers\ParticipantSendable;
 use Eventjuicer\Services\CompanyData;
 use Eventjuicer\Services\PartnerPerformance;
 
-
+use Eventjuicer\Services\Company;
+use Eventjuicer\Services\CompanyDataHelpers;
 
 class AwardMessage extends Command
 {
@@ -35,46 +36,54 @@ class AwardMessage extends Command
         parent::__construct();
     }
  
-    public function handle(PartnerPerformance $performance, GetByRole $repo, ParticipantSendable $sendable, CompanyData $cd)
+    public function handle(PartnerPerformance $performance, GetByRole $repo, ParticipantSendable $sendable, CompanyData $cd, CompanyDataHelpers $cdh)
     {
 
+        $whatWeDo  = $this->anticipate('Send, stats, test?', ['test', 'send', 'stats']);
 
         $award = $this->option("award");
-
-        $prizes = collect($performance->getPrizes())->keyBy("name")->all();
-
-        if(!isset($prizes[$award])){
-            return $this->error("award not defined!");
-        }
-
-        $awardRules = $prizes[$award];
-
-
         $domain = $this->option("domain");
         $email =  $this->option("email");
         $subject =  $this->option("subject");
+        $viewLang = $this->option("lang");
+
+        
         $previous =  $this->option("previous");
         $reverse =  $this->option("reverse");
 
+        $errors = array();
+
         if(empty($award)) {
-            return $this->error("--award= must be set");
+            $errors[] = "--award= must be set";
         }
 
         if(empty($domain)) {
-            return $this->error("--domain= must be set!");
+            $errors[] = "--domain= must be set!";
         }
 
-        if(empty($subject)) {
-            return $this->error("--subject= must be set!");
+        if($whatWeDo == "send" && empty($subject)) {
+            $errors[] = "--subject= must be set!";
         }
-    
         
-        if(empty($email)) {
-            return $this->error("--email= must be set!");
+        if($whatWeDo == "send" && empty($email)) {
+            $errors[] = "--email= must be set!";
         }
 
-        if(! view()->exists("emails.company." . $email)) {
-            return $this->error("--email= error. View cannot be found!");
+        if($whatWeDo == "send" && empty($viewLang)) {
+            $errors[] = "--lang= must be set!";
+        }
+
+        $viewPath = "emails.company." . $email . "-" . $viewLang;
+
+        if($whatWeDo == "send" && ! view()->exists($viewPath)) {
+            $errors[] = "--email= error. View " . $viewPath . " cannot be found";
+        }
+
+        if(count($errors)){
+            foreach($errors as $error){
+                $this->error($error);
+            }
+            return;
         }
 
         /**
@@ -92,8 +101,16 @@ class AwardMessage extends Command
             $eventId =  $route->getEventId();
         }
 
-        
-        $whatWeDo  = $this->anticipate('Send, stats, test?', ['test', 'send', 'stats']);
+
+        $prizes = collect($performance->getPrizes( $route->getGroupId() ))->keyBy("name")->all();
+
+        if(!isset($prizes[$award])){
+            return $this->error("award not defined!");
+        }
+
+        $awardRules = $prizes[$award];
+
+
 
         //PARTNER PERFORMANCE
 
@@ -121,7 +138,10 @@ class AwardMessage extends Command
             ),
         );  
 
-        $json = json_decode(file_get_contents("https://api.eventjuicer.com/v1/restricted/ranking?x-token=14eaeff0fd38d721de655330237a1fb7bcb41bb1&x-event-id=" . $eventId, false, stream_context_create($arrContextOptions)), true);
+        //TEH 14eaeff0fd38d721de655330237a1fb7bcb41bb1
+        //EBE e4db333f554ae1751bfe4863a4dee9d5ad21fd9d
+
+        $json = json_decode(file_get_contents("https://api.eventjuicer.com/v1/restricted/ranking?x-token=e4db333f554ae1751bfe4863a4dee9d5ad21fd9d&x-event-id=" . $eventId, false, stream_context_create($arrContextOptions)), true);
 
         if(empty($json) || empty($json["data"])) {
             return $this->error("Cannot import GA data");
@@ -137,7 +157,9 @@ class AwardMessage extends Command
 
             //do we have company assigned?
 
-            if(!$ex->company_id)
+            $company = (new Company())->make($ex);
+
+            if(!  $company->id )
             {
                 $this->error("No company assigned for " . $ex->email . " - skipped.");
                 continue;
@@ -180,33 +202,26 @@ class AwardMessage extends Command
             }
 
             if(!$assigned){
+                $this->line("Skipping " . $ex->email);
                 continue;
             }
-
-
-            $companyProfile = $cd->toArray($ex->company);
-
-            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "pl";
-
-            $event_manager = isset($companyProfile["event_manager"]) ? $companyProfile["event_manager"] : "";
-
-
-            if($event_manager && !filter_var($event_manager, FILTER_VALIDATE_EMAIL)){
-
-                $this->error($ex->email . " - bad event manager email");
-                $event_manager = "";
-            }
-
-
-            if($lang !== $this->option("lang"))
-            {
-                $this->error("Skipped! Lang mismatch. ");
-                continue;
-            }
-
-            $this->line("Notifying " . $ex->email);
 
             if($whatWeDo === "send"){
+
+                $cdh->setData($ex->company->data);
+
+                $event_manager = $cdh->manager("event");
+
+                $lang = $cdh->lang("en");
+
+                if($lang !== $viewLang)
+                {
+                    $this->error("Skipped! Lang mismatch. ");
+                    continue;
+                }
+
+                $this->line("Notifying " . $ex->email);
+
                 dispatch(new Job(
                     $ex, 
                     $eventId, 
@@ -218,7 +233,7 @@ class AwardMessage extends Command
 
         }   
 
-        $this->info("Checked " . $done . " exhibitors");
+        $this->info("Assigned for " . $done . " exhibitors");
 
     }
 }
