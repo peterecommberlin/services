@@ -45,7 +45,7 @@ class AwardMessage extends Command
         $domain = $this->option("domain");
         $email =  $this->option("email");
         $subject =  $this->option("subject");
-        $viewLang = $this->option("lang");
+        $viewlang = $this->option("lang");
 
 
         $previous =  $this->option("previous");
@@ -69,11 +69,11 @@ class AwardMessage extends Command
             $errors[] = "--email= must be set!";
         }
 
-        if($whatWeDo == "send" && empty($viewLang)) {
+        if($whatWeDo == "send" && empty($viewlang)) {
             $errors[] = "--lang= must be set!";
         }
 
-        $viewPath = "emails.company." . $email . "-" . $viewLang;
+        $viewPath = "emails.company." . $email . "-" . $viewlang;
 
         if($whatWeDo == "send" && ! view()->exists($viewPath)) {
             $errors[] = "--email= error. View " . $viewPath . " cannot be found";
@@ -214,7 +214,7 @@ class AwardMessage extends Command
 
                 $lang = $cdh->lang("en");
 
-                if($lang !== $viewLang)
+                if($lang !== $viewlang)
                 {
                     $this->error("Skipped! Lang mismatch. ");
                     continue;
@@ -232,7 +232,7 @@ class AwardMessage extends Command
                         "viewlang", 
                         "lang", 
                         "domain"
-                    )
+                    ) 
                 ));
             }
             
