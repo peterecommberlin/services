@@ -124,7 +124,7 @@ $data = [
 ];
 
 
-if(env("MAIL_TEST", true))
+if(env("MAIL_TEST", true) || env('APP_DEBUG', true) )
 {
     $data['to'] = [
                     'address' => 'adam.zygadlewicz@gmail.com',
