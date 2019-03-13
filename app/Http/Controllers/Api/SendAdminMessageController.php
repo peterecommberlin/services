@@ -56,7 +56,10 @@ class SendAdminMessageController extends Controller
 
         if(env('APP_DEBUG')){
 
-            return response()->json(["data" => $data]);
+            return response()->json([
+                "recipients" => $recipients->toArray(),
+                "data" => $data
+            ]);
         }
 
         $status = $spark->bulk(
