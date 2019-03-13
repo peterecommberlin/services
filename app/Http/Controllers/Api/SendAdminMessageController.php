@@ -36,6 +36,9 @@ class SendAdminMessageController extends Controller
             false
         );
 
+        dd($data);
+
+
         $data = $service->legacy($data);
 
         $status = $spark->bulk(
