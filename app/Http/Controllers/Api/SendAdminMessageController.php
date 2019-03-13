@@ -36,10 +36,15 @@ class SendAdminMessageController extends Controller
             false
         );
 
-        dd($data);
-
+        if(!$recipients->count()){
+            return response()->json(["error", "no valid recipients!"]);
+        }
 
         $data = $service->legacy($data);
+
+        if(!is_array($data)){
+            return response()->json(["error", "substitution data error!"]);
+        }
 
         $status = $spark->bulk(
             $recipients,
