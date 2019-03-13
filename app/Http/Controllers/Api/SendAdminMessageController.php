@@ -64,7 +64,8 @@ class SendAdminMessageController extends Controller
 
         $status = $spark->bulk(
             $recipients,
-            $data
+            $data,
+            array_get($data, "event_id", 0)
         );
 
         return response()->json(["data", $status]);
