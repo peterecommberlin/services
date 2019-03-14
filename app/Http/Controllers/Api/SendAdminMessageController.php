@@ -39,20 +39,24 @@ class SendAdminMessageController extends Controller
         if(!$recipients->count()){
             return response()->json([
                 "error" => [
-                    "message" => "no valid recipients!"
+                    "message" => "no valid recipients or protected!"
                 ]
             ]);
         }
 
-        $data = $service->legacy($data);
+        try {
+            
+            $data = $service->legacy($data);
 
-        if(!is_array($data)){
+        } catch (\Exception $e) {
+                
             return response()->json([
                 "error" => [
-                    "message"=> "substitution data error!"
+                    "message" => $e->getMessage()
                 ]
             ]);
         }
+
 
         if(env('APP_DEBUG')){
 
