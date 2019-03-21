@@ -37,21 +37,19 @@ class GeneralExhibitorEmail extends Mailable
         $this->participant, 
         $this->subject, 
         $this->view,
-        $this->viewlang,
+    
         $this->lang,
         $this->event_manager,
         $this->domain
 
     */
 
-    public function __construct(Participant $participant, string $subject, string $view, string $viewlang, string $lang, string $event_manager, string $domain)
+    public function __construct(Participant $participant, string $subject, string $view, string $lang, string $event_manager)
     {
         $this->participant  = $participant;
         $this->view         = $view;
-        $this->viewlang     = $viewlang;
         $this->subject      = $subject;
         $this->event_manager = trim($event_manager);
-        $this->domain       = $domain;
         $this->lang       = $lang;
     }
 
@@ -63,12 +61,28 @@ class GeneralExhibitorEmail extends Mailable
     public function build()
     {
 
-        if(strpos($this->domain, "ecommerceberlin") !== false){
-
+        if($this->participant->group_id > 1){
             app()->setLocale("en");
             config(["app.name" => "E-commerce Berlin Expo"]);
+            $domain = "ecommerceberlin.com";
+            $cc = "ecommerceberlin+auto@ecommerceberlin.com";
+            $emailPostfix = " - E-commerce Berlin";
         }
-
+        else
+        {
+            app()->setLocale("pl");
+            config(["app.name" => "XVI Targi eHandlu"]);
+           
+            $domain = "targiehandlu.pl";
+            $cc = "targiehandlu+auto@targiehandlu.pl";
+            
+            if($lang == "pl"){
+                $emailPostfix = " - Targi eHandlu";
+            }else{
+                $emailPostfix = " - E-commerce Cracow Expo";
+                config(["app.name" => "E-commerce Cracow Expo"]);
+            }
+        }
 
         $admin = $this->participant->company->admin;
 
@@ -79,7 +93,7 @@ class GeneralExhibitorEmail extends Mailable
         else
         {
             $admin_name = "";
-            $admin_email = "ecommerceberlin@ecommerceberlin.com";
+            $admin_email = "targiehandlu@targiehandlu.pl";
         }
 
        
@@ -87,13 +101,13 @@ class GeneralExhibitorEmail extends Mailable
 
         $this->profile = new Personalizer( $this->participant, "");
 
-        $this->profileUrl = "https://ecommerceberlin.com/" . 
+        $this->profileUrl = "https://".$domain."/" . 
                 $this->participant->company->slug . 
                 ",c,". 
                 $this->participant->company_id;
 
 
-        $this->accountUrl = "https://account.ecommerceberlin.com/#/login?token=" . $this->participant->token;
+        $this->accountUrl = "https://account.".$domain."/#/login?token=" . $this->participant->token;
        
 
         $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th3rCMiM_%s&utm_medium=link&utm_campaign=promoninja&utm_content=raw", $this->participant->company_id);
@@ -105,16 +119,16 @@ class GeneralExhibitorEmail extends Mailable
         }
         else{
 
-            $this->to( trim(strtolower($this->participant->email)) );
+            $this->to( trim( strtolower($this->participant->email)) );
 
         }
 
-        $this->from($admin_email, $admin_name . " - E-commerce Berlin Expo");
+        $this->from($admin_email, $admin_name . $emailPostfix);
 
-        $this->cc( "ecommerceberlin+auto@ecommerceberlin.com"); 
+        $this->cc( $cc ); 
 
         $this->subject($this->subject);
 
-        return $this->markdown('emails.company.' . $this->view . "-" . $this->viewlang);
+        return $this->markdown('emails.company.' . $this->view);
     }
 }

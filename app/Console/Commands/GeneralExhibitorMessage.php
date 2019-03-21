@@ -23,7 +23,8 @@ class GeneralExhibitorMessage extends Command
         {--domain=} 
         {--email=} 
         {--subject=}
-        {--lang=} 
+        {--lang=}
+        {--defaultlang=} 
         {--throttle=1}';
     
     protected $description = 'Send general email message to Exhibitors';
@@ -38,34 +39,48 @@ class GeneralExhibitorMessage extends Command
 
 
         $viewlang   = $this->option("lang");
+        $defaultlang = $this->option("defaultlang");
         $domain     = $this->option("domain");
         $email      = $this->option("email");
         $subject    = $this->option("subject");
 
+        $errors = [];
 
         if(empty($viewlang)) {
-            return $this->error("--lang= must be set!");
+            $errors[] = "--lang= must be set!";
         }
 
 
         if(empty($domain)) {
-            return $this->error("--domain= must be set!");
+            $errors[] = "--domain= must be set!";
         }
 
         if(empty($subject)) {
-            return $this->error("--subject= must be set!");
+            $errors[] = "--subject= must be set!";
         }
     
         
         if(empty($email)) {
-            return $this->error("--email= must be set!");
+            $errors[] = "--email= must be set!";
         }
 
-
-        if(! view()->exists("emails.company." . $email . "-" . $viewlang)) {
-            return $this->error("--email= error. View cannot be found!");
+        if(empty($defaultlang)) {
+            $errors[] = "--defaultlang= must be set!";
         }
 
+        $email = $email . "-" . $viewlang;
+
+        if(! view()->exists("emails.company." . $email)) {
+            $errors[] = "--email= error. View cannot be found!";
+        }
+
+        if(count($errors)){
+            foreach($errors as $error){
+                $this->error($error);
+            }
+            return;
+        }
+      
 
         /**
             LET'S FUCKING START!
@@ -104,7 +119,7 @@ class GeneralExhibitorMessage extends Command
 
             $companyProfile = $cd->toArray($ex->company);
 
-            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "en";
+            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
 
 
             $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
