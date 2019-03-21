@@ -76,7 +76,7 @@ class GeneralExhibitorEmail extends Mailable
             $domain = "targiehandlu.pl";
             $cc = "targiehandlu+auto@targiehandlu.pl";
             
-            if($lang == "pl"){
+            if($this->lang == "pl"){
                 $emailPostfix = " - Targi eHandlu";
             }else{
                 $emailPostfix = " - E-commerce Cracow Expo";
