@@ -116,6 +116,7 @@ class GeneralExhibitorEmail extends Mailable
         if($this->event_manager && $this->participant->email !== $this->event_manager){
 
             $this->to( $this->event_manager );
+            $this->cc( $this->participant->email );
         }
         else{
 
