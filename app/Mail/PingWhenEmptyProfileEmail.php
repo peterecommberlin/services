@@ -28,7 +28,8 @@ class PingWhenEmptyProfileEmail extends Mailable
             $profile, 
             $profileUrl, 
             $accountUrl, 
-            $exampleUrl;
+            $exampleUrl,
+            $adminName;
 
     public $fieldNames = [
 
@@ -216,12 +217,12 @@ class PingWhenEmptyProfileEmail extends Mailable
         $admin = $this->participant->company->admin;
 
         if($admin){
-            $admin_name = $admin->fname . ' ' . $admin->lname;
+            $this->adminName = $admin->fname . ' ' . $admin->lname;
             $admin_email = $admin->email;
         }
         else
         {
-            $admin_name = "Support";
+            $this->adminName = "Support";
             $admin_email = "targiehandlu@targiehandlu.pl";
         }
 
@@ -272,7 +273,7 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         }
 
-        $this->from($admin_email, $admin_name . $emailPostfix);
+        $this->from($admin_email, $this->adminName . $emailPostfix);
 
         $this->cc( $cc ); 
 

@@ -20,7 +20,7 @@ Profil Twojej firmy wygląda teraz [tak]({{$profileUrl}})
 
 Zobacz jak wygląda przykładowy [wypełniony i sformatowany]({{$exampleUrl}}) profil Wystawcy.  
 
-Pozdrowienia, Adam Zygadlewicz
+Pozdrowienia, {{$adminName}}
 
 @endcomponent
 
