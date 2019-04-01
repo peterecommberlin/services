@@ -48,8 +48,8 @@ class ParticipantInviteMail extends Mailable
 
 
 
-        app()->setLocale("en");
-        config(["app.name" => "E-commerce Berlin Expo"]);
+        // app()->setLocale("en");
+        // config(["app.name" => "E-commerce Berlin Expo"]);
 
 
         $this->p = new Personalizer( $this->participant, "");
@@ -58,7 +58,7 @@ class ParticipantInviteMail extends Mailable
 
 
         $baseUrl = "https://targiehandlu.pl";
-        $params  = "?utm_campaign=oldparticipant";
+        $params  = "";
 
         $this->ticketUrl = $baseUrl . "/ticket/" . $hash . $params;
 

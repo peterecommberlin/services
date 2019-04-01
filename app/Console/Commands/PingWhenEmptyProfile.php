@@ -11,8 +11,11 @@ use Eventjuicer\Services\GetByRole;
 use Eventjuicer\Services\CompanyData;
 use Eventjuicer\Jobs\PingWhenEmptyProfileJob as Job;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
+use Eventjuicer\ValueObjects\EmailAddress;
 
 /*
+
+//https://github.com/eventjuicer/admin/issues/3
 
 changes
 ===========================
@@ -25,7 +28,12 @@ class PingWhenEmptyProfile extends Command
 {
 
  
-    protected $signature = 'companies:emptyprofile {host}';
+    protected $signature = 'companies:emptyprofile 
+      {--domain=}
+      {--maxold=1}
+      {--defaultlang=}
+
+    ';
     protected $description = 'Command description';
  
     public function __construct()
@@ -36,9 +44,35 @@ class PingWhenEmptyProfile extends Command
     public function handle(GetByRole $repo, CompanyData $cd, ParticipantSendable $sendable)
     {
 
-        $host = $this->argument("host");
 
-        $route = new Resolver( $host );
+        $domain     = $this->option("domain");
+        $maxold     = $this->option("maxold");
+        $defaultlang     = $this->option("defaultlang");
+
+        $errors = array();
+
+        if(empty($domain)) {
+            $errors[] = "--domain= must be set!";
+        }
+
+        if(empty($maxold)) {
+            $errors[] = "--maxold= must be set!";
+        }
+
+        if(empty($defaultlang)) {
+            $errors[] = "--defaultlang= must be set!";
+        }
+
+        if(count($errors)){
+            foreach($errors as $error){
+                $this->error($error);
+            }
+            return;
+        }
+
+
+
+        $route = new Resolver( $domain );
 
         $eventId =  $route->getEventId();
 
@@ -76,17 +110,9 @@ class PingWhenEmptyProfile extends Command
 
             $companyProfile = $cd->toArray($ex->company);
 
-            $lang = isset($companyProfile["lang"]) ? $companyProfile["lang"] : "";
-            $event_manager = isset($companyProfile["event_manager"]) ? $companyProfile["event_manager"] : "";
+            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
 
-            //we actually should handle this by view name...
-
-            // if( === "en")
-            // {
-            //     $this->error("Skipped! Lang mismatch. " . $ex->email);
-            //     continue;
-            // }
-
+            $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
 
             //check for companydata fields freshness :)
             //check for required fields
@@ -108,7 +134,7 @@ class PingWhenEmptyProfile extends Command
                 $this->info("Notifying " . $ex->email);
                 $this->line("----");
 
-                dispatch(new Job($ex, $eventId, $lang, $event_manager, $host));
+                dispatch(new Job($ex, $eventId, $lang, $event_manager, $domain));
             }
 
             $done++;

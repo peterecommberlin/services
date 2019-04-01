@@ -50,7 +50,8 @@ class PingWhenEmptyProfileEmail extends Mailable
             "lang"              => "Język kontaktu",
             "event_manager"     => "Osoba do kontaktu w tematach logistycznych",
             "pr_manager"        => "PR Manager",
-            "sales_manager"     => "Kontakt ds. sprzedaży"
+            "sales_manager"     => "Kontakt ds. sprzedaży",
+            "xing"              => "Profil Xing"
 
         ],
         
@@ -159,9 +160,9 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         $this->lang = $lang;
 
-        if( $this->lang !== "de" ){
-            $this->lang = "en";
-        }
+        // if( $this->lang !== "de" ){
+        //     $this->lang = "en";
+        // }
 
 
 
@@ -182,17 +183,41 @@ class PingWhenEmptyProfileEmail extends Mailable
     public function build()
     {
 
-        app()->setLocale("en");
+        switch($this->lang){
 
-        config(["app.name" => "E-commerce Berlin Expo"]);
-      
+            case "pl":
 
-        $this->profile = new Personalizer( $this->participant, "");
+                app()->setLocale("pl");
+                config(["app.name" => "Targi eHandlu w Krakowie"]);
+                $emailPostfix = " - Targi eHandlu";
+            break;
 
+            case "en":
+
+                app()->setLocale("en");
+                config(["app.name" => "E-commerce Cracow Expo"]);
+                $emailPostfix = " - E-commerce Cracow Expo";
+            break;
+
+        }
+
+        $domain = "targiehandlu.pl";
+        $cc = "targiehandlu+auto@targiehandlu.pl";
 
         $admin = $this->participant->company->admin;
 
-        $admin_name = $admin->fname . ' ' . $admin->lname;
+        if($admin){
+            $admin_name = $admin->fname . ' ' . $admin->lname;
+            $admin_email = $admin->email;
+        }
+        else
+        {
+            $admin_name = "Support";
+            $admin_email = "targiehandlu@targiehandlu.pl";
+        }
+
+
+        $this->profile = new Personalizer( $this->participant, "");
 
         //////////
 
@@ -201,36 +226,49 @@ class PingWhenEmptyProfileEmail extends Mailable
         foreach($this->errors as $fieldName => $problem)
         {
 
-             $arr[ $this->fieldNames[$this->lang][$fieldName] ] = $this->translations[$this->lang][ $problem ];
+            if(!isset( $this->fieldNames[$this->lang][$fieldName]  )){
+                throw new \Exception($this->lang . "-" . $fieldName);
+            }
+
+
+            $arr[ $this->fieldNames[$this->lang][$fieldName] ] = $this->translations[$this->lang][ $problem ];
 
         }
 
         $this->errors = $arr;
 
-        $this->profileUrl = "https://ecommerceberlin.com/" . 
+        $this->profileUrl = "https://".$domain."/" . 
                 $this->participant->company->slug . 
                 ",c,". 
                 $this->participant->company_id;
 
-        $this->accountUrl = $this->getSetting("accountUrl")  . $this->participant->token;
+       // $this->accountUrl = $this->getSetting("accountUrl")  . $this->participant->token;
 
-        $this->exampleUrl = "https://ecommerceberlin.com/company-name,c,1054";
-
-        $this->to( trim(strtolower($this->participant->email)) );
-
-        $this->cc( "ecommerceberlin+auto@ecommerceberlin.com" ); 
+        $this->accountUrl = "https://account.".$domain."/#/login?token=" . $this->participant->token;
 
 
-        if(strpos($this->event_manager, "@")!==false && trim($this->event_manager)!== $this->participant->email){
+        $this->exampleUrl = "https://".$domain."/company-name,c,1054";
 
-            $this->cc( $this->event_manager ); 
+
+
+
+        if($this->event_manager && $this->participant->email !== $this->event_manager){
+
+            $this->to( $this->event_manager );
+            $this->cc( $this->participant->email );
+        }
+        else{
+
+            $this->to( trim( strtolower($this->participant->email)) );
 
         }
 
-        $this->from("ecommerceberlin@ecommerceberlin.com", $admin_name . " - E-commerce Berlin Expo");
+        $this->from($admin_email, $admin_name . $emailPostfix);
+
+        $this->cc( $cc ); 
 
         $this->subject( $this->getSetting("subject") );
 
-        return $this->markdown('emails.company.ebe-badprofile-' . $this->lang);
+        return $this->markdown('emails.company.badprofile2-' . $this->lang);
     }
 }
