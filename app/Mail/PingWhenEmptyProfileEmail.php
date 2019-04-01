@@ -145,6 +145,15 @@ class PingWhenEmptyProfileEmail extends Mailable
         ]
     ];
 
+
+    /*
+                $this->participant, 
+                $errors, 
+                $this->lang, 
+                $this->event_manager,
+                $this->host
+    */
+
     public function __construct(
         Participant $participant, 
         array $errors, 
@@ -155,10 +164,10 @@ class PingWhenEmptyProfileEmail extends Mailable
     {
         $this->participant  = $participant;
         $this->errors       = $errors;
+        $this->lang = $lang;
         $this->event_manager = $event_manager;
         $this->event_manager = $host;
 
-        $this->lang = $lang;
 
         // if( $this->lang !== "de" ){
         //     $this->lang = "en";
@@ -249,10 +258,10 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         $this->exampleUrl = "https://".$domain."/company-name,c,1054";
 
+      //  dd($this->event_manager);
 
 
-
-        if($this->event_manager && $this->participant->email !== $this->event_manager){
+        if(filter_var( $this->event_manager, FILTER_VALIDATE_EMAIL) && $this->participant->email !== $this->event_manager){
 
             $this->to( $this->event_manager );
             $this->cc( $this->participant->email );
