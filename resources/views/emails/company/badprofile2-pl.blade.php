@@ -4,7 +4,9 @@
  
 # Dzień dobry {{$profile->translate("[[fname]]")}},
 
-## sprawdziliśmy profil Twojej firmy na stronie Targów Ehandlu - **wymaga poprawek**.
+## sprawdziliśmy dane, które są nam potrzebne do sprawnej organizacji Targów oraz profil Twojej firmy na stronie www Targów Ehandlu
+
+Kilka pól **wymaga poprawek**
 
 @foreach ($errors as $f => $p)
 	

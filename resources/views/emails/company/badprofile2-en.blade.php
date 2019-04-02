@@ -4,7 +4,9 @@
  
 # Hello {{$profile->translate("[[fname]]")}}!
 
-## We have checked your company's online profile on Targi ehandlu website - there is some work to be done.
+## We have checked data submitted by your company and company's online profile on Targi ehandlu website
+
+To help us organize the event, please **correct a few fields** in your exhibitor's panel
 
 @foreach ($errors as $f => $p)
 	
