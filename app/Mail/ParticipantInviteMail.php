@@ -58,7 +58,7 @@ class ParticipantInviteMail extends Mailable
 
 
         $baseUrl = "https://targiehandlu.pl";
-        $params  = "";
+        $params  = "?utm_source=fm&utm_medium=email&utm_campaign=teh16partner";
 
         $this->ticketUrl = $baseUrl . "/ticket/" . $hash . $params;
 
@@ -72,7 +72,7 @@ class ParticipantInviteMail extends Mailable
 
         $this->to( strtolower(trim($this->participant->email)) );
 
-        $this->from("visitors@ecommerceberlin.com", "Lucas Zarna - E-commerce Berlin Expo");
+        $this->from("zwiedzanie@targiehandlu.pl", "Jan Cyprych - TEH");
 
         $this->subject($this->subject);
 
