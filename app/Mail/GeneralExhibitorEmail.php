@@ -110,7 +110,10 @@ class GeneralExhibitorEmail extends Mailable
         $this->accountUrl = "https://account.".$domain."/#/login?token=" . $this->participant->token;
        
 
-        $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th3rCMiM_%s&utm_medium=link&utm_campaign=promoninja&utm_content=raw", $this->participant->company_id);
+        // $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th3rCMiM_%s&utm_medium=link&utm_campaign=promoninja&utm_content=raw", $this->participant->company_id);
+
+
+         $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th4wOPiy_%s&utm_medium=link&utm_campaign=promoninja&utm_content=raw", $this->participant->company_id);
 
 
         if($this->event_manager && $this->participant->email !== $this->event_manager){
