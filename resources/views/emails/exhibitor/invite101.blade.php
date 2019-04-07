@@ -12,17 +12,17 @@
 
 # Hi,
 
-## We would like to let you know that {{  array_get($companydata, "name") }} is exhibiting at the E-Commerce Warsaw Expo 2018 on **November 7th** at EXPO XXI (Prądzyńskiego str.), Warsaw. 
+## We would like to let you know that {{  array_get($companydata, "name") }} is exhibiting at the E-Commerce Cracow Expo 2019 on **April 17th** at EXPO Kraków (Galicyjska str.). 
 
 We’re excited for a day fully dedicated to e-commerce best practices &amp; trends. 
-Come have a chat with us at our stand.
 
+Come have a chat with us at our stand.
 
 @component('mail::button', ['url' => $promolink])
 	Register for a free ticket here
 @endcomponent
 
-Let us also mention that there will be 3 stages full of speakers and more than 130 other service providers at their booths. The event is a must-attend! 
+Let us also mention that there will be 4 stages full of speakers and more than 130 other service providers at their booths. The event is a must-attend! 
 
 Looking forward to meet you! 
 

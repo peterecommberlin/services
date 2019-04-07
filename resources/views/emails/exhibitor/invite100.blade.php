@@ -7,7 +7,7 @@
 
 # Cześć, tu {{  array_get($companydata, "name") }}!
 
-## 7 listopada będziemy na XV Targach eHandlu w Warszawie. Jeśli masz czas i chęci, chętnie porozmawiamy na miejscu przy naszym stoisku 
+## 17 kwietnia będziemy na XVI Targach eHandlu w Krakowie. Jeśli masz czas i chęci, chętnie porozmawiamy na miejscu przy naszym stoisku 
 
 
 @component('mail::button', ['url' => $promolink])
@@ -15,13 +15,13 @@ Odbierz bezpłatną wejściówkę
 @endcomponent
 
 
-Targi eHandlu to również **3 sceny** prezentacyjne, blisko **130 Wystawców** oferujących produkty i usługi pomagające skutecznie sprzedawać w Internecie.
+Najbliższe Targi eHandlu to również **aż 4 sceny** prezentacyjne, blisko **130 Wystawców** oferujących produkty i usługi pomagające skutecznie sprzedawać w Internecie.
 
-Wejście zarówno na EXPO jak i 3 sceny prezentacyjne jest bezpłatne.
+Wejście zarówno na EXPO jak i sceny prezentacyjne jest bezpłatne.
 
 Do zobaczenia, {{ array_get($companydata, "name") }} 
 
-PS: Targi eHandlu odbędą się na **EXPO XXI (ul. Prądzyńskiego). Start 10:00.** 
+PS: Targi eHandlu odbędą się na **EXPO Kraków (ul. Galicyjska). Start 10:00.** 
 
 
 @endcomponent
