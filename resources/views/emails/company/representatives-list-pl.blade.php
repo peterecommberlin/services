@@ -6,7 +6,7 @@
 
 **Przypominamy, że w panelu Wystawcy jest dostępna opcja dodawania Przedstawicieli Wystawcy, którzy mają mieć wydrukowane identyfikatory i będą na stoisku.**
 
-** Deadline - dzisiaj 17:00 czasu warszawskiego ** 
+** Deadline - jutro - 9 kwietnia - 17:00 czasu warszawskiego :) ** 
 
 # Lista zdefiniowanych osób
 
@@ -16,7 +16,7 @@
 
 @empty
 
-**Jeszcze nie zdefiniowano**
+**Jeszcze nie zdefiniowano przedstawicieli**
 
 @endforelse
 
@@ -28,7 +28,10 @@ Dodaj / usuń Przedstawicieli
 
 Przypominamy, że w ramach wykupionej przestrzeni wystawienniczej otrzymujesz 4 vouchery obiadowe i 1 kartę parkingową - chyba, że zamówiono dodatkowe. 
 
-Pozdrawiam, Adam Zygadlewicz
+Pozdrawiamy,
+
+Karolina Michalak
+Jakub Przybylski
 
 @endcomponent
 
