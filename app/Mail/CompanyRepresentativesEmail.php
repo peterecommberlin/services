@@ -75,7 +75,7 @@ class CompanyRepresentativesEmail extends Mailable
 
             $admin_name = "";
             $admin_email = "targiehandlu@targiehandlu.pl";
-            $eventName = "Targi eHandlu"
+            $eventName = "Targi eHandlu";
             $domain = "targiehandlu.pl";
             $cc = "targiehandlu+auto@targiehandlu.pl";
 
