@@ -38,7 +38,8 @@ class CompanyRepresentatives extends Command
         {--email=} 
         {--subject=}
         {--min=}
-        {--lang=}';
+        {--lang=}
+        {--defaultlang=}';
 
     protected $description = 'Command description';
  
@@ -55,39 +56,58 @@ class CompanyRepresentatives extends Command
     ){
 
 
+        $errors = [];
+
 
         $viewlang   = $this->option("lang");
+        $defaultlang= $this->option("defaultlang");
+
         $domain     = $this->option("domain");
         $email      = $this->option("email");
         $subject    = $this->option("subject");
         $min        = $this->option("min");
 
 
+
         if(empty($viewlang)) {
-            return $this->error("--lang= must be set!");
+            $errors[] = "--lang= must be set!";
         }
 
+        if(empty($defaultlang)) {
+            $errors[] = "--defaultlang= must be set!";
+        }
 
         if(empty($domain)) {
-            return $this->error("--domain= must be set!");
+            $errors[] = "--domain= must be set!";
         }
 
         if(empty($subject)) {
-            return $this->error("--subject= must be set!");
+            $errors[] = "--subject= must be set!";
         }
     
         
         if(empty($email)) {
-            return $this->error("--email= must be set!");
+            $errors[] = "--email= must be set!";
         }
 
         if(empty($min)) {
-            return $this->error("--min= must be set!");
+            $errors[] = "--min= must be set!";
         }
 
         if(! view()->exists("emails.company." . $email . "-" . $viewlang)) {
-            return $this->error("--email= error. View cannot be found!");
+            $errors[] = "--email= error. View cannot be found!";
         }
+
+
+        if(count($errors)){
+
+            foreach($errors as $error){
+                $this->error($error);
+            }
+
+            return;
+        }
+
 
 
         $route = new Resolver( $domain );
@@ -149,7 +169,7 @@ class CompanyRepresentatives extends Command
 
             $companyProfile = $cd->toArray($ex->company);
 
-            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "en";
+            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
 
             $name = !empty($companyProfile["name"]) ? $companyProfile["name"] : $ex->slug;
 
