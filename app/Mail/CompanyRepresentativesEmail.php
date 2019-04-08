@@ -56,42 +56,64 @@ class CompanyRepresentativesEmail extends Mailable
     public function build()
     {
 
-        if( $this->participant->group_id > 1 ){
-
-            app()->setLocale("en");
-            config(["app.name" => "E-commerce Berlin Expo"]);
-        }
-
 
         $admin = $this->participant->company->admin;
+
+
+        if( $this->participant->group_id > 1 ){
+
+            $eventName = "E-commerce Berlin Expo";
+            $domain = "ecommerceberlin.com";
+
+            app()->setLocale("en");
+            config(["app.name" => $eventName]);
+           
+            $cc = "ecommerceberlin+auto@ecommerceberlin.com";
+
+        }else{
+
+
+            $admin_name = "";
+            $admin_email = "targiehandlu@targiehandlu.pl";
+            $eventName = "Targi eHandlu"
+            $domain = "targiehandlu.pl";
+            $cc = "targiehandlu+auto@targiehandlu.pl";
+
+            if($this->viewlang === "en"){
+                app()->setLocale("en");
+                config(["app.name" => "E-commerce Cracow Expo"]);
+            }
+            else
+            {
+                app()->setLocale("pl");
+                config(["app.name" => $eventName]);
+            }
+            
+        }
+
 
         if($admin){
             $admin_name = $admin->fname . ' ' . $admin->lname;
             $admin_email = $admin->email;
         }
-        else
-        {
-            $admin_name = "";
-            $admin_email = "ecommerceberlin@ecommerceberlin.com";
-        }
-
-       
 
 
         $this->profile = new Personalizer( $this->participant, "");
 
-        $this->profileUrl = "https://ecommerceberlin.com/" . 
+
+        $this->profileUrl = "https://" . $domain . "/" . 
                 $this->participant->company->slug . 
                 ",c,". 
                 $this->participant->company_id;
 
 
-        $this->accountUrl = "https://account.ecommerceberlin.com/#/login?token=" . $this->participant->token;
+        $this->accountUrl = "https://account.".$domain."/#/login?token=" . $this->participant->token;
        
 
         if($this->event_manager && $this->participant->email !== $this->event_manager){
 
             $this->to( $this->event_manager );
+            $this->cc( $this->participant->email ); 
         }
         else{
 
@@ -99,9 +121,9 @@ class CompanyRepresentativesEmail extends Mailable
 
         }
 
-        $this->from($admin_email, $admin_name . " - E-commerce Berlin Expo");
+        $this->from($admin_email, $admin_name . " - " . $eventName);
 
-        $this->cc( "ecommerceberlin+auto@ecommerceberlin.com"); 
+        $this->cc( $cc ); 
 
         $this->subject($this->subject);
 
