@@ -33,7 +33,7 @@ Targi w Krakowie, ul. Galicyjska 9, 31-586 Kraków
 
 Parking podczas dnia montażowego jest otwarty przez cały dzień.
 
-Godziny montażowe to 16:00 - 22:00 (o ile nie ustalono z nami innych).
+Godziny montażowe to 16:00 - 20:00 (o ile nie ustalono z nami innych).
 
 Po wejściu na halę należy udać się do punktu informacyjnego dla Wystawców na którym będzie czekał Państwa Opiekun, który zaprowadzi Państwa do właściwego stoiska.
 
@@ -78,7 +78,8 @@ UWAGA: W przypadku podklejania wykładzin we własnym zakresie (brak wykupienia 
 
 Regards, 
 
-Karolina Michalak
+Karolina Michalak,
+
 Jakub Przybylski
 
 @endcomponent

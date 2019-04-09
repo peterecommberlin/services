@@ -58,7 +58,7 @@ class ParticipantInviteMail extends Mailable
 
 
         $baseUrl = "https://targiehandlu.pl";
-        $params  = "?utm_source=fm&utm_medium=email&utm_campaign=teh16partner";
+        $params  = "?utm_source=sprawny&utm_medium=email&utm_campaign=teh16partner";
 
         $this->ticketUrl = $baseUrl . "/ticket/" . $hash . $params;
 

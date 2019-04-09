@@ -6,7 +6,7 @@
 
 **Please be reminded that in your exhibitor account one can add/modify/delete exhibitor representatives. Only defined representatives will have printed badges.**
 
-**Deadline is TOMORROW (April 9th) - 5 pm CET**
+**Deadline is TODAY (April 9th) - 5 pm CET**
 
 # The list of already defined representatives is as follows:
 

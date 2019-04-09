@@ -6,7 +6,7 @@
 
 **Przypominamy, że w panelu Wystawcy jest dostępna opcja dodawania Przedstawicieli Wystawcy, którzy mają mieć wydrukowane identyfikatory i będą na stoisku.**
 
-** Deadline - jutro - 9 kwietnia - 17:00 czasu warszawskiego :) ** 
+** Deadline - DZISIAJ - 9 kwietnia - 17:00 czasu warszawskiego :) ** 
 
 # Lista zdefiniowanych osób
 

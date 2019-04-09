@@ -34,18 +34,18 @@ ul. Galicyjska 9, 31-586 Kraków
 
 ## (Optional) Setup day - 16th of April
 
-Parking will be open (free of charge) during setup hours 4pm-8pm. 
+Assembly hours 4pm-8pm - **parking** will be open (free of charge) during that time. 
 
-After entering the hall you need to go to the information point for the exhibitors. Your Account Manager will happily await :)
+After entering the hall you need to go to the **information point for the exhibitors**. Your Account Manager will happily await :)
 
 In case of any problem (e.g., with furniture, electricity) you should go to the information for exhibitors or call your Account Manager, whose number you will find in the welcome pack.
 
 
 ## Event Day - 17th of April
 
-In the standard offering (without buying additional one) you have a one parking card, which is only needed to leave the parking area during event day.
+In the standard offering (without buying additional one) you have a **one parking card**, which is only needed to leave the parking area during event day.
 
-Setup hours are between 8:00am and 9:30pm. 
+Additional setup hours are between **8:00am and 9:30pm.**
 
 After entering the hall you need to go to the information point for the exhibitors. Your Account Manager (or team member in charge) should be there.
 
@@ -79,7 +79,8 @@ If you plan to use something more that, for instance, 2 laptops and TV you need 
 
 Regards, 
 
-Karolina Michalak
+Karolina Michalak,
+
 Jakub Przybylski
 
 @endcomponent
