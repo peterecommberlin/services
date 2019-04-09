@@ -113,10 +113,9 @@ class CompanyNewsletterController extends Controller
             return $newsletter;
         }
 
-        return $newsletter;
+        return base64_encode($newsletter);
 
-
-        return response()->outputAsPlainText( $newsletter, str_slug($this->appName) );
+       //return response()->outputAsPlainText( $newsletter, str_slug($this->appName) );
 
     }
 
