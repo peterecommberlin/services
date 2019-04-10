@@ -138,7 +138,8 @@ class FixReps extends Command
                     $this->line("Assigning cname2: " . $name);
 
                     $saveorder->setParticipant($rep);
-                    $saveorder->updateFields(["cname2" => $name]);
+                    $saveorder->setFields(["cname2" => $name]);
+                    $saveorder->updateFields();
                 }
 
                 if($rep->parent_id != $currentEventExhibitor->id){
