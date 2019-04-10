@@ -65,8 +65,10 @@ class FixReps extends Command
 
         $this->info("Event id: " . $eventId);
 
-        $exhibitors = $repo->get($eventId, "exhibitor")->keyBy("company_id");
         $representatives = $repo->get($eventId, "representative");
+
+        //$exhibitors = $repo->get($eventId, "exhibitor")->keyBy("company_id");
+
 
         $this->info("Number of representatives: " . $representatives->count() );
 
@@ -83,7 +85,7 @@ class FixReps extends Command
 
             $companyProfile = $cd->toArray($rep->company);
             $name = $companyProfile["name"];
-            $currentEventExhibitor = $exhibitors[ $rep->company_id ];
+         //   $currentEventExhibitor = $exhibitors[ $rep->company_id ];
 
             if(is_null($rep->parent))
             {
@@ -96,22 +98,8 @@ class FixReps extends Command
                 continue;
             }
 
-            $this->line($currentEventExhibitor->email . "id: " . $currentEventExhibitor->id);
+            // $this->line($currentEventExhibitor->email . "id: " . $currentEventExhibitor->id);
 
-            // $companyProfile = $cd->toArray($ex->company);
-
-            // $name = $companyProfile["name"];
-
-            // if(strlen($name)<2){
-            //     $this->error("No company name for " . $ex->email . " - skipped.");
-            //     continue;
-            // }
-
-            // $saveorder->setParticipant($ex);
-
-            // $saveorder->setFields(["cname2" => $name]);
-
-            // $saveorder->updateFields();
 
             $done++;
 
