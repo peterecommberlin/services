@@ -65,6 +65,7 @@ class FixReps extends Command
 
         $this->info("Event id: " . $eventId);
 
+        $exhibitors = $repo->get($eventId, "exhibitor")->keyBy("company_id");
         $representatives = $repo->get($eventId, "representative");
 
         $this->info("Number of representatives: " . $representatives->count() );
@@ -75,16 +76,27 @@ class FixReps extends Command
         {
             //do we have company assigned?
 
+            if(!$rep->company_id)
+            {
+                $this->line("No company assigned for " . $rep->email . " - skipped.");
+            }
+
+            $companyProfile = $cd->toArray($rep->company);
+            $name = $companyProfile["name"];
+            $currentEventExhibitor = $exhibitors[ $rep->company_id ];
+
             if(is_null($rep->parent))
             {
-                $this->error("No PARENT assigned for " . $rep->email . " - skipped.");
+                $this->error("No PARENT assigned for " . $rep->email . " company: " . $name);
                 continue;
             }
 
             if($rep->parent->event_id != $eventId){
-                $this->error("Bad parent!!!" . $rep->email . " - skipped.");
+                $this->error("Bad parent!" . $rep->email . " company: " . $name);
                 continue;
             }
+
+            $this->line($currentEventExhibitor->email . "id: " . $currentEventExhibitor->id);
 
             // $companyProfile = $cd->toArray($ex->company);
 
