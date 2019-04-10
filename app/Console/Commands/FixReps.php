@@ -67,7 +67,7 @@ class FixReps extends Command
 
         $representatives = $repo->get($eventId, "representative");
 
-        //$exhibitors = $repo->get($eventId, "exhibitor")->keyBy("company_id");
+        $exhibitors = resolve(GetByRole::class)->get($eventId, "exhibitor")->keyBy("company_id");
 
 
         $this->info("Number of representatives: " . $representatives->count() );
@@ -76,36 +76,56 @@ class FixReps extends Command
 
         foreach($representatives as $rep)
         {
+
+            $errors = array();
+
             //do we have company assigned?
 
             if(!$rep->company_id)
             {
-                $this->line("No company assigned for " . $rep->email . " - skipped.");
+                $errors[] = "No company assigned for " . $rep->email . " - skipped.";
             }
 
             $companyProfile = $cd->toArray($rep->company);
-            $name = $companyProfile["name"];
-         //   $currentEventExhibitor = $exhibitors[ $rep->company_id ];
+            $name = !empty($companyProfile["name"]) ? $companyProfile["name"] : ">>> BLANK <<<";
+         
+
+            if( !isset( $exhibitors[ $rep->company_id ]) ){
+                $errors[] = "Bad company assigned";
+            }
+
+            $currentEventExhibitor = $exhibitors[ $rep->company_id ];
 
             if(is_null($rep->parent))
             {
-                $this->error("No PARENT assigned for " . $rep->email . " company: " . $name);
-                continue;
+                $errors[] = "No PARENT assigned for " . $rep->email . " company: " . $name;
             }
 
             if($rep->parent->event_id != $eventId){
-                $this->error("Bad parent!" . $rep->email . " company: " . $name);
-                continue;
+                $errors[] = "Bad parent!" . $rep->email . " company: " . $name;
+            }
+
+            if(count($errors)){
+
+                $this->error("Errors found in " . $rep->email . "company: " . $name);
+
+                foreach($errors as $error){
+                    $this->line($error);
+                }
+
+                $this->line("Should be assigned to: " . $currentEventExhibitor->id . " " . $currentEventExhibitor->email);
+
+                $done++;
             }
 
             // $this->line($currentEventExhibitor->email . "id: " . $currentEventExhibitor->id);
 
 
-            $done++;
+          
 
         }   
 
-        $this->info("Total fixed " . $done . "");
+        $this->info("Errors " . $done . "");
 
 
     }
