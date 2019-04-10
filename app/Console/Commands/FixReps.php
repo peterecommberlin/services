@@ -118,6 +118,10 @@ class FixReps extends Command
                 $this->line("Target Parent Id: " . $currentEventExhibitor->id);
                 $this->line("Parent email: " . $currentEventExhibitor->email);
 
+
+                $rep->parent_id = $currentEventExhibitor->id;
+                $rep->save();
+
                 $done++;
             }
 
