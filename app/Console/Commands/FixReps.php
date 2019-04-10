@@ -107,13 +107,16 @@ class FixReps extends Command
 
             if(count($errors)){
 
-                $this->error("Errors found in " . $rep->email . "company: " . $name);
+                $this->error("Error(s) found in " . $rep->email);
+                $this->line("Rep Id: " . $rep->id);
+                $this->line("Company name: " . $name);
 
                 foreach($errors as $error){
                     $this->line($error);
                 }
 
-                $this->line("Should be assigned to: " . $currentEventExhibitor->id . " " . $currentEventExhibitor->email);
+                $this->line("Target Parent Id: " . $currentEventExhibitor->id);
+                $this->line("Parent email: " . $currentEventExhibitor->email);
 
                 $done++;
             }
