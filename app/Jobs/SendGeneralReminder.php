@@ -16,7 +16,7 @@ use App\Mail\GeneralReminder as Email;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 
 
-class SendGeneralReminder implements ShouldQueue
+class SendGeneralReminder // implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 

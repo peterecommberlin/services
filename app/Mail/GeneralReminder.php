@@ -20,7 +20,15 @@ class GeneralReminder extends Mailable
     use Queueable, SerializesModels;
 
     protected $participant, $email;
-    public $p, $url, $subject;
+    
+    public $p, 
+    $ticketUrl, 
+    $siteUrl, 
+    $exhibitorsURl,
+    $presentersURl,
+    $scheduleURl,
+    $registerURl,
+    $url, $subject;
 
     public function __construct(Participant $participant, array $config)
     {
@@ -45,15 +53,34 @@ class GeneralReminder extends Mailable
 
         $hash = (new Hashids())->encode($this->participant->id);
 
-        $this->url = "https://targiehandlu.pl/ticket," . $hash;
+
+        $baseUrl = "https://targiehandlu.pl";
+        $params  = "";
+
+        $this->ticketUrl = $baseUrl . "/ticket/" . $hash . $params;
+
+        $this->siteUrl = $baseUrl . $params;
+
+        $this->exhibitorsURl = $baseUrl . "/exhibitors" . $params;
+        $this->presentersURl = $baseUrl . "/presenters" . $params;
+        $this->scheduleURl = $baseUrl . "/schedule" . $params;
+        $this->registerURl = $baseUrl . "/visit" . $params;
+        $this->url = $this->ticketUrl;
+
 
         $this->to(trim(strtolower($this->participant->email)));
 
-        $this->from("zwiedzanie@targiehandlu.pl", "Adam Zygadlewicz - Targi eHandlu");
+        $this->from("zwiedzanie@targiehandlu.pl", "Jan Cyprych - Targi eHandlu");
 
       //  $this->subject("Your ticket is ready! Download and print!");
 
         $this->subject($this->subject);
+
+        if(view()->exists("emails.visitor." . $this->email . "_text")) {
+                
+            $this->text('emails.visitor.' . $this->email . "_text");
+
+        }
 
         return $this->markdown('emails.visitor.' . $this->email);
 
