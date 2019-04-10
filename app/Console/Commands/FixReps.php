@@ -132,15 +132,19 @@ class FixReps extends Command
 
                 $this->line("Target Parent Id: " . $currentEventExhibitor->id);
                 $this->line("Parent email: " . $currentEventExhibitor->email);
-
-                $rep->parent_id = $currentEventExhibitor->id;
                 
                 if(strlen($name) > 1 && $cname2 != $name){
 
-                    $this->line("Assign " . $name);
+                    $this->line("Assigning cname2: " . $name);
+
+                    $saveorder->setParticipant($rep);
+                    $saveorder->updateFields(["cname2" => $name]);
                 }
 
-                //$rep->save();   
+                if($rep->parent_id != $currentEventExhibitor->id){
+                    $rep->parent_id = $currentEventExhibitor->id;
+                    $rep->save();   
+                }
 
                 $done++;
             }
