@@ -15,7 +15,7 @@ use Eventjuicer\Services\CompanyData;
 use Eventjuicer\ValueObjects\EmailAddress;
 use Eventjuicer\Services\SaveOrder;
 use Eventjuicer\Models\Participant;
-
+use Eventjuicer\Services\Personalizer;
 
 class FixReps extends Command
 {
@@ -87,9 +87,16 @@ class FixReps extends Command
             }
 
             $companyProfile = $cd->toArray($rep->company);
-            $name = !empty($companyProfile["name"]) ? $companyProfile["name"] : ">>> BLANK <<<";
          
+            //cname2
 
+            if(!isset($companyProfile["name"]) || strlen($companyProfile["name"]) < 2){
+
+                $errors[] = "Parent company NAME absent! " . $rep->email . " " . $rep->id;
+            }
+
+            $name = $companyProfile["name"];
+         
             if( !isset( $exhibitors[ $rep->company_id ]) ){
                 $errors[] = "Bad company assigned";
             }
@@ -118,9 +125,13 @@ class FixReps extends Command
                 $this->line("Target Parent Id: " . $currentEventExhibitor->id);
                 $this->line("Parent email: " . $currentEventExhibitor->email);
 
-
                 $rep->parent_id = $currentEventExhibitor->id;
-                $rep->save();
+                    
+                $cname2 = (new Personalizer($rep))->cname2;
+
+                $this->line($profile);
+
+               // $rep->save();   
 
                 $done++;
             }
