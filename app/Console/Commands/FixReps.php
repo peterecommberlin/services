@@ -140,8 +140,6 @@ class FixReps extends Command
                     $this->line("Assign " . $name);
                 }
 
-                $this->line($profile);
-
                 //$rep->save();   
 
                 $done++;
