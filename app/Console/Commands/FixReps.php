@@ -101,8 +101,6 @@ class FixReps extends Command
 
             // $saveorder->updateFields();
 
-            $this->line("Fixed " . $rep->email);
-
             $done++;
 
         }   
