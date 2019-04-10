@@ -88,7 +88,7 @@ class FixReps extends Command
 
             $companyProfile = $cd->toArray($rep->company);
          
-            //cname2
+            //cname2 of Parent!
 
             if(!isset($companyProfile["name"]) || strlen($companyProfile["name"]) < 2){
 
@@ -98,7 +98,7 @@ class FixReps extends Command
             $name = $companyProfile["name"];
          
             if( !isset( $exhibitors[ $rep->company_id ]) ){
-                $errors[] = "Bad company assigned";
+                $errors[] = "Cannot find company among exhibitors...";
             }
 
             $currentEventExhibitor = $exhibitors[ $rep->company_id ];
@@ -110,6 +110,14 @@ class FixReps extends Command
 
             if($rep->parent->event_id != $eventId){
                 $errors[] = "Bad parent!" . $rep->email . " company: " . $name;
+            }
+
+            //cname2 of REP
+
+            $cname2 = (new Personalizer($rep))->cname2;
+
+            if(strlen($cname2) < 2){
+                 $errors[] = "Rep should have cname2 set...";
             }
 
             if(count($errors)){
@@ -126,12 +134,15 @@ class FixReps extends Command
                 $this->line("Parent email: " . $currentEventExhibitor->email);
 
                 $rep->parent_id = $currentEventExhibitor->id;
-                    
-                $cname2 = (new Personalizer($rep))->cname2;
+                
+                if(strlen($name) > 1 && $cname2 != $name){
+
+                    $this->line("Assign " . $name);
+                }
 
                 $this->line($profile);
 
-               // $rep->save();   
+                //$rep->save();   
 
                 $done++;
             }
