@@ -122,7 +122,7 @@ class GeneralExhibitorMessage extends Command
             $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
 
 
-            $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
+            $event_manager = isset($companyProfile["event_manager"]) ? (new EmailAddress($companyProfile["event_manager"]))->find() : "";
 
 
             if($lang !== $viewlang)

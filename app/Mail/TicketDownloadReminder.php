@@ -40,38 +40,28 @@ class TicketDownloadReminder extends Mailable
         $hash = (new Hashids())->encode($this->participant->id);
 
 
-      //  if($this->participant->group_id > 1){
+        // app()->setLocale("en");
 
-          app()->setLocale("en");
+        // config(["app.name" => "E-commerce Berlin Expo"]);
 
-          config(["app.name" => "E-commerce Berlin Expo"]);
+        // $this->url = "https://ecommerceberlin.com/ticket," . $hash;
 
-          $this->url = "https://ecommerceberlin.com/ticket," . $hash;
+        // $this->from("visitors@visitors.ecommerceberlin2019.com", "Lucas Zarna");
 
-          $this->from("visitors@visitors.ecommerceberlin2019.com", "Lucas Zarna");
-
-          $this->subject("Your Ticket for E-commerce Belin Expo 2019");
+        // $this->subject("Your Ticket for E-commerce Belin Expo 2019");
 
 
-        // }else{
+        app()->setLocale("pl");
 
-        //   app()->setLocale("pl");
+        config(["app.name" => "Targi eHandlu"]);
 
-        //   config(["app.name" => "Targi eHandlu"]);
+        $this->url = "https://targiehandlu.pl/ticket," . $hash;
 
-        //   $this->url = "https://targiehandlu.pl/ticket," . $hash;
+        $this->from("zwiedzanie@targiehandlu.pl", "Jan Cyprych - Targi eHandlu");
 
-        //   $this->from("zwiedzanie@targiehandlu.pl", "Adam Zygadlewicz - Targi eHandlu");
-
-        //   $this->subject("Twój na Targi eHandlu jest gotowy!");
-
-        // }
-
+        $this->subject("Bilet na środowe Targi eHandlu.");
 
         $this->to(trim(strtolower($this->participant->email)));
-
-
-      //  $this->subject("Your ticket is ready! Download and print!");
 
 
         // if(view()->exists("emails.visitor." . $this->view . "_text")) {
@@ -79,9 +69,9 @@ class TicketDownloadReminder extends Mailable
           
         // }
 
-        $this->text('emails.visitor.ebe-ticket-final-reminder_text');
+        $this->text('emails.visitor.tehkrk-ticket_text');
 
-        return $this->markdown('emails.visitor.ebe-ticket-final-reminder');
+        return $this->markdown('emails.visitor.tehkrk-ticket');
 
     }
 }
