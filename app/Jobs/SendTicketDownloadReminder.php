@@ -16,7 +16,7 @@ use App\Mail\TicketDownloadReminder;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 
 
-class SendTicketDownloadReminder implements ShouldQueue
+class SendTicketDownloadReminder //implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
