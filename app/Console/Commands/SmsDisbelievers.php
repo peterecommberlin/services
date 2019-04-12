@@ -131,11 +131,11 @@ class SmsDisbelievers extends Command
                 continue;
             }
 
-            // if(!filter_var(trim($participant->email), FILTER_VALIDATE_EMAIL)){
+            if(!filter_var(trim($participant->email), FILTER_VALIDATE_EMAIL)){
 
-            //     $this->error("bad email: " . $participant->email);
-            //     continue;
-            // }
+                $this->error("bad email: " . $participant->email . "..skipping!");
+                continue;
+            }
 
             $phone = $query->first()->field_value;
 

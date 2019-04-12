@@ -79,9 +79,6 @@ class SendTicketReminder extends Command
 
         $this->info("Visitors that can be notified: " . $participants->count() );
 
-
-        $whatWeDo  = $this->anticipate('Send or test?', ['send', 'test']);
-
         $counter = 1;
 
         foreach($participants as $participant)
@@ -94,8 +91,8 @@ class SendTicketReminder extends Command
 
            dispatch(new SendTicketDownloadReminder($participant, $eventId));
 
-           if($whatWeDo === "test"){
-            break;
+           if(env("MAIL_TEST", false)){
+                break;
            }
 
             if($counter % 100 === 0){
