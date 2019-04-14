@@ -11,6 +11,7 @@ use Eventjuicer\Repositories\ParticipantRepository;
 use Eventjuicer\Repositories\Criteria\BelongsToGroup;
 use Eventjuicer\Repositories\Criteria\BelongsToOrganizer;
 use Eventjuicer\Repositories\Criteria\SortByDesc;
+use Eventjuicer\Repositories\Criteria\WhereIn;
 
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 
@@ -28,6 +29,7 @@ class SmsDisbelievers extends Command
         {--domain=} 
         {--prefix=}
         {--limit=}
+        {--events=*}
     
     ';
 
@@ -59,6 +61,7 @@ class SmsDisbelievers extends Command
         $domain = $this->option("domain");
         $prefix = $this->option("prefix");
         $limit = $this->option("limit");
+        $events = $this->option("events");
 
         $errors = [];
 
@@ -68,6 +71,10 @@ class SmsDisbelievers extends Command
 
         if(empty( $prefix )) {
             $errors[] = "--prefix= default prefix must be provided!";
+        }
+
+        if(empty( $events )) {
+            $errors[] = "--events= default prefix must be provided!";
         }
 
 
@@ -80,24 +87,30 @@ class SmsDisbelievers extends Command
         }
 
 
-        $scope = $this->anticipate('Define scope group/organizer: ', ['group', 'organizer']);
-
+       
         $route          = new Resolver($domain);
 
         $eventId        = $route->getEventId();
         $group_id       = $route->getGroupId();
         $organizer_id   = $route->getOrganizerId();
 
+        if( $events === "*"){
 
-        if($scope === "organizer")
-        {
-            $this->info("Scope: organizer.");
-            $repo->pushCriteria( new BelongsToOrganizer( $organizer_id ));
-        }
-        else
-        {
-            $this->info("Scope: group.");
-            $repo->pushCriteria( new BelongsToGroup( $group_id ));
+            $scope = $this->anticipate('Define scope group/organizer: ', ['group', 'organizer']);
+
+            if($scope === "organizer")
+            {
+                $this->info("Scope: organizer.");
+                $repo->pushCriteria( new BelongsToOrganizer( $organizer_id ));
+            }
+            else
+            {
+                $this->info("Scope: group.");
+                $repo->pushCriteria( new BelongsToGroup( $group_id ));
+            }
+        }else{
+            $this->info("Scope: limited to events with IDs - " . $events);
+            $repo->pushCriteria( new WhereIn("event_id", explode(",", $events) ));
         }
 
         $repo->pushCriteria( new SortByDesc("id") );
@@ -151,12 +164,12 @@ class SmsDisbelievers extends Command
                 $phone = $prefix . $phone;
             }
 
-            if(!empty($limit) && $limit !== "*" &&  
-                strpos($phone, "00".$limit) ===false && 
-                strpos($phone, "+".$limit)===false
-            ){
-                continue;
-            }
+            // if(!empty($limit) && $limit !== "*" &&  
+            //     strpos($phone, "00".$limit) ===false && 
+            //     strpos($phone, "+".$limit)===false
+            // ){
+            //     continue;
+            // }
 
             $phones[] = $phone;
 
