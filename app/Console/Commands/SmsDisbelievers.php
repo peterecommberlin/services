@@ -109,7 +109,10 @@ class SmsDisbelievers extends Command
                 $repo->pushCriteria( new BelongsToGroup( $group_id ));
             }
         }else{
-            $this->info("Scope: limited to events with IDs - " . $events);
+            $this->info("Scope: limited to events with IDs - ");
+
+            dd($events);
+            
             $repo->pushCriteria( new WhereIn("event_id", explode(",", $events) ));
         }
 
