@@ -29,7 +29,7 @@ class SmsDisbelievers extends Command
         {--domain=} 
         {--prefix=}
         {--limit=}
-        {--events=*}
+        {--events=all}
     
     ';
 
@@ -94,7 +94,7 @@ class SmsDisbelievers extends Command
         $group_id       = $route->getGroupId();
         $organizer_id   = $route->getOrganizerId();
 
-        if( $events === "*"){
+        if( $events === "all"){
 
             $scope = $this->anticipate('Define scope group/organizer: ', ['group', 'organizer']);
 
@@ -109,10 +109,8 @@ class SmsDisbelievers extends Command
                 $repo->pushCriteria( new BelongsToGroup( $group_id ));
             }
         }else{
-            $this->info("Scope: limited to events with IDs - ");
+            $this->info("Scope: limited to events with IDs - " . $events);
 
-            dd($events);
-            
             $repo->pushCriteria( new WhereIn("event_id", explode(",", $events) ));
         }
 
