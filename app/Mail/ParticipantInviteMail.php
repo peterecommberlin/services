@@ -29,7 +29,8 @@ class ParticipantInviteMail extends Mailable
                 $exhibitorsURl, 
                 $presentersURl, 
                 $scheduleURl, 
-                $registerURl;
+                $registerURl,
+                $offersUrl;
 
     public function __construct(Participant $participant, string $view, string $subject)
     {
@@ -68,6 +69,7 @@ class ParticipantInviteMail extends Mailable
         $this->presentersURl = $baseUrl . "/presenters" . $params;
         $this->scheduleURl = $baseUrl . "/schedule" . $params;
         $this->registerURl = $baseUrl . "/visit" . $params;
+        $this->offersUrl = $baseUrl . "/offers" . $params;
 
 
         $this->to( strtolower(trim($this->participant->email)) );
