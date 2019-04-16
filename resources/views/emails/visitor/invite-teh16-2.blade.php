@@ -72,7 +72,7 @@ Jan Cyprych, Targi eHandlu
 
 <a href="{{$presentersURl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/c_fit,w_650/v1554271344/prelegenci2.jpg" style="max-width: 600px; margin: 20px 0;" alt="" /></a>
 
-
+## [Konfiguracja newslettera]({{ $unsubscribe }}) 
 
 @endcomponent
 

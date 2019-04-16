@@ -30,7 +30,8 @@ class ParticipantInviteMail extends Mailable
                 $presentersURl, 
                 $scheduleURl, 
                 $registerURl,
-                $offersUrl;
+                $offersUrl,
+                $unsubscribe;
 
     public function __construct(Participant $participant, string $view, string $subject)
     {
@@ -61,6 +62,8 @@ class ParticipantInviteMail extends Mailable
         $baseUrl = "https://targiehandlu.pl";
         $params  = "?utm_source=sprawny&utm_medium=email&utm_campaign=teh16partner";
 
+        $params = "";
+
         $this->ticketUrl = $baseUrl . "/ticket/" . $hash . $params;
 
         $this->siteUrl = $baseUrl . $params;
@@ -71,6 +74,7 @@ class ParticipantInviteMail extends Mailable
         $this->registerURl = $baseUrl . "/visit" . $params;
         $this->offersUrl = $baseUrl . "/offers" . $params;
 
+        $this->unsubscribe = "https://services.eventjuicer.com/unsubscribe/" . $hash; . 
 
         $this->to( strtolower(trim($this->participant->email)) );
 

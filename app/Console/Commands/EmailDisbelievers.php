@@ -29,7 +29,7 @@ class EmailDisbelievers extends Command
         {--email=} 
         {--subject=}
         {--throttle=}
-
+        {--events=all}
     ';
 
     /**
@@ -61,6 +61,7 @@ class EmailDisbelievers extends Command
         $view = $this->option("email");
         $subject = $this->option("subject");
         $throttle = $this->option("throttle");
+        $events = $this->option("events");
 
 
         $errors = [];
@@ -82,6 +83,10 @@ class EmailDisbelievers extends Command
         }
 
 
+        if(empty( $events )) {
+            $errors[] = "--events= default prefix must be provided!";
+        }
+
         if(! view()->exists("emails.visitor." . $view)) {
             $errors[] = "--email= error! View cannot be found!";
         }
@@ -95,28 +100,33 @@ class EmailDisbelievers extends Command
             return;
         }
 
-
-        $scope = $this->choice('Define Scope?', ['group', 'organizer'], 0);
-        $test = $this->choice('Send test?', ['yes', 'no'], 0);
-
-
         $route          = new Resolver($domain);
         $eventId        = $route->getEventId();
         $group_id       = $route->getGroupId();
         $organizer_id   = $route->getOrganizerId();
 
+        if($events === "all"){
 
-        if($scope === "organizer")
-        {
-            $this->info("Scope: organizer.");
-            $repo->pushCriteria( new BelongsToOrganizer( $organizer_id ));
-        }
-        else
-        {
-            $this->info("Scope: group.");
-            $repo->pushCriteria( new BelongsToGroup( $group_id ));
-        }
+            $scope = $this->choice('Define Scope?', ['group', 'organizer'], 0);
 
+            if($scope === "organizer")
+            {
+                $this->info("Scope: organizer.");
+                $repo->pushCriteria( new BelongsToOrganizer( $organizer_id ));
+            }
+            else
+            {
+                $this->info("Scope: group.");
+                $repo->pushCriteria( new BelongsToGroup( $group_id ));
+            }
+
+
+        }else{
+            
+            $this->info("Scope: limited to events with IDs - " . $events);
+
+            $repo->pushCriteria( new WhereIn("event_id", explode(",", $events) ));
+        }
         
         $repo->pushCriteria( new SortByDesc("id") );
 
@@ -157,7 +167,7 @@ class EmailDisbelievers extends Command
                 $eventId,
                 compact("view", "subject") ) );
 
-            if($test === "yes"){
+            if(env("MAIL_TEST", false) === "yes"){
                 $this->info("Dispatched test message!");
                 break;
             }

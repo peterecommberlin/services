@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Targi eHandlu</title>
+        <title>Wypisanie z newslettera Targów eHandlu</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -46,7 +46,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 40px;
             }
 
             .links > a {
@@ -78,7 +78,20 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                  Nie ma takiego użytkownika!
+                    
+                     <p>
+                       <a href="{{ action('UnsubscribeController@muteEvent', ['hash'=>$hash]) }}">Wypisz się z <strong>tej edycji</strong> Targów eHandlu</a>
+                    </p>
+
+                    <p>
+                        <a href="{{ action('UnsubscribeController@muteLocation', ['hash' => $hash]) }}">Wypisz z tych i przyszłych Targów eHandlu <strong>w Krakowie</strong></a>
+                    </p>
+
+                    <p>
+                        <a href="{{ action('UnsubscribeController@muteGroup', ['hash'=> $hash]) }}">Wypisz <strong>z wszystkich</strong> Targów eHandlu</a>
+                    </p>
+                   
+                   
                 </div>
 
                 <div class="links">

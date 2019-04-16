@@ -64,6 +64,10 @@ Route::get('/meetup-confirm/', "MeetupController@index");
 Route::get('/email-preview/{name}', "EmailPreviewController@index");
 
 
+Route::get("/unsubscribe/{hash}", "UnsubscribeController@index")->where("hash", "[a-zA-Z0-9]+");
+Route::get("/unsubscribe/{hash}/group", "UnsubscribeController@muteGroup")->where("hash", "[a-zA-Z0-9]+");
+Route::get("/unsubscribe/{hash}/event", "UnsubscribeController@muteEvent")->where("hash", "[a-zA-Z0-9]+");
+Route::get("/unsubscribe/{hash}/location", "UnsubscribeController@muteLocation")->where("hash", "[a-zA-Z0-9]+");
 
 
 /**

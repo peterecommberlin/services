@@ -78,7 +78,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                  Nie ma takiego użytkownika!
+                  Dziękujemy za wspólny czas!
                 </div>
 
                 <div class="links">
