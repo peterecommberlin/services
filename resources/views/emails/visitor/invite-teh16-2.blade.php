@@ -14,12 +14,6 @@ Handel na **ebay.com**, **amazon.com**, wyższość **progressive web apps** nad
 
 **34 Prelegentów, ponad 130 Wystawców, dzisiątki [limitowanych ofert specjalnych]({{$offersUrl}})  - już w najbliższą środę na EXPO Kraków (ul. Galicyjska)**
 
-@component('mail::panel')
-
-Sprawny Marketing będzie również obecny. Zapraszamy na stoisko B2.6!
-
-@endcomponent
-
 
 
 Oto lista wystąpień, które szczególnie mogą Cię zainteresować.
