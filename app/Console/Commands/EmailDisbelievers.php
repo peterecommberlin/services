@@ -168,7 +168,7 @@ class EmailDisbelievers extends Command
                 $eventId,
                 compact("view", "subject") ) );
 
-            if(env("MAIL_TEST", false) === "yes"){
+            if(env("MAIL_TEST", false)){
                 $this->info("Dispatched test message!");
                 break;
             }
