@@ -74,7 +74,7 @@ class ParticipantInviteMail extends Mailable
         $this->registerURl = $baseUrl . "/visit" . $params;
         $this->offersUrl = $baseUrl . "/offers" . $params;
 
-        $this->unsubscribe = "https://services.eventjuicer.com/unsubscribe/" . $hash; . 
+        $this->unsubscribe = "https://services.eventjuicer.com/unsubscribe/" . $hash; 
 
         $this->to( strtolower(trim($this->participant->email)) );
 
