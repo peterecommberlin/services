@@ -114,21 +114,21 @@ class SmsTicketReminder extends Command
 
             $phone = "";
 
-           //  $query = ParticipantFields::where("participant_id", $participant->id)->where("field_id", 8)->get();
+            $query = ParticipantFields::where("participant_id", $participant->id)->where("field_id", 8)->get();
 
-           //  if(!$query->count()){
-           //      continue;
-           //  }
+            if(!$query->count()){
+                continue;
+            }
 
-           //  $phone = $query->first()->field_value;
+           $phone = $query->first()->field_value;
 
-           // // $phone = str_replace([" ", "-", "."], "", $phone);
+           $phone = str_replace([" ", "-", "."], "", $phone);
 
-           //  $phone = trim(preg_replace("/[^\+0-9]+/", "", $phone));
+           $phone = trim(preg_replace("/[^\+0-9]+/", "", $phone));
 
-           //  if(empty($phone) || strlen($phone) < 9){
-           //      continue;
-           //  }
+            if(empty($phone) || strlen($phone) < 9){
+                continue;
+            }
 
            //  if(strpos($phone, "00") !== 0 && strpos($phone, "+") === false){
            //      $phone = $prefix . $phone;
