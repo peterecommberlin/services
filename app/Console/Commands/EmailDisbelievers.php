@@ -11,6 +11,7 @@ use Eventjuicer\Repositories\ParticipantRepository;
 use Eventjuicer\Repositories\Criteria\BelongsToGroup;
 use Eventjuicer\Repositories\Criteria\BelongsToOrganizer;
 use Eventjuicer\Repositories\Criteria\SortByDesc;
+use Eventjuicer\Repositories\Criteria\WhereIn;
 
 use Eventjuicer\ValueObjects\EmailAddress;
 use App\Jobs\Revivers\ParticipantInvite as Job;
@@ -122,7 +123,7 @@ class EmailDisbelievers extends Command
 
 
         }else{
-            
+
             $this->info("Scope: limited to events with IDs - " . $events);
 
             $repo->pushCriteria( new WhereIn("event_id", explode(",", $events) ));
