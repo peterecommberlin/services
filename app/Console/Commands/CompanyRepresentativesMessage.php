@@ -118,6 +118,24 @@ class CompanyRepresentativesMessage extends Command
                continue;
             }
 
+           
+            $companyProfile = $cd->toArray($rep->company);
+
+            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
+
+            $event_manager = "";
+
+            if(empty($companyProfile["password"])){
+                $this->error("No password assigned for " . $rep->email . " - skipped.");
+               continue;
+            }
+
+            if($lang !== $viewlang)
+            {
+                $this->info("Skipped! Lang mismatch. ");
+                continue;
+            }
+
             $query = ParticipantFields::where("participant_id", $rep->id)->where("field_id", 8)->get();
 
             if($query->count()){
@@ -136,25 +154,6 @@ class CompanyRepresentativesMessage extends Command
             );
 
             $phones[] = '"'.$fname.'","'.$phone.'"';
-
-            $companyProfile = $cd->toArray($rep->company);
-
-            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
-
-            $event_manager = "";
-
-            if(empty($companyProfile["password"])){
-                $this->error("No password assigned for " . $rep->email . " - skipped.");
-               continue;
-            }
-
-            if($lang !== $viewlang)
-            {
-                $this->info("Skipped! Lang mismatch. ");
-                continue;
-            }
-
-
 
             $this->info("Processing " . $rep->company->slug);
 
