@@ -154,15 +154,15 @@ class CompanyRepresentativesMessage extends Command
                 continue;
             }
 
-            $this->line("Processing " . $ex->company->slug);
+            $this->line("Processing " . $rep->company->slug);
 
-            $this->line("Notifying " . $ex->email);
+            $this->line("Notifying " . $rep->email);
 
-            // dispatch(new Job(
-            //     $ex, 
-            //     $eventId, 
-            //     compact("email", "subject", "event_manager", "viewlang", "lang", "domain") 
-            // ));
+            dispatch(new Job(
+                $rep, 
+                $eventId, 
+                compact("email", "subject", "event_manager", "viewlang", "lang", "domain") 
+            ));
             
             $done++;
 
