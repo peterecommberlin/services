@@ -120,7 +120,7 @@ class CompanyRepresentativesMessage extends Command
 
             $query = ParticipantFields::where("participant_id", $rep->id)->where("field_id", 8)->get();
 
-            if(!$query->count()){
+            if($query->count()){
                 $phone = $query->first()->field_value;
                 $phone = trim(preg_replace("/[^\+0-9]+/", "", $phone));
             }
