@@ -2,7 +2,9 @@
 
 @component('mail::message')
  
-** Wszystkie osoby zarejestrowane jako Przedstawiciele Wystawcy z Twojej firmy mogą skanować bilety/identyfikatory zwiedzających i pozyskiwać dane kontaktowe** 
+** Przyznaliśmy Tobie dostęp do aplikacji do skanowania identyfikatorów. **
+
+Wszystkie osoby zarejestrowane jako Przedstawiciele Wystawcy z Twojej firmy mogą skanować bilety/identyfikatory zwiedzających i pozyskiwać dane kontaktowe.
 
 # Instalacja aplikacji do skanowania
 
@@ -14,11 +16,9 @@ Jak to zrobić?
 
 Otwórz [Google Play](https://play.google.com/store/apps/details?id=host.exp.exponent&referrer=www) lub [App Store](https://itunes.apple.com/app/apple-store/id982107779?ct=www&mt=8) i wyszukaj aplikację "Expo". Zainstaluj.
 
-## Otwórz aplikację Expo. Musisz wyrazić zgodę na wykorzystanie aparatu.
+## Otwórz aplikację Expo. (Jeśli będzie takie zapytanie, musisz wyrazić zgodę na wykorzystanie aparatu.)
 
-## Z obojętnie jakiego urządzenia podłączonego do Internetu wejdź na stronę [http://teh.com.pl/m](http://teh.com.pl/m)
-
-* **Android** - otwórz ponownie / wróć do aplikacji Expo. Zeskanuj kod widoczny na stronie http://teh.com.pl/m lub znajdź sekcję "Request a link" i wpisz adres email, który możesz otworzyć na telefonie, który ma służyć do skanowania i ma zainstalowaną aplikację Expo
+* **Android** - kliknij w zakładkę **Explore**, kliknij w ikonę lupy w prawym górnym rogu, wyszukaj aplikację **Expojuicer**. 
 
 * **iOS** - otwórz aparat, zeskanuj kod kreskowy widoczny na wcześniej otwartej stronie http://teh.com.pl/m . Powinna uruchomić się nasza aplikacja do skanowania identyfikatorów
 
