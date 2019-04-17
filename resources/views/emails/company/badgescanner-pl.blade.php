@@ -20,7 +20,7 @@ Otwórz [Google Play](https://play.google.com/store/apps/details?id=host.exp.exp
 
 * **Android** - kliknij w zakładkę **Explore**, kliknij w ikonę lupy w prawym górnym rogu, wyszukaj aplikację **Expojuicer**. 
 
-* **iOS** - otwórz aparat, zeskanuj kod kreskowy widoczny na wcześniej otwartej stronie http://teh.com.pl/m . Powinna uruchomić się nasza aplikacja do skanowania identyfikatorów
+* **iOS** - otwórz aparat, zeskanuj kod kreskowy widoczny na wcześniej otwartej **na innym urządzeniu** stronie http://teh.com.pl/m . Powinna uruchomić się nasza aplikacja do skanowania identyfikatorów.
 
 ## Mając otwartą nasza aplikację do skanowania musisz się już tylko zalogować jako swoja firma. 
 
