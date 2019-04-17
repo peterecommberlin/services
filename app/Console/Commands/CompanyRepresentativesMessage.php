@@ -154,9 +154,14 @@ class CompanyRepresentativesMessage extends Command
                 continue;
             }
 
-            $this->line("Processing " . $rep->company->slug);
+            if(env("MAIL_TEST", false)){
+                $this->line("Processing " . $rep->company->slug);
+                break;
+            }
 
-            $this->line("Notifying " . $rep->email);
+            $this->info("Processing " . $rep->company->slug);
+
+            $this->info("Notifying " . $rep->email);
 
             dispatch(new Job(
                 $rep, 
