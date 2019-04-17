@@ -154,10 +154,7 @@ class CompanyRepresentativesMessage extends Command
                 continue;
             }
 
-            if(env("MAIL_TEST", false)){
-                $this->line("Processing " . $rep->company->slug);
-                break;
-            }
+
 
             $this->info("Processing " . $rep->company->slug);
 
@@ -170,6 +167,11 @@ class CompanyRepresentativesMessage extends Command
             ));
             
             $done++;
+
+             if(env("MAIL_TEST", false)){
+                $this->line("Processing " . $rep->company->slug);
+                break;
+            }
 
         }
 
