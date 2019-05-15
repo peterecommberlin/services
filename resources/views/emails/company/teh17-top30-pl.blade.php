@@ -16,11 +16,11 @@ Otwórz ankietę
 
 Jutro tj w czwartek **16 maja** o godzinie **12:00** startuje sprzedaż Early Bird **dla TOP30 Rankingu Konkursu dla Wystawców** czyli dla Twojej firmy.
 
-Ty razem rezerwacji będzie można dokonać do końca tygodnia - sprzedaż dla pozostałych Wystawców (spoza TOP30) startuje dopiero w poniedziałek.
+Tym razem rezerwacji będzie można dokonać aż **do piątku do 17:00** - sprzedaż dla pozostałych Wystawców z edycji w Krakowie (spoza TOP30) startuje dopiero w poniedziałek.
 
-Przypominajka oraz adres strony internetowej do rezerwacji będzie wysłany jutro ok 10:00.
+**Przypominajka oraz adres strony internetowej do rezerwacji będzie wysłany jutro ok 10:00**
 
-@component('mail::button', ['url' => "https://d16rm1n165bd05.cloudfront.net/items/3v3h3x3y0e0Q1U1O2J3a/Image%202019-05-15%20at%201.01.50%20PM.png"])
+@component('mail::button', ['url' => "https://d16rm1n165bd05.cloudfront.net/items/0c1A0w2M0W0B1N3d010N/Image%202019-05-15%20at%201.43.45%20PM.png"])
 Zobacz układ hali targowej
 @endcomponent
 
