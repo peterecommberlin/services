@@ -15,6 +15,8 @@ use Eventjuicer\Services\PartnerPerformance;
 
 use Eventjuicer\Services\Company;
 use Eventjuicer\Services\CompanyDataHelpers;
+use Eventjuicer\ValueObjects\EmailAddress;
+
 
 class AwardMessage extends Command
 {
@@ -27,7 +29,8 @@ class AwardMessage extends Command
         {--subject=}
         {--lang=}
         {--previous}
-        {--reverse}';
+        {--reverse}
+        {--defaultlang=}';
     
     protected $description = 'Send email message to awarded Exhibitors';
  
@@ -46,7 +49,7 @@ class AwardMessage extends Command
         $email =  $this->option("email");
         $subject =  $this->option("subject");
         $viewlang = $this->option("lang");
-
+        $defaultlang = $this->option("defaultlang");
 
         $previous =  $this->option("previous");
         $reverse =  $this->option("reverse");
@@ -71,6 +74,10 @@ class AwardMessage extends Command
 
         if($whatWeDo == "send" && empty($viewlang)) {
             $errors[] = "--lang= must be set!";
+        }
+
+        if(empty($defaultlang)) {
+            $errors[] = "--defaultlang= must be set!";
         }
 
         $viewPath = "emails.company." . $email . "-" . $viewlang;
@@ -208,11 +215,16 @@ class AwardMessage extends Command
 
             if($whatWeDo === "send"){
 
-                $cdh->setData($ex->company->data);
+                // $cdh->setData($ex->company->data);
+                // $event_manager = $cdh->manager("event");
+                // $lang = $cdh->lang("en");
 
-                $event_manager = $cdh->manager("event");
 
-                $lang = $cdh->lang("en");
+                $companyProfile = $cd->toArray($ex->company);
+
+                $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
+
+                $event_manager = isset($companyProfile["event_manager"]) ? (new EmailAddress($companyProfile["event_manager"]))->find() : "";
 
                 if($lang !== $viewlang)
                 {
