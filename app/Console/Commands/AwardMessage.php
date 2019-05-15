@@ -141,7 +141,7 @@ class AwardMessage extends Command
         //TEH 14eaeff0fd38d721de655330237a1fb7bcb41bb1
         //EBE e4db333f554ae1751bfe4863a4dee9d5ad21fd9d
 
-        $json = json_decode(file_get_contents("https://api.eventjuicer.com/v1/restricted/ranking?x-token=e4db333f554ae1751bfe4863a4dee9d5ad21fd9d&x-event-id=" . $eventId, false, stream_context_create($arrContextOptions)), true);
+        $json = json_decode(file_get_contents("https://api.eventjuicer.com/v1/restricted/ranking?x-token=14eaeff0fd38d721de655330237a1fb7bcb41bb1&x-event-id=" . $eventId, false, stream_context_create($arrContextOptions)), true);
 
         if(empty($json) || empty($json["data"])) {
             return $this->error("Cannot import GA data");
