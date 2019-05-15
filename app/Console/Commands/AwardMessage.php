@@ -79,11 +79,11 @@ class AwardMessage extends Command
         if(empty($defaultlang)) {
             $errors[] = "--defaultlang= must be set!";
         }
+    
+        $email = $email . "-" . $viewlang;
 
-        $viewPath = "emails.company." . $email . "-" . $viewlang;
-
-        if($whatWeDo == "send" && ! view()->exists($viewPath)) {
-            $errors[] = "--email= error. View " . $viewPath . " cannot be found";
+        if($whatWeDo == "send" && ! view()->exists("emails.company." . $email)) {
+            $errors[] = "--email= error. View " . $email . " cannot be found";
         }
 
         if(count($errors)){

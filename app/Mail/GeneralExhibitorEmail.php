@@ -71,7 +71,7 @@ class GeneralExhibitorEmail extends Mailable
         else
         {
             app()->setLocale("pl");
-            config(["app.name" => "XVI Targi eHandlu"]);
+            config(["app.name" => "Targi eHandlu w Warszawie"]);
            
             $domain = "targiehandlu.pl";
             $cc = "targiehandlu+auto@targiehandlu.pl";
@@ -79,8 +79,8 @@ class GeneralExhibitorEmail extends Mailable
             if($this->lang == "pl"){
                 $emailPostfix = " - Targi eHandlu";
             }else{
-                $emailPostfix = " - E-commerce Cracow Expo";
-                config(["app.name" => "E-commerce Cracow Expo"]);
+                $emailPostfix = " - E-commerce Warsaw Expo";
+                config(["app.name" => "E-commerce Warsaw Expo"]);
             }
         }
 
