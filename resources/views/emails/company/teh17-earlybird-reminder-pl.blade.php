@@ -4,8 +4,6 @@
  
 # Cześć {{$profile->translate("[[fname]]")}},
 
-Dzień dobry,
-
 **Już jutro (we wtorek 21 maja), o 12:00**, startuje sprzedaż stoisk na jesienne Targi eHandlu w Warszawie dla Wystawców minionej edycji w Krakowie.
 
 @component('mail::button', ['url' => "https://admin.targiehandlu.pl/earybirdtop30s4s3s"])
