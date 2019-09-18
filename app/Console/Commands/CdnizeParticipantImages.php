@@ -16,8 +16,9 @@ class CdnizeParticipantImages extends Command
 {
 
  
-    protected $signature = 'presenters:cdnize {host}';
-    protected $description = 'send participant images to CDN... params host role';
+    protected $signature = 'participants:cdnize {--domain=} 
+        {--role=} ';
+    protected $description = 'send participant images to CDN';
  
     public function __construct()
     {
@@ -26,14 +27,34 @@ class CdnizeParticipantImages extends Command
  
     public function handle(GetByRole $repo)
     {
+        $domain    = $this->option("domain");
+        $role      = $this->option("role");
 
-        $route = new Resolver( $this->argument("host") );
+        $errors = array();
+
+        if(empty($domain)) {
+            $errors[] = "--domain= must be set!";
+        }
+
+        if(empty($role)) {
+            $errors[] = "--role= must be set!";
+        }
+    
+        if(count($errors)){
+            foreach($errors as $error){
+                $this->error($error);
+            }
+            return;
+        }
+
+
+        $route = new Resolver( $domain );
 
         $eventId =  $route->getEventId();
 
         $this->info("Event id: " . $eventId);
 
-        $query = $repo->get($eventId, "presenter", "profile");
+        $query = $repo->get($eventId, $role, ["fields"]);
 
         $this->info("Number of records: " . $query->count() );
 
@@ -41,6 +62,8 @@ class CdnizeParticipantImages extends Command
 
         foreach($query as $p)
         {
+
+            // dd($p->fieldpivot->toArray());
 
             $profile = new Personalizer($p);
 
