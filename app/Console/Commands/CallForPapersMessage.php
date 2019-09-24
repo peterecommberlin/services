@@ -123,7 +123,7 @@ class CallForPapersMessage extends Command
                 $current_value = $lookup ? $lookup->field_value : null;
 
                 if(!$lookup || (!is_null($current_value) && $current_value != $filter_value)){
-                    $this->error("Bad field_value (".$lookup->field_value.") ...skipping");
+                    $this->error("Bad field_value (".$current_value.") ...skipping");
 
                     continue;
                 }
