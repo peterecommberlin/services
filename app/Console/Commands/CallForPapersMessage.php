@@ -120,7 +120,9 @@ class CallForPapersMessage extends Command
                 //compare with field pivot
                 $lookup = $p->fieldpivot->where("field_id", $field_id)->first();
 
-                if(!$lookup || $lookup->field_value != $filter_value){
+                $current_value = $lookup ? $lookup->field_value : null;
+
+                if(!$lookup || (!is_null($current_value) && $current_value != $filter_value)){
                     $this->error("Bad field_value (".$lookup->field_value.") ...skipping");
 
                     continue;
