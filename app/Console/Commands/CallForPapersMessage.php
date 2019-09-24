@@ -106,6 +106,8 @@ class CallForPapersMessage extends Command
 
         $done = 0;
 
+        $whatWeDo  = $this->anticipate('Send or stats?', ['send', 'stats']);
+
         foreach($participants as $p)
         {
 
@@ -125,13 +127,18 @@ class CallForPapersMessage extends Command
                 }
             }
           
-            $this->line("Notifying " . $p->email . " Votes: " . $votes);
 
-            dispatch(new Job(
-                $p, 
-                $eventId, 
-                compact("email", "subject", "domain", "votes") 
-            ));
+            if($whatWeDo === "send"){
+                $this->line("Notifying " . $p->email . " Votes: " . $votes);
+                
+                dispatch(new Job(
+                    $p, 
+                    $eventId, 
+                    compact("email", "subject", "domain", "votes") 
+                 ));
+            }
+
+          
             
             $done++;
 
