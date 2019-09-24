@@ -84,9 +84,12 @@ class CallForPapersEmail extends Mailable
         $this->profile = new Personalizer( $this->participant, "");
 
         $this->voteUrl = "https://".$domain."/vote/" . $this->participant->id;
+        
         $this->accountUrl = "https://admin.targiehandlu.pl/recall/" . $this->participant->token;
 
         $this->from($admin_email, $admin_name . $emailPostfix);
+
+        $this->to( $this->participant->email );
 
         $this->cc( $cc ); 
 
