@@ -10,6 +10,9 @@ Na wstępie bardzo dziękujemy za rejestrację na nadchodzące Targi eHandlu w W
 
 Felix Huber, zarządzający firmą **STRIPE** w Europie Centralnej, jednym z Prelegentów październikowych Targów eHandlu! **Na STRIPE w Polsce czekaliśmy kilka ładnych lat** więc informacje z pierwszej ręki, m.in. co do kolejnych kroków ekspansji, powinny cieszyć się sporym zainteresowaniem.
 
+<a href="https://targiehandlu.pl/undefined-undefined,s,98219"><img src="https://res.cloudinary.com/eventjuicer/image/upload/v1569416395/Stripe_logo_-_slate_lg.jpg" style="margin: 10px auto;" alt="logotyp STRIPE" /></a>
+
+
 **Opublikowaliśmy 1/3 agendy** [{{ $presentersURl }}]({{ $presentersURl }}), która naszym zdaniem gwarantuje, że czas spędzony na Targach będzie świętną inwestycją. 
 
 ## Pozostałe 2/3 Agendy zależy od Ciebie!
