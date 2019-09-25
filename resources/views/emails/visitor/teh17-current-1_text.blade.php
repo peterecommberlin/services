@@ -28,7 +28,6 @@ Pozdrawiam!
 
 Katarzyna Wicher
 
-@endcomponent
 
 
 
