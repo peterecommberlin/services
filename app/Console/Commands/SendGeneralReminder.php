@@ -55,26 +55,35 @@ class SendGeneralReminder extends Command
     )
     {
 
+        $errors = [];
 
         $domain = $this->option("domain");
         $email =  $this->option("email");
         $subject =  $this->option("subject");
 
         if(empty($domain)) {
-            return $this->error("--domain= must be set!");
+            $errors[] = "--domain= must be set!";
         }
 
         if(empty($subject)) {
-            return $this->error("--subject= must be set!");
+            $errors[] = "--subject= must be set!";
         }
     
         
         if(empty($email)) {
-            return $this->error("--email= must be set!");
+            $errors[] = "--email= must be set!";
         }
 
         if(! view()->exists("emails.visitor." . $email)) {
             return $this->error("--email= error. View cannot be found!");
+        }
+
+        if(!empty($errors)){
+                $this->error("Errors found:");
+            foreach($errors AS $error){
+                 $this->line($error);
+            }
+            return;
         }
 
 
@@ -88,7 +97,7 @@ class SendGeneralReminder extends Command
 
         $this->info("Total visitors: " . $participants->count());
 
-        $sendable->checkUniqueness(false);
+        $sendable->checkUniqueness(true);
         
         $filtered = $sendable->filter($participants, $eventId);
 
