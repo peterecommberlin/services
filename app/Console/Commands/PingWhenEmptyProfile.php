@@ -112,7 +112,7 @@ class PingWhenEmptyProfile extends Command
 
             $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
 
-            $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
+            $event_manager = !empty($companyProfile["event_manager"]) ? (new EmailAddress($companyProfile["event_manager"]))->find() : "";
 
             //check for companydata fields freshness :)
             //check for required fields
