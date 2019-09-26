@@ -198,15 +198,15 @@ class PingWhenEmptyProfileEmail extends Mailable
             case "pl":
 
                 app()->setLocale("pl");
-                config(["app.name" => "Targi eHandlu w Krakowie"]);
+                config(["app.name" => "Targi eHandlu w Warszawie"]);
                 $emailPostfix = " - Targi eHandlu";
             break;
 
             case "en":
 
                 app()->setLocale("en");
-                config(["app.name" => "E-commerce Cracow Expo"]);
-                $emailPostfix = " - E-commerce Cracow Expo";
+                config(["app.name" => "E-commerce Warsaw Expo"]);
+                $emailPostfix = " - E-commerce Warsaw Expo";
             break;
 
         }
@@ -222,7 +222,7 @@ class PingWhenEmptyProfileEmail extends Mailable
         }
         else
         {
-            $this->adminName = "Support";
+            $this->adminName = "Karolina Michalak";
             $admin_email = "targiehandlu@targiehandlu.pl";
         }
 
