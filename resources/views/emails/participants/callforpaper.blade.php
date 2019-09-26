@@ -4,17 +4,17 @@
  
 # Cześć {{$profile->translate("[[fname]]")}},
 
-Na profilu zgłoszonej przez Ciebie prezentacji odkryliśmy aktualną liczbę głosów 
+Przypominamy, że konkurs trwa do 30 września do 23:59 więc to zdecydowanie "ostatnia prosta"...
 
 ## Aktualna liczba głosów to: {{$votes}}
 
 @component('mail::button', ['url' => $voteUrl])
-Przejdź do profilu
+Strona głosowania
 @endcomponent
 
 Przypominamy, że warunkiem wejścia do Agendy XVII Targów eHandlu w Warszawie jest uzyskanie **minimum 100 głosów** i zajęcie miejsca w **TOP3 w swojej kategorii**.
 
-Edycja zgłoszenia jest możliwa [pod tym linkiem]({{$accountUrl}})
+Ewentualna edycja zgłoszenia jest możliwa [pod tym linkiem]({{$accountUrl}})
 
 Regards, 
 
