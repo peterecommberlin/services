@@ -4,17 +4,13 @@
  
 # Cześć {{$profile->translate("[[fname]]")}},
 
-Przypominamy, że konkurs trwa do 30 września do 23:59 więc to zdecydowanie "ostatnia prosta"...
+Bardzo dziękujemy za udział w walce o udział w Agendzie XVII Targów eHandlu.
 
-## Aktualna liczba głosów to: {{$votes}}
+## Twoja ostateczna liczba głosów to: {{$votes}}
 
-@component('mail::button', ['url' => $voteUrl])
-Strona głosowania
-@endcomponent
+Z firmami, które wygenerowały ~ 100 punktów skontaktujemy się dzisiaj celem wyboru sceny prezentacyjnej.
 
-Przypominamy, że warunkiem wejścia do Agendy XVII Targów eHandlu w Warszawie jest uzyskanie **minimum 100 głosów** i zajęcie miejsca w **TOP3 w swojej kategorii**.
-
-Ewentualna edycja zgłoszenia jest możliwa [pod tym linkiem]({{$accountUrl}})
+Z wybranymi (analiza merytoryczna zgłoszenia) - pozostałymi - uczestnikami Konkursu będziemy kontaktować się do końca tego tygodnia.
 
 Regards, 
 
