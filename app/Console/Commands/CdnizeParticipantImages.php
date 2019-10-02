@@ -60,6 +60,8 @@ class CdnizeParticipantImages extends Command
 
         $done = 0;
 
+        $whatWeDo  = $this->anticipate('Sync or status?', ['sync', 'status']);
+
         foreach($query as $p)
         {
 
@@ -67,22 +69,34 @@ class CdnizeParticipantImages extends Command
 
             $profile = new Personalizer($p);
 
-            $images = trim($profile->translate("[[logotype]][[avatar]]"));
+            $logotype = trim($profile->translate("[[logotype]]"));
+            $avatar = trim($profile->translate("[[avatar]]"));
+            $logotypeStatus = ($logotype && stripos($logotype, "http") !== false);
+            $avatarStatus = ($avatar && stripos($avatar, "http") !== false);
 
-            if(!$images)
+            if(!$logotypeStatus)
             {
-                 $this->error("No images for: "  . $p->email);
+                 $this->error("No logotype for: "  . $p->email . " (ID: " .$p->id.")");
             }
 
-            $this->info("Dispatching job for: " . $p->email);
+            if(!$avatarStatus)
+            {
+                 $this->error("No avatar for: "  . $p->email . " (ID: " .$p->id.")");
+            }
 
-            dispatch(new Job($p));
+            if(!$logotypeStatus && !$avatarStatus){
+                $done++;
+                continue;
+            }
+
+            if($whatWeDo === "sync"){
+                dispatch(new Job($p));
+            }     
             
-            $done++;
-
+        
         }   
 
-        $this->info("Counted " . $done . " participants with images...");
+        $this->info("Counted " . $done . " with errors...");
 
 
     }
