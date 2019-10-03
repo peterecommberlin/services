@@ -6,7 +6,7 @@
 
 **Przypominamy, że w panelu Wystawcy możesz rozszerzyć swoje zamówienie o dodatkowe usługi.**
 
-Jeśli planujesz dokupienie czegoś z poniższej listy - prosimy o dokonanie wyboru przed weekendem. **Bardzo ułatni nam to pracę...**
+Jeśli planujesz dokupienie czegoś z poniższej listy - prosimy o dokonanie wyboru przed weekendem. **Bardzo ułatwi nam to pracę...**
 
 Lista aktualnych usług to:
 
