@@ -43,14 +43,10 @@ class ContestantsMoveVotes extends Command
 
         $eventId =  $route->getEventId();
 
-        $this->info("Current event id: " . $eventId);
-
         $contestants = $repo->get($eventId, "contestant", ["votes","fieldpivot"]);
 
-        $this->info("Number of records: " . $contestants->count() );
-
         $zero = 0;
-        $more_than_zero = 0;
+        $total = 0;
         $updates = 0;
 
         foreach($contestants as $p)
@@ -60,15 +56,15 @@ class ContestantsMoveVotes extends Command
 
             if($no_of_votes){
 
-                $more_than_zero++;
+                $total = $total + $no_of_votes;
 
-                $this->info($p->email . " id: " . $p->id . " votes: ". $no_of_votes);
+                $this->line($p->email . " id: " . $p->id . " votes: ". $no_of_votes);
 
             }else{
 
                 $zero++;
 
-                $this->line($p->email . " id: " . $p->id . " no votes :(");
+                $this->error($p->email . " id: " . $p->id . " no votes :(");
 
             }
 
@@ -97,7 +93,11 @@ class ContestantsMoveVotes extends Command
 
         }   
 
-        $this->info("" . $updates . " contestants updated.");
+        $this->line("Current event id: " . $eventId);
+        $this->line("Number of records: " . $contestants->count() );
+        $this->line("" . $updates . " contestants updated.");
+        $this->info("" . $zero . " NOT participating.");
+        $this->info("" . $total . " votes.");
 
 
     }
