@@ -1,39 +1,59 @@
 
+https://res.cloudinary.com/eventjuicer/image/upload/v1570713010/agencje.png
+
 
 @component('mail::message')
 
-# Cześć {{ $p->translate("[[fname]]") }}!
+Reklamy **Google i Facebook Ads** w 2020, **Handel międzynarodowy** (np z wykorzystaniem rozwiązań jak Shopware, Stripe czy platform jak Amazon czy eBay), wyższość **progressive web apps** nad aplikacjami mobilnymi, efekty rewolucji związane z wejściem dyrektywy **PSD2**, strategie **omnichannel**, trendy w **opakowaniach** to tylko część tego co będzie się działo na **4 scenach XVII Targów eHandlu.**
 
-Na wstępie bardzo dziękujemy za rejestrację na nadchodzące Targi eHandlu w Warszawie - elektroniczny bilet otrzymasz na kilka dni przed wydarzeniem.
+#22 października w Warszawie (na terenie EXPO XXI) odbędą się największe targi przeznaczone dla sprzedających w Internecie w tej części Europy. 
 
-## Mamy kilka newsów!
+@component('mail::button', ['url' => $registerURl])
+	 Bilet na 34 prezentacje za 0 PLN
+@endcomponent
 
-Felix Huber, zarządzający firmą **STRIPE** w Europie Centralnej, jednym z Prelegentów październikowych Targów eHandlu! **Na STRIPE w Polsce czekaliśmy kilka ładnych lat** więc informacje z pierwszej ręki, m.in. co do kolejnych kroków ekspansji, powinny cieszyć się sporym zainteresowaniem.
+34 Prelegentów, ponad 130 Wystawców (w tym wielu po raz pierwszy w Polsce!), aż 2 strefy networkingowe (dzięki wsparciu Google Internetowe Rewolucje oraz DPD)
 
-<a href="https://targiehandlu.pl/undefined-undefined,s,98219"><img src="https://res.cloudinary.com/eventjuicer/image/upload/v1569416395/Stripe_logo_-_slate_lg.jpg" style="margin: 10px auto;" alt="logotyp STRIPE" /></a>
+<a href="{{$siteUrl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/c_fit,w_650/v1570713010/esklepy.png" alt="przykładowe prezentacje eSklepów" style="margin: 10px auto;" /></a>
 
+Wśród prelegentów przedstawiciele takich sklepów internetowych jak **Inter Cars, Pomadziarz, Agencja Mienia Wojskowego czy szkla.com.** **Poznaj składniki ich sukcesu** i wykorzystaj w zwiększeniu świadomości marki i poziomu sprzedaży.
 
-**Opublikowaliśmy 1/3 agendy** [{{ $presentersURl }}]({{ $presentersURl }}), która naszym zdaniem gwarantuje, że czas spędzony na Targach będzie świętną inwestycją. 
+Sukces sklepów internetowych to najczęściej tytaniczna wręcz praca ich założycieli czy osób zarządzających. W świecie szybko ewoluujących rozwiązań wspomagających komunikację i sprzedaż online ciężko jednak obejść się bez wiedzy konsultantów i firm, których istnienie silnie jest związane z sukcesem ich klientów. Na Targach eHandlu znajdziesz także wiedzę z tej strony "barykady". 
 
-## Pozostałe 2/3 Agendy zależy od Ciebie!
+<a href="{{$registerURl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/c_fit,w_650/v1570713010/agencje.png" style="margin: 10px auto;" alt="" /></a>
 
-O czas na scenie ubiega się 50 firm. Każdy uczestnik Targów ma do wykorzystania **3 głosy**, które wpłyną na finalny wygląd Agendy Prezentacji. 
+Oto lista tematów wystąpień, które szczególnie mogą Cię zainteresować.
 
-Poświęć 5 minut, zerknij na tematy, zagłosuj przy pomocy konta na LinkedIn. **Głosowanie trwa do 30 września więc czasu jest mało!**
+**Zdjęcie do ecommerce za mniej niż 1 PLN**
 
-* [Głosuj na tematy związane z optymalizacją konwersji](https://targiehandlu.pl/vote/conversion)
-* [Głosuj na tematy związane z logistyką ](https://targiehandlu.pl/vote/logistics)
-* [Głosuj na tematy związane z generowaniem sprzedaży](https://targiehandlu.pl/vote/sales_generation)
-* [Głosuj na tematy związane z komunikacją ](https://targiehandlu.pl/vote/communication)
-* [Głosuj na tematy związane z infrastrukturą i rozwiązaniami technicznymi ](https://targiehandlu.pl/vote/itsolutions)
-* [Głosuj na tematy związane ze strategią ](https://targiehandlu.pl/vote/strategy)
-* [Głosuj na inne równie ważne tematy, których nie udało się zmieścić w kategoriach powyżej ](https://targiehandlu.pl/vote/other)
+> Jak robić setki zdjęć produktów dziennie, zachowując wysoką jakość i swój unikalny styl? Czy zdjęcia sprzedają? Czy twój biznes potrzebuje unikalnych zdjęć? Ilu? Jakiej jakości? Chcesz robić je samodzielnie czy zlecać profesjonalistom? I w zasadzie ile to wszystko kosztuje? Automatyzacja tworzenia zdjęć produktowych dla ecommerce i nie tylko.
 
-Pozdrawiam! 
+**Opisy kategorii wspierające SEO - czy naprawdę muszą mieć kilka tysięcy znaków?**
 
-Katarzyna Wicher
+> W temacie tekstów tworzonych z myślą o SEO krąży wiele mitów, które skutkują powstawaniem nieużytecznych, zbyt obszernych opisów na stronach kategorii. Podczas prezentacji omówię sprawdzone taktyki planowania i tworzenia treści tekstowych, które wspierają pozycjonowanie, a jednocześnie nie zaburzają użyteczności. Poruszę kwestię analizy słów kluczowych uwzględniającej świeże podejście do preferencji algorytmu Google, a także samego planowania układu strony kategorii.	
+
+**Proste błędy, które rujnują wyniki Twoich kampanii na Facebooku**
+
+W przypadku reklam na Facebooku mały zmiany przynoszą duże zwroty i decydują o powodzeniu kampanii. W swoim wystąpieniu przedstawię 5 najczęściej popełnianych błędów przy tworzeniu reklam na FB i opowiem, jak ich uniknąć.	
+
+@component('mail::button', ['url' => $registerURl])
+	Odbierz bilet na Prezentacje i EXPO
+@endcomponent
+
+Targi eHandlu to także Targi! Przez 7 godzin zwiedzania możesz poznać praktycznie całą, kluczową, panoramę rozwiązań wspierających skuteczną sprzedaż online :) 
+
+**Widzimy się w Warszawie? :)**
+
+Do zobaczenia! 
+
+Katarzyna Wicher, Targi eHandlu
+
+## [Zarządzaj wysyłką]({{ $unsubscribe }}) 
 
 @endcomponent
+
+
+
 
 
 
