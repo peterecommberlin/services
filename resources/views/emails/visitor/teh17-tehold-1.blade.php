@@ -1,10 +1,8 @@
 
-https://res.cloudinary.com/eventjuicer/image/upload/v1570713010/agencje.png
-
 
 @component('mail::message')
 
-Reklamy **Google i Facebook Ads** w 2020, **Handel międzynarodowy** (np z wykorzystaniem rozwiązań jak Shopware, Stripe czy platform jak Amazon czy eBay), wyższość **progressive web apps** nad aplikacjami mobilnymi, efekty rewolucji związane z wejściem dyrektywy **PSD2**, strategie **omnichannel**, trendy w **opakowaniach** to tylko część tego co będzie się działo na **4 scenach XVII Targów eHandlu.**
+Reklamy **Google i Facebook Ads** w 2020, **Handel międzynarodowy** (np z wykorzystaniem rozwiązań jak **Shopware**, **Stripe** czy platform jak **Amazon**), wyższość **progressive web apps** nad aplikacjami mobilnymi, efekty rewolucji związane z wejściem dyrektywy **PSD2**, strategie **omnichannel**, trendy w **opakowaniach** to tylko część tego co będzie się działo na **4 scenach XVII Targów eHandlu.**
 
 #22 października w Warszawie (na terenie EXPO XXI) odbędą się największe targi przeznaczone dla sprzedających w Internecie w tej części Europy. 
 

@@ -84,7 +84,7 @@
                     </p>
 
                     <p>
-                        <a href="{{ action('UnsubscribeController@muteLocation', ['hash' => $hash]) }}">Wypisz z tych i przyszłych Targów eHandlu <strong>w Krakowie</strong></a>
+                        <a href="{{ action('UnsubscribeController@muteLocation', ['hash' => $hash]) }}">Wypisz z tych i przyszłych Targów eHandlu <strong>w Warszawie</strong></a>
                     </p>
 
                     <p>
