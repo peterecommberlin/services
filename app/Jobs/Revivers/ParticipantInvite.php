@@ -16,7 +16,7 @@ use App\Mail\ParticipantInviteMail as EmailConfig;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 
 
-class ParticipantInvite //implements ShouldQueue
+class ParticipantInvite implements ShouldQueue
 {
 
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
