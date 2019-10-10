@@ -94,12 +94,14 @@ class UnsubscribeController extends Controller
         $group_id = 1;
         $organizer_id = 1;
 
+        $email = trim(strtolower($user->email));
+
         $mute = ParticipantMute::firstOrNew([
-            "email" => $user->email, 
+            "email" => $email, 
             "event_id" => $event_id
         ]);
         
-        $mute->email = $user->email;
+        $mute->email = $email;
         $mute->level = $unSubType;
         
         //tempfix!!
