@@ -50,6 +50,7 @@ class ParticipantInviteMail extends Mailable
 
 
 
+
         // app()->setLocale("en");
         // config(["app.name" => "E-commerce Berlin Expo"]);
 
@@ -60,7 +61,7 @@ class ParticipantInviteMail extends Mailable
 
 
         $baseUrl = "https://targiehandlu.pl";
-        $params  = "?utm_source=sprawny&utm_medium=email&utm_campaign=teh16partner";
+        $params  = "?utm_source=marketer&utm_medium=email&utm_campaign=teh17partner";
 
         $params = "";
 
@@ -78,7 +79,7 @@ class ParticipantInviteMail extends Mailable
 
         $this->to( strtolower(trim($this->participant->email)) );
 
-        $this->from("zwiedzanie@targiehandlu.pl", "Jan Cyprych - TEH");
+        $this->from("zwiedzanie@targiehandlu.pl", "Katarzyna Wicher - Targi eHandlu");
 
         $this->subject($this->subject);
 
