@@ -87,12 +87,26 @@ class UnsubscribeController extends Controller
 
     private function doUnsub(Model $user, $unSubType = ""){
 
-        $mute = new ParticipantMute;
+        //we got a fuckup here....
+        //event, group must be from CURRENT SCOPE!
+
+        $event_id = 87;
+        $group_id = 1;
+        $organizer_id = 1;
+
+        $mute = ParticipantMute::firstOrNew([
+            "email" => $user->email, 
+            "event_id" => $event_id
+        ]);
+        
         $mute->email = $user->email;
         $mute->level = $unSubType;
-        $mute->organizer_id = $user->organizer_id;
-        $mute->group_id = $user->group_id;
-        $mute->event_id = $user->event_id;
+        
+        //tempfix!!
+        $mute->organizer_id = $organizer_id;
+        $mute->group_id = $group_id;
+        $mute->event_id = $event_id;
+
         $mute->save();
 
         return $mute->id;   
