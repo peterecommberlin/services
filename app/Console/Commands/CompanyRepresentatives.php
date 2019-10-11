@@ -154,8 +154,9 @@ class CompanyRepresentatives extends Command
 
         $whatWeDo  = $this->anticipate('Send, stats, empty?', ['send', 'stats', 'empty']);
 
+        $iterate = ($whatWeDo === "send") ? $filtered : $exhibitors;
 
-        foreach($exhibitors as $ex)
+        foreach($iterate as $ex)
         {   
 
             //do we have company assigned?
