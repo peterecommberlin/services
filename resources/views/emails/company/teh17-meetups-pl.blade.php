@@ -2,7 +2,7 @@
 
 @component('mail::message')
  
-# Cześć (ponownie) {{$profile->translate("[[fname]]")}},
+# Cześć {{$profile->translate("[[fname]]")}},
 
 Idąc za ciosem... Trzecia równie ważna wiadomość.
 
@@ -14,7 +14,7 @@ Zaloguj się do swojego konta
 
 # Jak to działa od strony Wystawcy
 
-Na start masz 15 zaproszeń
+Na start masz **15 zaproszeń**
 
 Przeglądając listę uczestników (menu: "Przeglądaj uczestników") wybierasz interesującą Cię osobę i klikasz (przycisk: "Zaproś") - możesz wpisać swoje zaproszenie. Po kliknięciu "Zapisz" Twoja wiadomość zostanie dodana do wysyłki (zaproszenia rozsyłamy 3x dziennie)
 
@@ -22,7 +22,7 @@ Przeglądając listę uczestników (menu: "Przeglądaj uczestników") wybierasz 
 
 # Jak to działa od strony Zwiedzającego...
 
-Zaproszenia są grupowane i wysyłane do 3 razy dziennie (tylko w dni robocze). Zwiedzający może zaakceptować lub odrzucić zaproszenie - wtedy nie dostanie już powiadomień jeśli żaden nowy Wystawca nie będzie chciał się spotkać.
+Zaproszenia są grupowane i wysyłane **do 3 razy dziennie** (tylko w dni robocze). Zwiedzający może zaakceptować lub odrzucić zaproszenie - wtedy nie dostanie już powiadomień jeśli żaden nowy Wystawca nie będzie chciał się spotkać.
 
 W momencie akceptacji **Wystawca otrzymuje pełne dane kontaktowe do Zwiedzającgo** i może umówić się na spotkanie na stoisku z wykorzystaniem swoich narzędzi i procedur.
 
