@@ -149,7 +149,7 @@ class CompanyRepresentatives extends Command
 
         /*get representatives*/
 
-        $this->info("Total reps found: " . $reps->count() );
+        $this->info("Total companies with reps found: " . $reps->count() );
 
 
         $whatWeDo  = $this->anticipate('Send, stats, empty?', ['send', 'stats', 'empty']);
