@@ -11,9 +11,13 @@
 @component('mail::panel')
 
 ExpoSped Sp. z o.o. / Piotr Kopański
+
 EHANDEL [nr stoiska lub marka handlowa firmy]
+
 ul. Prądzyńskiego 12/14
+
 01-222 Warszawa
+
 (tel. kontaktowy do przedstawiciela ExpoSped: Piotr Kopański +48 504103570)
 
 @endcomponent
@@ -34,9 +38,9 @@ Bilet parkingowy należy pobrać z parkomatu. **Do bezpłatnego wyjazdu** potrze
 
 Godziny montażowe to 16:00 - 20:00 (o ile nie ustalono z nami inaczej).
 
-Po wejściu na halę należy udać się do punktu informacyjnego dla Wystawców na którym będzie czekał Państwa Opiekun, który zaprowadzi Państwa do właściwego stoiska.
+Po wejściu na halę należy udać się do punktu informacyjnego dla Wystawców (Strefa VIP - początek Hali #1) na którym będzie czekał Państwa Opiekun, który zaprowadzi Państwa do właściwego stoiska.
 
-**Punkt będzie znajdował się w Hali #1**
+**Punkt będzie znajdował się w lobby zespołu budynków 1-2-3 lub w Hali #1**
 
 ## Dzień Targowy - 22 października
 
