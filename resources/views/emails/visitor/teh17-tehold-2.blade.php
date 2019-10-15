@@ -2,24 +2,23 @@
 
 @component('mail::message')
 
-cześć!
+Cześć!
 
-Udostępniliśmy właśnie kompletną agendę **4 scen** prezentacyjnych 17 Targów eHandlu w Warszawie! 
+# Ujawniamy kompletną agendę **4 scen** prezentacyjnych 17 Targów eHandlu w Warszawie!
+
+22 października w Warszawie (na terenie EXPO XXI) odbędą się największe targi przeznaczone dla sprzedających w Internecie w tej części Europy. 
 
 <a href="{{$scheduleURl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/c_fit,w_650/v1571146630/teh17_schedule.png" alt="lista prezentacji" style="margin: 10px auto;" /></a>
 
-Przypominamy, że udział w prezentacjach i zwiedzaniu stoisk 140 Wystawców nie wiąże się z żadnymi kosztami - jedynym warunkiem jest rejestracja online.
+## Przypominamy, że udział w prezentacjach i zwiedzaniu 140 stoisk nie wiąże się z żadnymi kosztami - jedynym warunkiem jest rejestracja online.
 
 @component('mail::button', ['url' => $registerURl])
-	Odbierz bilet na Prezentacje i EXPO za 0 PLN
+	Rejestracja Online
 @endcomponent
+
 
 Reklamy **Google i Facebook Ads** w 2020, **Handel międzynarodowy** (np z wykorzystaniem rozwiązań jak **Shopware**, **Stripe** czy platform jak **Amazon**), wyższość **progressive web apps** nad aplikacjami mobilnymi, efekty rewolucji związane z wejściem dyrektywy **PSD2**, strategie **omnichannel**, trendy w **opakowaniach** to tylko część tego co będzie się działo na **4 scenach XVII Targów eHandlu.**
 
-
-#22 października w Warszawie (na terenie EXPO XXI) odbędą się największe targi przeznaczone dla sprzedających w Internecie w tej części Europy. 
-
-34 Prelegentów, ponad 130 Wystawców (w tym wielu po raz pierwszy w Polsce!), aż 2 strefy networkingowe (dzięki wsparciu Google Internetowe Rewolucje oraz DPD)
 
 <a href="{{$siteUrl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/c_fit,w_650/v1570713010/esklepy.png" alt="przykładowe prezentacje eSklepów" style="margin: 10px auto;" /></a>
 

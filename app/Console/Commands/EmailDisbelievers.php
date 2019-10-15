@@ -65,6 +65,15 @@ class EmailDisbelievers extends Command
         $events = $this->option("events");
 
 
+        $whatWeDo  = $this->anticipate('test, send, status?', ['test', 'send', 'status']);
+
+        if($whatWeDo === "status"){
+
+            return;
+
+        }
+
+
         $errors = [];
 
         if(empty( $domain )) {
@@ -88,7 +97,7 @@ class EmailDisbelievers extends Command
             $errors[] = "--events= default prefix must be provided!";
         }
 
-        if(! view()->exists("emails.visitor." . $view)) {
+        if($view && !view()->exists("emails.visitor." . $view)) {
             $errors[] = "--email= error! View cannot be found!";
         }
 
@@ -152,13 +161,7 @@ class EmailDisbelievers extends Command
         $done = 0;
 
 
-        $whatWeDo  = $this->anticipate('test, send, status?', ['test', 'send', 'status']);
-
-        if($whatWeDo === "status"){
-
-            return;
-
-        }
+        
 
         foreach($filtered as $participant)
         {
@@ -171,8 +174,16 @@ class EmailDisbelievers extends Command
                 continue;
             }
 
-            if($done >  $throttle ){
+            if($throttle > 0 && $done > $throttle ){
                 $this->error("Out of daily quota!");
+                break;
+            }
+
+            if( $whatWeDo === "test" || env("MAIL_TEST", false) ){
+
+                Job::dispatchNow($participant, $eventId, compact("view", "subject"));
+                $this->info("Dispatched test message!");
+
                 break;
             }
 
@@ -185,19 +196,6 @@ class EmailDisbelievers extends Command
                 );
             }
           
-
-            if( $whatWeDo === "test" || env("MAIL_TEST", false) ){
-
-                dispatch( new Job( 
-                    $participant, 
-                    $eventId,
-                    compact("view", "subject"))
-                );
-
-                $this->info("Dispatched test message!");
-                
-                break;
-            }
 
             if($done % 1000 === 0)
             {
