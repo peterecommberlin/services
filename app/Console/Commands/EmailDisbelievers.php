@@ -145,9 +145,20 @@ class EmailDisbelievers extends Command
 
         $filtered =  $sendable->filter($all, $eventId, $excludes);
 
+        $this->info( "Found " . $sendable->howManyMuted() . " muted emails..." );
+
         $this->info( "Found " . $filtered->count() . " unique emails..." );
 
         $done = 0;
+
+
+        $whatWeDo  = $this->anticipate('test, send, status?', ['test', 'send', 'status']);
+
+        if($whatWeDo === "status"){
+
+            return;
+
+        }
 
         foreach($filtered as $participant)
         {
@@ -165,13 +176,26 @@ class EmailDisbelievers extends Command
                 break;
             }
 
-            dispatch( new Job( 
-                $participant, 
-                $eventId,
-                compact("view", "subject") ) );
+            if($whatWeDo === "send"){
 
-            if(env("MAIL_TEST", false)){
+                dispatch( new Job( 
+                    $participant, 
+                    $eventId,
+                    compact("view", "subject"))
+                );
+            }
+          
+
+            if( $whatWeDo === "test" || env("MAIL_TEST", false) ){
+
+                dispatch( new Job( 
+                    $participant, 
+                    $eventId,
+                    compact("view", "subject"))
+                );
+
                 $this->info("Dispatched test message!");
+                
                 break;
             }
 
