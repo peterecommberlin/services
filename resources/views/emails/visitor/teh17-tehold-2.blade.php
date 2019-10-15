@@ -12,8 +12,8 @@ Cześć!
 
 ## Przypominamy, że udział w prezentacjach i zwiedzaniu 140 stoisk nie wiąże się z żadnymi kosztami - jedynym warunkiem jest rejestracja online.
 
-@component('mail::button', ['url' => $registerURl])
-	Rejestracja Online
+@component('mail::button', ['url' => $scheduleURl])
+	Agenda i Rejestracja Online
 @endcomponent
 
 
@@ -24,8 +24,8 @@ Reklamy **Google i Facebook Ads** w 2020, **Handel międzynarodowy** (np z wykor
 
 Wśród prelegentów przedstawiciele takich sklepów internetowych jak **Inter Cars, Pomadziarz, Agencja Mienia Wojskowego czy szkla.com.** **Poznaj składniki ich sukcesu** i wykorzystaj w zwiększeniu świadomości marki i poziomu sprzedaży.
 
-@component('mail::button', ['url' => $registerURl])
-	 Bilet na 34 prezentacje za 0 PLN
+@component('mail::button', ['url' => $scheduleURl])
+	Agenda i Rejestracja Online
 @endcomponent
 
 Sukces sklepów internetowych to najczęściej tytaniczna wręcz praca ich założycieli czy osób zarządzających. W świecie szybko ewoluujących rozwiązań wspomagających komunikację i sprzedaż online ciężko jednak obejść się bez wiedzy konsultantów i firm, których istnienie silnie jest związane z sukcesem ich klientów. Na Targach eHandlu znajdziesz także wiedzę z tej strony "barykady". 
@@ -46,8 +46,8 @@ Oto lista tematów wystąpień, które szczególnie mogą Cię zainteresować.
 
 W przypadku reklam na Facebooku mały zmiany przynoszą duże zwroty i decydują o powodzeniu kampanii. W swoim wystąpieniu przedstawię 5 najczęściej popełnianych błędów przy tworzeniu reklam na FB i opowiem, jak ich uniknąć.	
 
-@component('mail::button', ['url' => $registerURl])
-	Odbierz bilet na Prezentacje i EXPO
+@component('mail::button', ['url' => $scheduleURl])
+	Agenda i Rejestracja Online
 @endcomponent
 
 Targi eHandlu to także Targi! Przez 7 godzin zwiedzania możesz poznać praktycznie całą, kluczową, panoramę rozwiązań wspierających skuteczną sprzedaż online :) 
