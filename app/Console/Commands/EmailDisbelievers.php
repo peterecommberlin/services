@@ -181,7 +181,15 @@ class EmailDisbelievers extends Command
 
             if( $whatWeDo === "test" || env("MAIL_TEST", false) ){
 
-                Job::dispatchNow($participant, $eventId, compact("view", "subject"));
+               // Job::dispatchNow($participant, $eventId, compact("view", "subject"));
+
+
+                 dispatch( new Job( 
+                    $participant, 
+                    $eventId,
+                    compact("view", "subject"))
+                );
+
                 $this->info("Dispatched test message!");
 
                 break;
