@@ -21,7 +21,7 @@ class SendTicketReminder extends Command
      *
      * @var string
      */
-    protected $signature = 'visitors:ticket-reminder {host}';
+    protected $signature = 'visitors:ticket-reminder  {--domain=} ';
 
     /**
      * The console command description.
@@ -51,7 +51,25 @@ class SendTicketReminder extends Command
         ParticipantSendable $sendable
     )
     {
-        $route = new Resolver($this->argument("host"));
+
+        $domain = $this->option("domain");
+
+        $errors = [];
+
+        if(empty( $domain )) {
+            $errors[] = "--domain= must be provided!";
+        }
+
+        if(!empty($errors))
+        {
+            foreach($errors as $error){
+                $this->error($error);
+            }
+            return;
+        }
+
+
+        $route = new Resolver( $domain );
 
         $eventId =  $route->getEventId();
 
@@ -81,6 +99,14 @@ class SendTicketReminder extends Command
 
         $counter = 1;
 
+
+        $whatWeDo  = $this->anticipate('test, send, status?', ['test', 'send', 'status']);
+
+        if($whatWeDo === "status"){
+            return;
+        }
+
+
         foreach($participants as $participant)
         {
 
@@ -91,7 +117,7 @@ class SendTicketReminder extends Command
 
            dispatch(new SendTicketDownloadReminder($participant, $eventId));
 
-           if(env("MAIL_TEST", false)){
+           if($whatWeDo === "test" || env("MAIL_TEST", false)){
                 break;
            }
 
