@@ -17,6 +17,15 @@ Route::get('/', function()
 });
 
 
+Route::get('/marek', function () {
+    return Artisan::call('contestants:votes', [
+        '--domain' => 'ecommerceberlin.com'
+    ]);
+
+    //
+});
+
+
 Route::get('/p', function()
 {
     abort(404);
