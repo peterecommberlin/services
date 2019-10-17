@@ -108,7 +108,7 @@ class ContestantsMoveVotes extends Command
 
                 $votes->participant_id = $p->id;
                 $votes->field_id  = $this->votes;
-                $votes->field_value = $votes_override ? $no_of_votes + $votes_override->field_value : $no_of_votes ;
+                $votes->field_value = $votes_override ? $no_of_votes + intval($votes_override->field_value) : $no_of_votes ;
                 $votes->organizer_id = $p->organizer_id;
                 $votes->group_id = $p->group_id;
                 $votes->event_id = $p->event_id;
