@@ -12,7 +12,7 @@
 
 # Hi,
 
-## We would like to let you know that {{  array_get($companydata, "name") }} is exhibiting at the E-Commerce Cracow Expo 2019 on **April 17th** at EXPO Kraków (Galicyjska str.). 
+## We would like to let you know that {{  array_get($companydata, "name") }} is exhibiting at the E-Commerce Warsaw Expo 2019 on **October 22nd** at EXPO XXI (Prądzyńskiego 12/14 str.). 
 
 We’re excited for a day fully dedicated to e-commerce best practices &amp; trends. 
 
@@ -22,7 +22,7 @@ Come have a chat with us at our stand.
 	Register for a free ticket here
 @endcomponent
 
-Let us also mention that there will be 4 stages full of speakers and more than 130 other service providers at their booths. The event is a must-attend! 
+Let us also mention that there will be 4 stages full of speakers and more than 140 other service providers at their booths. The event is a must-attend! 
 
 Looking forward to meet you! 
 
