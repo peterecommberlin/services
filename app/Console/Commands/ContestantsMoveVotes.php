@@ -13,7 +13,10 @@ use Eventjuicer\Models\ParticipantFields;
 class ContestantsMoveVotes extends Command
 {
 
-    protected $field_id = 53; //votes!
+    protected $votes = 53; //votes!
+    protected $votes_override = 213;
+    protected $votes_earned = 256;
+
     protected $signature = 'contestants:votes {--domain=}';
     protected $description = 'show and save votes...';
  
@@ -68,26 +71,59 @@ class ContestantsMoveVotes extends Command
 
             }
 
-            $field = ParticipantFields::firstOrNew([
+            //get override
+
+            $votes_override = ParticipantFields::where([
+             "participant_id" => $p->id,
+             "field_id" => $this->votes_override
+            ])->get()->first();
+
+            $votes_earned = ParticipantFields::firstOrNew([
                 "participant_id" => $p->id,
-                "field_id" => $this->field_id
+                "field_id" => $this->votes_earned
             ]);
 
-            if(!$field || !is_numeric($field->field_value) || $field->field_value != $no_of_votes){
 
-                $field->participant_id = $p->id;
-                $field->field_id  = $this->field_id;
-                $field->field_value = $no_of_votes;
-                $field->organizer_id = $p->organizer_id;
-                $field->group_id = $p->group_id;
-                $field->event_id = $p->event_id;
-                $field->updatedon = date("Y-m-d H:i:s");
-                $field->archive = "";
+            // if(!$votes_earned || !is_numeric($votes_earned->field_value) || $votes_earned->field_value != $no_of_votes){
 
-                $field->save();
+                $votes_earned->participant_id = $p->id;
+                $votes_earned->field_id  = $this->votes_earned;
+                $votes_earned->field_value = $no_of_votes;
+                $votes_earned->organizer_id = $p->organizer_id;
+                $votes_earned->group_id = $p->group_id;
+                $votes_earned->event_id = $p->event_id;
+                $votes_earned->updatedon = date("Y-m-d H:i:s");
+                $votes_earned->archive = "";
+
+                $votes_earned->save();
             
+
+                //update TOTAL VALUE
+
+                $votes = ParticipantFields::firstOrNew([
+                    "participant_id" => $p->id,
+                    "field_id" => $this->votes
+                ]);
+
+
+                $votes->participant_id = $p->id;
+                $votes->field_id  = $this->votes;
+                $votes->field_value = $votes_override ? $no_of_votes + $votes_override->field_value : $no_of_votes ;
+                $votes->organizer_id = $p->organizer_id;
+                $votes->group_id = $p->group_id;
+                $votes->event_id = $p->event_id;
+                $votes->updatedon = date("Y-m-d H:i:s");
+                $votes->archive = "";
+
+                $votes->save();
+
+
+
                 $updates++;
-            }
+
+
+
+           // }
         
 
 
