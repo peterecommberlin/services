@@ -28,9 +28,9 @@ Zaloguj się do swojego konta
 
 Ominęły Cię poprzednie wiadomości i nie do końca wiesz o co chodzi? Proszę przeczytaj poniżej.
 
-# Przypominamy,że na koncie Wystawcy pojawiła się możliwość przeglądania i zapraszania zarejestrowanych Uczestników
+Przypominamy,że na koncie Wystawcy pojawiła się możliwość przeglądania i zapraszania zarejestrowanych Uczestników
 
-# Początkowy Limit 15 (zwiększyliśmy do 30) zaproszeń możesz dynamicznie zwiększać korzystając z materiałów promocyjnych, które dostępne są w Panelu Wystawcy (grafiki do "szerowania" w serwisach, szablony newslettera). 
+Początkowy Limit 15 (zwiększyliśmy do 30) zaproszeń możesz dynamicznie zwiększać korzystając z materiałów promocyjnych, które dostępne są w Panelu Wystawcy (grafiki do "szerowania" w serwisach, szablony newslettera). 
 
 @component('mail::button', ['url' => $accountUrl])
 Zaloguj się do swojego konta
