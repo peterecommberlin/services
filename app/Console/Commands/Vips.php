@@ -47,7 +47,7 @@ class Vips extends Command {
 
         $errors = [];
 
-        $whatToDo = $this->anticipate("Email, report, both", ["send","report", "all"]);
+        $whatToDo = $this->anticipate("send, report, all, testsend", ["send","report", "all", "testsend"]);
 
 
         if(empty($domain)) {
@@ -94,6 +94,8 @@ class Vips extends Command {
 
         $done = 0;
 
+        $phones = array();
+        $all = array();
 
         foreach($vips as $vip)
         {
@@ -108,20 +110,27 @@ class Vips extends Command {
             
             $phones[] = $profile->translate("[[phone]]");
 
+            $all[] = $details;
+
             $done++;
 
         }   
 
 
-        $filename = "export".md5(time() . $eventId).".txt";
+        $baseFilename = "export".md5(time() . $eventId).".txt";
 
         file_put_contents(
-            app()->basePath("storage/app/public/" . $filename), 
+            app()->basePath("storage/app/public/" . "phones_".$baseFilename), 
             implode( "\n", $phones )
         );
 
-        $this->info("Done " . $done . "" . $filename);
+        file_put_contents(
+            app()->basePath("storage/app/public/" . "all_".$baseFilename), 
+            implode( "\n", $all )
+        );
 
+        $this->info("storage/" . "phones_" . $filename);
+        $this->info("storage/" . "all_" . $filename);
 
     }
 }
