@@ -128,7 +128,7 @@ class SmsCurrentVisitors extends Command
                 )
             );
 
-            $phones[] = $phone . '"https://'. $domain . '/ticket,'.$profile->translate("[[code]]").'"';
+            $phones[] = '"'.$phone .'","https://'. $domain . '/ticket,'.$profile->translate("[[code]]").'"';
 
             if($counter % 100 === 0){
 
