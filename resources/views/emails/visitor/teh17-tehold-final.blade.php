@@ -37,7 +37,7 @@ Reklamy **Google i Facebook Ads** w 2020, **Handel międzynarodowy** (np z wykor
 
 Wśród prelegentów przedstawiciele takich sklepów internetowych jak **Inter Cars, Pomadziarz, Agencja Mienia Wojskowego czy szkla.com.** **Poznaj składniki ich sukcesu** i wykorzystaj w zwiększeniu świadomości marki i poziomu sprzedaży.
 
-@component('mail::button', ['url' => $registerUrl])
+@component('mail::button', ['url' => $registerURl])
 	Agenda i Rejestracja Online
 @endcomponent
 
