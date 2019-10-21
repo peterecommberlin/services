@@ -114,9 +114,9 @@ class SmsCurrentVisitors extends Command
                 continue;
             }
 
-            if(strpos($phone, "00") !== 0 && strpos($phone, "+") === false){
-                $phone = $prefix . $phone;
-            }
+            // if(strpos($phone, "00") !== 0 && strpos($phone, "+") === false){
+            //     $phone = $prefix . $phone;
+            // }
 
             $profile = new Personalizer($participant);
 
