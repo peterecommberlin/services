@@ -100,17 +100,27 @@ class Vips extends Command {
 
             $participant = $vip->participant;
 
-            $errors = array();
+            $profile = (new Personalizer($participant));
 
-            $details = (new Personalizer($participant))->translate("[[fname]] [[lname]] [[cname2]]");
+            $details = $profile->translate('"[[fname]]","[[lname]]"," [[cname2]]"');
             
             $this->line($details);
             
+            $phones[] = $profile->translate("[[phone]]");
+
             $done++;
 
         }   
 
-        $this->info("Done " . $done . "");
+
+        $filename = "export".md5(time() . $eventId).".txt";
+
+        file_put_contents(
+            app()->basePath("storage/app/public/" . $filename), 
+            implode( "\n", $phones )
+        );
+
+        $this->info("Done " . $done . "" . $filename);
 
 
     }
