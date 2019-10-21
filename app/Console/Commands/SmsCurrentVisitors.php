@@ -92,10 +92,10 @@ class SmsCurrentVisitors extends Command
         foreach($participants as $participant)
         {
 
-            if(!filter_var($participant->email, FILTER_VALIDATE_EMAIL)){
-                $this->error($participant->email);
-                continue;
-            }
+            // if(!filter_var($participant->email, FILTER_VALIDATE_EMAIL)){
+            //     $this->error($participant->email);
+            //     continue;
+            // }
 
 
             $query = ParticipantFields::where("participant_id", $participant->id)->where("field_id", 8)->get();
@@ -128,7 +128,7 @@ class SmsCurrentVisitors extends Command
                 )
             );
 
-            $phones[] = '"'.$fname.'","'.$phone.'","https://'. $domain . '/ticket,'.$profile->translate("[[code]]").'"';
+            $phones[] = $phone . '"https://'. $domain . '/ticket,'.$profile->translate("[[code]]").'"';
 
             if($counter % 100 === 0){
 
