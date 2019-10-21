@@ -98,9 +98,11 @@ class Vips extends Command {
         foreach($vips as $vip)
         {
 
+            $participant = $vip->participant;
+
             $errors = array();
 
-            $details = (new Personalizer($vip))->translate("[[fname]] [[lname]] [[cname2]]");
+            $details = (new Personalizer($participant))->translate("[[fname]] [[lname]] [[cname2]]");
             
             $this->line($details);
             
