@@ -129,8 +129,8 @@ class Vips extends Command {
             implode( "\n", $all )
         );
 
-        $this->info("storage/" . "phones_" . $filename);
-        $this->info("storage/" . "all_" . $filename);
+        $this->info("storage/" . "phones_" . $baseFilename);
+        $this->info("storage/" . "all_" . $baseFilename);
 
     }
 }
