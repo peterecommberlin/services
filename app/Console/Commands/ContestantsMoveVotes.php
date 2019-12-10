@@ -17,7 +17,7 @@ class ContestantsMoveVotes extends Command
     protected $votes_override = 213;
     protected $votes_earned = 256;
 
-    protected $signature = 'contestants:votes {--domain=}';
+    protected $signature = 'contestants:votes {--domain=} {--role=contestant}';
     protected $description = 'show and save votes...';
  
     public function __construct()
@@ -28,6 +28,7 @@ class ContestantsMoveVotes extends Command
     public function handle(GetByRole $repo)
     {
         $domain    = $this->option("domain");
+        $role      = $this->option("role");
 
         $errors = array();
 
@@ -46,7 +47,7 @@ class ContestantsMoveVotes extends Command
 
         $eventId =  $route->getEventId();
 
-        $contestants = $repo->get($eventId, "contestant", ["votes","fieldpivot"]);
+        $contestants = $repo->get($eventId, $role, ["votes","fieldpivot"]);
 
         $zero = 0;
         $total = 0;
