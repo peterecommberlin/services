@@ -107,7 +107,8 @@ class PingWhenEmptyProfileEmail extends Mailable
 
             "empty"     =>  "to pole jest puste lub jego zawartość wydaje się za krótka",
             "badformat" =>  "wartość w tym polu ma błędny format. sprawdź, proszę.",
-            "nohtml"    => "treść możesz formatować używając HTML. dlaczego z tego nie skorzystać?"
+            "nohtml"    => "treść możesz formatować używając HTML. dlaczego z tego nie skorzystać?",
+            "noemail"    => "brak adres email"
 
         ],
 
@@ -115,14 +116,16 @@ class PingWhenEmptyProfileEmail extends Mailable
 
             "empty"    =>  "this field is empty or seems to be to short",
             "badformat" =>  "field value has bad format - please fix it",
-            "nohtml"    => "this field accepts basic formatting - why not use it?"
+            "nohtml"    => "this field accepts basic formatting - why not use it?",
+            "noemail"   => "bad format - we cannot find email address"
         ],
 
         "de" => [
 
             "empty"    =>  "dieses Feld ist noch leer oder zu kurz",
             "badformat" =>  "Inhalt des Feldes ist unpassend. Bitte korrigieren",
-            "nohtml"    => "dieses Feld akzeptiert Standardformatierung. Warum nicht verwenden?"
+            "nohtml"    => "dieses Feld akzeptiert Standardformatierung. Warum nicht verwenden?",
+            "noemail"   => "dieses Feld enthält keine E-Mail-Adresse"
         ],
 
 
