@@ -193,26 +193,37 @@ class PingWhenEmptyProfileEmail extends Mailable
     public function build()
     {
 
-        switch($this->lang){
+       
 
-            case "pl":
+        if($this->participant->group_id > 1){
+            app()->setLocale("en");
+            config(["app.name" => "E-commerce Berlin Expo"]);
+            $domain = "ecommerceberlin.com";
+            $cc = "ecommerceberlin+auto@ecommerceberlin.com";
+            $emailPostfix = " - E-commerce Berlin";
+            $this->adminName = "Jan Sobczak";
+            $admin_email = "ecommerceberlin@ecommerceberlin.com";
 
+        }else{
+
+
+            if($this->lang === "pl"){
                 app()->setLocale("pl");
                 config(["app.name" => "Targi eHandlu w Warszawie"]);
                 $emailPostfix = " - Targi eHandlu";
-            break;
-
-            case "en":
-
+            }else{
                 app()->setLocale("en");
                 config(["app.name" => "E-commerce Warsaw Expo"]);
                 $emailPostfix = " - E-commerce Warsaw Expo";
-            break;
+            }
+
+            $this->adminName = "Karolina Michalak";
+            $domain = "targiehandlu.pl";
+            $cc = "targiehandlu+auto@targiehandlu.pl";
+            $admin_email = "targiehandlu@targiehandlu.pl";
 
         }
 
-        $domain = "targiehandlu.pl";
-        $cc = "targiehandlu+auto@targiehandlu.pl";
 
         $admin = $this->participant->company->admin;
 
@@ -220,12 +231,7 @@ class PingWhenEmptyProfileEmail extends Mailable
             $this->adminName = $admin->fname . ' ' . $admin->lname;
             $admin_email = $admin->email;
         }
-        else
-        {
-            $this->adminName = "Karolina Michalak";
-            $admin_email = "targiehandlu@targiehandlu.pl";
-        }
-
+    
 
         $this->profile = new Personalizer( $this->participant, "");
 
@@ -279,6 +285,6 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         $this->subject( $this->getSetting("subject") );
 
-        return $this->markdown('emails.company.badprofile2-' . $this->lang);
+        return $this->markdown('emails.company.ebe-badprofile-' . $this->lang);
     }
 }

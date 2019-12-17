@@ -15,7 +15,7 @@
 Ich möchte Zugriff auf das Profil haben und dieses bearbeiten
 
 @component('mail::button', ['url' => $accountUrl])
-I want to sign in and edit  
+Bearbeiten des Ausstellerprofils  
 @endcomponent
 
 Der Link zu deinem Onlineprofil   [link]({{$profileUrl}})
@@ -29,8 +29,8 @@ Es ist sehr wichtig, dass das Profil aktualisiert ist. Es ist Voraussetzung um e
 **Um solche Nachrichten nicht mehr zu bekommen würden wir dich bitten, dass Profil auszufüllen. **
 
 Lieben Gruß,
-E-commerce Berlin Expo Team
 
+E-commerce Berlin Expo Team
 
 @endcomponent
 
