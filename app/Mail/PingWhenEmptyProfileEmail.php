@@ -117,7 +117,7 @@ class PingWhenEmptyProfileEmail extends Mailable
             "empty"    =>  "this field is empty or seems to be to short",
             "badformat" =>  "field value has bad format - please fix it",
             "nohtml"    => "this field accepts basic formatting - why not use it?",
-            "noemail"   => "bad format - we cannot find email address"
+            "noemail"   => "bad format - we cannot find valid email address"
         ],
 
         "de" => [
