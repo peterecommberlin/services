@@ -136,12 +136,12 @@ class PingWhenEmptyProfileEmail extends Mailable
             "accountUrl" => "https://account.ecommerceberlin.com/#/login?token=",
         ],
         "en" => [
-            "subject" => "Exhibitor's public profile needs your attention. ...and action",
+            "subject" => "Exhibitor's public profile needs your attention",
              "accountUrl" => "https://account.ecommerceberlin.com/#/login?token=",
         ],
 
         "de" => [
-            "subject" => "Das Ausstellerprofil muss vervollständigt werden",
+            "subject" => "Das Ausstellerprofil bedarf der Bearbeitung",
              "accountUrl" => "https://account.ecommerceberlin.com/#/login?token=",
         ]
     ];
