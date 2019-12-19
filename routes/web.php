@@ -19,11 +19,17 @@ Route::get('/', function()
 
 Route::get('/marek', function () {
     return Artisan::call('contestants:votes', [
-        '--domain' => 'ecommerceberlin.com'
+        
+        //'--domain' => 'ecommerceberlin.com'
+        '--domain=ecommercegermanyawards.com',
+        '--role=contestant_company'
     ]);
 
     //
 });
+
+
+Route::get('/report/{host}', "ExhibitorStatusController@index");
 
 
 Route::get('/p', function()
