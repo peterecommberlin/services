@@ -21,8 +21,8 @@ Route::get('/marek', function () {
     return Artisan::call('contestants:votes', [
         
         //'--domain' => 'ecommerceberlin.com'
-        '--domain=ecommercegermanyawards.com',
-        '--role=contestant_company'
+        '--domain' 	=> 'ecommercegermanyawards.com',
+        '--role' 	=> 'contestant_company'
     ]);
 
     //
