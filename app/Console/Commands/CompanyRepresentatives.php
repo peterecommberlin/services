@@ -158,7 +158,7 @@ class CompanyRepresentatives extends Command
         $iterate = ($whatWeDo === "send") ? $filtered : $exhibitors;
 
         $done = 0;
-        
+
         foreach($iterate as $ex)
         {   
 
@@ -182,11 +182,12 @@ class CompanyRepresentatives extends Command
             $cReps = array_get($reps, $ex->company_id, collect([]))->mapInto(Personalizer::class);
 
 
-            $this->info("Processing " . $name . " lang: " . $lang);
-
             if($cReps->count() >= $min){
                  continue;
             }
+
+            $this->info("Processing " . $name . " lang: " . $lang);
+
         
             if($whatWeDo !== "send"){
 
