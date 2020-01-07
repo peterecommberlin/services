@@ -135,7 +135,7 @@ class CompanyRepresentatives extends Command
         $this->info("Exhibitors that can be notified: " . $filtered->count() );
 
 
-        $done = 0;
+ 
 
         /*get representatives*/
 
@@ -155,11 +155,10 @@ class CompanyRepresentatives extends Command
 
         $this->info("Total companies with reps found: " . $reps->count() );
 
-
-        
-
         $iterate = ($whatWeDo === "send") ? $filtered : $exhibitors;
 
+        $done = 0;
+        
         foreach($iterate as $ex)
         {   
 
@@ -182,34 +181,35 @@ class CompanyRepresentatives extends Command
 
             $cReps = array_get($reps, $ex->company_id, collect([]))->mapInto(Personalizer::class);
 
+
+            $this->info("Processing " . $name . " lang: " . $lang);
+
+            if($cReps->count() >= $min){
+                 continue;
+            }
         
-            if($whatWeDo === "empty"){
+            if($whatWeDo !== "send"){
 
                 if(!$cReps->count()){
-                    $this->error("No reps " . $name . " lang: " . $lang);
+                    $this->error("No reps!");
+                }else{
+                    $this->line("Reps: " . $cReps->count());
                 }
 
                 continue;
             }
-
-            $this->info("Processing " . $name . " lang: " . $lang);
-
-            $this->line("Reps: " . $cReps->count());
-
-            if($cReps->count() > $min){
-                 $this->line("Skipped! Has more reps than " . $min);
-                 continue;
-            }
-
-            if($lang !== $viewlang)
-            {
-                $this->line("Skipped! Lang mismatch. ");
-                continue;
-            }
+    
 
         
             if($whatWeDo == "send")
             {
+
+                if($lang !== $viewlang)
+                {
+                    $this->line("Skipped! Lang mismatch. ");
+                    continue;
+                }
+
                 $this->info("Notified");
 
                 dispatch(new Job(
