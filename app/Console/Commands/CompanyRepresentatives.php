@@ -67,35 +67,39 @@ class CompanyRepresentatives extends Command
         $subject    = $this->option("subject");
         $min        = $this->option("min");
 
-
-
-        if(empty($viewlang)) {
-            $errors[] = "--lang= must be set!";
-        }
-
-        if(empty($defaultlang)) {
-            $errors[] = "--defaultlang= must be set!";
-        }
-
         if(empty($domain)) {
             $errors[] = "--domain= must be set!";
         }
 
-        if(empty($subject)) {
-            $errors[] = "--subject= must be set!";
+        $whatWeDo  = $this->anticipate('Send, stats, empty?', ['send', 'stats', 'empty']);
+
+        if($whatWeDo === "send"){
+
+            if(empty($viewlang)) {
+                $errors[] = "--lang= must be set!";
+            }
+
+            if(empty($defaultlang)) {
+                $errors[] = "--defaultlang= must be set!";
+            }
+
+
+            if(empty($subject)) {
+                $errors[] = "--subject= must be set!";
+            }
+
+            if(empty($email)) {
+                $errors[] = "--email= must be set!";
+            }
+
+            if($viewlang && ! view()->exists("emails.company." . $email . "-" . $viewlang)) {
+            $errors[] = "--email= error. View cannot be found!";
+            }
         }
-    
-        
-        if(empty($email)) {
-            $errors[] = "--email= must be set!";
-        }
+ 
 
         if(empty($min)) {
             $errors[] = "--min= must be set!";
-        }
-
-        if(! view()->exists("emails.company." . $email . "-" . $viewlang)) {
-            $errors[] = "--email= error. View cannot be found!";
         }
 
 
@@ -152,7 +156,7 @@ class CompanyRepresentatives extends Command
         $this->info("Total companies with reps found: " . $reps->count() );
 
 
-        $whatWeDo  = $this->anticipate('Send, stats, empty?', ['send', 'stats', 'empty']);
+        
 
         $iterate = ($whatWeDo === "send") ? $filtered : $exhibitors;
 
