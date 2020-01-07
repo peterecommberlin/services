@@ -13,8 +13,8 @@ Sign Into My Account
 @endcomponent
 
 The **offer is valid until the 15th of Janumary 2020**
-After this date, your order will be not accepted!
 
+After this date, your order will be not accepted!
 
 ## REMEMBER!
 
