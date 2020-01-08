@@ -93,17 +93,15 @@ class CompanyRepresentatives extends Command
 
         $this->info("Event id: " . $eventId );
 
-        $exhibitors = $service->getDataset();
+        $exhibitors = $service->getDataset(true);
 
-        $unique  = $service->withCompanies();
-
-        $this->info("Number of exhibitors with companies assigned: " . $unique->count() );
+        $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
 
         $filtered = $service->getSendable();
 
         $this->info("Exhibitors that can be notified: " . $filtered->count() );
 
-        $iterate = ($whatWeDo === "send") ? $filtered : $unique;
+        $iterate = ($whatWeDo === "send") ? $filtered : $exhibitors;
 
         $done = 0;
 
