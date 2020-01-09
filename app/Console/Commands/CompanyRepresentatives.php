@@ -110,19 +110,20 @@ class CompanyRepresentatives extends Command
 
             //do we have company assigned?
 
-            if(!$ex->company_id)
-            {
-                $this->error("No company assigned for " . $ex->email . " - skipped.");
+            if( !$ex->company_id ){
+                $this->error( "No company assigned for " . $ex->email );
                 continue;
             }
 
-            $lang = $ex->getLang();
+            if( !$ex->getAdminId() ){
+                $this->error( "No account assigned for " . $ex->getName() );
+                continue;
+            }
 
-            $name = $ex->getName();
-
-            $event_manager = $ex->getEventManager();
-
-            $cReps = $ex->getReps();
+            $lang           = $ex->getLang();
+            $name           = $ex->getName();
+            $event_manager  = $ex->getEventManager();
+            $cReps          = $ex->getReps();
 
             if($cReps->count() >= $threshold){
                  continue;
@@ -141,7 +142,6 @@ class CompanyRepresentatives extends Command
                 continue;
             }
     
-
         
             if($whatWeDo == "send")
             {

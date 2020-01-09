@@ -10,6 +10,7 @@ use Illuminate\Support\Collection;
 
 
 
+use Eventjuicer\Services\Exhibitors\Email;
 
 use Eventjuicer\Models\Participant;
 use Eventjuicer\Services\Personalizer;
@@ -27,7 +28,8 @@ class CompanyRepresentativesEmail extends Mailable
             $profile, 
             $accountUrl,
             $view,
-            $subject;
+            $subject,
+            $footer;
 
 
     public function __construct(
@@ -56,25 +58,24 @@ class CompanyRepresentativesEmail extends Mailable
     public function build()
     {
 
+        $emailHelper = new Email($this->participant);
 
-        $admin = $this->participant->company->admin;
-
+        $this->footer = $emailHelper->getFooter();
 
         if( $this->participant->group_id > 1 ){
 
+            $from = "ecommerceberlin@ecommerceberlin.com";
             $eventName = "E-commerce Berlin Expo";
             $domain = "ecommerceberlin.com";
+            $cc = "ecommerceberlin+auto@ecommerceberlin.com";
 
             app()->setLocale("en");
             config(["app.name" => $eventName]);
-           
-            $cc = "ecommerceberlin+auto@ecommerceberlin.com";
 
         }else{
 
 
-            $admin_name = "";
-            $admin_email = "targiehandlu@targiehandlu.pl";
+            $from = "targiehandlu@targiehandlu.pl";
             $eventName = "Targi eHandlu";
             $domain = "targiehandlu.pl";
             $cc = "targiehandlu+auto@targiehandlu.pl";
@@ -92,24 +93,15 @@ class CompanyRepresentativesEmail extends Mailable
         }
 
 
-        if($admin){
-            $admin_name = $admin->fname . ' ' . $admin->lname;
-            $admin_email = $admin->email;
-        }
-
-
         $this->profile = new Personalizer( $this->participant, "");
-
 
         $this->profileUrl = "https://" . $domain . "/" . 
                 $this->participant->company->slug . 
                 ",c,". 
                 $this->participant->company_id;
 
-
         $this->accountUrl = "https://account.".$domain."/#/login?token=" . $this->participant->token;
        
-
         if($this->event_manager && $this->participant->email !== $this->event_manager){
 
             $this->to( $this->event_manager );
@@ -121,7 +113,7 @@ class CompanyRepresentativesEmail extends Mailable
 
         }
 
-        $this->from($admin_email, $admin_name . " - " . $eventName);
+        $this->from($from, $emailHelper->getSender(); . " - " . $eventName);
 
         $this->cc( $cc ); 
 
