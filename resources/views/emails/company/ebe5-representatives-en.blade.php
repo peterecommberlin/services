@@ -21,9 +21,7 @@ You can of course reply to this email and proactively let us know.
  
 Regards,
 
-Jan Sobczak - Account Manager
-
-E-commerce Berlin Expo 
+{{$footer}}
 
 @endcomponent
 

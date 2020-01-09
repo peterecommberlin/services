@@ -21,9 +21,7 @@ Gerne können Sie uns aber auch auf diese E-Mail antworten.
  
 Mit freundlichen Grüßen,
 
-Jan Sobczak - Account Manager 
-
-E-commerce Berlin Expo
+{{$footer}}
 
 @endcomponent
 
