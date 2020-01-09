@@ -104,7 +104,8 @@ class CompanyRepresentatives extends Command
         $iterate = ($whatWeDo === "send") ? $filtered : $exhibitors;
 
         $done = 0;
-
+        $noreps = 0;
+        $noaccount = 0;
         foreach($iterate as $ex)
         {   
 
@@ -117,6 +118,7 @@ class CompanyRepresentatives extends Command
 
             if( !$ex->hasAccountManager() ){
                 $this->error( "No account assigned for " . $ex->getName() );
+                $noaccount++;
                 continue;
             }
 
@@ -124,6 +126,10 @@ class CompanyRepresentatives extends Command
             $name           = $ex->getName();
             $event_manager  = $ex->getEventManager();
             $cReps          = $ex->getReps();
+
+            if(!$cReps->count()){
+                $noreps++;
+            }
 
             if($cReps->count() >= $threshold){
                  continue;
@@ -171,7 +177,9 @@ class CompanyRepresentatives extends Command
 
         }   
 
-        $this->info("Counted " . $done . " companies with reps <= " . $threshold);
+        $this->info("Counted " . $noaccount . " without account manager ");
+
+        $this->info("Processed " . $done . " companies with reps <= " . $threshold);
 
 
     }
