@@ -113,7 +113,7 @@ class CompanyRepresentativesEmail extends Mailable
 
         }
 
-        $this->from($from, $emailHelper->getSender(); . " - " . $eventName);
+        $this->from($from, $emailHelper->getSender() . " - " . $eventName);
 
         $this->cc( $cc ); 
 
