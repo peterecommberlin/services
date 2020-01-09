@@ -115,7 +115,7 @@ class CompanyRepresentatives extends Command
                 continue;
             }
 
-            if( !$ex->getAdminId() ){
+            if( !$ex->hasAccountManager() ){
                 $this->error( "No account assigned for " . $ex->getName() );
                 continue;
             }
