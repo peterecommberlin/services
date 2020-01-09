@@ -161,7 +161,7 @@ class CompanyRepresentatives extends Command
                 $this->info("Notified");
 
                 dispatch(new Job(
-                        $ex, 
+                        $ex->getModel(), 
                         $cReps, 
                         $eventId,
                         array(
@@ -176,6 +176,8 @@ class CompanyRepresentatives extends Command
             $done++;
 
         }   
+
+        $this->info("Counted " . $noreps . " without reps!");
 
         $this->info("Counted " . $noaccount . " without account manager ");
 
