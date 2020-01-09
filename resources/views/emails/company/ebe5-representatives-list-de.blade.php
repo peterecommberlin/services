@@ -6,7 +6,7 @@
 
 ** Bitte beachten Sie, dass Sie in Ihrem Aussteller Konto Aussteller Vertreter hinzufügen / ändern / löschen können. Nur definierte Vertreter haben gedruckte Ausweise.**
 
-# DEADLINE ist am 15. Januar**
+# DEADLINE ist am 15. Januar
 
 # Die Liste der bereits definierten Vertreter ist wie folgt:
 
