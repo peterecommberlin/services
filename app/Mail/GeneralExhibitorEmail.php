@@ -31,7 +31,8 @@ class GeneralExhibitorEmail extends Mailable
             $profile, 
             $profileUrl, 
             $trackingLink,
-            $accountUrl;
+            $accountUrl,
+            $footer;
     /*
 
         $this->participant, 
