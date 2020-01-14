@@ -1,0 +1,16 @@
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Zusätzliche Dienstleistungen bestellen - letzter Aufruf" --email=ebe5-upgrades-reminder
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Additional services ordering - final reminder" --email=ebe5-upgrades-reminder
+
+9 stycznia
+==========
+
+php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=en --defaultlang=en --subject="Time to add Exhibitor's Representatives" --email=ebe5-representatives-list
+
+php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=de --defaultlang=en --subject="Firmenvertreter Hinzuzufügen" --email=ebe5-representatives-list
+
+14 stycznia
+===========
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Logistic - ENGLISH" --email=ebe5-logistics-manual-1st-message
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Logistic - DEUTSCH" --email=ebe5-logistics-manual-1st-message
