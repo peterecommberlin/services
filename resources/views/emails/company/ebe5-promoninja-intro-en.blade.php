@@ -28,7 +28,7 @@ Please find your customized link below. Use it when creating newsletters, email 
 @endcomponent
 
 
-**  IMPORTANT: The competition will be enabled till 5th February 6:00AM CET.**
+**  IMPORTANT: The competition will be enabled till 4th February 11:59PM CET.**
 
 # In your Exhibitor's account you will find 4 important sections related to the Challenge.
 
@@ -52,7 +52,7 @@ Looking at every listed prize you can see whether your company meets the conditi
 
 ## EMAIL TEMPLATES
 
-2 ready-to-send newsletters (polish and english), which are designed to inform your clients and partners about your participation in the event. You can copy HTML or download a zip file that can be easily imported by GetResponse / Mailchimp-like software.
+2 ready-to-send newsletters (polish and english), which are designed to inform your clients and partners about your participation in the event. You can copy HTML or download a zip file that can be easily imported by Newsletter2go / Mailchimp-like software.
 
 ## PROMOTIONAL MATERIALS
 
