@@ -14,7 +14,7 @@ Wir haben zusätzliche Dienste für Aussteller, welche ihre Anwesenheit auf der 
 
 Auf unserer Expo sollen nicht nur neue Kunden getroffen werden, sondern auch existierende Beziehungen gestärkt werden. 
 
-Der Marktwert unserer angebotenen Dienste in diesem Wettbewerb betragen mehr als 15.000,-€.
+Der Marktwert unserer angebotenen Dienste in diesem Wettbewerb betragen mehr als 25.000,-€.
 
 @endcomponent
 
@@ -26,7 +26,7 @@ Finde unten deinen persönlich angefertigten Link. Nutze diesen Link für Newsle
 [{{ $trackingLink }}]({{ $trackingLink }}) 
 @endcomponent
 
-**WICHTIG: Der Wettbewerb läuft bis zum 12. Februar 12:00 CET.**
+**WICHTIG: Der Wettbewerb läuft bis zum 4. Februar 11:59PM CET.**
 
 # In deinem Ausstellerpanel findest du 4 wichtige Bereiche bezüglich des Wettbewerbs.
 
@@ -49,7 +49,7 @@ Ob dein Unternehmen alle Konditionen erfüllt, findest du in der Preisliste im A
 
 ## EMAIL VORLAGEN
 
-2 E-Mail Vorlagen (deutsch/englisch), welche deine Anwesenheit auf der Expo promoten. Du kannst diese als HTML Datei oder Zip Datei herunterladen oder zu GetResponse / Mailchimp-ähnliche Softwaren exportieren. 
+2 E-Mail Vorlagen (deutsch/englisch), welche deine Anwesenheit auf der Expo promoten. Du kannst diese als HTML Datei oder Zip Datei herunterladen oder zu Newsletter2go / Mailchimp-ähnliche Softwaren exportieren. 
 
 ## PROMO MATERIALIEN
 
@@ -68,6 +68,10 @@ Sign In
 
 # Ausgewählte Preise
 
+## Exklusives Branding der Besucherpässe?
+
+Exklusives Branding der Besucherpässe mit dem Logo des Gewinners. Die Badges werden an die Besucher (7000+) der E-commerce Berlin Expo 2020 verteilt. 
+
 ## Präsentation
 
 Eine 30-minütige Präsentation auf einen der vier Bühnen. Eure Präsentation wird in die offizielle E-commerce Berlin Expo 2019 Agenda mit aufgenommen.
@@ -76,11 +80,11 @@ Eine 30-minütige Präsentation auf einen der vier Bühnen. Eure Präsentation w
 
 Ein Video Interview wird mit einem Vertreter eurer Firma auf der Expo durchgeführt. Das Video Interview wird auf dem EBE Youtube Kanal sowie sämtlichen Social Media Kanälen veröffentlicht.
 
-## Zugang zu Early-Bird Sales
 
-Erhalte Early-Bird Preise für die Stände auf der nächsten E-commerce Berlin Expo im Februar 2020. Du bekommst Zugang zur gesamten Ausstellungsfläche um die beste Location für deinen Stand zu wählen, vor allen anderen!
+Du möchtest dein eigenes Promomaterial nutzen? Super! Nutze stets den persönlich angefertigten Link! 
 
-Du möchtest dein eigenes Promomaterial nutzen? Super! Nutze stets den persönlich angefertigten Link!
+## Jeder Klick auf den personalisierten Link, der zur Website der E-commerce Berlin Expo führt, bringt einen Punkt. 
+Wir zählen nur die seriösen Stimmen. Das Registrieren auf der Website bringt keinen Punkt!
 
 @component('mail::panel')
 [{{ $trackingLink }}]({{ $trackingLink }}) 
