@@ -28,7 +28,7 @@ Please find your customized link below. Use it when creating newsletters, email 
 @endcomponent
 
 
-**  IMPORTANT: The competition will be enabled till 4th February 11:59PM CET.**
+**  IMPORTANT: The competition will be enabled till 4th February 11:59 PM CET**
 
 # In your Exhibitor's account you will find 4 important sections related to the Challenge.
 
@@ -38,8 +38,9 @@ Sign In
 
 # RANKING
 
-The ranking is created on the basis of data from google analytics with a **24-hour delay.**
-When you check the results, you actually see the results from the previous day.
+The ranking is created on the basis of data fetched from our google analytics.
+
+When you check the results early in the morning, you may see the results from the previous day.
 
 ## REWARDS
 
@@ -52,17 +53,16 @@ Looking at every listed prize you can see whether your company meets the conditi
 
 ## EMAIL TEMPLATES
 
-2 ready-to-send newsletters (polish and english), which are designed to inform your clients and partners about your participation in the event. You can copy HTML or download a zip file that can be easily imported by Newsletter2go / Mailchimp-like software.
+2 ready-to-send newsletters (english and german), which are designed to inform your clients and partners about your participation in the event. You can copy HTML or download a zip file that can be easily imported by Newsletter2go / Mailchimp-like software.
 
 ## PROMOTIONAL MATERIALS
 
-3 separate links, which you can share on social websites will render different image
+3 separate links, which you can share with different visual results
 
-* your logotype on our background with polish invitation
-* as above but with english
+* your logotype on our background
 * custom design (you will need to give full URL to your design in Company Data)
 
-Every link can be copied to clipboard, sent via messenger / @ or used in your designed-from-scratch newsletters.
+** Every link can be copied to clipboard, sent via messenger / @ or used in your designed-from-scratch newsletters.**
 
 @component('mail::button', ['url' => $accountUrl])
 Sign In  
@@ -82,15 +82,14 @@ Exclusive branded visitor badges with the Winner's logo. The badges will be hand
 
 Your company will be video-interviewed at your booth during Expo! You will own the resulting material and also can expect we will promote it after the event. 
 
-
 ## Promotion of the company logo on our website
 
 Your logotype will be promoted during next 11 months - till the next event.
 
-
 ## Want to use your own promo materials? Great. Always use the provided link!
 
 ## Every click through your customized link to the E-commerce Berlin Expo website gives you one point. 
+
 We are counting only unique clicks on your customized link. Registration at the event website is NOT required to get a point. 
 
 @component('mail::panel')
@@ -99,7 +98,7 @@ We are counting only unique clicks on your customized link. Registration at the 
 
 Regards, 
 
-E-commerce Berlin Expo
+{{$footer}}
 
 @endcomponent
 
