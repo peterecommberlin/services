@@ -13,4 +13,13 @@ php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=de
 ===========
 
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Logistics information - download the exhibitor manual for the E-commerce Berlin Expo 2020" --email=ebe5-logistics-manual-1st-message
+
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Logistikinformationen für Aussteller runterladen - E-commerce Berlin Expo 2020" --email=ebe5-logistics-manual-1st-message
+
+17 stycznia
+===========
+
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="3x presentation slot, video interview, promo materials... is waiting for you" --email=ebe5-promoninja-intro
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="3x Speakingslots, Videointerview, Promomaterialien.... warten auf dich." --email=ebe5-promoninja-intro
