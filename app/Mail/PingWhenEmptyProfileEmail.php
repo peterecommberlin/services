@@ -269,7 +269,7 @@ class PingWhenEmptyProfileEmail extends Mailable
       //  dd($this->event_manager);
 
 
-       if($this->event_manager && $this->participant->email !== $this->event_manager){
+       if(filter_var($this->event_manager, FILTER_VALIDATE_EMAIL) && $this->participant->email !== $this->event_manager){
 
             $this->to( $this->event_manager );
             $this->cc( $this->participant->email );
