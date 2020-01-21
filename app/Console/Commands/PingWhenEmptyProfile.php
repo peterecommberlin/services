@@ -33,9 +33,6 @@ class PingWhenEmptyProfile extends Command
  
     protected $signature = 'companies:emptyprofile 
       {--domain=}
-      {--maxold=1}
-      {--defaultlang=}
-
     ';
     protected $description = 'Command description';
  
@@ -66,17 +63,17 @@ class PingWhenEmptyProfile extends Command
 
         if($whatWeDo === "send"){
 
-            if(empty($maxold)) {
-                $errors[] = "--maxold= must be set!";
-            }
+            // if(empty($maxold)) {
+            //     $errors[] = "--maxold= must be set!";
+            // }
 
-            if(empty($defaultlang)) {
-                $errors[] = "--defaultlang= must be set!";
-            }
+            // if(empty($defaultlang)) {
+            //     $errors[] = "--defaultlang= must be set!";
+            // }
 
-            if(empty($email)) {
-                $errors[] = "--email= must be set!";
-            }
+            // if(empty($email)) {
+            //     $errors[] = "--email= must be set!";
+            // }
 
 
         }
@@ -142,10 +139,10 @@ class PingWhenEmptyProfile extends Command
             }
 
             $this->line("----");
-            $this->info("Processing " . $name . " lang: " . $lang);
+            $this->info("Processing " . $ex->email . " lang: " . $lang);
 
 
-            $this->line("Fields with errors: " . implode(", ", array_keys($status)));
+            $this->error("Fields with errors: " . implode(", ", array_keys($status)));
 
             if($whatWeDo === "send")
             {
