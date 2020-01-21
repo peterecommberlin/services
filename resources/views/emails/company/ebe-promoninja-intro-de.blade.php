@@ -68,7 +68,7 @@ Sign In
 
 # Ausgewählte Preise
 
-## Exklusives Branding der Besucherpässe?
+## Exklusives Branding der Besucherpässe
 
 Exklusives Branding der Besucherpässe mit dem Logo des Gewinners. Die Badges werden an die Besucher (7000+) der E-commerce Berlin Expo 2020 verteilt. 
 
