@@ -4,18 +4,11 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-
-
-use Eventjuicer\Services\Resolver;
-use Eventjuicer\Services\GetByRole;
 use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
-use Eventjuicer\Services\Revivers\ParticipantSendable;
-use Eventjuicer\Services\CompanyData;
+use Eventjuicer\Services\Exhibitors\Console;
 
-use Eventjuicer\ValueObjects\EmailAddress;
 
-class GeneralExhibitorMessage extends Command
-{
+class GeneralExhibitorMessage extends Command {
 
  
     protected $signature = 'exhibitors:current-event 
@@ -34,9 +27,10 @@ class GeneralExhibitorMessage extends Command
         parent::__construct();
     }
  
-    public function handle(GetByRole $repo, ParticipantSendable $sendable, CompanyData $cd)
+    public function handle(Console $service)
     {
 
+        $service->setParams($this->options());
 
         $viewlang   = $this->option("lang");
         $defaultlang = $this->option("defaultlang");
@@ -86,24 +80,20 @@ class GeneralExhibitorMessage extends Command
             LET'S FUCKING START!
         **/
 
+        $service->run($domain);
 
-        $route = new Resolver( $domain );
+        $eventId =  $service->getEventId();
 
-        $eventId =  $route->getEventId();
+        $this->info("Event id: " . $eventId );
 
-        $this->info("Event id: " . $eventId);
-
-        $exhibitors = $repo->get($eventId, "exhibitor")->unique("company_id");
+        $exhibitors = $service->getDataset(true);
 
         $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
 
-        $sendable->checkUniqueness(false);
+        $filtered = $service->getSendable();
 
-        $sendable->setMuteTime(20); //minutes!!!!
+        $this->info("Exhibitors that can be notified: " . $filtered->count() );
 
-        $exhibitors = $sendable->filter($exhibitors, $eventId);
-
-        $this->info("Exhibitors that can be notified: " . $exhibitors->count() );
 
         $done = 0;
 
@@ -117,12 +107,16 @@ class GeneralExhibitorMessage extends Command
                 continue;
             }
 
-            $companyProfile = $cd->toArray($ex->company);
 
-            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
+            if( !$ex->hasAccountManager() ){
+                $this->error( "No account assigned for " . $ex->getName() );
+                continue;
+            }
 
-
-            $event_manager = isset($companyProfile["event_manager"]) ? (new EmailAddress($companyProfile["event_manager"]))->find() : "";
+            $lang           = $ex->getLang();
+            $name           = $ex->getName();
+            $event_manager  = $ex->getEventManager();
+            //$cReps          = $ex->getReps();
 
 
             if($lang !== $viewlang)
@@ -131,12 +125,12 @@ class GeneralExhibitorMessage extends Command
                 continue;
             }
 
-            $this->line("Processing " . $ex->company->slug);
+            $this->line("Processing " . $name);
 
             $this->line("Notifying " . $ex->email);
 
             dispatch(new Job(
-                $ex, 
+                $ex->getModel(), 
                 $eventId, 
                 compact("email", "subject", "event_manager", "viewlang", "lang", "domain") 
             ));

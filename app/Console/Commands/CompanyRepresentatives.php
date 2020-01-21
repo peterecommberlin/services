@@ -4,30 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use Eventjuicer\Services\Resolver;
-use Eventjuicer\Services\GetByRole;
-use Eventjuicer\Services\CompanyData;
 use Eventjuicer\Jobs\CompanyRepresentativesJob as Job;
-use Eventjuicer\Services\Revivers\ParticipantSendable;
-
-
-use Eventjuicer\Repositories\CompanyRepresentativeRepository;
-use Eventjuicer\Repositories\Criteria\ColumnGreaterThanZero;
-use Eventjuicer\Repositories\Criteria\BelongsToEvent;
-use Eventjuicer\Services\Personalizer;
-
-
-use Eventjuicer\ValueObjects\EmailAddress;
-
-
-/*
-
-changes
-===========================
-use event_manager as CC contact
-handle language differently
-
-*/
+use Eventjuicer\Services\Exhibitors\Console;
 
 class CompanyRepresentatives extends Command
 {
@@ -37,7 +15,7 @@ class CompanyRepresentatives extends Command
         {--domain=} 
         {--email=} 
         {--subject=}
-        {--min=}
+        {--threshold=}
         {--lang=}
         {--defaultlang=}';
 
@@ -48,16 +26,11 @@ class CompanyRepresentatives extends Command
         parent::__construct();
     }
  
-    public function handle(
-            GetByRole $getByRole, 
-            CompanyData $cd, 
-            ParticipantSendable $sendable, 
-            CompanyRepresentativeRepository $repsRepo
-    ){
+    public function handle(Console $service){
 
+        $service->setParams($this->options());
 
         $errors = [];
-
 
         $viewlang   = $this->option("lang");
         $defaultlang= $this->option("defaultlang");
@@ -65,37 +38,41 @@ class CompanyRepresentatives extends Command
         $domain     = $this->option("domain");
         $email      = $this->option("email");
         $subject    = $this->option("subject");
-        $min        = $this->option("min");
-
-
-
-        if(empty($viewlang)) {
-            $errors[] = "--lang= must be set!";
-        }
-
-        if(empty($defaultlang)) {
-            $errors[] = "--defaultlang= must be set!";
-        }
+        $threshold  = $this->option("threshold");
 
         if(empty($domain)) {
             $errors[] = "--domain= must be set!";
         }
 
-        if(empty($subject)) {
-            $errors[] = "--subject= must be set!";
-        }
-    
-        
-        if(empty($email)) {
-            $errors[] = "--email= must be set!";
-        }
+        $whatWeDo  = $this->anticipate('Send, stats?', ['send', 'stats']);
 
-        if(empty($min)) {
-            $errors[] = "--min= must be set!";
-        }
+        if($whatWeDo === "send"){
 
-        if(! view()->exists("emails.company." . $email . "-" . $viewlang)) {
+            if(empty($viewlang)) {
+                $errors[] = "--lang= must be set!";
+            }
+
+            if(empty($defaultlang)) {
+                $errors[] = "--defaultlang= must be set!";
+            }
+
+
+            if(empty($subject)) {
+                $errors[] = "--subject= must be set!";
+            }
+
+            if(empty($email)) {
+                $errors[] = "--email= must be set!";
+            }
+
+            if($viewlang && ! view()->exists("emails.company." . $email . "-" . $viewlang)) {
             $errors[] = "--email= error. View cannot be found!";
+            }
+        }
+ 
+
+        if(empty($threshold)) {
+            $errors[] = "--threshold= must be set!";
         }
 
 
@@ -110,106 +87,81 @@ class CompanyRepresentatives extends Command
 
 
 
-        $route = new Resolver( $domain );
+        $service->run($domain);
 
-        $eventId =  $route->getEventId();
+        $eventId =  $service->getEventId();
 
-        $this->info("Event id: " . $eventId);
+        $this->info("Event id: " . $eventId );
 
-        $exhibitors = $getByRole->get($eventId, "exhibitor", ["company.data"])->unique("company_id");
+        $exhibitors = $service->getDataset(true);
 
         $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
 
-        $sendable->checkUniqueness(false);
-
-        $sendable->setMuteTime(20); //minutes!!!!
-
-
-        $filtered = $sendable->filter($exhibitors, $eventId);
-
+        $filtered = $service->getSendable();
 
         $this->info("Exhibitors that can be notified: " . $filtered->count() );
 
-
-        $done = 0;
-
-        /*get representatives*/
-
-        $repsRepo->pushCriteria( new BelongsToEvent($eventId));
-        $repsRepo->pushCriteria( new ColumnGreaterThanZero("parent_id") );
-        $repsRepo->with(["fields", "purchases"]);
-        $reps = $repsRepo->all();
-
-
-        $reps = $reps->filter(function($participant){
-
-            return $participant->purchases->first()->status !== "cancelled";
-
-        })->groupBy("company_id");
-
-        /*get representatives*/
-
-        $this->info("Total companies with reps found: " . $reps->count() );
-
-
-        $whatWeDo  = $this->anticipate('Send, stats, empty?', ['send', 'stats', 'empty']);
-
         $iterate = ($whatWeDo === "send") ? $filtered : $exhibitors;
 
+        $done = 0;
+        $noreps = 0;
+        $noaccount = 0;
         foreach($iterate as $ex)
         {   
 
             //do we have company assigned?
 
-            if(!$ex->company_id)
-            {
-                $this->error("No company assigned for " . $ex->email . " - skipped.");
+            if( !$ex->company_id ){
+                $this->error( "No company assigned for " . $ex->email );
                 continue;
             }
-            
 
-            $companyProfile = $cd->toArray($ex->company);
-
-            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
-
-            $name = !empty($companyProfile["name"]) ? $companyProfile["name"] : $ex->slug;
-
-            $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
-
-            $cReps = array_get($reps, $ex->company_id, collect([]))->mapInto(Personalizer::class);
-
-        
-            if($whatWeDo === "empty"){
-
-                if(!$cReps->count()){
-                    $this->error("No reps " . $name . " lang: " . $lang);
-                }
-
+            if( !$ex->hasAccountManager() ){
+                $this->error( "No account assigned for " . $ex->getName() );
+                $noaccount++;
                 continue;
+            }
+
+            $lang           = $ex->getLang();
+            $name           = $ex->getName();
+            $event_manager  = $ex->getEventManager();
+            $cReps          = $ex->getReps();
+
+            if(!$cReps->count()){
+                $noreps++;
+            }
+
+            if($cReps->count() >= $threshold){
+                 continue;
             }
 
             $this->info("Processing " . $name . " lang: " . $lang);
 
-            $this->line("Reps: " . $cReps->count());
+            if($whatWeDo !== "send"){
 
-            if($cReps->count() > $min){
-                 $this->line("Skipped! Has more reps than " . $min);
-                 continue;
-            }
+                if(!$cReps->count()){
+                    $this->error("No reps!");
+                }else{
+                    $this->line("Reps: " . $cReps->count());
+                }
 
-            if($lang !== $viewlang)
-            {
-                $this->line("Skipped! Lang mismatch. ");
                 continue;
             }
-
+    
         
             if($whatWeDo == "send")
             {
+
+                if($lang !== $viewlang)
+                {
+                    $this->line("Skipped! Lang mismatch. ");
+                    continue;
+                }
+
                 $this->info("Notified");
 
                 dispatch(new Job(
-                        $ex, 
+                        $ex->getModel(), 
                         $cReps, 
                         $eventId,
                         array(
@@ -225,7 +177,11 @@ class CompanyRepresentatives extends Command
 
         }   
 
-        $this->info("Counted " . $done . " companies with reps <= " . $min);
+        $this->info("Counted " . $noreps . " without reps!");
+
+        $this->info("Counted " . $noaccount . " without account manager ");
+
+        $this->info("Processed " . $done . " companies with reps <= " . $threshold);
 
 
     }

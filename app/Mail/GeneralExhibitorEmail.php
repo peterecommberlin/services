@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 use Eventjuicer\Models\Participant;
 use Eventjuicer\Services\Personalizer;
-
+use Eventjuicer\Services\Exhibitors\Email;
 
 class GeneralExhibitorEmail extends Mailable
 {
@@ -31,7 +31,8 @@ class GeneralExhibitorEmail extends Mailable
             $profile, 
             $profileUrl, 
             $trackingLink,
-            $accountUrl;
+            $accountUrl,
+            $footer;
     /*
 
         $this->participant, 
@@ -61,40 +62,41 @@ class GeneralExhibitorEmail extends Mailable
     public function build()
     {
 
-        if($this->participant->group_id > 1){
-            app()->setLocale("en");
-            config(["app.name" => "E-commerce Berlin Expo"]);
+        $emailHelper = new Email($this->participant);
+
+        $this->footer = $emailHelper->getFooter();
+
+
+       if( $this->participant->group_id > 1 ){
+
+            $from = "ecommerceberlin@ecommerceberlin.com";
+            $eventName = "E-commerce Berlin Expo";
             $domain = "ecommerceberlin.com";
             $cc = "ecommerceberlin+auto@ecommerceberlin.com";
-            $emailPostfix = " - E-commerce Berlin";
-        }
-        else
-        {
-            app()->setLocale("pl");
-            config(["app.name" => "Targi eHandlu w Krakowie"]);
-           
+
+            app()->setLocale("en");
+            config(["app.name" => $eventName]);
+
+        }else{
+
+
+            $from = "targiehandlu@targiehandlu.pl";
+            $eventName = "Targi eHandlu";
             $domain = "targiehandlu.pl";
             $cc = "targiehandlu+auto@targiehandlu.pl";
-            
-            if($this->lang == "pl"){
-                $emailPostfix = " - Targi eHandlu";
-            }else{
-                $emailPostfix = " - E-commerce Cracow Expo";
+
+            if($this->viewlang === "en"){
+                app()->setLocale("en");
                 config(["app.name" => "E-commerce Cracow Expo"]);
             }
+            else
+            {
+                app()->setLocale("pl");
+                config(["app.name" => $eventName]);
+            }
+            
         }
 
-        $admin = $this->participant->company->admin;
-
-        if($admin){
-            $admin_name = $admin->fname . ' ' . $admin->lname;
-            $admin_email = $admin->email;
-        }
-        else
-        {
-            $admin_name = "";
-            $admin_email = "targiehandlu@targiehandlu.pl";
-        }
 
        
 
@@ -109,11 +111,8 @@ class GeneralExhibitorEmail extends Mailable
 
         $this->accountUrl = "https://account.".$domain."/#/login?token=" . $this->participant->token;
        
-
-        // $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th3rCMiM_%s&utm_medium=link&utm_campaign=promoninja&utm_content=raw", $this->participant->company_id);
-
-
-         $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th4wOPiy_%s&utm_medium=link&utm_campaign=promoninja&utm_content=raw", $this->participant->company_id);
+        //EBE5
+        $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th4x90iy_%s&utm_medium=link&utm_campaign=promoninja&utm_content=raw", $this->participant->company_id);
 
 
         if($this->event_manager && $this->participant->email !== $this->event_manager){
@@ -127,7 +126,7 @@ class GeneralExhibitorEmail extends Mailable
 
         }
 
-        $this->from($admin_email, $admin_name . $emailPostfix);
+        $this->from($from, $emailHelper->getSender() . " - " . $eventName);
 
         $this->cc( $cc ); 
 

@@ -4,9 +4,11 @@
  
 # Hello {{$profile->translate("[[fname]]")}},
 
-# Here you have basic logistic information about E-commerce Berlin Expo:
+Here you have basic logistic information about E-commerce Berlin Expo:
 
-## Oversized parcels and materials which you want to ship and have delivered directly to the booth. Recipient:
+## Oversized parcels and materials which you want to ship and have delivered directly to the booth. 
+
+Recipient:
 
 @component('mail::panel')
 
@@ -25,7 +27,6 @@ Parcel can reach the place no earlier than February, the 7th! All parcels will b
 ## Place:
 
 STATION Berlin  - Luckenwalder Str. 4-6, 10963 Berlin 
-
 
 ## Parking during assembly day (Wednesday / 12 Feb)
 
@@ -85,7 +86,7 @@ The same rules are valid as mentioned in the assembly day section.
 
 Regards, 
 
-E-commerce Berlin Expo Team
+{{$footer}}
 
 @endcomponent
 

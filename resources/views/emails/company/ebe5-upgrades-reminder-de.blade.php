@@ -1,5 +1,3 @@
-
-
 @component('mail::message')
 
 # Hallo {{$profile->translate("[[fname]]")}},
@@ -13,8 +11,8 @@ Zu meinem Account gelangen
 @endcomponent
 
 **Das Angebot gilt bis zum 15.01.2020**
-Nach diesem Datum wird Ihre Bestellung nicht mehr angenommen!
 
+Nach diesem Datum wird Ihre Bestellung nicht mehr angenommen!
 
 
 ## BEACHTE! 
