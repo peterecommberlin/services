@@ -6,7 +6,7 @@
 
 ** Bitte beachten Sie, dass Sie in Ihrem Aussteller Konto Aussteller Vertreter hinzufügen / ändern / löschen können. Nur definierte Vertreter haben gedruckte Ausweise.**
 
-# DEADLINE ist Heute
+# DEADLINE ist heute
 
 # Die Liste der bereits definierten Vertreter ist wie folgt:
 

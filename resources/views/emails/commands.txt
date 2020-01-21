@@ -23,3 +23,10 @@ php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.c
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="3x presentation slot, video interview, promo materials... is waiting for you" --email=ebe5-promoninja-intro
 
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="3x Speakingslots, Videointerview, Promomaterialien.... warten auf dich." --email=ebe5-promoninja-intro
+
+21 stycznia
+===========
+
+php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=en --defaultlang=en --subject="Deadline today. Please add exhibitor's representatives." --email=ebe5-representatives-final
+
+php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=de --defaultlang=en --subject="Deadline heute. Bitte fügen Sie Firmenvertreter hinzu." --email=ebe5-representatives-final
