@@ -30,7 +30,7 @@ Es ist sehr wichtig, dass das Profil aktualisiert ist. Es ist Voraussetzung um e
 
 Lieben Gruß,
 
-E-commerce Berlin Expo Team
+{{$footer}}
 
 @endcomponent
 

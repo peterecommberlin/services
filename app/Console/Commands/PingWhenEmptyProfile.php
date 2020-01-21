@@ -6,15 +6,18 @@ use Illuminate\Console\Command;
 
 
 
-use Eventjuicer\Services\Resolver;
-use Eventjuicer\Services\GetByRole;
-use Eventjuicer\Services\CompanyData;
+// use Eventjuicer\Services\Resolver;
+// use Eventjuicer\Services\GetByRole;
+// 
+// use Eventjuicer\Services\Revivers\ParticipantSendable;
+// use Eventjuicer\ValueObjects\EmailAddress;
+
 use Eventjuicer\Jobs\PingWhenEmptyProfileJob as Job;
-use Eventjuicer\Services\Revivers\ParticipantSendable;
-use Eventjuicer\ValueObjects\EmailAddress;
+use Eventjuicer\Services\CompanyData;
+use Eventjuicer\Services\Exhibitors\Console;
 
 /*
-
+Das Ausstellerprofil muss vervollständigt werden
 //https://github.com/eventjuicer/admin/issues/3
 
 changes
@@ -41,13 +44,19 @@ class PingWhenEmptyProfile extends Command
         parent::__construct();
     }
  
-    public function handle(GetByRole $repo, CompanyData $cd, ParticipantSendable $sendable)
+    public function handle(Console $service, CompanyData $cd)
     {
 
+
+        $service->setParams($this->options());
+
+
+        $whatWeDo  = $this->anticipate('Send or stats?', ['send', 'stats']);
 
         $domain     = $this->option("domain");
         $maxold     = $this->option("maxold");
         $defaultlang     = $this->option("defaultlang");
+
 
         $errors = array();
 
@@ -55,14 +64,24 @@ class PingWhenEmptyProfile extends Command
             $errors[] = "--domain= must be set!";
         }
 
-        if(empty($maxold)) {
-            $errors[] = "--maxold= must be set!";
+        if($whatWeDo === "send"){
+
+            if(empty($maxold)) {
+                $errors[] = "--maxold= must be set!";
+            }
+
+            if(empty($defaultlang)) {
+                $errors[] = "--defaultlang= must be set!";
+            }
+
+            if(empty($email)) {
+                $errors[] = "--email= must be set!";
+            }
+
+
         }
 
-        if(empty($defaultlang)) {
-            $errors[] = "--defaultlang= must be set!";
-        }
-
+       
         if(count($errors)){
             foreach($errors as $error){
                 $this->error($error);
@@ -72,29 +91,30 @@ class PingWhenEmptyProfile extends Command
 
 
 
-        $route = new Resolver( $domain );
 
-        $eventId =  $route->getEventId();
+          /**
+            LET'S FUCKING START!
+        **/
 
-        $this->info("Event id: " . $eventId);
+        $service->run($domain);
 
-        $exhibitors = $repo->get($eventId, "exhibitor", ["company.data"])->unique("company_id");
+        $eventId =  $service->getEventId();
+
+        $this->info("Event id: " . $eventId );
+
+        $exhibitors = $service->getDataset(true);
 
         $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
 
-        $sendable->checkUniqueness(true);
-
-        $sendable->setMuteTime(20); //minutes!!!!
-
-        $filtered = $sendable->filter($exhibitors, $eventId);
+        $filtered = $service->getSendable();
 
         $this->info("Exhibitors that can be notified: " . $filtered->count() );
+
 
         $done = 0;
 
 
-        $whatWeDo  = $this->anticipate('Send or stats?', ['send', 'stats']);
-
+    
 
         foreach($exhibitors as $ex)
         {
@@ -108,16 +128,13 @@ class PingWhenEmptyProfile extends Command
                 continue;
             }
 
-            $companyProfile = $cd->toArray($ex->company);
 
-            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
+            $lang           = $ex->getLang();
+            $name           = $ex->getName();
+            $event_manager  = $ex->getEventManager();
 
-            $event_manager = !empty($companyProfile["event_manager"]) ? (new EmailAddress($companyProfile["event_manager"]))->find() : "";
 
-            //check for companydata fields freshness :)
-            //check for required fields
-
-            $status = $cd->status($ex->company);
+            $status = $cd->status( $ex->getModel()->company);
 
             if(!count($status))
             {
@@ -125,7 +142,8 @@ class PingWhenEmptyProfile extends Command
             }
 
             $this->line("----");
-            $this->info("Processing " . $ex->company->slug . " lang: " . $lang);
+            $this->info("Processing " . $name . " lang: " . $lang);
+
 
             $this->line("Fields with errors: " . implode(", ", array_keys($status)));
 
@@ -134,7 +152,7 @@ class PingWhenEmptyProfile extends Command
                 $this->info("Notifying " . $ex->email);
                 $this->line("----");
 
-                dispatch(new Job($ex, $eventId, $lang, $event_manager, $domain));
+                dispatch(new Job($ex->getModel(), $eventId, $lang, $event_manager, $domain));
             }
 
             $done++;

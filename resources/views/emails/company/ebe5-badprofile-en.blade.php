@@ -27,7 +27,7 @@ It is very import to have online profile updated. It is required in order to pro
 
 **Please edit your profile to stop receiving this message**
 
-Regards, E-commerce Berlin Expo Team
+{{$footer}}
 
 @endcomponent
 

@@ -10,7 +10,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 use Eventjuicer\Models\Participant;
 use Eventjuicer\Services\Personalizer;
-
+use Eventjuicer\Services\Exhibitors\Email;
 
 class PingWhenEmptyProfileEmail extends Mailable
 {
@@ -29,7 +29,8 @@ class PingWhenEmptyProfileEmail extends Mailable
             $profileUrl, 
             $accountUrl, 
             $exampleUrl,
-            $adminName;
+            $adminName,
+            $footer;
 
     public $fieldNames = [
 
@@ -196,43 +197,40 @@ class PingWhenEmptyProfileEmail extends Mailable
     public function build()
     {
 
+
+        $emailHelper = new Email($this->participant);
+
+        $this->footer = $emailHelper->getFooter();
        
 
-        if($this->participant->group_id > 1){
-            app()->setLocale("en");
-            config(["app.name" => "E-commerce Berlin Expo"]);
+       if( $this->participant->group_id > 1 ){
+
+            $from = "ecommerceberlin@ecommerceberlin.com";
+            $eventName = "E-commerce Berlin Expo";
             $domain = "ecommerceberlin.com";
             $cc = "ecommerceberlin+auto@ecommerceberlin.com";
-            $emailPostfix = " - E-commerce Berlin";
-            $this->adminName = "Jan Sobczak";
-            $admin_email = "ecommerceberlin@ecommerceberlin.com";
+
+            app()->setLocale("en");
+            config(["app.name" => $eventName]);
 
         }else{
 
 
-            if($this->lang === "pl"){
-                app()->setLocale("pl");
-                config(["app.name" => "Targi eHandlu w Warszawie"]);
-                $emailPostfix = " - Targi eHandlu";
-            }else{
-                app()->setLocale("en");
-                config(["app.name" => "E-commerce Warsaw Expo"]);
-                $emailPostfix = " - E-commerce Warsaw Expo";
-            }
-
-            $this->adminName = "Karolina Michalak";
+            $from = "targiehandlu@targiehandlu.pl";
+            $eventName = "Targi eHandlu";
             $domain = "targiehandlu.pl";
             $cc = "targiehandlu+auto@targiehandlu.pl";
-            $admin_email = "targiehandlu@targiehandlu.pl";
 
-        }
-
-
-        $admin = $this->participant->company->admin;
-
-        if($admin){
-            $this->adminName = $admin->fname . ' ' . $admin->lname;
-            $admin_email = $admin->email;
+            if($this->viewlang === "en"){
+                app()->setLocale("en");
+                config(["app.name" => "E-commerce Cracow Expo"]);
+            }
+            else
+            {
+                app()->setLocale("pl");
+                config(["app.name" => $eventName]);
+            }
+            
         }
     
 
@@ -271,7 +269,7 @@ class PingWhenEmptyProfileEmail extends Mailable
       //  dd($this->event_manager);
 
 
-        if(filter_var( $this->event_manager, FILTER_VALIDATE_EMAIL) && $this->participant->email !== $this->event_manager){
+       if($this->event_manager && $this->participant->email !== $this->event_manager){
 
             $this->to( $this->event_manager );
             $this->cc( $this->participant->email );
@@ -282,12 +280,12 @@ class PingWhenEmptyProfileEmail extends Mailable
 
         }
 
-        $this->from($admin_email, $this->adminName . $emailPostfix);
+        $this->from($from, $emailHelper->getSender() . " - " . $eventName);
 
         $this->cc( $cc ); 
 
         $this->subject( $this->getSetting("subject") );
 
-        return $this->markdown('emails.company.ebe-badprofile-' . $this->lang);
+        return $this->markdown('emails.company.ebe5-badprofile-' . $this->lang);
     }
 }
