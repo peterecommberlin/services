@@ -110,7 +110,7 @@ class GeneralExhibitorMessage extends Command {
 
             if( !$ex->hasAccountManager() ){
                 $this->error( "No account assigned for " . $ex->getName() );
-                continue;
+               // continue;
             }
 
             $lang           = $ex->getLang();
