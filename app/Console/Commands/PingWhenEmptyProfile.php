@@ -48,35 +48,28 @@ class PingWhenEmptyProfile extends Command
         $service->setParams($this->options());
 
 
-        $whatWeDo  = $this->anticipate('Send or stats?', ['send', 'stats']);
-
         $domain     = $this->option("domain");
-        $maxold     = $this->option("maxold");
-        $defaultlang     = $this->option("defaultlang");
+        // $maxold     = $this->option("maxold");
+        // $defaultlang     = $this->option("defaultlang");
 
 
         $errors = array();
 
         if(empty($domain)) {
             $errors[] = "--domain= must be set!";
-        }
+        }      
 
-        if($whatWeDo === "send"){
+        // if(empty($maxold)) {
+        //     $errors[] = "--maxold= must be set!";
+        // }
 
-            // if(empty($maxold)) {
-            //     $errors[] = "--maxold= must be set!";
-            // }
+        // if(empty($defaultlang)) {
+        //     $errors[] = "--defaultlang= must be set!";
+        // }
 
-            // if(empty($defaultlang)) {
-            //     $errors[] = "--defaultlang= must be set!";
-            // }
-
-            // if(empty($email)) {
-            //     $errors[] = "--email= must be set!";
-            // }
-
-
-        }
+        // if(empty($email)) {
+        //     $errors[] = "--email= must be set!";
+        // }
 
        
         if(count($errors)){
@@ -85,6 +78,8 @@ class PingWhenEmptyProfile extends Command
             }
             return;
         }
+
+         $whatWeDo  = $this->anticipate('Send or stats?', ['send', 'stats']);
 
 
 
