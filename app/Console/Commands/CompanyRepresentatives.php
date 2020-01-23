@@ -135,7 +135,11 @@ class CompanyRepresentatives extends Command
                  continue;
             }
 
-            $this->info("Processing " . $name . " lang: " . $lang);
+            $this->info("Processing " . $ex->email . " lang: " . $lang);
+
+            if(empty($name)){
+                 $this->error("No company name!");
+            }
 
             if($whatWeDo !== "send"){
 
