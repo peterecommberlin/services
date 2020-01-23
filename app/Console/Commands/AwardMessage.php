@@ -11,12 +11,13 @@ use Eventjuicer\Services\GetByRole;
 use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 use Eventjuicer\Services\CompanyData;
-use Eventjuicer\Services\PartnerPerformance;
+ 
 
 use Eventjuicer\Services\Company;
 use Eventjuicer\Services\CompanyDataHelpers;
 use Eventjuicer\ValueObjects\EmailAddress;
 
+use Eventjuicer\Services\Exhibitors\Console;
 
 class AwardMessage extends Command
 {
@@ -39,7 +40,7 @@ class AwardMessage extends Command
         parent::__construct();
     }
  
-    public function handle(PartnerPerformance $performance, GetByRole $repo, ParticipantSendable $sendable, CompanyData $cd, CompanyDataHelpers $cdh)
+    public function handle(Console $service)
     {
 
         $whatWeDo  = $this->anticipate('Send, stats, test?', ['test', 'send', 'stats']);
@@ -64,28 +65,34 @@ class AwardMessage extends Command
             $errors[] = "--domain= must be set!";
         }
 
-        if($whatWeDo == "send" && empty($subject)) {
-            $errors[] = "--subject= must be set!";
-        }
+        if($whatWeDo === "send"){
+
+            if(empty($subject)) {
+                $errors[] = "--subject= must be set!";
+            }
+            
+            if(empty($email)) {
+                $errors[] = "--email= must be set!";
+            }
+
+            if(empty($viewlang)) {
+                $errors[] = "--lang= must be set!";
+            }
+
+            if(empty($defaultlang)) {
+                $errors[] = "--defaultlang= must be set!";
+            }
         
-        if($whatWeDo == "send" && empty($email)) {
-            $errors[] = "--email= must be set!";
+            $email = $email . "-" . $viewlang;
+
+            if($whatWeDo == "send" && ! view()->exists("emails.company." . $email)) {
+                $errors[] = "--email= error. View " . $email . " cannot be found";
+            }
+
         }
 
-        if($whatWeDo == "send" && empty($viewlang)) {
-            $errors[] = "--lang= must be set!";
-        }
 
-        if(empty($defaultlang)) {
-            $errors[] = "--defaultlang= must be set!";
-        }
-    
-        $email = $email . "-" . $viewlang;
-
-        if($whatWeDo == "send" && ! view()->exists("emails.company." . $email)) {
-            $errors[] = "--email= error. View " . $email . " cannot be found";
-        }
-
+     
         if(count($errors)){
             foreach($errors as $error){
                 $this->error($error);
@@ -93,23 +100,31 @@ class AwardMessage extends Command
             return;
         }
 
+
         /**
             LET'S FUCKING START!
         **/
 
+        $service->run($domain, !empty($previous));
 
-        $route = new Resolver( $domain );
+        $eventId =  $service->getEventId();
 
-        if(!empty($previous)){
+        $this->info("Event id: " . $eventId );
 
-            $eventId =  $route->previousEvent();
-        }else{
+        $exhibitors = $service->getDataset(true);
 
-            $eventId =  $route->getEventId();
-        }
+        $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
 
+        $filtered = $service->getSendable();
 
-        $prizes = collect($performance->getPrizes( $route->getGroupId() ))->keyBy("name")->all();
+        $this->info("Exhibitors that can be notified: " . $filtered->count() );
+
+        $apiCall = $service->getApi("/partner-performance");
+
+        $ranking = array_get($apiCall, "data");
+        $prizes = array_get($apiCall, "meta.prizes");
+
+        $prizes = collect($prizes)->keyBy("name")->all();
 
         if(!isset($prizes[$award])){
             return $this->error("award not defined!");
@@ -117,54 +132,14 @@ class AwardMessage extends Command
 
         $awardRules = $prizes[$award];
 
-
-
-        //PARTNER PERFORMANCE
-
-        $this->info("Event id: " . $eventId);
-
-        $exhibitors = $repo->get($eventId, "exhibitor")->unique("company_id");
-
-        $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
-
-        $sendable->checkUniqueness(false);
-
-        $sendable->setMuteTime(20); //minutes!!!!
-
-        $exhibitors = $sendable->filter($exhibitors, $eventId);
-
-        $this->info("Exhibitors that can be notified: " . $exhibitors->count() );
-
         $done = 0;
 
+        $arr = $whatWeDo === "send" ? $filtered : $exhibitors;
 
-        $arrContextOptions=array(
-            "ssl"=>array(
-                "verify_peer"=>false,
-                "verify_peer_name"=>false,
-            ),
-        );  
-
-        //TEH 14eaeff0fd38d721de655330237a1fb7bcb41bb1
-        //EBE e4db333f554ae1751bfe4863a4dee9d5ad21fd9d
-
-        $json = json_decode(file_get_contents("https://api.eventjuicer.com/v1/restricted/ranking?x-token=14eaeff0fd38d721de655330237a1fb7bcb41bb1&x-event-id=" . $eventId, false, stream_context_create($arrContextOptions)), true);
-
-        if(empty($json) || empty($json["data"])) {
-            return $this->error("Cannot import GA data");
-        }
-
-        $ranking = $json["data"];
-
-
-        foreach($exhibitors as $ex)
+        foreach($arr as $ex)
         {
 
             $assigned = 0;
-
-            //do we have company assigned?
-
-            $company = (new Company())->make($ex);
 
             if(!  $company->id )
             {
@@ -172,37 +147,15 @@ class AwardMessage extends Command
                 continue;
             }
 
-            //do we have a winner????
+            dd($ex);
 
-            foreach($ranking as $position => $companyRankingData){
+            /*IF $award in PRIZES than assigned = 1 {
+    
+                $this->info("Assigned for " . $ex->company->slug);
 
-                //remember that position is ZERO-based!!!!
+                $assigned = 1;
 
-                $realPosition = $position + 1;
-
-                if($companyRankingData["id"] == $ex->company_id){
-
-                    if($companyRankingData["stats"]["sessions"] < $awardRules["level"]){
-                        $this->error("Not assigned - points. " . $ex->email);
-                        continue;
-                    }
-
-                    if($realPosition < $awardRules["min"]){
-                        $this->error("Not assigned - min position. " . $ex->email);
-                        continue;
-                    }
-
-                    if($realPosition > $awardRules["max"]){
-                        $this->error("Not assigned - max position. " . $ex->email);
-                        continue;
-                    }
-
-                    $this->info("Assigned for " . $ex->company->slug);
-
-                    $assigned = 1;
-                }
-
-            }
+            }*/
 
             if($reverse){
                 $assigned = !$assigned;

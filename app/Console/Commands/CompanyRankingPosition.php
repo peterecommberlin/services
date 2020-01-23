@@ -5,32 +5,17 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 
-
-use Eventjuicer\Services\Resolver;
-use Eventjuicer\Services\GetByRole;
 use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
-use Eventjuicer\Services\Revivers\ParticipantSendable;
-use Eventjuicer\Services\CompanyData;
+use Eventjuicer\Services\Exhibitors\Console;
 
-
-use Eventjuicer\Repositories\CompanyRepository;
-
-
-
-
-use Eventjuicer\ValueObjects\EmailAddress;
-
-class CompanyRankingPosition extends Command
-{
-
+class CompanyRankingPosition extends Command {
  
-    protected $signature = 'xxxxxx:current-event 
+    protected $signature = 'exhibitors:ranking
 
         {--domain=} 
         {--email=} 
         {--subject=}
-        {--lang=} 
-        {--throttle=1}';
+        {--lang=}';
     
     protected $description = 'Send email message to Exhibitors';
  
@@ -39,98 +24,135 @@ class CompanyRankingPosition extends Command
         parent::__construct();
     }
  
-    public function handle(GetByRole $repo, ParticipantSendable $sendable, CompanyData $cd, CompanyRepository $companies)
+    public function handle(Console $service)
     {
+        $service->setParams($this->options());
+
+        $whatWeDo  = $this->anticipate('Send, stats?', ['send', 'stats']);
 
 
-        $viewlang   = $this->option("lang");
+        $errors = [];
+
+        $viewlang       = $this->option("lang");
         $domain     = $this->option("domain");
         $email      = $this->option("email");
         $subject    = $this->option("subject");
 
-
-        if(empty($viewlang)) {
-            return $this->error("--lang= must be set!");
-        }
-
-
         if(empty($domain)) {
-            return $this->error("--domain= must be set!");
+            $errors[] = "--domain= must be set!";
         }
 
-        if(empty($subject)) {
-            return $this->error("--subject= must be set!");
-        }
-    
-        
-        if(empty($email)) {
-            return $this->error("--email= must be set!");
-        }
+        if($whatWeDo !== "stats"){
+            if(empty($viewlang)) {
+                $errors[] = "--lang= must be set!";
+            }
 
+            if(empty($subject)) {
+                $errors[] = "--subject= must be set!";
+            }
+                    
+            if(empty($email)) {
+                $errors[] = "--email= must be set!";
+            }
 
-        if(! view()->exists("emails.company." . $email . "-" . $viewlang)) {
-            return $this->error("--email= error. View cannot be found!");
+            $email = $email . "-" . $viewlang;
+
+            if(! view()->exists("emails.company." . $email)) {
+                $errors[] = "--email= error. View cannot be found!";
+            }
+
         }
+       
+        if(!empty($errors)){
+            foreach($errors as $error){
+                $this->error($error);
+            }
+            return;
+        }
+       
 
 
         /**
             LET'S FUCKING START!
         **/
 
+        $service->run($domain);
 
-        $route = new Resolver( $domain );
+        $eventId =  $service->getEventId();
 
-        $eventId =  $route->getEventId();
+        $this->info("Event id: " . $eventId );
 
-        $this->info("Event id: " . $eventId);
-
-        $exhibitors = $repo->get($eventId, "exhibitor")->unique("company_id");
+        $exhibitors = $service->getDataset(true);
 
         $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
 
-        $sendable->checkUniqueness(false);
+        $filtered = $service->getSendable();
 
-        $sendable->setMuteTime(20); //minutes!!!!
+        $this->info("Exhibitors that can be notified: " . $filtered->count() );
 
-        $exhibitors = $sendable->filter($exhibitors, $eventId);
-
-        $this->info("Exhibitors that can be notified: " . $exhibitors->count() );
+        /*
+            RANKING SPECIFIC
+        **/
+        $apiCall = $service->getApi("/partner-performance");
+        $ranking = collect(array_get($apiCall, "data", []))->keyBy("company_id");
+        $prizes = array_get($apiCall, "meta.prizes");
+        /*
+            RANKING SPECIFIC
+        **/
 
         $done = 0;
 
-        foreach($exhibitors as $ex)
+        $arr = $whatWeDo === "send" ? $filtered : $exhibitors;
+
+        foreach($arr as $ex)
         {
+
+            $stats = array_get($ranking, $ex->company_id, []);
+
             //do we have company assigned?
 
-            if(!$ex->company_id)
-            {
+            if( !$ex->company_id ){
                 $this->error("No company assigned for " . $ex->email . " - skipped.");
                 continue;
             }
 
-            $companyProfile = $cd->toArray($ex->company);
-
-            $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : "en";
-
-
-            $event_manager = (new EmailAddress($companyProfile["event_manager"]))->find();
-
-
-            if($lang !== $viewlang)
-            {
-                $this->info("Skipped! Lang mismatch. ");
+            if( empty($stats) ){
+                $this->error("No ranking data for" . $ex->email);
                 continue;
             }
 
-            $this->line("Processing " . $ex->company->slug);
+            if( !$ex->hasAccountManager() ){
+                $this->error( "No account assigned for " . $ex->email );
+               // continue;
+            }
 
-            $this->line("Notifying " . $ex->email);
 
-            dispatch(new Job(
-                $ex, 
-                $eventId, 
-                compact("email", "subject", "event_manager", "viewlang", "lang", "domain") 
-            ));
+            $lang           = $ex->getLang();
+            $name           = $ex->getName();
+            $event_manager  = $ex->getEventManager();
+            //$cReps          = $ex->getReps();
+
+            $this->line("Processing " . $name . "/" . $ex->email);
+
+            $this->line( $stats );
+
+            if($whatWeDo === "send"){
+
+                if($lang !== $viewlang)
+                {
+                    $this->info("Skipped! Lang mismatch. ");
+                    continue;
+                }
+            
+                $this->line("Notifying " . $ex->email);
+
+                dispatch(new Job(
+                    $ex->getModel(), 
+                    $eventId, 
+                    compact("email", "subject", "event_manager", "viewlang", "lang", "domain", "stats") 
+                ));
+
+            }
             
             $done++;
 
