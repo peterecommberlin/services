@@ -129,14 +129,13 @@ class CompanyRankingPosition extends Command {
                // continue;
             }
 
-            dd($stats);
-
             $lang           = $ex->getLang();
             $name           = $ex->getName();
             $event_manager  = $ex->getEventManager();
             //$cReps          = $ex->getReps();
 
             $this->line("Processing " . $name . "/" . $ex->email);
+            $this->info("Position: " . array_get($stats, "position") . " sessions:" . array_get($stats, "sessions"));
 
             if($whatWeDo === "send"){
 
