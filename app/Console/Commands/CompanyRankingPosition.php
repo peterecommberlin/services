@@ -94,7 +94,10 @@ class CompanyRankingPosition extends Command {
             RANKING SPECIFIC
         **/
         $apiCall = $service->getApi("/partner-performance");
-        $ranking = collect(array_get($apiCall, "data", []))->keyBy("company_id");
+        $ranking = collect(array_get($apiCall, "data", []))->mapWithKeys(function($item){
+
+             return [$item['company_id'] => $item['stats']];
+        });
         $prizes = array_get($apiCall, "meta.prizes");
         /*
             RANKING SPECIFIC
@@ -126,6 +129,7 @@ class CompanyRankingPosition extends Command {
                // continue;
             }
 
+            dd($stats);
 
             $lang           = $ex->getLang();
             $name           = $ex->getName();
@@ -133,8 +137,6 @@ class CompanyRankingPosition extends Command {
             //$cReps          = $ex->getReps();
 
             $this->line("Processing " . $name . "/" . $ex->email);
-
-            $this->line( $stats );
 
             if($whatWeDo === "send"){
 
