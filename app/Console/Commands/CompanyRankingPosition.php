@@ -134,8 +134,8 @@ class CompanyRankingPosition extends Command {
             $event_manager  = $ex->getEventManager();
             //$cReps          = $ex->getReps();
 
-            $this->line("Processing " . $name . "/" . $ex->email);
-            $this->info("Position: " . array_get($stats, "position") . " sessions:" . array_get($stats, "sessions"));
+            $this->info("Processing " . $name . "/" . $ex->email);
+            $this->line("Position: " . array_get($stats, "position") . ", sessions: " . array_get($stats, "sessions"));
 
             if($whatWeDo === "send"){
 
@@ -154,6 +154,8 @@ class CompanyRankingPosition extends Command {
                 ));
 
             }
+
+            $this->line("--------");
             
             $done++;
 
