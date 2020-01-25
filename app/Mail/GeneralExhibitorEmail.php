@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Eventjuicer\Models\Participant;
 use Eventjuicer\Services\Personalizer;
 use Eventjuicer\Services\Exhibitors\Email;
+use Eventjuicer\Services\Exhibitors\CompanyData;
 
 class GeneralExhibitorEmail extends Mailable
 {
@@ -32,26 +33,26 @@ class GeneralExhibitorEmail extends Mailable
             $profileUrl, 
             $trackingLink,
             $accountUrl,
-            $footer;
-    /*
+            $footer,
+            $stats,
+            $prizes,
+            $translations,
+            $creatives;
+ 
 
-        $this->participant, 
-        $this->subject, 
-        $this->view,
-    
-        $this->lang,
-        $this->event_manager,
-        $this->domain
-
-    */
-
-    public function __construct(Participant $participant, string $subject, string $view, string $lang, string $event_manager)
+    public function __construct(Participant $participant, array $config)
     {
         $this->participant  = $participant;
-        $this->view         = $view;
-        $this->subject      = $subject;
-        $this->event_manager = trim($event_manager);
-        $this->lang       = $lang;
+        $this->view = array_get($config, "email");
+        $this->subject = array_get($config, "subject", "");
+        $this->event_manager = array_get($config, "event_manager", "");
+        $this->lang = array_get($config, "lang");
+        $this->domain = array_get($config, "domain");
+        $this->stats = array_get($config, "stats", []);
+        $this->prizes = array_get($config, "prizes", []);
+        $this->translations = array_get($config, "translations", []);
+        $this->creatives = array_get($config, "creatives", []);
+
     }
 
     /**
@@ -62,11 +63,14 @@ class GeneralExhibitorEmail extends Mailable
     public function build()
     {
 
+        $companydata = new CompanyData($this->participant);
+
         $emailHelper = new Email($this->participant);
 
         $this->footer = $emailHelper->getFooter();
 
 
+        //this should be moved to settings?...
        if( $this->participant->group_id > 1 ){
 
             $from = "ecommerceberlin@ecommerceberlin.com";
@@ -98,21 +102,10 @@ class GeneralExhibitorEmail extends Mailable
         }
 
 
-       
-
-
-        $this->profile = new Personalizer( $this->participant, "");
-
-        $this->profileUrl = "https://".$domain."/" . 
-                $this->participant->company->slug . 
-                ",c,". 
-                $this->participant->company_id;
-
-
-        $this->accountUrl = "https://account.".$domain."/#/login?token=" . $this->participant->token;
-       
-        //EBE5
-        $this->trackingLink = $this->profileUrl . sprintf("?utm_source=th4x90iy_%s&utm_medium=link&utm_campaign=promoninja&utm_content=raw", $this->participant->company_id);
+        $this->profile = $companydata->profileData();
+        $this->profileUrl = $companydata->profileUrl();
+        $this->accountUrl = $companydata->accountUrl();
+        $this->trackingLink = $companydata->trackingLink();
 
 
         if($this->event_manager && $this->participant->email !== $this->event_manager){
