@@ -10,20 +10,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Eventjuicer\Services\Personalizer;
 
 use Eventjuicer\Models\Company;
-use Eventjuicer\Services\CompanyData;
+use Eventjuicer\Services\Exhibitors\CompanyData;
 
 class ExhibitorInvite extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $company, $companydata, $subject, $imageEnc, $promolink, $body; 
+    public $cd, $companydata, $subject, $imageEnc, $promolink, $body; 
   
-    public function __construct(Company $company, $imageEnc, $promolink, $subject, $body)
+    public function __construct(CompanyData $cd, $subject, $body)
     {
-        $this->company      = $company;
-        $this->imageEnc     = $imageEnc;
+        $this->cd           = $cd;
         $this->subject      = $subject;
-        $this->promolink    = $promolink;
         $this->body         = $body;
 
     }
@@ -33,10 +31,14 @@ class ExhibitorInvite extends Mailable
      *
      * @return $this
      */
-    public function build(CompanyData $companydata)
+    public function build()
     {
 
-        $this->companydata = $companydata->toArray($this->company);
+        $this->imageEnc     = $this->cd->logotype()->thumb();
+    
+        $this->promolink    = $this->cd->trackingLink("email", "button");
+
+        $this->companydata = $this->cd->companyData();
 
         return $this->subject($this->subject)->markdown($this->body);
     }

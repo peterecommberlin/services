@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 use Eventjuicer\Services\ApiUser;
 use Eventjuicer\Services\ImageEncode;
+use Eventjuicer\Services\Exhibitors\CompanyData;
 use Eventjuicer\ValueObjects\RichContent;
 use Eventjuicer\ValueObjects\CloudinaryImage;
 
@@ -44,18 +45,22 @@ class CompanyNewsletterController extends Controller
 
        //this could be handled by middleware?
 
-      if($this->user->company()->group_id == 1) {
-        app()->setLocale("pl");
-        $this->appName = "17 Targi eHandlu - 22.10.2019";
-        $this->baseHost = "https://targiehandlu.pl/";
-      }
-      else
-      {
+      if($this->user->company()->organizer_id > 1) {
+
         $this->pathPrefix = "ebe-";
         app()->setLocale("en");
         $this->appName = "E-commerce Berlin Expo";
         $this->baseHost = "https://ecommerceberlin.com/";
         
+   
+      }
+      else
+      {
+        
+        app()->setLocale("pl");
+        $this->appName = "18 Targi eHandlu - 22.04.2020";
+         $this->baseHost = "https://targiehandlu.pl/";
+
       }
 
       config(["app.name" => $this->appName]);
@@ -63,17 +68,11 @@ class CompanyNewsletterController extends Controller
     }
 
     public function show(Request $request, int $id)
-    {
+    { 
 
-        $cd = $this->user->companydata(["company", "admin"]);
+        $companydata = new CompanyData($this->user->user());
 
-        $logotype = new CloudinaryImage(
-          array_get($cd, "logotype_cdn")
-        );
-
-        if(! $logotype->isValid()){
-          $logotype = new CloudinaryImage(array_get($cd, "logotype"));
-        }
+        $logotype = (string) $companydata->logotype();
 
         if( empty($logotype) || strpos($logotype, "http") === false )
         {
@@ -83,13 +82,7 @@ class CompanyNewsletterController extends Controller
 
        $newsletter = (new ExhibitorInvite(
        
-                   $this->user->company(), 
-               
-                   $logotype->thumb(), 
-               
-                   $this->user->companyPublicProfile($this->baseHost).
-
-                   $this->user->trackingLink("email", "button"),
+                   $companydata,
                
                    $this->appName,
                
