@@ -36,7 +36,7 @@ class ExhibitorInvite extends Mailable
 
         $this->imageEnc     = $this->cd->logotype()->thumb();
     
-        $this->promolink    = $this->cd->trackingLink("email", "button");
+        $this->promolink    = $this->cd->trackedAccountUrl("email", "button");
 
         $this->companydata = $this->cd->companyData();
 
