@@ -4,13 +4,10 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use Eventjuicer\Services\Resolver;
-use Eventjuicer\Services\GetByRole;
 use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
-use Eventjuicer\Services\Revivers\ParticipantSendable;
-use Eventjuicer\Services\CompanyData;
 use Eventjuicer\Models\ParticipantFields;
 use Eventjuicer\Services\Personalizer;
+use Eventjuicer\Services\Exhibitors\Console;
 
 class CompanyRepresentativesMessage extends Command
 {
@@ -32,7 +29,7 @@ class CompanyRepresentativesMessage extends Command
         parent::__construct();
     }
  
-    public function handle(GetByRole $repo, ParticipantSendable $sendable, CompanyData $cd)
+    public function handle(Console $service)
     {
 
 

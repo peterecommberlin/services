@@ -8,7 +8,7 @@ use Eventjuicer\Services\Resolver;
 use Eventjuicer\Repositories\ParticipantRepository;
 use Eventjuicer\Repositories\Criteria\BelongsToEvent;
 use Eventjuicer\Repositories\Criteria\ColumnGreaterThan;
-use Eventjuicer\Services\CompanyData;
+use Eventjuicer\Services\Exhibitors\Migrator;
 use Eventjuicer\Services\GetByRole;
 
 
@@ -43,7 +43,7 @@ class migrateCompanyData extends Command
      *
      * @return mixed
      */
-    public function handle(GetByRole $gbr, ParticipantRepository $p, CompanyData $cd)
+    public function handle(GetByRole $gbr, ParticipantRepository $p, Migrator $cd)
     {
         $route = new Resolver($this->argument("host"));
 

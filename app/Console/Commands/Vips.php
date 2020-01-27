@@ -10,7 +10,7 @@ use Eventjuicer\Services\Resolver;
 use Eventjuicer\Services\GetByRole;
 use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
-use Eventjuicer\Services\CompanyData;
+
 
 use Eventjuicer\ValueObjects\EmailAddress;
 use Eventjuicer\Services\SaveOrder;
@@ -38,7 +38,7 @@ class Vips extends Command {
         parent::__construct();
     }
  
-    public function handle(MeetupRepository $meetups, CompanyData $cd, SaveOrder $saveorder)
+    public function handle(MeetupRepository $meetups, SaveOrder $saveorder)
     {
        
         $domain = $this->option("domain");

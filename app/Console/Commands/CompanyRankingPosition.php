@@ -7,6 +7,7 @@ use Illuminate\Console\Command;
 
 use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
 use Eventjuicer\Services\Exhibitors\Console;
+use Eventjuicer\Services\Exhibitors\Creatives;
 
 class CompanyRankingPosition extends Command {
  
@@ -15,7 +16,9 @@ class CompanyRankingPosition extends Command {
         {--domain=} 
         {--email=} 
         {--subject=}
-        {--lang=}';
+        {--lang=}
+        {--threshold=0}
+    ';
     
     protected $description = 'Send email message to Exhibitors';
  
@@ -33,7 +36,8 @@ class CompanyRankingPosition extends Command {
 
         $errors = [];
 
-        $viewlang       = $this->option("lang");
+        $threshold  = $this->option("threshold");
+        $viewlang   = $this->option("lang");
         $domain     = $this->option("domain");
         $email      = $this->option("email");
         $subject    = $this->option("subject");
@@ -99,6 +103,9 @@ class CompanyRankingPosition extends Command {
              return [$item['company_id'] => $item['stats']];
         });
         $prizes = array_get($apiCall, "meta.prizes");
+
+        $allTranslations = $service->getTranslations();
+
         /*
             RANKING SPECIFIC
         **/
@@ -110,7 +117,22 @@ class CompanyRankingPosition extends Command {
         foreach($arr as $ex)
         {
 
-            $stats = array_get($ranking, $ex->company_id, []);
+            $stats          = array_get($ranking, $ex->company_id, []);
+            $lang           = $ex->getLang();
+            $name           = $ex->getName();
+            $event_manager  = $ex->getEventManager();
+            //$cReps          = $ex->getReps();
+
+            $translations   = array_get($allTranslations, $lang);
+            $creatives      = $ex->getCompany() ? (new Creatives($ex))->get() : [];
+
+
+            if(!empty($creatives)){
+                dd($creatives);               
+            }
+
+
+            $this->info("Processing " . $name . "/" . $ex->email);
 
             //do we have company assigned?
 
@@ -128,13 +150,7 @@ class CompanyRankingPosition extends Command {
                 $this->error( "No account assigned for " . $ex->email );
                // continue;
             }
-
-            $lang           = $ex->getLang();
-            $name           = $ex->getName();
-            $event_manager  = $ex->getEventManager();
-            //$cReps          = $ex->getReps();
-
-            $this->info("Processing " . $name . "/" . $ex->email);
+ 
             $this->line("Position: " . array_get($stats, "position") . ", sessions: " . array_get($stats, "sessions"));
 
             if($whatWeDo === "send"){
@@ -150,7 +166,17 @@ class CompanyRankingPosition extends Command {
                 dispatch(new Job(
                     $ex->getModel(), 
                     $eventId, 
-                    compact("email", "subject", "event_manager", "viewlang", "lang", "domain", "stats") 
+                    compact("email", 
+                            "subject", 
+                            "event_manager", 
+                            "viewlang", 
+                            "lang", 
+                            "domain", 
+                            "stats", 
+                            "prizes",
+                            "translations",
+                            "creatives"
+                    ) 
                 ));
 
             }

@@ -5,12 +5,9 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 
+use Eventjuicer\Services\Exhibitors\Console;
+use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
 
-use Eventjuicer\Services\Resolver;
-use Eventjuicer\Services\GetByRole;
-use Eventjuicer\Services\CompanyData;
-use Eventjuicer\Jobs\PingWhenEmptyProfileJob as Job;
-use Eventjuicer\Services\Revivers\ParticipantSendable;
 
 /*
 
@@ -25,7 +22,7 @@ class PingWhenNoUpgrades extends Command
 {
 
  
-    protected $signature = 'companies:noupgrades {host}';
+    protected $signature = 'companies:noupgrades {--domain=}';
     protected $description = 'Command description';
  
     public function __construct()
@@ -33,30 +30,32 @@ class PingWhenNoUpgrades extends Command
         parent::__construct();
     }
  
-    public function handle(GetByRole $repo, CompanyData $cd, ParticipantSendable $sendable)
+    public function handle(Console $service)
     {
 
-        $host = $this->argument("host");
+        $domain    = $this->option("domain");
 
-        $route = new Resolver( $host );
+        $errors = array();
 
-        $eventId =  $route->getEventId();
+        if(empty($domain)) {
+            $errors[] = "--domain= must be set!";
+        }
 
-        $this->info("Event id: " . $eventId);
+        // if(empty($role)) {
+        //     $errors[] = "--role= must be set!";
+        // }
+    
+        if(count($errors)){
+            foreach($errors as $error){
+                $this->error($error);
+            }
+            return;
+        }
 
-        $exhibitors = $repo->get($eventId, "exhibitor", ["company.data"])->unique("company_id");
+     
 
-        $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
+        /////
 
-        $sendable->checkUniqueness(true);
-
-        $sendable->setMuteTime(20); //minutes!!!!
-
-        $filtered = $sendable->filter($exhibitors, $eventId);
-
-        $this->info("Exhibitors that can be notified: " . $filtered->count() );
-
-        $done = 0;
 
 
         $whatWeDo  = $this->anticipate('Send or stats?', ['send', 'stats']);
@@ -74,7 +73,7 @@ class PingWhenNoUpgrades extends Command
                 continue;
             }
 
-            $companyProfile = $cd->toArray($ex->company);
+          
 
             $lang = isset($companyProfile["lang"]) ? $companyProfile["lang"] : "";
             $event_manager = isset($companyProfile["event_manager"]) ? $companyProfile["event_manager"] : "";

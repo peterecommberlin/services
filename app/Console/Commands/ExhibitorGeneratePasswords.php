@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 use Eventjuicer\Services\Resolver;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
-use Eventjuicer\Services\CompanyData;
+use Eventjuicer\Services\Exhibitors\Console;
 
 
 use Eventjuicer\Repositories\CompanyRepository;
@@ -30,7 +30,7 @@ class ExhibitorGeneratePasswords extends Command
         parent::__construct();
     }
  
-    public function handle(CompanyRepository $companies, CompanyData $cd)
+    public function handle(CompanyRepository $companies)
     {
 
         $domain     = $this->option("domain");

@@ -10,11 +10,9 @@ use Eventjuicer\Services\Resolver;
 use Eventjuicer\Services\GetByRole;
 use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
-use Eventjuicer\Services\CompanyData;
  
 
 use Eventjuicer\Services\Company;
-use Eventjuicer\Services\CompanyDataHelpers;
 use Eventjuicer\ValueObjects\EmailAddress;
 
 use Eventjuicer\Services\Exhibitors\Console;

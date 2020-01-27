@@ -16,6 +16,7 @@ use Eventjuicer\Jobs\PingWhenEmptyProfileJob as Job;
 use Eventjuicer\Services\CompanyData;
 use Eventjuicer\Services\Exhibitors\Console;
 
+
 /*
 Das Ausstellerprofil muss vervollständigt werden
 //https://github.com/eventjuicer/admin/issues/3
@@ -124,9 +125,7 @@ class PingWhenEmptyProfile extends Command
             $lang           = $ex->getLang();
             $name           = $ex->getName();
             $event_manager  = $ex->getEventManager();
-
-
-            $status = $cd->status( $ex->getModel()->company);
+            $status = $ex->getCompanyDataErrors();
 
             if(!count($status))
             {
