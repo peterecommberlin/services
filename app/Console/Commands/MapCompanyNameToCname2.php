@@ -4,16 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-
-
-use Eventjuicer\Services\Resolver;
-use Eventjuicer\Services\GetByRole;
-use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
-use Eventjuicer\Services\Revivers\ParticipantSendable;
-use Eventjuicer\Services\CompanyData;
-
-use Eventjuicer\ValueObjects\EmailAddress;
 use Eventjuicer\Services\SaveOrder;
+use Eventjuicer\Services\Exhibitors\Console;
+
 
 class MapCompanyNameToCname2 extends Command
 {
@@ -32,9 +25,8 @@ class MapCompanyNameToCname2 extends Command
         parent::__construct();
     }
  
-    public function handle(GetByRole $repo, CompanyData $cd, SaveOrder $saveorder)
+    public function handle(Console $service, SaveOrder $saveorder)
     {
-
 
        
         $domain     = $this->option("domain");
@@ -52,25 +44,24 @@ class MapCompanyNameToCname2 extends Command
             }
             return;
         }
-      
 
-        /**
+            /**
             LET'S FUCKING START!
         **/
 
+        $service->run($domain);
 
-        $route = new Resolver( $domain );
+        $eventId =  $service->getEventId();
 
-        $eventId =  $route->getEventId();
+        $this->info("Event id: " . $eventId );
 
-        $this->info("Event id: " . $eventId);
-
-        $exhibitors = $repo->get($eventId, "exhibitor");
+        //switch off unique company_id
+        $exhibitors = $service->getDataset(false);
 
         $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
 
-
         $done = 0;
+
 
         foreach($exhibitors as $ex)
         {
@@ -82,16 +73,14 @@ class MapCompanyNameToCname2 extends Command
                 continue;
             }
 
-            $companyProfile = $cd->toArray($ex->company);
-
-            $name = $companyProfile["name"];
+            $name = $ex->getName();
 
             if(strlen($name)<2){
                 $this->error("No company name for " . $ex->email . " - skipped.");
                 continue;
             }
 
-            $saveorder->setParticipant($ex);
+            $saveorder->setParticipant( $ex->getModel() );
 
             $saveorder->setFields(["cname2" => $name]);
 
