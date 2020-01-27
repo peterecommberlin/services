@@ -7,7 +7,7 @@
 The E-commerce Berlin Expo 2020 is just around the corner.
 We’d like to kindly remind you about the E-commerce Berlin Expo 2020 Networking Party.
 
-Please use the link button below and add up to TWO company representatives who will attend the party:
+Please use the link button below and add your company representatives who will attend the party:
 
 @component('mail::button', ['url' => $accountUrl])
 Sing In to add or edit
@@ -15,11 +15,9 @@ Sing In to add or edit
 
 
 ATTENTION!
-Your exhibitor package includes two guaranteed tickets for the E-commerce Germany Awards and Networking Party. 
-If you are planning to bring more than two people you need to purchase additional tickets in the amount coresponding to the number of participants. 
-Every ticket on top of the guaranteed two needs to be purchased and confirmed.
+If you plan to take more than 2 people to the party, please add them to the guest list and we will get in touch with you in relation to issue the invoice for any additional guest (above 2). 
 
-Please be aware that any additional tickets must be purchased for 49€ each. 
+Each additional ticket is 49€ worth.  
 
 
 * **Agenda:
