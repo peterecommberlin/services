@@ -4,18 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-
-
-use Eventjuicer\Services\Resolver;
-use Eventjuicer\Services\GetByRole;
-use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
-use Eventjuicer\Services\Revivers\ParticipantSendable;
-use Eventjuicer\Services\CompanyData;
-
-use Eventjuicer\ValueObjects\EmailAddress;
+use Eventjuicer\Services\Exhibitors\Console;
 use Eventjuicer\Services\SaveOrder;
-use Eventjuicer\Models\Participant;
-use Eventjuicer\Services\Personalizer;
 
 class FixReps extends Command
 {
@@ -34,9 +24,11 @@ class FixReps extends Command
         parent::__construct();
     }
  
-    public function handle(GetByRole $repo, CompanyData $cd, SaveOrder $saveorder)
+    public function handle(Console $service, SaveOrder $saveorder)
     {
-       
+        
+        $service->setParams($this->options());
+
         $domain     = $this->option("domain");
        
         $errors = [];
@@ -54,25 +46,33 @@ class FixReps extends Command
         }
       
 
+
         /**
             LET'S FUCKING START!
         **/
 
+        $service->run($domain);
 
-        $route = new Resolver( $domain );
+        $eventId =  $service->getEventId();
 
-        $eventId =  $route->getEventId();
+        $this->info("Event id: " . $eventId );
 
-        $this->info("Event id: " . $eventId);
+        $representatives = $service->getAllReps();
 
-        $representatives = $repo->get($eventId, "representative");
+        $exhibitors = $service->getDataset(true, false)->keyBy("company_id");
 
-        $exhibitors = resolve(GetByRole::class)->get($eventId, "exhibitor")->keyBy("company_id");
+        $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
 
+        $filtered = $service->getSendable();
 
-        $this->info("Number of representatives: " . $representatives->count() );
+        $this->info("Exhibitors that can be notified: " . $filtered->count() );
+
+        $allTranslations = $service->getTranslations();
 
         $done = 0;
+
+
+
 
         foreach($representatives as $rep)
         {
@@ -86,16 +86,14 @@ class FixReps extends Command
                 $errors[] = "No company assigned for " . $rep->email . " - skipped.";
             }
 
-            $companyProfile = $cd->toArray($rep->company);
+            $name = $rep->getName();
          
             //cname2 of Parent!
 
-            if(!isset($companyProfile["name"]) || strlen($companyProfile["name"]) < 2){
+            if(empty($name) || strlen($name) < 2){
 
                 $errors[] = "Parent company NAME absent! " . $rep->email . " " . $rep->id;
             }
-
-            $name = $companyProfile["name"];
          
             if( !isset( $exhibitors[ $rep->company_id ]) ){
                 $errors[] = "Cannot find company among exhibitors...";
@@ -114,7 +112,7 @@ class FixReps extends Command
 
             //cname2 of REP
 
-            $cname2 = (new Personalizer($rep))->cname2;
+            $cname2 = $this->getCname2();
 
             if(strlen($cname2) < 2){
                  $errors[] = "Rep should have cname2 set...";
@@ -137,7 +135,7 @@ class FixReps extends Command
 
                     $this->line("Assigning cname2: " . $name);
 
-                    $saveorder->setParticipant($rep);
+                    $saveorder->setParticipant( $rep->getModel() );
                     $saveorder->setFields(["cname2" => $name]);
                     $saveorder->updateFields();
                 }
