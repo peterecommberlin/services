@@ -94,6 +94,7 @@ class GeneralExhibitorMessage extends Command {
 
         $this->info("Exhibitors that can be notified: " . $filtered->count() );
 
+        $allTranslations = $service->getTranslations();
 
         $done = 0;
 
@@ -117,7 +118,7 @@ class GeneralExhibitorMessage extends Command {
             $name           = $ex->getName();
             $event_manager  = $ex->getEventManager();
             //$cReps          = $ex->getReps();
-
+            $translations   = array_get($allTranslations, $lang);
 
             if($lang !== $viewlang)
             {
@@ -132,7 +133,7 @@ class GeneralExhibitorMessage extends Command {
             dispatch(new Job(
                 $ex->getModel(), 
                 $eventId, 
-                compact("email", "subject", "event_manager", "viewlang", "lang", "domain") 
+                compact("email", "subject", "event_manager", "viewlang", "lang", "domain", "translations") 
             ));
             
             $done++;

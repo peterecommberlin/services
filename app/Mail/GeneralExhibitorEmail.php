@@ -29,26 +29,30 @@ class GeneralExhibitorEmail extends Mailable
             $view,
             $lang,
             $event_manager,
-            $profile, 
-            $profileUrl, 
-            $trackingLink,
-            $accountUrl,
-            $footer,
             $stats,
+            $representatives,
             $prizes,
             $translations,
-            $creatives;
+            $creatives,
+            $profile, 
+            $profileUrl, 
+            $accountUrl,
+            $trackingLink,
+            $footer;
  
 
     public function __construct(Participant $participant, array $config)
     {
         $this->participant  = $participant;
-        $this->view = array_get($config, "email");
-        $this->subject = array_get($config, "subject", "");
-        $this->event_manager = trim( array_get($config, "event_manager", "") );
-        $this->lang = array_get($config, "lang");
         $this->domain = array_get($config, "domain");
+
+        $this->subject = array_get($config, "subject", "");
+        $this->view = array_get($config, "email");
+        $this->lang = array_get($config, "lang");
+        $this->event_manager = array_get($config, "event_manager", "");
+
         $this->stats = array_get($config, "stats", []);
+        $this->representatives = array_get($config, "representatives", []);
         $this->prizes = array_get($config, "prizes", []);
         $this->translations = array_get($config, "translations", []);
         $this->creatives = array_get($config, "creatives", []);

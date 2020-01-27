@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use Eventjuicer\Jobs\CompanyRepresentativesJob as Job;
+use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
 use Eventjuicer\Services\Exhibitors\Console;
 
 class CompanyRepresentatives extends Command
@@ -44,7 +44,22 @@ class CompanyRepresentatives extends Command
             $errors[] = "--domain= must be set!";
         }
 
+        if(empty($threshold)) {
+            $errors[] = "--threshold= must be set!";
+        }
+
+
+        if(count($errors)){
+
+            foreach($errors as $error){
+                $this->error($error);
+            }
+
+            return;
+        }
+
         $whatWeDo  = $this->anticipate('Send, stats?', ['send', 'stats']);
+        $role  = $this->anticipate('representative, party?', ['representative', 'party']);
 
         if($whatWeDo === "send"){
 
@@ -65,15 +80,13 @@ class CompanyRepresentatives extends Command
                 $errors[] = "--email= must be set!";
             }
 
-            if($viewlang && ! view()->exists("emails.company." . $email . "-" . $viewlang)) {
-            $errors[] = "--email= error. View cannot be found!";
+            $email = $email . "-" . $viewlang;
+
+            if($viewlang && ! view()->exists("emails.company." . $email)) {
+                $errors[] = "--email= error. View cannot be found!";
             }
         }
  
-
-        if(empty($threshold)) {
-            $errors[] = "--threshold= must be set!";
-        }
 
 
         if(count($errors)){
@@ -99,13 +112,16 @@ class CompanyRepresentatives extends Command
 
         $filtered = $service->getSendable();
 
-        $this->info("Exhibitors that can be notified: " . $filtered->count() );
+        $allTranslations = $service->getTranslations();
+
+        $this->info($role . " reps that can be notified: " . $filtered->count() );
 
         $iterate = ($whatWeDo === "send") ? $filtered : $exhibitors;
 
         $done = 0;
         $noreps = 0;
         $noaccount = 0;
+
         foreach($iterate as $ex)
         {   
 
@@ -125,7 +141,8 @@ class CompanyRepresentatives extends Command
             $lang           = $ex->getLang();
             $name           = $ex->getName();
             $event_manager  = $ex->getEventManager();
-            $cReps          = $ex->getReps();
+            $cReps          = $ex->getReps($role);
+            $translations   = array_get($allTranslations, $lang);
 
             if(!$cReps->count()){
                 $noreps++;
@@ -166,14 +183,21 @@ class CompanyRepresentatives extends Command
 
                 dispatch(new Job(
                         $ex->getModel(), 
-                        $cReps, 
                         $eventId,
                         array(
+                            "email" => $email,
                             "viewlang" => $viewlang, 
+                            "lang" => $lang,
                             "event_manager" => $event_manager,
                             "subject" => $subject,
-                            "view" => $email
+                            "domain" => $domain,
+                            "translations" => $translations,
+                            "representatives" =>  $cReps,
+                           
                         )
+
+
+                       
                 ));
             }
 
