@@ -45,7 +45,7 @@ class GeneralExhibitorEmail extends Mailable
         $this->participant  = $participant;
         $this->view = array_get($config, "email");
         $this->subject = array_get($config, "subject", "");
-        $this->event_manager = array_get($config, "event_manager", "");
+        $this->event_manager = trim( array_get($config, "event_manager", "") );
         $this->lang = array_get($config, "lang");
         $this->domain = array_get($config, "domain");
         $this->stats = array_get($config, "stats", []);
@@ -107,15 +107,16 @@ class GeneralExhibitorEmail extends Mailable
         $this->accountUrl = $companydata->accountUrl();
         $this->trackingLink = $companydata->trackingLink();
 
+        $recipient =  trim( strtolower( $this->participant->email ));
 
-        if($this->event_manager && $this->participant->email !== $this->event_manager){
+        if($this->event_manager && $recipient !== $this->event_manager){
 
             $this->to( $this->event_manager );
-            $this->cc( $this->participant->email );
+            $this->cc( $recipient );
         }
         else{
 
-            $this->to( trim( strtolower($this->participant->email)) );
+            $this->to( $recipient );
 
         }
 
