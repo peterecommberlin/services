@@ -2,7 +2,7 @@
 
 @component('mail::message')
 
-# Hello {{$profile->translate("[[fname]]")}},
+# Hello {{ array_get($profile, "fname") }},
 
 The E-commerce Berlin Expo 2020 is just around the corner.
 
