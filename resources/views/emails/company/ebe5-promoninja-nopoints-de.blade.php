@@ -4,39 +4,39 @@
  
 # Hi {{$profile->translate("[[fname]]")}},
 
-We have noticed that you haven't taken part in our Exhibitor Contest.
+wir haben festgestellt, dass Euer Unternehmen nicht bei unserem Ausstellerwettbewerb teilnimmt. 
 
-If you want to rule the presentation stage or gain extra brand visibility (logotype on the badges, leaflets, video interviews) that's the easiest and effortless way to achieve that. 
+Falls du eine Präsentation auf einer unserer 4 Bühnen haben möchtest oder extra Sichtbarkeit notwendig ist (Logo auf den Besucherbadges oder im Videointerview), dann ist der Wettbewerb der einfachste Weg zum Erfolg. 
 
-Top 3 companies are: xxx (yy point), yyy (zz points), zzz (ooo points).
+Zur Zeit sind das die Top 3: Firma jeden liczba Punkte, firma dwa liczba Punkte, firma 3 liczba Punkte
 
-How could we help you?
+Wie können wir dir helfen? 
 
-1. Do you want to schedule a 10 min chat with us - we will briefly discuss how to use promotional materials. Please use this link to choose most suitable time for you - calendly.com/costam....
+1. Würdest du mit uns einen 10-minütigen Call machen? Dann erklären wir dir wie das Prozedere aussieht. Bitte benutze den Link unten und wähle den für dich besten Zeitpunkt. 
 
-2. Read quickstart quide (with your dedicated links) to check how easy it is to rule the Contest. you can forward this message to person responsible for PR.
+2. Unten wirst du einen Schnellstart-Guide finden (mit deinem personaliserten Link), und merken, wie einfach es ist am Wettbewerb teilzunehmen. Alternativ kannst du diese Nachricht an Euer PR-Team weiterleiten. 
 
-Quickstart quide
+Quickstart-Guide
 
-a) Click here to share information on your facebook account
-b) Click here to share information on your linkedin account
-c) Click here to share information on your twitter account
-d) Download ready to send .zip package with email newsletter
+> Klick hier, um den Post auf Facebook zu teilen
+> Klick hier, um den Post auf LinkedIn zu teilen
+> Klick hier, um den Post in deinem TT Account zu teilen
+> Download einer fertigen ZIP-Datei mit einem E-Mail-Newsletter-Template. 
 
-With each click coming from shared info you will gain points - all traffic goes to your company public profile on E-commerce Berlin Expo website so except joining the contest you will maximize your participantion in Expo!
+Jeder Klick auf den Link beschert dir einen Punkt und Extrasichtbarkeit - da der Verkehr zu deinem öffentlichen Profil weitergeleitet wird. 
 
-If you would like to gain points using your own promo materials - there is also an easy way to do it.
 
-Please find your customized link below. Use it when creating newsletters, email footers, advertisement (fb ads, adwords, social media) or when directly informing your clients.
+Falls ihr Eure eigenen Promomaterialien benutzen wollt, dann könnt ihr das machen aber in Verbindung mit dem personalisierten Link. 
+Benutze es beim Erstellen von Newslettern, E-Mail-Signaturen, Werbungen (Faceboook ads, Adwords, Soziale Medien) oder beim direkten Kontakt mit euren Kunden. 
 
 @component('mail::panel')
 [{{ $trackingLink }}]({{ $trackingLink }}) 
 @endcomponent
 
 
-**  IMPORTANT: The competition will be enabled till 4th February 11:59 PM CET**
+**  WICHTIG: Der Wettbewerb läuft bis zum 4.02.2020, 23:59 Uhr MEZ. **
 
-# In your Exhibitor's account you will find 4 important sections related to the Challenge.
+# In deinem Ausstellerprofil wirst du 4 wichtige Sektionen finden in Bezug auf den Wettbewerb. 
 
 @component('mail::button', ['url' => $accountUrl])
 Sign In
@@ -44,41 +44,41 @@ Sign In
 
 # RANKING
 
-The ranking is created on the basis of data fetched from our google analytics.
+Das Ranking basiert auf den verarbeiteten Daten von Google Analytics.
 
 
-## REWARDS
+## KRITERIEN
 
-Each of the prizes requires fulfillment of the conditions for its granting.
+Jeder Preis ist an bestimmte Kriterien geknüpft: 
 
-* minimal number of points (= pageviews of your public exhibitor's profile)
-* position in the ranking
+> eine bestimmte Anzahl an Punkten (gemessen an den Klicks des personalisierten Links) 
+> Position im Ranking 
 
-Looking at every listed prize you can see whether your company meets the conditions or not. Please remember that everything may change till the end of the Challenge so it is recommended not to open the champagne until the end of the competition.
+Du kannst deine Position im Ranking in Echtzeit beobachten, so dass du ggf. noch einen Einfluss auf das Resultat haben kannst. 
 
-# Some of the PRIZES
+# PREISE 
 
-## Exclusive branded visitor badges
+## Exklusiv gebrandete Besucherbadges 
 
-Exclusive branded visitor badges with the Winner's logo. The badges will be handed out to all of the visitors (7000+) during the E-commerce Berlin Expo 2020.
+Besucherbadges mit dem Logo des Gewinners. Die Badges werden an alle Besucher der E-commerce Berlin Expo verteilt (7k+Besucher).
 
-## Presentation slot on one of our stages
+## Speaking Slot auf einer der Bühnen 
 
-30-minute presentation slot during upcoming expo. Your presentation will be added to the official agenda and promoted. 
+Die Präsentation kommt in die Agenda und wird in den öffentlichen Kanälen promotet als Teil der Agenda der Expo. 
 
-## VIDEO interview
+## Videointerview 
 
-Your company will be video-interviewed at your booth during Expo! You will own the resulting material and also can expect we will promote it after the event. 
+Dein Unternehmen wird auf eurem Messestand während der Expo interviewed! Du bekommst die Promomaterialien und wir werden das Interview nach der Expo promoten. 
 
-## Promotion of the company logo on our website
 
-Your logotype will be promoted during next 11 months - till the next event.
+## Das Promoten Eures Logos auf unserer Website
 
-## Want to use your own promo materials? Great. Always use the provided link!
+Diese Preis führt dazu, dass Euer Logo auf unserer Website für die nächsten 11 Monate sichtbar sein wird - also bis zur Expo 2021. 
 
-## Every click through your customized link to the E-commerce Berlin Expo website gives you one point. 
+## Willst du deine eigenen Promomaterialien im Wettbewerb benutzen? Das ist perfekt, nur vergiss dabei das Integrieren des personalisierten Links nicht. 
 
-We are counting only unique clicks on your customized link. Registration at the event website is NOT required to get a point. 
+## Jeder Klick auf den Link bringt dir einen Punkt. Nur seriöse Klicks werden im Ranking beachtet. 
+
 
 @component('mail::panel')
 [{{ $trackingLink }}]({{ $trackingLink }}) 

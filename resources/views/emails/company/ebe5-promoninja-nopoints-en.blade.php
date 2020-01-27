@@ -4,39 +4,39 @@
  
 # Hi {{$profile->translate("[[fname]]")}},
 
-We have noticed that you haven't taken part in our Exhibitor Contest.
+We noticed that you haven’t taken part in our Exhibitor Contest.
 
-If you want to rule the presentation stage or gain extra brand visibility (logotype on the badges, leaflets, video interviews) that's the easiest and effortless way to achieve that. 
+If you want to win a presentation slot on one of our stages and gain some extra brand visibility (your logotype on official badges, leaflets or video interviews), taking part in the Contest is the easiest way to do so!
 
-Top 3 companies are: xxx (yy point), yyy (zz points), zzz (ooo points).
+For now, the top 3 companies are: xxx (yy point), yyy (zz points), zzz (ooo points).
 
-How could we help you?
+How can we help you?
 
-1. Do you want to schedule a 10 min chat with us - we will briefly discuss how to use promotional materials. Please use this link to choose most suitable time for you - calendly.com/costam....
+1. Do you want to schedule a 10 min chat with us? We can briefly discuss how to use promotional materials. Please use the link below to choose the most suitable time for you: calendly.com/costam....
 
-2. Read quickstart quide (with your dedicated links) to check how easy it is to rule the Contest. you can forward this message to person responsible for PR.
+2. Below, you’ll find a quickstart guide (with your customized links) to check how simple it is to take part in the Contest. Alternatively, you can forward this message to a person responsible for PR in your company. 
 
 Quickstart quide
 
-a) Click here to share information on your facebook account
-b) Click here to share information on your linkedin account
-c) Click here to share information on your twitter account
-d) Download ready to send .zip package with email newsletter
+a) Click here to share info on your Facebook account
+b) Click here to share info on your Linkedin account
+c) Click here to share info on your Twitter account
+d) Download a ready-to-send .zip package with an e-mail newsletter
 
-With each click coming from shared info you will gain points - all traffic goes to your company public profile on E-commerce Berlin Expo website so except joining the contest you will maximize your participantion in Expo!
+Each click coming from your link grants you a point, and extra visibility - since traffic goes directly to your company public profile. 
 
-If you would like to gain points using your own promo materials - there is also an easy way to do it.
+If you would like to earn points using your own promo materials, you can do it with your customized link (plase find it below). 
+Use it when creating newsletters, e-mail footers, advertisement (FB ads, adwords, social media) or when directly informing your clients.
 
-Please find your customized link below. Use it when creating newsletters, email footers, advertisement (fb ads, adwords, social media) or when directly informing your clients.
 
 @component('mail::panel')
 [{{ $trackingLink }}]({{ $trackingLink }}) 
 @endcomponent
 
 
-**  IMPORTANT: The competition will be enabled till 4th February 11:59 PM CET**
+**  IMPORTANT: the competition is open until the 4th of February 2020, 11:59 PM CET.**
 
-# In your Exhibitor's account you will find 4 important sections related to the Challenge.
+#  In your Exhibitor’s account, you will find 4 important sections related to the Contest.
 
 @component('mail::button', ['url' => $accountUrl])
 Sign In
@@ -44,41 +44,41 @@ Sign In
 
 # RANKING
 
-The ranking is created on the basis of data fetched from our google analytics.
+The ranking is created according to data fetched from Google Analytics.
 
 
 ## REWARDS
 
-Each of the prizes requires fulfillment of the conditions for its granting.
+Each of the prizes requires meeting several criteria:
 
-* minimal number of points (= pageviews of your public exhibitor's profile)
-* position in the ranking
+- a minimum number of points (unique page views via a customized link) 
+- position in the ranking. 
 
-Looking at every listed prize you can see whether your company meets the conditions or not. Please remember that everything may change till the end of the Challenge so it is recommended not to open the champagne until the end of the competition.
+You can track your position in real-time, so it is good to keep an eye on it and make extra efforts if needed (getting additional points, extra promotion) since your position can be changed anytime. 
 
-# Some of the PRIZES
+
+# PRIZES
 
 ## Exclusive branded visitor badges
 
-Exclusive branded visitor badges with the Winner's logo. The badges will be handed out to all of the visitors (7000+) during the E-commerce Berlin Expo 2020.
+Exclusive branded visitor badges with the Winner’s logo. The badges will be handed out to all of the visitors (7000+) during the E-commerce Berlin Expo 2020.
 
 ## Presentation slot on one of our stages
 
-30-minute presentation slot during upcoming expo. Your presentation will be added to the official agenda and promoted. 
+30-minute presentation slot during the upcoming Expo. Your presentation will be added and promoted via the official agenda. 
 
 ## VIDEO interview
 
-Your company will be video-interviewed at your booth during Expo! You will own the resulting material and also can expect we will promote it after the event. 
+Your company will be video-interviewed at your booth during Expo! You will receive the promotional material, we will promote it after the event as well.
 
 ## Promotion of the company logo on our website
 
-Your logotype will be promoted during next 11 months - till the next event.
+Your company’s logo on our official website, displayed for the next 11 months - until the EBE 2021.
 
-## Want to use your own promo materials? Great. Always use the provided link!
+## Do you want to create and use your own promo materials in the Contest? That’s great - always use the provided link!
 
-## Every click through your customized link to the E-commerce Berlin Expo website gives you one point. 
+## Each click coming from your link gives you one point. Only UNIQUE CLICKS through your customized link count towards the ranking. 
 
-We are counting only unique clicks on your customized link. Registration at the event website is NOT required to get a point. 
 
 @component('mail::panel')
 [{{ $trackingLink }}]({{ $trackingLink }}) 
