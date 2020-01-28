@@ -88,10 +88,6 @@ Diese Preis führt dazu, dass Euer Logo auf unserer Website für die nächsten 1
 ## Jeder Klick auf den Link bringt dir einen Punkt. Nur seriöse Klicks werden im Ranking beachtet. 
 
 
-@component('mail::panel')
-[{{ $trackingLink }}]({{ $trackingLink }}) 
-@endcomponent
-
 Regards, 
 
 {{$footer}}
