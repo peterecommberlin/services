@@ -18,13 +18,13 @@ If you want to **win a presentation slot** on one of our stages and gain some ex
 
 ## Quickstart quide
 
-a) [Click here to share info on your Facebook account]({{ array_get($sharers, "facebook") }})
+a) [Click here to share info on your Facebook account]({!! array_get($sharers, "facebook") !!})
 
-b) [Click here to share info on your Linkedin account]({{ array_get($sharers, "linkedin") }})
+b) [Click here to share info on your Linkedin account]({!! array_get($sharers, "linkedin") !!})
 
-c) [Click here to share info on your Twitter account]({{ array_get($sharers, "twitter") }})
+c) [Click here to share info on your Twitter account]({!! array_get($sharers, "twitter") !!})
 
-d) [Download a ready-to-send .zip package with an e-mail newsletter]({{ urldecode(array_get($newsletter, "zip")) }})
+d) [Download a ready-to-send .zip package with an e-mail newsletter]({!! array_get($newsletter, "zip") !!})
 
 ** Alternatively, you can forward this message to a person responsible for PR in your company. **
 

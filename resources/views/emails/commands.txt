@@ -5,38 +5,36 @@
 
 
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Zusätzliche Dienstleistungen bestellen - letzter Aufruf" --email=ebe5-upgrades-reminder
-
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Additional services ordering - final reminder" --email=ebe5-upgrades-reminder
+
 
 9 stycznia
 ==========
 
 php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=en --defaultlang=en --subject="Time to add Exhibitor's Representatives" --email=ebe5-representatives-list
-
 php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=de --defaultlang=en --subject="Firmenvertreter Hinzuzufügen" --email=ebe5-representatives-list
+
 
 14 stycznia
 ===========
 
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Logistics information - download the exhibitor manual for the E-commerce Berlin Expo 2020" --email=ebe5-logistics-manual-1st-message
-
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Logistikinformationen für Aussteller runterladen - E-commerce Berlin Expo 2020" --email=ebe5-logistics-manual-1st-message
+
 
 17 stycznia
 ===========
 
 
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="3x presentation slot, video interview, promo materials... is waiting for you" --email=ebe5-promoninja-intro
-
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="3x Speakingslots, Videointerview, Promomaterialien.... warten auf dich." --email=ebe5-promoninja-intro
+
 
 21 stycznia
 ===========
 
 php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=en --defaultlang=en --subject="Deadline today. Please add exhibitor's representatives." --email=ebe5-representatives-final
-
 php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=de --defaultlang=en --subject="Deadline heute. Bitte fügen Sie Firmenvertreter hinzu." --email=ebe5-representatives-final
-
 php artisan companies:emptyprofile --domain=ecommerceberlin.com
 
 
@@ -44,6 +42,26 @@ php artisan companies:emptyprofile --domain=ecommerceberlin.com
 ===========
 
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Before/Networking Party - Please add party participants" --email=ebe5-party-rsvp
-
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Before/Networking Party - Partygäste hinzufügen" --email=ebe5-party-rsvp
+
+
+28 stycznia
+===========
+
+php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=2 --lang=en --subject="Check out the Exhibitor Contest; Quickstart guide" --email=ebe5-promoninja-nopoints
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

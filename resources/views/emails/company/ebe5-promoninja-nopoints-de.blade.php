@@ -18,13 +18,13 @@ Falls du eine Präsentation auf einer unserer 4 Bühnen haben möchtest oder ext
 
 ## Quickstart-Guide
 
-a) [Klick hier, um den Post auf Facebook zu teilen]({{ array_get($sharers, "facebook") }})
+a) [Klick hier, um den Post auf Facebook zu teilen]({!! array_get($sharers, "facebook") !!})
 
-b) [Klick hier, um den Post auf LinkedIn zu teilen]({{ array_get($sharers, "linkedin") }})
+b) [Klick hier, um den Post auf LinkedIn zu teilen]({!! array_get($sharers, "linkedin") !!})
 
-c) [Klick hier, um den Post in deinem TT Account zu teilen]({{ array_get($sharers, "twitter") }})
+c) [Klick hier, um den Post in deinem TT Account zu teilen]({!! array_get($sharers, "twitter") !!})
 
-d) [Download einer fertigen ZIP-Datei mit einem E-Mail-Newsletter-Template.]({{ urldecode(array_get($newsletter, "zip")) }})
+d) [Download einer fertigen ZIP-Datei mit einem E-Mail-Newsletter-Template.]({!! array_get($newsletter, "zip") !!})
 
 ** Alternativ kannst du diese Nachricht an Euer PR-Team weiterleiten. **
 
