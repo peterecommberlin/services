@@ -28,6 +28,7 @@ class GeneralExhibitorEmail extends Mailable
     public  $subject,
             $view,
             $lang,
+            $viewlang,
             $event_manager,
             $stats,
             $representatives,
@@ -41,6 +42,10 @@ class GeneralExhibitorEmail extends Mailable
             $footer;
  
 
+    public $sharers, $newsletter;
+
+    public $calendar;
+
     public function __construct(Participant $participant, array $config)
     {
         $this->participant  = $participant;
@@ -49,8 +54,8 @@ class GeneralExhibitorEmail extends Mailable
         $this->subject = array_get($config, "subject", "");
         $this->view = array_get($config, "email");
         $this->lang = array_get($config, "lang");
+        $this->viewlang = array_get($config, "viewlang");
         $this->event_manager = array_get($config, "event_manager", "");
-
         $this->stats = array_get($config, "stats", []);
         $this->representatives = array_get($config, "representatives", []);
         $this->prizes = array_get($config, "prizes", []);
@@ -72,7 +77,7 @@ class GeneralExhibitorEmail extends Mailable
         $emailHelper = new Email($this->participant);
 
         $this->footer = $emailHelper->getFooter();
-
+        $this->calendar = $emailHelper->getCalendarUrl();
 
         //this should be moved to settings?...
        if( $this->participant->group_id > 1 ){
@@ -109,7 +114,15 @@ class GeneralExhibitorEmail extends Mailable
         $this->profile = $companydata->profileData();
         $this->profileUrl = $companydata->profileUrl();
         $this->accountUrl = $companydata->accountUrl();
-        $this->trackingLink = $companydata->trackingLink();
+        $this->trackingLink = $companydata->trackedProfileUrl();
+
+        if(!empty($this->creatives)){
+            
+            $englishCreatives = collect($this->creatives)->where("lang", "en");
+            $this->sharers = $englishCreatives->where("name","logotype")->pluck("sharers")->collapse()->all();
+            $this->newsletter = array_get($englishCreatives->where("name", "invite")->first(), "newsletter");
+
+        }
 
         $recipient =  trim( strtolower( $this->participant->email ));
 

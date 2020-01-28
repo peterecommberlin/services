@@ -39,14 +39,15 @@ class CompanyRankingPosition extends Command {
         $threshold  = $this->option("threshold");
         $viewlang   = $this->option("lang");
         $domain     = $this->option("domain");
-        $email      = $this->option("email");
+        $view      = $this->option("email");
         $subject    = $this->option("subject");
 
         if(empty($domain)) {
             $errors[] = "--domain= must be set!";
         }
 
-        if($whatWeDo !== "stats"){
+        if($whatWeDo === "send"){
+
             if(empty($viewlang)) {
                 $errors[] = "--lang= must be set!";
             }
@@ -55,14 +56,14 @@ class CompanyRankingPosition extends Command {
                 $errors[] = "--subject= must be set!";
             }
                     
-            if(empty($email)) {
+            if(empty($view)) {
                 $errors[] = "--email= must be set!";
             }
 
-            $email = $email . "-" . $viewlang;
+            $email = $view . "-" . $viewlang;
 
-            if(! view()->exists("emails.company." . $email)) {
-                $errors[] = "--email= error. View cannot be found!";
+            if($view && ! view()->exists("emails.company." . $email)) {
+                $errors[] = "--email= View cannot be found! Bad language chosen?";
             }
 
         }
@@ -117,23 +118,6 @@ class CompanyRankingPosition extends Command {
         foreach($arr as $ex)
         {
 
-            $stats          = array_get($ranking, $ex->company_id, []);
-            $lang           = $ex->getLang();
-            $name           = $ex->getName();
-            $event_manager  = $ex->getEventManager();
-            //$cReps          = $ex->getReps();
-
-            $translations   = array_get($allTranslations, $lang);
-            $creatives      = $ex->getCompany() ? (new Creatives($ex))->get() : [];
-
-
-            if(!empty($creatives)){
-                dd($creatives);               
-            }
-
-
-            $this->info("Processing " . $name . "/" . $ex->email);
-
             //do we have company assigned?
 
             if( !$ex->company_id ){
@@ -141,17 +125,58 @@ class CompanyRankingPosition extends Command {
                 continue;
             }
 
-            if( empty($stats) ){
-                $this->error("No ranking data for" . $ex->email);
-                continue;
-            }
+            $stats          = array_get($ranking, $ex->company_id, []);
+            $sessions       = (int) array_get($stats, "sessions", 0);
+            $position       = (int) array_get($stats, "position", 0);
+
+            /*
+                stats: {
+                    id: 1650,
+                    sessions: 311,
+                    conversions: 0,
+                    position: 3,
+                    prizes: [
+                        "presentation",
+                        "video_interview",
+                        "earlybird",
+                        "meetups",
+                        "brand_highlight",
+                        "leaflets",
+                        "rollups",
+                        "blog"
+                    ]
+                }
+            */
+
+            $lang           = $ex->getLang();
+            $name           = $ex->getName();
+            $event_manager  = $ex->getEventManager();
+            //$cReps          = $ex->getReps();
+
+            $translations   = array_get($allTranslations, $lang);
+            $creatives      = $ex->getCompany() ? (new Creatives($ex))->get() : [];
+            
+            $logotype       = $ex->logotype();
+
+
+            $this->info("Processing " . $name . "/" . $ex->email);
 
             if( !$ex->hasAccountManager() ){
                 $this->error( "No account assigned for " . $ex->email );
-               // continue;
             }
  
-            $this->line("Position: " . array_get($stats, "position") . ", sessions: " . array_get($stats, "sessions"));
+            if( $sessions > $threshold ){
+                $this->error("To many points: " . $sessions . " Skipping....");
+                continue;
+            }
+
+             if( strpos($logotype, "cloudinary") === false ){
+                $this->error("No valid logotype!");
+                continue;
+            }
+
+
+            $this->line("Position: " . $position . ", sessions: " . $sessions);
 
             if($whatWeDo === "send"){
 
@@ -187,7 +212,7 @@ class CompanyRankingPosition extends Command {
 
         }   
 
-        $this->info("Delivered " . $done . " messages");
+        $this->info("Processed " . $done . " exhibitors...");
 
 
     }
