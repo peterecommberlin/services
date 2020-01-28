@@ -12,19 +12,20 @@ If you want to **win a presentation slot** on one of our stages and gain some ex
 
 ## How can we help you?
 
-1. Do you want to **schedule a 10 min chat** with us? We can briefly **discuss how to use promotional materials**. Please use [this link]({{$calendar}}) below to choose the most suitable time for you.
+1. Do you want to **schedule a 10 min chat** with us? We can briefly **discuss how to use promotional materials**. Please use [this link]({!! $calendar !!}) below to choose the most suitable time for you.
 
 2. Below, you’ll find a quickstart guide (with your customized links) to check how simple it is to take part in the Contest. 
 
 ## Quickstart quide
 
-a) [Click here to share info on your Facebook account]({!! array_get($sharers, "facebook") !!})
+a) [Download a ready-to-send .zip package with an e-mail newsletter]({!! array_get($newsletter, "zip") !!})
 
 b) [Click here to share info on your Linkedin account]({!! array_get($sharers, "linkedin") !!})
 
-c) [Click here to share info on your Twitter account]({!! array_get($sharers, "twitter") !!})
+c) [Click here to share info on your Facebook account]({!! array_get($sharers, "facebook") !!})
 
-d) [Download a ready-to-send .zip package with an e-mail newsletter]({!! array_get($newsletter, "zip") !!})
+d) [Click here to share info on your Twitter account]({!! array_get($sharers, "twitter") !!})
+
 
 ** Alternatively, you can forward this message to a person responsible for PR in your company. **
 

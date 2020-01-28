@@ -6,25 +6,25 @@
 
 wir haben festgestellt, dass Euer Unternehmen nicht bei unserem Ausstellerwettbewerb teilnimmt. 
 
-Falls du eine Präsentation auf einer unserer 4 Bühnen haben möchtest oder extra Sichtbarkeit notwendig ist (Logo auf den Besucherbadges oder im Videointerview), dann ist der Wettbewerb der einfachste Weg zum Erfolg. 
-
 ** Zur Zeit sind das die Top 3: A4G DSP (610 Punkte), knowhere (575 Punkte), hello.de AG (351 Punkte).**
+
+Falls du eine **Präsentation** auf einer unserer 4 Bühnen haben möchtest oder extra Sichtbarkeit notwendig ist (**Logo auf den Besucherbadges** oder im **Videointerview**), dann ist der Wettbewerb der einfachste Weg zum Erfolg. 
 
 ## Wie können wir dir helfen? 
 
-1. Würdest du mit uns einen 10-minütigen Call machen? Dann erklären wir dir wie das Prozedere aussieht. Bitte [benutze den Link hier](({{ $calendar }})) und wähle den für dich besten Zeitpunkt. 
+1. Würdest du mit uns einen 10-minütigen Call machen? Dann erklären wir dir wie das Prozedere aussieht. Bitte [benutze den Link hier]({!! $calendar !!}) und wähle den für dich besten Zeitpunkt. 
 
 2. Unten wirst du einen Schnellstart-Guide finden (mit deinem personaliserten Link), und merken, wie einfach es ist am Wettbewerb teilzunehmen. 
 
 ## Quickstart-Guide
 
-a) [Klick hier, um den Post auf Facebook zu teilen]({!! array_get($sharers, "facebook") !!})
+a) [Download einer fertigen ZIP-Datei mit einem E-Mail-Newsletter-Template.]({!! array_get($newsletter, "zip") !!})
 
 b) [Klick hier, um den Post auf LinkedIn zu teilen]({!! array_get($sharers, "linkedin") !!})
 
-c) [Klick hier, um den Post in deinem TT Account zu teilen]({!! array_get($sharers, "twitter") !!})
+c) [Klick hier, um den Post auf Facebook zu teilen]({!! array_get($sharers, "facebook") !!})
 
-d) [Download einer fertigen ZIP-Datei mit einem E-Mail-Newsletter-Template.]({!! array_get($newsletter, "zip") !!})
+d) [Klick hier, um den Post in deinem TT Account zu teilen]({!! array_get($sharers, "twitter") !!})
 
 ** Alternativ kannst du diese Nachricht an Euer PR-Team weiterleiten. **
 
@@ -44,7 +44,7 @@ Falls ihr Eure **eigenen Promomaterialien benutzen wollt**, dann könnt ihr das 
 
 In deinem Ausstellerprofil wirst du 4 wichtige Sektionen finden in Bezug auf den Wettbewerb. 
 
-# RANKING
+## RANKING
 
 Das Ranking basiert auf den verarbeiteten Daten von Google Analytics.
 
