@@ -44,10 +44,6 @@ Use it when creating newsletters, e-mail footers, advertisement (FB ads, adwords
 
 In your Exhibitor’s account, you will find 4 important sections related to the Contest.
 
-@component('mail::button', ['url' => $accountUrl])
-Sign In
-@endcomponent
-
 ## RANKING
 
 The ranking is created according to data fetched from Google Analytics.
@@ -78,6 +74,11 @@ Your company will be video-interviewed at your booth during Expo! You will recei
 ** Promotion of the company logo on our website**
 
 Your company’s logo on our official website, displayed for the next 11 months - until the EBE 2021.
+
+
+@component('mail::button', ['url' => $accountUrl])
+Sign In
+@endcomponent
 
 ## Do you want to create and use your own promo materials in the Contest? That’s great - always use the provided link!
 

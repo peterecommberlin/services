@@ -44,10 +44,6 @@ Falls ihr Eure **eigenen Promomaterialien benutzen wollt**, dann könnt ihr das 
 
 In deinem Ausstellerprofil wirst du 4 wichtige Sektionen finden in Bezug auf den Wettbewerb. 
 
-@component('mail::button', ['url' => $accountUrl])
-Sign In
-@endcomponent
-
 # RANKING
 
 Das Ranking basiert auf den verarbeiteten Daten von Google Analytics.
@@ -78,6 +74,11 @@ Dein Unternehmen wird auf eurem Messestand während der Expo interviewed! Du bek
 **Das Promoten Eures Logos auf unserer Website**
 
 Diese Preis führt dazu, dass Euer Logo auf unserer Website für die nächsten 11 Monate sichtbar sein wird - also bis zur Expo 2021. 
+
+@component('mail::button', ['url' => $accountUrl])
+Sign In
+@endcomponent
+
 
 ## Willst du deine eigenen Promomaterialien im Wettbewerb benutzen? Das ist perfekt, nur vergiss dabei das Integrieren des personalisierten Links nicht. 
 
