@@ -48,8 +48,8 @@ php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.c
 28 stycznia
 ===========
 
-php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=10 --lang=en --subject="Check out the Exhibitor Contest; Quickstart guide" --email=ebe5-promoninja-nopoints
-php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=10 --lang=de --subject="Letzte Chance, am Ausstellerwettbewerb teilzunehmen; Quickstart-Guide" --email=ebe5-promoninja-nopoints
+php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=20 --lang=en --subject="Last chance to join the Exhibitor Contest; Quickstart guide" --email=ebe5-promoninja-nopoints
+php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=20 --lang=de --subject="Letzte Chance, am Ausstellerwettbewerb teilzunehmen; Quickstart-Guide" --email=ebe5-promoninja-nopoints
 
 
 

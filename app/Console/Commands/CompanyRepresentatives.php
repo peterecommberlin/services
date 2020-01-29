@@ -148,7 +148,7 @@ class CompanyRepresentatives extends Command
                 $noreps++;
             }
 
-            if($cReps->count() >= $threshold){
+            if($cReps->count() > $threshold){
                  continue;
             }
 
