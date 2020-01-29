@@ -46,6 +46,10 @@ class CompanyRankingPosition extends Command {
             $errors[] = "--domain= must be set!";
         }
 
+        if(!is_numeric($threshold)){
+            $errors[] = "--threshold= must be an integer!";
+        }
+
         if($whatWeDo === "send"){
 
             if(empty($viewlang)) {
