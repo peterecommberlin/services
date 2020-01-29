@@ -163,7 +163,7 @@ class CompanyRankingPosition extends Command {
             $logotype       = $ex->logotype();
 
 
-            $this->info("Processing " . $name . "/" . $ex->email);
+            $this->line("Processing " . $name . "/" . $ex->email);
 
             if( !$ex->hasAccountManager() ){
                 $this->error( "No account assigned for " . $ex->email );

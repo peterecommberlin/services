@@ -120,7 +120,8 @@ class CompanyRepresentatives extends Command
         foreach($iterate as $ex)
         {   
 
-            $this->info("Processing " . $ex->email);
+            $this->line("--------------------------------");
+            $this->line("Processing " . $ex->email);
 
             if( !$ex->company_id ){
                 $this->error( "No company assigned for " . $ex->email );
