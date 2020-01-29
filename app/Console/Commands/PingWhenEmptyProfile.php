@@ -106,10 +106,9 @@ class PingWhenEmptyProfile extends Command
 
         $done = 0;
 
-
+        $arr = $whatWeDo === "send" ? $filtered : $exhibitors;
     
-
-        foreach($exhibitors as $ex)
+        foreach($arr as $ex)
         {
             
         

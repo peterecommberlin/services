@@ -63,9 +63,7 @@ php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=0 --lang=en
 php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=0 --lang=de --defaultlang=en --subject="Deadline heute. Bitte fügen Sie Firmenvertreter hinzu." --email=ebe5-representatives-final
 
 
-
-
-
+php artisan companies:emptyprofile --domain=ecommerceberlin.com
 
 
 
