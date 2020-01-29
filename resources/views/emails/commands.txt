@@ -59,8 +59,8 @@ php artisan exhibitors:reps --threshold=0 --defaultlang=en --domain=ecommerceber
 php artisan exhibitors:reps --threshold=0 --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Before/Networking Party - Partygäste hinzufügen" --email=ebe5-party-rsvp
 
 
-
-
+php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=0 --lang=en --defaultlang=en --subject="Deadline today. Please add exhibitor's representatives." --email=ebe5-representatives-final
+php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=0 --lang=de --defaultlang=en --subject="Deadline heute. Bitte fügen Sie Firmenvertreter hinzu." --email=ebe5-representatives-final
 
 
 

@@ -161,7 +161,7 @@ class CompanyRepresentatives extends Command
 
                 if($lang !== $viewlang)
                 {
-                    $this->line("Skipped! Lang mismatch. ");
+                    $this->info("Skipped! Lang mismatch. ");
                     continue;
                 }
 

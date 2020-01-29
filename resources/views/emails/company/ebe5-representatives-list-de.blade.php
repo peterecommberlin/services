@@ -2,7 +2,7 @@
 @component('mail::message')
  
 
-# Hallo {{$profile->translate("[[fname]]")}},
+# Hallo {{ array_get($profile, "fname") }},
 
 ** Bitte beachten Sie, dass Sie in Ihrem Aussteller Konto Aussteller Vertreter hinzufügen / ändern / löschen können. Nur definierte Vertreter haben gedruckte Ausweise.**
 

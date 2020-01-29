@@ -3,7 +3,7 @@
 @component('mail::message')
 
 
-# Hello {{$profile->translate("[[fname]]")}},
+# Hello  {{ array_get($profile, "fname") }},
 
 **Please be reminded that in your exhibitor account one can add/modify/delete exhibitor representatives. Only defined representatives will have printed badges.**
 
