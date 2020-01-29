@@ -13,7 +13,6 @@ use Illuminate\Console\Command;
 // use Eventjuicer\ValueObjects\EmailAddress;
 
 use Eventjuicer\Jobs\PingWhenEmptyProfileJob as Job;
-use Eventjuicer\Services\CompanyData;
 use Eventjuicer\Services\Exhibitors\Console;
 
 
@@ -42,7 +41,7 @@ class PingWhenEmptyProfile extends Command
         parent::__construct();
     }
  
-    public function handle(Console $service, CompanyData $cd)
+    public function handle(Console $service)
     {
 
 
