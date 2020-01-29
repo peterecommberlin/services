@@ -44,11 +44,6 @@ class CompanyRepresentatives extends Command
             $errors[] = "--domain= must be set!";
         }
 
-        if(empty($threshold)) {
-            $errors[] = "--threshold= must be set!";
-        }
-
-
         if(count($errors)){
 
             foreach($errors as $error){

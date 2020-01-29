@@ -52,7 +52,11 @@ php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=20 --lan
 php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=20 --lang=de --subject="Letzte Chance, am Ausstellerwettbewerb teilzunehmen; Quickstart-Guide" --email=ebe5-promoninja-nopoints
 
 
+29 stycznia
+===========
 
+php artisan exhibitors:reps --threshold=0 --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Before/Networking Party - Please add party participants" --email=ebe5-party-rsvp
+php artisan exhibitors:reps --threshold=0 --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Before/Networking Party - Partygäste hinzufügen" --email=ebe5-party-rsvp
 
 
 
