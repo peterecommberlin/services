@@ -66,5 +66,12 @@ php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=0 --lang=de
 php artisan companies:emptyprofile --domain=ecommerceberlin.com
 
 
+30 stycznia
+===========
+
+php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=20 --lang=en --subject="Exhibitor Contest; A4G DSP (over 629 points), knowhere (596 points), hello.de AG (520 points)" --email=ebe5-promoninja-nopoints2
+
+php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=20 --lang=de --subject="Ausstellerwettbewerb: A4G DSP (629 Punkte), knowhere (596 Punkte), hello.de AG (520 Punkte)." --email=ebe5-promoninja-nopoints2
+
 
 
