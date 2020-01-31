@@ -2,13 +2,12 @@
 
 @component('mail::message')
 
-
-# Hallo  {{ array_get($profile, "fname") }},
+Hallo  {{ array_get($profile, "fname") }},
 
 # In deinem Ausstellerprofil hast du nun die Möglichkeit, die Besucher der Expo zu sehen und diese zu Gesprächen an deinen Stand einzuladen 
 
 @component('mail::button', ['url' => $accountUrl])
-Zugang zum Profil
+Zu meinem Account gelangen
 @endcomponent
 
 
@@ -29,7 +28,7 @@ Die Einladungen werden gebündelt und 1x täglich geschickt. Der Besucher hat di
 **In dem Moment, wo der Besucher die Einladung akzeptiert, bekommst du die gesamten Daten von dem Besucher.**
 
 @component('mail::button', ['url' => $accountUrl])
-Zugang zum Profil
+Zu meinem Account gelangen
 @endcomponent
 
 regards,

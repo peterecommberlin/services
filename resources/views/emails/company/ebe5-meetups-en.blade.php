@@ -3,15 +3,13 @@
 @component('mail::message')
  
 
-# Hi  {{ array_get($profile, "fname") }}, 
+Hi  {{ array_get($profile, "fname") }}, 
 
 # you have now the opportunity to check who actually signed for the E-commerce Berlin Expo and you’re now able to invite them to your stand. 
-
 
 @component('mail::button', ['url' => $accountUrl])
 Access to dashboard
 @endcomponent				
-
 
 <a href="{{$accountUrl}}"><img src="https://res.cloudinary.com/eventjuicer/image/upload/v1549450516/meetups.png" alt="" style="margin-top: 30px; margin-bottom: 30px;"></a>
 
