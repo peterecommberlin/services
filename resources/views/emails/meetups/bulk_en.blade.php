@@ -18,7 +18,7 @@ Approve or reject meetup requests
 Looking forward to see you! 
 
 Kind Regards, 
-Charlene Pham, E-commerce Berlin Expo Team.
+Lucas Zarna, E-commerce Berlin Expo Team.
 
 
 @endcomponent

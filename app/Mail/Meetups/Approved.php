@@ -46,7 +46,7 @@ class Approved extends Mailable
             $this->domain = "ecommerceberlin.com";
 
             $this->sender_email = "rsvp@ecommerceberlin.com";
-            $this->sender_name = "Charlene Pham - E-commerce Berlin Expo";
+            $this->sender_name = "Lucas Zarna - E-commerce Berlin Expo";
             $this->subject = "Invitation accepted! Contact details attached.";
             $this->view = "approved_en";
 

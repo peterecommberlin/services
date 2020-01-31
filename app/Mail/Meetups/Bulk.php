@@ -49,7 +49,7 @@ class Bulk extends Mailable {
 
             $this->domain = "ecommerceberlin.com";
             $this->sender_email = "rsvp@ecommerceberlin.com";
-            $this->sender_name = "Charlene Pham - E-commerce Berlin Expo";
+            $this->sender_name = "Lucas Zarna - E-commerce Berlin Expo";
             $this->subject = "Exhibitors that want to meet you. Your action needed.";
             $this->view = "bulk_en";
         }
