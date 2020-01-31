@@ -18,10 +18,10 @@ Access to dashboard
 
 # How does it work? 
 
-At the beginning, you have **15 invitations.** If you participate in the contest, which is integrated in the dashboard and you achieve at least 20 points, you get a ** mega package of invitations** (50 additional invitations). This means, you will have 65 invitations for sure. 
+At the beginning, you have **30 invitations.** If you participate in the contest, which is integrated in the dashboard and you achieve at least 50 points, you get a ** mega package of invitations** (50 additional invitations).
 
-For every 5 more points in the contest you will get one more invitation. 
-A company with 50 points should have 75 invitations in total. 
+For every 50 more points in the contest you will get package of 50 more invitation. 
+A company with 200 points should have 200 invitations in total. 
 
 # How does it work from the visitors scope? 
 

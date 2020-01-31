@@ -17,10 +17,10 @@ Zugang zum Profil
 
 # Wie funktioniert das? 
 
-Am Anfang hast du **15 Einladungen.** Wenn du im Wettbewerb, welcher innerhalb des Dashboards gerade läuft, mindestens 20 Punkte erreichst, erhältst du das sog. Mega **Paket an Einladungen - 50 Stück.** Somit wärst du bei 65 Einladungen. 
+Am Anfang hast du **30 Einladungen.** Wenn du im Wettbewerb, welcher innerhalb des Dashboards gerade läuft, mindestens 50 Punkte erreichst, erhältst du das sog. Mega **Paket an Einladungen - 50 Stück.** 
 
-Für jede weitere 5 Punkte bekommst du eine Einladung dazu. 
-Erreicht jemand 50 Punkte, dann hat man 75 Einladungen insgesamt
+Für jede weitere 50 Punkte bekommst du ein Paket iHv. 50 Einladungen.
+Erreichst du 200 Punkte, dann hast du ein Gesamtkontigent von 200 Einladungen.
 
 # Wie funktioniert das aus Sicht des Besuchers? 
 
