@@ -117,11 +117,8 @@ class CompanyRepresentatives extends Command
         $noreps = 0;
         $noaccount = 0;
 
-        foreach($iterate as $ex)
-        {   
-
-            $this->line("--------------------------------");
-            $this->line("Processing " . $ex->email);
+        foreach($iterate as $ex){   
+            
 
             if( !$ex->company_id ){
                 $this->error( "No company assigned for " . $ex->email );
@@ -139,25 +136,27 @@ class CompanyRepresentatives extends Command
             $cReps          = $ex->getReps($role);
             $translations   = array_get($allTranslations, $lang);
 
-    
-            if(!$cReps->count()){
-                $noreps++;
-                $this->error("No reps!");
-            }else{
-                $this->line($role . " reps count: " . $cReps->count() );
-            }
 
             if($cReps->count() > $threshold){
-                 $this->info("Above threshold! ...skipping");
                  continue;
+            }else{
+
+                $this->line("--------------------------------");
+                $this->line("Processing " . $ex->email);
+
+                if(!$cReps->count()){
+                    $noreps++;
+                    $this->error("No reps!");
+                }else{
+                    $this->line($role . " reps count: " . $cReps->count() );
+                }
             }
 
             if(empty($name)){
                  $this->error("No company name!");
             }
         
-            if($whatWeDo == "send")
-            {
+            if($whatWeDo == "send"){
 
                 if($lang !== $viewlang)
                 {
