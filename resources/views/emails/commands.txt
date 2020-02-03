@@ -1,47 +1,48 @@
 
 
 
-
-
-
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Zusätzliche Dienstleistungen bestellen - letzter Aufruf" --email=ebe5-upgrades-reminder
+
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Additional services ordering - final reminder" --email=ebe5-upgrades-reminder
 
 
 9 stycznia
 ==========
 
-php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=en --defaultlang=en --subject="Time to add Exhibitor's Representatives" --email=ebe5-representatives-list
-php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=de --defaultlang=en --subject="Firmenvertreter Hinzuzufügen" --email=ebe5-representatives-list
+php artisan company:relations --domain=ecommerceberlin.com --threshold=2 --lang=en --defaultlang=en --subject="Time to add Exhibitor's Representatives" --email=ebe5-representatives-list
+
+php artisan company:relations --domain=ecommerceberlin.com --threshold=2 --lang=de --defaultlang=en --subject="Firmenvertreter Hinzuzufügen" --email=ebe5-representatives-list
 
 
 14 stycznia
 ===========
 
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Logistics information - download the exhibitor manual for the E-commerce Berlin Expo 2020" --email=ebe5-logistics-manual-1st-message
-php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Logistikinformationen für Aussteller runterladen - E-commerce Berlin Expo 2020" --email=ebe5-logistics-manual-1st-message
 
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Logistikinformationen für Aussteller runterladen - E-commerce Berlin Expo 2020" --email=ebe5-logistics-manual-1st-message
 
 17 stycznia
 ===========
 
-
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="3x presentation slot, video interview, promo materials... is waiting for you" --email=ebe5-promoninja-intro
+
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="3x Speakingslots, Videointerview, Promomaterialien.... warten auf dich." --email=ebe5-promoninja-intro
 
 
 21 stycznia
 ===========
 
-php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=en --defaultlang=en --subject="Deadline today. Please add exhibitor's representatives." --email=ebe5-representatives-final
-php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=2 --lang=de --defaultlang=en --subject="Deadline heute. Bitte fügen Sie Firmenvertreter hinzu." --email=ebe5-representatives-final
-php artisan companies:emptyprofile --domain=ecommerceberlin.com
+php artisan company:relations --domain=ecommerceberlin.com --threshold=2 --lang=en --defaultlang=en --subject="Deadline today. Please add exhibitor's representatives." --email=ebe5-representatives-final
 
+php artisan company:relations --domain=ecommerceberlin.com --threshold=2 --lang=de --defaultlang=en --subject="Deadline heute. Bitte fügen Sie Firmenvertreter hinzu." --email=ebe5-representatives-final
+
+php artisan companies:emptyprofile --domain=ecommerceberlin.com
 
 27 stycznia
 ===========
 
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Before/Networking Party - Please add party participants" --email=ebe5-party-rsvp
+
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Before/Networking Party - Partygäste hinzufügen" --email=ebe5-party-rsvp
 
 
@@ -49,22 +50,23 @@ php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.c
 ===========
 
 php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=20 --lang=en --subject="Last chance to join the Exhibitor Contest; Quickstart guide" --email=ebe5-promoninja-nopoints
+
 php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=20 --lang=de --subject="Letzte Chance, am Ausstellerwettbewerb teilzunehmen; Quickstart-Guide" --email=ebe5-promoninja-nopoints
 
 
 29 stycznia
 ===========
 
-php artisan exhibitors:reps --threshold=0 --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Before/Networking Party - Please add party participants" --email=ebe5-party-rsvp
-php artisan exhibitors:reps --threshold=0 --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Before/Networking Party - Partygäste hinzufügen" --email=ebe5-party-rsvp
+php artisan company:relations --threshold=0 --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Before/Networking Party - Please add party participants" --email=ebe5-party-rsvp
+
+php artisan company:relations --threshold=0 --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Before/Networking Party - Partygäste hinzufügen" --email=ebe5-party-rsvp
 
 
-php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=0 --lang=en --defaultlang=en --subject="Deadline today. Please add exhibitor's representatives." --email=ebe5-representatives-final
-php artisan exhibitors:reps --domain=ecommerceberlin.com --threshold=0 --lang=de --defaultlang=en --subject="Deadline heute. Bitte fügen Sie Firmenvertreter hinzu." --email=ebe5-representatives-final
+php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=en --defaultlang=en --subject="Deadline today. Please add exhibitor's representatives." --email=ebe5-representatives-final
 
+php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=de --defaultlang=en --subject="Deadline heute. Bitte fügen Sie Firmenvertreter hinzu." --email=ebe5-representatives-final
 
 php artisan companies:emptyprofile --domain=ecommerceberlin.com
-
 
 30 stycznia
 ===========
@@ -74,7 +76,24 @@ php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=20 --lan
 php artisan exhibitors:ranking --domain=ecommerceberlin.com --threshold=20 --lang=de --subject="Ausstellerwettbewerb: A4G DSP - 629 Punkte, knowhere - 596 Punkte, hello.de AG - 520 Punkte." --email=ebe5-promoninja-nopoints2
 
 
+31 stycznia
+===========
 
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Browse registered visitors and send booth meetup invitations" --email=ebe5-meetups
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Durchsuchen Sie die registrierten Besucher und senden Sie die Einladungen zum Stand-Meetup" --email=ebe5-meetups
+
+3 lutego
+===========
+
+php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=en --defaultlang=en --subject="Browse registered visitors and send booth meetup invitations." 
+ 
+php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=de --defaultlang=en --subject="Durchsuchen Sie die registrierten Besucher und senden Sie die Einladungen zum Stand-Meetup." 
+
+
+
+
+=======================================
 
 supervisorctl reread laravel-services:*
 php artisan queue:restart

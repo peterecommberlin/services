@@ -42,7 +42,7 @@ class GeneralExhibitorEmail extends Mailable
             $footer;
  
 
-    public $sharers, $newsletter;
+    public $sharers, $newsletter, $assignedPrizes;
 
     public $calendar;
 
@@ -121,6 +121,8 @@ class GeneralExhibitorEmail extends Mailable
             $englishCreatives = collect($this->creatives)->where("lang", "en");
             $this->sharers = $englishCreatives->where("name","logotype")->pluck("sharers")->collapse()->all();
             $this->newsletter = array_get($englishCreatives->where("name", "invite")->first(), "newsletter");
+
+            $assignedPrizes = 1;
 
         }
 
