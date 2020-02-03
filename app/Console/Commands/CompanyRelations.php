@@ -151,7 +151,7 @@ class CompanyRelations extends Command
 
                 if(!$items->count()){
                     $noreps++;
-                    $this->error("No " . $relation . "!");
+                    $this->error("No " . $relation  . "/" . $role . "!");
                 }else{
                     $this->line($relation . "/". $role . " count: " . $items->count() );
                 }
