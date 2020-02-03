@@ -6,11 +6,17 @@
 
 Die E-commerce Berlin Expo steht in den Startlöchern.
 
-Wir möchten dich darüber informieren, dass die Anmeldefrist für die **E-commerce Berlin Expo Networking Party** am 5.02.2020 (Tagesende) zu Ende geht. Danach wird es nicht mehr möglich sein, Vertreter Eures Unternehmens auf die Gästeliste einzutragen.
+Wir möchten dich darüber informieren, dass die Anmeldefrist für die **E-commerce Berlin Expo Networking Party**:
+
+## Mittwoch, am 5.02.2020 (Tagesende) 
+
+zu Ende geht. Danach wird es nicht mehr möglich sein, Vertreter Eures Unternehmens auf die Gästeliste einzutragen.
 
 @component('mail::panel')
 
 ## Informationen: 
+
+Ort: **Spindler & Klatt, Köpenicker Str. 16-17, 10997 Berlin**
 
 Datum: **12.02.2020**
 
@@ -19,8 +25,6 @@ Datum: **12.02.2020**
 **Awards Zeremonie:** 20-21 Uhr
 
 **Networking, Drinks und Buffet:** 21-23 Uhr 
-
-Ort: **Spindler & Klatt, Köpenicker Str. 16-17, 10997 Berlin**
 
 @endcomponent
 
@@ -39,7 +43,6 @@ Falls du planst, **mehr als zwei Gäste auf die Party mitzunehmen**, dann füge 
 @component('mail::button', ['url' => $accountUrl])
 Sing In to add or edit
 @endcomponent
-
 
 Gerne können Sie uns aber auch auf diese E-Mail antworten.
  

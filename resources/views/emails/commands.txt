@@ -86,10 +86,14 @@ php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.c
 3 lutego
 ===========
 
-php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=en --defaultlang=en --subject="Browse registered visitors and send booth meetup invitations." 
+php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=en --defaultlang=en --subject="Browse registered visitors and send booth meetup invitations." --email=ebe5-meetups 
  
-php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=de --defaultlang=en --subject="Durchsuchen Sie die registrierten Besucher und senden Sie die Einladungen zum Stand-Meetup." 
+php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=de --defaultlang=en --subject="Durchsuchen Sie die registrierten Besucher und senden Sie die Einladungen zum Stand-Meetup." --email=ebe5-meetups
 
+
+php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=en --defaultlang=en --subject="Before/Networking Party - Please add party participants." --email=ebe5-party-rsvp-reminder
+ 
+php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=de --defaultlang=en --subject="Before/Networking Party - Partygäste hinzufügen" --email=ebe5-party-rsvp-reminder
 
 
 

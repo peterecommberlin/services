@@ -6,22 +6,25 @@
 
 The E-commerce Berlin Expo 2020 is just around the corner.
 
-We’d like to inform you about the deadline (February 5, 2020, EOD) to register your company representatives to ** the E-commerce Berlin Expo 2020 Networking Party**. After this date the list of party participants will be closed and there will be no option to add more people to the guest list.
+We’d like to inform you about the deadline:
 
+## Wednesday - February 5, 2020, EOD
+
+to register your company representatives to **the E-commerce Berlin Expo 2020 Networking Party**. After this date the list of party participants will be closed and there will be no option to add more people to the guest list.
 
 @component('mail::panel')
 
 ## Agenda
 
+Location: **Spindler & Klatt, Köpenicker Str. 16-17, 10997 Berlin**
+
 Date: **12th February 2020**
 
 **Entrance**: 7pm
 
-**Awards ceremony:** 8pm - 9pm
+**E-commerce Germany Awards ceremony:** 8pm - 9pm
 
 **Networking, drinks and flying buffet:** 9pm - 11pm
-
-Location: **Spindler & Klatt, Köpenicker Str. 16-17, 10997 Berlin**
 
 @endcomponent
 
