@@ -70,8 +70,9 @@ class SyncMeetupsToVip extends Command
 
         $done = 0;
 
-        foreach( $unique as $participant)
+        foreach( $unique as $meetup)
         {
+            $participant = $meetup->participant;
 
             $this->line("Processing " . $participant->email . " ID: " . $participant->id);
 
