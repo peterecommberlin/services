@@ -97,6 +97,7 @@ class FixReps extends Command
          
             if( !isset( $exhibitors[ $rep->company_id ]) ){
                 $errors[] = "Cannot find company among exhibitors...";
+                continue;
             }
 
             $currentEventExhibitor = $exhibitors[ $rep->company_id ];
