@@ -96,9 +96,18 @@ php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=
 php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=de --defaultlang=en --subject="Deadline: Mittwoch! Before/Networking Party - Partygäste hinzufügen" --email=ebe5-party-rsvp-reminder
 
 
+4 lutego
+========
+
+php artisan meetups:vip --domain=ecommerceberlin.com
+
+5 lutego
+========
+
+php artisan visitors:ticket-reminder --domain=ecommerceberlin.com
 
 =======================================
 
-supervisorctl reread laravel-services:*
+supervisorctl restart laravel-services:*
 php artisan queue:restart
 

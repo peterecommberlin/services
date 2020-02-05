@@ -19,8 +19,8 @@ class TicketDownloadReminder extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $participant;
-    public $p, $url, $view;
+    protected $participant, $view;
+    public $p, $url;
 
     public function __construct(Participant $participant)
     {
@@ -65,15 +65,15 @@ class TicketDownloadReminder extends Mailable
 
             $this->from("zwiedzanie@targiehandlu.pl", "Katarzyna Wicher - Targi eHandlu");
 
-            $this->subject("Mam Twój bilet na wtorkowe Targi eHandlu w Warszawie.");
+            $this->subject("Mam Twój bilet na Targi eHandlu w Krakowie.");
 
-            $this->view = "teh17-ticket";
+            $this->view = "teh18-ticket";
 
         }
        
         $this->to(trim(strtolower($this->participant->email)));
 
-        if(view()->exists("emails.visitor." . $this->view . "_text")) {
+        if( view()->exists("emails.visitor." . $this->view . "_text") ) {
             $this->text('emails.visitor.' . $this->view . '_text');      
         }
 
