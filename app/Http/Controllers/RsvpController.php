@@ -13,6 +13,7 @@ use Carbon\Carbon;
 
 use App\Mail\Meetups\Approved;
 use Illuminate\Support\Facades\Mail;
+use Eventjuicer\Services\SaveOrder;
 
 class RsvpController extends Controller
 {
@@ -20,6 +21,7 @@ class RsvpController extends Controller
     protected $user;
     protected $meetups;
     protected $participants;
+    protected $saveorder;
 
     function __construct(
         ParticipantRepository $participants, 
@@ -27,6 +29,7 @@ class RsvpController extends Controller
 
         $this->participants = $participants;
         $this->meetups = $meetups;
+        $this->saveorder = $saveorder;
 
         $this->middleware(function($request, $next)
         {
@@ -136,6 +139,12 @@ class RsvpController extends Controller
 
          if($approve)
          {
+
+            //makeVIP!
+
+            $this->saveorder->setParticipant( $meetup->participant );
+            $this->saveorder->makeVip("meetup");
+            $meetup->participant->fresh();
 
             Mail::queue( new Approved( $meetup->fresh() ) );
 

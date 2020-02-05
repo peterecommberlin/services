@@ -29,9 +29,6 @@ Route::get('/marek', function () {
 });
 
 
-Route::get('/report/{host}', "ExhibitorStatusController@index");
-
-
 Route::get('/p', function()
 {
     abort(404);
@@ -61,15 +58,11 @@ Route::get("/trackinglinks", "TrackingLinkController@index");
 
 
 
+
 Route::get('/rsvp', "RsvpController@index");
-
-
-
 Route::get('/rsvp/{id}/reject', "RsvpController@reject");
 Route::get('/rsvp/{id}/approve', "RsvpController@approve");
 Route::get('/rsvp/{id}/ignore', "RsvpController@ignore");
-
-
 Route::get('/meetup-mute/', "MeetupController@mute");
 Route::get('/meetup-block/', "MeetupController@index");
 Route::get('/meetup-confirm/', "MeetupController@index");
