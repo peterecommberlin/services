@@ -25,7 +25,8 @@ class RsvpController extends Controller
 
     function __construct(
         ParticipantRepository $participants, 
-        MeetupRepository $meetups) {
+        MeetupRepository $meetups,
+        SaveOrder $saveorder) {
 
         $this->participants = $participants;
         $this->meetups = $meetups;
