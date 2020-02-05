@@ -19,7 +19,7 @@ class TicketDownloadReminder extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $participant, $view;
+    protected $participant, $email;
     public $p, $url;
 
     public function __construct(Participant $participant)
@@ -51,7 +51,7 @@ class TicketDownloadReminder extends Mailable
 
             $this->subject("Your PDF Ticket for E-commerce Belin Expo 2020");
 
-            $this->view = "ebe5-ticket-reminder";
+            $this->email = "ebe5-ticket-reminder";
 
         }
         else
@@ -67,17 +67,17 @@ class TicketDownloadReminder extends Mailable
 
             $this->subject("Mam Twój bilet na Targi eHandlu w Krakowie.");
 
-            $this->view = "teh18-ticket";
+            $this->email = "teh18-ticket";
 
         }
        
         $this->to(trim(strtolower($this->participant->email)));
 
-        if( view()->exists("emails.visitor." . $this->view . "_text") ) {
-            $this->text('emails.visitor.' . $this->view . '_text');      
+        if( view()->exists("emails.visitor." . $this->email . "_text") ) {
+            $this->text('emails.visitor.' . $this->email . '_text');      
         }
 
-        return $this->markdown('emails.visitor.' . $this->view);
+        return $this->markdown('emails.visitor.' . $this->email);
 
     }
 }
