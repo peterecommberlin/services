@@ -20,7 +20,7 @@ class TicketDownloadReminder extends Mailable
     use Queueable, SerializesModels;
 
     protected $participant;
-    public $p, $url;
+    public $p, $url, $view;
 
     public function __construct(Participant $participant)
     {
@@ -39,39 +39,45 @@ class TicketDownloadReminder extends Mailable
 
         $hash = (new Hashids())->encode($this->participant->id);
 
+        if($this->participant->organizer_id > 1){
+            
+            app()->setLocale("en");
 
-        // app()->setLocale("en");
+            config(["app.name" => "E-commerce Berlin Expo"]);
 
-        // config(["app.name" => "E-commerce Berlin Expo"]);
+            $this->url = "https://ecommerceberlin.com/ticket," . $hash;
 
-        // $this->url = "https://ecommerceberlin.com/ticket," . $hash;
+            $this->from("visitors@ecommerceberlin.com", "Lucas Zarna - E-commerce Berlin Expo");
 
-        // $this->from("visitors@visitors.ecommerceberlin2019.com", "Lucas Zarna");
+            $this->subject("Your PDF Ticket for E-commerce Belin Expo 2020");
 
-        // $this->subject("Your Ticket for E-commerce Belin Expo 2019");
+            $this->view = "ebe5-ticket-reminder";
 
+        }
+        else
+        {
+        
+            app()->setLocale("pl");
 
-        app()->setLocale("pl");
+            config(["app.name" => "Targi eHandlu"]);
 
-        config(["app.name" => "Targi eHandlu"]);
+            $this->url = "https://targiehandlu.pl/ticket," . $hash;
 
-        $this->url = "https://targiehandlu.pl/ticket," . $hash;
+            $this->from("zwiedzanie@targiehandlu.pl", "Katarzyna Wicher - Targi eHandlu");
 
-        $this->from("zwiedzanie@targiehandlu.pl", "Katarzyna Wicher - Targi eHandlu");
+            $this->subject("Mam Twój bilet na wtorkowe Targi eHandlu w Warszawie.");
 
-        $this->subject("Mam Twój bilet na wtorkowe Targi eHandlu w Warszawie.");
+            $this->view = "teh17-ticket";
 
+        }
+       
         $this->to(trim(strtolower($this->participant->email)));
 
+        if(view()->exists("emails.visitor." . $this->view . "_text")) {
+            $this->text('emails.visitor.' . $this->view . '_text');      
+        }
 
-        // if(view()->exists("emails.visitor." . $this->view . "_text")) {
-                
-          
-        // }
-
-        $this->text('emails.visitor.teh17-ticket_text');
-
-        return $this->markdown('emails.visitor.teh17-ticket');
+        return $this->markdown('emails.visitor.' . $this->view);
 
     }
 }
