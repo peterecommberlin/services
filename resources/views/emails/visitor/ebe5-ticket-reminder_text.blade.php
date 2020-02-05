@@ -1,6 +1,6 @@
 
 
-Hi {{$p->translate("[[fname]]") }} 
+Hi {{ $p->translate("[[fname]]") }} 
 
 Your ticket for E-commerce Berlin Expo 2020 is ready. 
 
@@ -138,8 +138,3 @@ Download ticket here! {{$url}}
 Thanks,
 
 E-commerce Berlin Expo Team
-
-@endcomponent
-
-
-
