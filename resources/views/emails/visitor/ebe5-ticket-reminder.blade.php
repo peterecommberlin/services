@@ -12,11 +12,11 @@ You haven’t downloaded your ticket yet.
 
 # YES!
 
-Please [go to]({{$url}}) and **click on the GREEN button** ( a PDF ticket will be downloaded which we advise you to print if you want to enter the expo faster)
+Please [go here and **click on the GREEN button**]({{$url}}) ( a PDF ticket will be downloaded which we advise you to print if you want to enter the expo faster)
 
 # NO!
 
-Please [go to]({{$url}}) and **click on the RED button** - we will stop sending you reminders! :)
+Please [go here and **click on the RED button**]({{$url}})  - we will stop sending you reminders! :)
 
 
 Hallo  {{ $p->translate("[[fname]]") }},
@@ -27,11 +27,11 @@ Du hast bis jetzt Dein Ticket nicht runtergeladen.
 
 # Ja
 
-Dann klicke bitte [auf diesen Link]({{$url}}) und **drücke den grünen Button**. (Damit lädst du das Ticket herunter und kannst somit schneller der Expo beiwohnen)
+Dann klicke bitte [auf diesen Link und **drücke den grünen Button**]({{$url}}). (Damit lädst du das Ticket herunter und kannst somit schneller der Expo beiwohnen)
 
 # Nein
 
-Dann klicke bitte [auf diesen Link]({{$url}}) und **drück den roten Button**. Damit hören wir auf dich darauf anzusprechen.
+Dann klicke bitte [auf diesen Link und **drück den roten Button**]({{$url}}) . Damit hören wir auf dich darauf anzusprechen.
 
 Danke,
 
