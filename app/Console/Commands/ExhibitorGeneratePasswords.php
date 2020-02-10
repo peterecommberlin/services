@@ -13,13 +13,14 @@ use Eventjuicer\Repositories\CompanyRepository;
 use Eventjuicer\Repositories\Criteria\WhereIn;
 use Eventjuicer\Repositories\Criteria\BelongsToGroup;
 use Eventjuicer\Models\CompanyData as CDModel;
+use Illuminate\Support\Str;
 
 class ExhibitorGeneratePasswords extends Command
 {
 
     protected $signature = 'exhibitors:generate-passwords 
         {--domain=} 
-        {--company_ids=} 
+        {--company_ids=""} 
         {--password=""}
     ';
     
@@ -39,9 +40,9 @@ class ExhibitorGeneratePasswords extends Command
 
         $errors = [];
 
-        if(empty($company_ids)) {
-            $errors[] = "--company_ids= must be set!";
-        }
+        // if(!empty($company_ids)) {
+        //     $errors[] = "--company_ids= must be set!";
+        // }
 
         if(empty($domain)) {
             $errors[] = "--domain= must be set!";
@@ -71,7 +72,10 @@ class ExhibitorGeneratePasswords extends Command
         $this->info("Group id: " . $groupId);
 
         $companies->pushCriteria( new BelongsToGroup($groupId));
-        $companies->pushCriteria( new WhereIn("id", explode(",", $company_ids)));
+
+        if($company_ids){
+            $companies->pushCriteria( new WhereIn("id", explode(",", $company_ids)));
+        }
         $selectedCompanies = $companies->all();
 
         $done = 0;
@@ -82,10 +86,9 @@ class ExhibitorGeneratePasswords extends Command
 
             $cd->make($c);
 
-            $newPass = $c->id . base_convert(microtime(false), 10, 36);
+            $newPass = Str::random(6); //$c->id . base_convert(microtime(false), 10, 36);
 
             $password = CDModel::where("company_id", $c->id)->where("name", "like", "password")->get()->first();
-
             $password->value = $newPass;
             $password->save();
 
