@@ -47,9 +47,9 @@ class TicketDownloadReminder extends Mailable
 
             $this->url = "https://ecommerceberlin.com/ticket," . $hash;
 
-            $this->from("visitors@ecommerceberlin.com", "Lucas Zarna - E-commerce Berlin Expo");
+            $this->from("visitors@ecommerceberlin.com", "Lucas Zarna");
 
-            $this->subject("Your PDF Ticket for E-commerce Belin Expo 2020");
+            $this->subject("RSVP - E-commerce Berlin Expo");
 
             $this->email = "ebe5-ticket-reminder";
 

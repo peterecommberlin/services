@@ -113,20 +113,38 @@ php artisan company:relations --domain=ecommerceberlin.com --threshold=0 --lang=
 6 lutego
 ========
 
-php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Logistics information - download the exhibitor manual for the E-commerce Berlin Expo 2020" --email=ebe5-logistics-reminder-message
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Logistics information - E-commerce Berlin Expo 2020" --email=ebe5-logistics-reminder-message
 
-php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Logistikinformationen für Aussteller runterladen - E-commerce Berlin Expo 2020" --email=ebe5-ebe5-logistics-reminder-message
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Logistikinformationen für Aussteller - E-commerce Berlin Expo 2020" --email=ebe5-logistics-reminder-message
+
+7 lutego
+========
+
+php artisan visitors:ticket-reminder --domain=ecommerceberlin.com
+
+
+10 lutego
+========
+
+(edited TicketDownloadReminder)
+
+php artisan visitors:ticket-reminder --domain=ecommerceberlin.com
+
+
+
+
 
 
 =====================================
 
 
-SELECT COUNT(*) AS REGCOUNT, DATE_FORMAT(`bob_participants`.`createdon`, '%Y%m') as MONTH FROM `eventjuicer_ticketdownloads` JOIN `bob_participants` ON `eventjuicer_ticketdownloads`.`participant_id`=`bob_participants`.`id` WHERE `eventjuicer_ticketdownloads`.`event_id` = 86 GROUP BY MONTH ORDER BY MONTH DESC
+SELECT COUNT(*) AS TICKETS, DATE_FORMAT(`bob_participants`.`createdon`, '%Y%m') as MONTH FROM `eventjuicer_ticketdownloads` JOIN `bob_participants` ON `eventjuicer_ticketdownloads`.`participant_id`=`bob_participants`.`id` WHERE `eventjuicer_ticketdownloads`.`event_id` = 86 GROUP BY MONTH ORDER BY MONTH DESC
 
 
 
-SELECT COUNT(*) AS REGCOUNT, DATE_FORMAT(`bob_participants`.`createdon`, '%Y%m') as MONTH FROM `bob_participants`WHERE `bob_participants`.`event_id` = 86 GROUP BY MONTH ORDER BY MONTH DESC
+SELECT COUNT(*) AS REGS, DATE_FORMAT(`bob_participants`.`createdon`, '%Y%m') as MONTH FROM `bob_participants`WHERE `bob_participants`.`event_id` = 86 GROUP BY MONTH ORDER BY MONTH DESC
 
+euuh-jtrc-edrb-dpyq
 
 
 =======================================
