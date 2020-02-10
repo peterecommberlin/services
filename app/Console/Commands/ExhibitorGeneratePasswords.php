@@ -37,7 +37,7 @@ class ExhibitorGeneratePasswords extends Command
 
         $domain     = $this->option("domain");
       
-        $password    = $this->option("password");
+        $password    = trim( strval( $this->option("password") ) );
 
         $errors = [];
 
@@ -76,11 +76,12 @@ class ExhibitorGeneratePasswords extends Command
             //regenerate data if needed
 
             $cd->make($c);
-            $newPass = !empty($password)? $password: (new Hashids())->encodeArr( [$eventId, $c->id] );
+         
+            $newPass = !empty($password)?  $password: (new Hashids())->encodeArr( [$eventId, $c->id] );
 
-            $password = CDModel::where("company_id", $c->id)->where("name", "like", "password")->get()->first();
-            $password->value = $newPass;
-            $password->save();
+            $item = CDModel::where("company_id", $c->id)->where("name", "like", "password")->get()->first();
+            $item->value = $newPass;
+            $item->save();
 
             $this->line($c->id . " - " . $newPass );           
             $done++;
