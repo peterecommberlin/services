@@ -14,6 +14,8 @@ use Eventjuicer\Repositories\Criteria\WhereIn;
 use Eventjuicer\Repositories\Criteria\BelongsToGroup;
 use Eventjuicer\Models\CompanyData as CDModel;
 use Illuminate\Support\Str;
+use Eventjuicer\Services\CompanyData as LegacyCompanyData;
+
 
 class ExhibitorGeneratePasswords extends Command
 {
@@ -30,7 +32,7 @@ class ExhibitorGeneratePasswords extends Command
         parent::__construct();
     }
  
-    public function handle(CompanyRepository $companies)
+    public function handle(CompanyRepository $companies, LegacyCompanyData $cd)
     {
 
         $domain     = $this->option("domain");
