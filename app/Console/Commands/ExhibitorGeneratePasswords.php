@@ -77,7 +77,7 @@ class ExhibitorGeneratePasswords extends Command
 
             $cd->make($c);
          
-            $newPass = !empty($password)?  $password: (new Hashids())->encodeArr( [$eventId, $c->id] );
+            $newPass = strlen($password) > 4 ?  $password: (new Hashids())->encodeArr( [$eventId, $c->id] );
 
             $item = CDModel::where("company_id", $c->id)->where("name", "like", "password")->get()->first();
             $item->value = $newPass;
