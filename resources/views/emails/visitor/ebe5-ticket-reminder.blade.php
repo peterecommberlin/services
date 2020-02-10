@@ -2,7 +2,7 @@
 
 @component('mail::message')
 
-Hi {{ $p->translate(“[[fname]]“) }},
+Hi {{ $p->translate("[[fname]]") }},
 
 (unten auf deutsch)
 
@@ -19,7 +19,7 @@ Please [go to]({{$url}}) and **click on the GREEN button** ( a PDF ticket will b
 Please [go to]({{$url}}) and **click on the RED button** - we will stop sending you reminders! :)
 
 
-Hallo  {{ $p->translate(“[[fname]]“) }} ,
+Hallo  {{ $p->translate("[[fname]]") }},
 
 Du hast bis jetzt Dein Ticket nicht runtergeladen. 
 

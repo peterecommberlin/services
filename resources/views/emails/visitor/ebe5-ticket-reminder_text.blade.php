@@ -1,6 +1,6 @@
 
 
-Hi {{ $p->translate(“[[fname]]“) }},
+Hi  {{ $p->translate("[[fname]]") }},
 
 (unten auf deutsch)
 
@@ -15,9 +15,9 @@ Please go yo {{$url}} and click on the GREEN button ( a PDF ticket will be downl
 
 NO?
 ====
-Please go to  {{$url}} and click on the RED button - we will stop sending you reminders! :slightly_smiling_face:
+Please go to  {{$url}} and click on the RED button - we will stop sending you reminders! :)
 
-Hallo  {{ $p->translate(“[[fname]]“) }} ,
+Hallo  {{ $p->translate("[[fname]]") }},
 
 Du hast bis jetzt Dein Ticket nicht runtergeladen. Planst du bei der E-commerce Berlin Expo am Donnerstag dabei zu sein und dir mehr als 50 Speaker und 180 Aussteller anzusehen?
 
