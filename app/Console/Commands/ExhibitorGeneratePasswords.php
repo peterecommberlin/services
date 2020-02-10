@@ -20,7 +20,6 @@ class ExhibitorGeneratePasswords extends Command
 
     protected $signature = 'exhibitors:generate-passwords 
         {--domain=} 
-        {--company_ids=""} 
         {--password=""}
     ';
     
@@ -35,22 +34,14 @@ class ExhibitorGeneratePasswords extends Command
     {
 
         $domain     = $this->option("domain");
-        $company_ids = explode(",", $this->option("company_ids"));
+      
         $password    = $this->option("password");
 
         $errors = [];
 
-        // if(!empty($company_ids)) {
-        //     $errors[] = "--company_ids= must be set!";
-        // }
-
         if(empty($domain)) {
             $errors[] = "--domain= must be set!";
         }
-
-        // if(empty($password)) {
-        //     $password[] = "--subject= must be set!";
-        // }
 
         if(count($errors)){
             foreach($errors as $error){
@@ -73,9 +64,6 @@ class ExhibitorGeneratePasswords extends Command
 
         $companies->pushCriteria( new BelongsToGroup($groupId));
 
-        if(!empty($company_ids) & count($company_ids)){
-            $companies->pushCriteria( new WhereIn("id", explode(",", $company_ids)));
-        }
         $selectedCompanies = $companies->all();
 
         $done = 0;
@@ -85,8 +73,6 @@ class ExhibitorGeneratePasswords extends Command
             //regenerate data if needed
 
             $cd->make($c);
-
-            //$c->id . base_convert(microtime(false), 10, 36);
 
             $password = CDModel::where("company_id", $c->id)->where("name", "like", "password")->get()->first();
             $password->value = !empty($password)? $password: Str::random(6);
