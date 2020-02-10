@@ -2,22 +2,7 @@
 
 @component('mail::message')
 
-Hi {{ $p->translate("[[fname]]") }},
-
-(unten auf deutsch)
-
-You haven’t downloaded your ticket yet.
-
-# Are you planning to visit E-commerce Berlin Expo this Thursday and check **50 presentations** & over **180 exhibitors**?
-
-# YES!
-
-Please [go here and **click on the GREEN button**]({{$url}}) ( a PDF ticket will be downloaded which we advise you to print if you want to enter the expo faster)
-
-# NO!
-
-Please [go here and **click on the RED button**]({{$url}})  - we will stop sending you reminders! :)
-
+(english below)
 
 Hallo  {{ $p->translate("[[fname]]") }},
 
@@ -37,6 +22,25 @@ Danke,
 
 Das E-commerce Berlin Expo Team
 
+* * *
+
+Hi {{ $p->translate("[[fname]]") }},
+
+You haven’t downloaded your ticket yet.
+
+# Are you planning to visit E-commerce Berlin Expo this Thursday and check **50 presentations** & over **180 exhibitors**?
+
+# YES!
+
+Please [go here and **click on the GREEN button**]({{$url}}) ( a PDF ticket will be downloaded which we advise you to print if you want to enter the expo faster)
+
+# NO!
+
+Please [go here and **click on the RED button**]({{$url}})  - we will stop sending you reminders! :)
+
+Thank you!
+
+E-commerce Berlin Expo Team
 
 @endcomponent
 
