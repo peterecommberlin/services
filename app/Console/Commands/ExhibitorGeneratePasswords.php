@@ -15,7 +15,7 @@ use Eventjuicer\Repositories\Criteria\BelongsToGroup;
 use Eventjuicer\Models\CompanyData as CDModel;
 use Illuminate\Support\Str;
 use Eventjuicer\Services\CompanyData as LegacyCompanyData;
-
+use Eventjuicer\Services\Hashids;
 
 class ExhibitorGeneratePasswords extends Command
 {
@@ -61,6 +61,7 @@ class ExhibitorGeneratePasswords extends Command
         $route = new Resolver( $domain );
 
         $groupId =  $route->getGroupId();
+        $eventId =  $route->getEventId();
 
         $this->info("Group id: " . $groupId);
 
@@ -77,10 +78,10 @@ class ExhibitorGeneratePasswords extends Command
             $cd->make($c);
 
             $password = CDModel::where("company_id", $c->id)->where("name", "like", "password")->get()->first();
-            $password->value = !empty($password)? $password: Str::random(6);
+            $password->value = !empty($password)? $password: (new Hashids())->encodeArr( [$eventId, $c->id] );
             $password->save();
 
-            $this->line("Generated " .$newPass );           
+            $this->line($c->id . " - " . $password->value );           
             $done++;
 
         }   
