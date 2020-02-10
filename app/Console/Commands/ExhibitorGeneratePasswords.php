@@ -35,7 +35,7 @@ class ExhibitorGeneratePasswords extends Command
     {
 
         $domain     = $this->option("domain");
-        $company_ids = $this->option("company_ids");
+        $company_ids = explode(",", $this->option("company_ids"));
         $password    = $this->option("password");
 
         $errors = [];
@@ -73,7 +73,7 @@ class ExhibitorGeneratePasswords extends Command
 
         $companies->pushCriteria( new BelongsToGroup($groupId));
 
-        if($company_ids){
+        if(!empty($company_ids) & count($company_ids)){
             $companies->pushCriteria( new WhereIn("id", explode(",", $company_ids)));
         }
         $selectedCompanies = $companies->all();
@@ -86,10 +86,10 @@ class ExhibitorGeneratePasswords extends Command
 
             $cd->make($c);
 
-            $newPass = Str::random(6); //$c->id . base_convert(microtime(false), 10, 36);
+            //$c->id . base_convert(microtime(false), 10, 36);
 
             $password = CDModel::where("company_id", $c->id)->where("name", "like", "password")->get()->first();
-            $password->value = $newPass;
+            $password->value = !empty($password)? $password: Str::random(6);
             $password->save();
 
             $this->line("Generated " .$newPass );           
