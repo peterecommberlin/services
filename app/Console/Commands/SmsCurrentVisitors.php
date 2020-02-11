@@ -79,17 +79,25 @@ class SmsCurrentVisitors extends Command
 
         $eventId =  $route->getEventId();
 
-        $this->info("Event id: " . $eventId);
+        $this->info("current event id: " . $eventId);
 
-        $participants = $roles->get($eventId, "visitor");
+        $participants = $roles->get($eventId, "visitor", ["ticketdownloads"]);
 
         $this->info("Total visitors: " . $participants->count() );
+
+        //exlude fuckers with RSVP - NO
+
+        $filtered = $participants->filter(function($item){
+            return is_null($item->ticketdownload) || $item->ticketdownload->going == 1;
+        });
+
+        $this->info("Total visitors without RSVP=NO: " . $filtered->count() );
 
         $counter = 1;
 
         $phones = array();
 
-        foreach($participants as $participant)
+        foreach($filtered as $participant)
         {
 
             // if(!filter_var($participant->email, FILTER_VALIDATE_EMAIL)){
@@ -98,25 +106,26 @@ class SmsCurrentVisitors extends Command
             // }
 
 
+
             $query = ParticipantFields::where("participant_id", $participant->id)->where("field_id", 8)->get();
 
             if(!$query->count()){
                 continue;
             }
 
-            $phone = $query->first()->field_value;
+            $phone = trim( $query->first()->field_value );
 
-           // $phone = str_replace([" ", "-", "."], "", $phone);
+            $phone = str_replace("(0)", "", $phone);
 
-            $phone = trim(preg_replace("/[^\+0-9]+/", "", $phone));
+            $phone = preg_replace("/[^\+0-9]+/", "", $phone);
 
             if(empty($phone) || strlen($phone) < 9){
                 continue;
             }
 
-            // if(strpos($phone, "00") !== 0 && strpos($phone, "+") === false){
-            //     $phone = $prefix . $phone;
-            // }
+            if(strlen($phone) < 10){
+                $phone = $prefix . $phone;
+            }
 
             $profile = new Personalizer($participant);
 
@@ -124,11 +133,11 @@ class SmsCurrentVisitors extends Command
                 str_replace(
                     array(",",";"), 
                     " ", 
-                    $profile->translate("[[fname]]")
+                    $profile->fname
                 )
             );
 
-            $phones[] = '"'.$phone .'","https://'. $domain . '/ticket,'.$profile->translate("[[code]]").'"';
+            $phones[] = '"'.$phone .'","https://'. $domain . '/ticket,'.$profile->code.'"';
 
             if($counter % 100 === 0){
 

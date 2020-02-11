@@ -86,8 +86,8 @@ class SmsDisbelievers extends Command
             return;
         }
 
-
-       
+        $sendable->excludeFromFile( base_path("ebeunsub.txt") );
+  
         $route          = new Resolver($domain);
 
         $eventId        = $route->getEventId();
@@ -151,26 +151,28 @@ class SmsDisbelievers extends Command
                 continue;
             }
 
-            $phone = $query->first()->field_value;
+            $phone = trim($query->first()->field_value);
 
-           // $phone = str_replace([" ", "-", "."], "", $phone);
+            $phone = str_replace([" ", "-", "."], "", $phone);
 
-            $phone = trim(preg_replace("/[^\+0-9]+/", "", $phone));
+            $phone = str_replace("(0)", "", $phone); 
+
+            $phone = preg_replace("/[^\+0-9]+/", "", $phone);
 
             if(empty($phone) || strlen($phone) < 9){
                 continue;
             }
 
-            if(strpos($phone, "00") !== 0 && strpos($phone, "+") === false){
+            if(strlen($phone) < 10){
                 $phone = $prefix . $phone;
             }
 
-            // if(!empty($limit) && $limit !== "*" &&  
-            //     strpos($phone, "00".$limit) ===false && 
-            //     strpos($phone, "+".$limit)===false
-            // ){
-            //     continue;
-            // }
+            if(!empty($limit) && $limit !== "*" &&  
+                strpos($phone, "00".$limit) ===false && 
+                strpos($phone, "+".$limit)===false
+            ){
+                continue;
+            }
 
             $phones[] = $phone;
 
