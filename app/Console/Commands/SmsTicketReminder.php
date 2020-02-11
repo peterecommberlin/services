@@ -130,9 +130,12 @@ class SmsTicketReminder extends Command
                 continue;
             }
 
-           //  if(strpos($phone, "00") !== 0 && strpos($phone, "+") === false){
-           //      $phone = $prefix . $phone;
-           //  }
+            //when to add a prefix? if not starting
+            //strpos($phone, "00") !== 0 && strpos($phone, "+") === false && 
+
+            if(strlen($phone) < 10){
+                $phone = $prefix . $phone;
+            }
 
             $profile = new Personalizer($participant);
 
@@ -140,11 +143,11 @@ class SmsTicketReminder extends Command
 
             $fname = ucwords(
                 str_replace(
-                    array(","), " ", $profile->translate("[[fname]]")
+                    array(","), " ", $profile->fname
                 )
             );
 
-            $phones[] = '"'.$email.'","'.$fname.'","'.$phone.'","https://'.$domain.'/ticket,'.$profile->translate("[[code]]").'"';
+            $phones[] = '"'.$email.'","'.$fname.'","'.$phone.'","https://'.$domain.'/ticket,'.$profile->code.'"';
 
             if($counter % 100 === 0){
 

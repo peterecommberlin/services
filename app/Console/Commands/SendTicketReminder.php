@@ -87,7 +87,7 @@ class SendTicketReminder extends Command
         //it is pointless to preload relations as they will not be serialized by JOB dispatcher!
         $participants = $participantsRepo->all();
 
-        $this->info("Visitors without a ticket: " . $participants->count() );
+        $this->info("Visitors without a RSVP: " . $participants->count() );
 
         //ANTI SPAM!!!
 
@@ -98,7 +98,6 @@ class SendTicketReminder extends Command
         $this->info("Visitors that can be notified: " . $participants->count() );
 
         $counter = 1;
-
 
         $whatWeDo  = $this->anticipate('test, send, status?', ['test', 'send', 'status']);
 

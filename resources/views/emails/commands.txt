@@ -131,21 +131,22 @@ php artisan visitors:ticket-reminder --domain=ecommerceberlin.com
 php artisan visitors:ticket-reminder --domain=ecommerceberlin.com
 
 
+11 lutego
+=========
 
+php artisan visitors:ticket-reminder --domain=ecommerceberlin.com
+
+php artisan company:relations --domain=ecommerceberlin.com --threshold=10 --lang=en --defaultlang=en --subject="Browse registered visitors and send booth meetup invitations." --email=ebe5-meetups 
+ 
+php artisan company:relations --domain=ecommerceberlin.com --threshold=10 --lang=de --defaultlang=en --subject="Durchsuchen Sie die registrierten Besucher und senden Sie die Einladungen zum Stand-Meetup." --email=ebe5-meetups
 
 
 
 =====================================
 
-
 SELECT COUNT(*) AS TICKETS, DATE_FORMAT(`bob_participants`.`createdon`, '%Y%m') as MONTH FROM `eventjuicer_ticketdownloads` JOIN `bob_participants` ON `eventjuicer_ticketdownloads`.`participant_id`=`bob_participants`.`id` WHERE `eventjuicer_ticketdownloads`.`event_id` = 86 GROUP BY MONTH ORDER BY MONTH DESC
 
-
-
 SELECT COUNT(*) AS REGS, DATE_FORMAT(`bob_participants`.`createdon`, '%Y%m') as MONTH FROM `bob_participants`WHERE `bob_participants`.`event_id` = 86 GROUP BY MONTH ORDER BY MONTH DESC
-
-euuh-jtrc-edrb-dpyq
-
 
 =======================================
 
