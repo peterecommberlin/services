@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+use Illuminate\Support\Facades\Bus;
 
 use Eventjuicer\Services\Resolver;
 use Eventjuicer\Repositories\ParticipantRepository;
@@ -73,6 +74,7 @@ class EmailDisbelievers extends Command
 
         }
 
+        $sendable->excludeFromFile( base_path("ebeunsub.txt") );
 
         $errors = [];
 
@@ -180,12 +182,8 @@ class EmailDisbelievers extends Command
             }
 
             if( $whatWeDo === "test" || env("MAIL_TEST", false) ){
-
-               // Job::dispatchNow($participant, $eventId, compact("view", "subject"));
-
-
-                 dispatch( new Job( 
-                    $participant, 
+            
+                Bus::dispatchNow( new Job($participant, 
                     $eventId,
                     compact("view", "subject"))
                 );

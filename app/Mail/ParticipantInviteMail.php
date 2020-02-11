@@ -48,21 +48,23 @@ class ParticipantInviteMail extends Mailable
     public function build()
     {
 
+        if($this->participant->organizer_id > 1){
+             $this->from("visitors@ecommerceberlin.com", "Lucas Zarna - E-commerce Berlin");
+            $baseUrl = "https://ecommerceberlin.com";
+            app()->setLocale("en");
+            config(["app.name" => "E-commerce Berlin Expo"]);
 
+        }else{
+             $this->from("zwiedzanie@targiehandlu.pl", "Katarzyna Wołyńska - Targi eHandlu");
+             $baseUrl = "https://targiehandlu.pl";
 
-
-        // app()->setLocale("en");
-        // config(["app.name" => "E-commerce Berlin Expo"]);
-
+        }
 
         $this->p = new Personalizer( $this->participant, "");
 
         $hash = (new Hashids())->encode($this->participant->id);
 
-
-        $baseUrl = "https://targiehandlu.pl";
-        $params  = "?utm_source=marketer&utm_medium=email&utm_campaign=teh17partner";
-
+    //    $params  = "?utm_source=marketer&utm_medium=email&utm_campaign=teh17partner";
         $params = "";
 
         $this->ticketUrl = $baseUrl . "/ticket/" . $hash . $params;
@@ -78,8 +80,6 @@ class ParticipantInviteMail extends Mailable
         $this->unsubscribe = "https://services.eventjuicer.com/unsubscribe/" . $hash; 
 
         $this->to( strtolower(trim($this->participant->email)) );
-
-        $this->from("zwiedzanie@targiehandlu.pl", "Katarzyna Wicher - Targi eHandlu");
 
         $this->subject($this->subject);
 
