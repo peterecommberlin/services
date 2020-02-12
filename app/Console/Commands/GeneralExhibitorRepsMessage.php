@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
 use Eventjuicer\Services\Exhibitors\Console;
-
+use Eventjuicer\Services\Revivers\ParticipantSendable;
 
 class GeneralExhibitorRepsMessage extends Command {
 
@@ -26,7 +26,7 @@ class GeneralExhibitorRepsMessage extends Command {
         parent::__construct();
     }
  
-    public function handle(Console $service){
+    public function handle(Console $service, ParticipantSendable $sendable){
 
         $service->setParams($this->options());
 
@@ -82,6 +82,7 @@ class GeneralExhibitorRepsMessage extends Command {
 
         $eventId =  $service->getEventId();
 
+
         $this->info("Event id: " . $eventId );
 
         $exhibitors = $service->getDataset(true);
@@ -89,6 +90,9 @@ class GeneralExhibitorRepsMessage extends Command {
         $this->info("Number of exhibitors with companies assigned: " . $exhibitors->count() );
 
         $filtered = $service->getSendable();
+
+        //REPS!
+        $sendable->setEventId($eventId);
 
         $this->info("Exhibitors that can be notified: " . $filtered->count() );
 
@@ -123,7 +127,9 @@ class GeneralExhibitorRepsMessage extends Command {
                 continue;
             }
 
-            $this->line("Processing " . $name);
+            $this->line("Processing " . $name . " reps." . $cReps->count());
+
+            $filteredReps = $send
 
             foreach($cReps AS $rep){
 

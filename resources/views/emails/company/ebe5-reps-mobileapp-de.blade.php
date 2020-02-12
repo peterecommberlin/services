@@ -24,7 +24,7 @@ Gehe zum Browser und füge diese URL ein: [expo.io/@eventjuicer/ebe-exhibitor](h
 
 # Authentifizierung
 
-Öffne die App. Click auf das Benutzericon. Suche nach deinem Firmennamen und füge das Passwort ein, welches unten zu sehen ist:
+Öffne die App. Click auf das Benutzericon. Suche nach deinem Firmennamen **{{ array_get($company, "name") }}** und füge das Passwort ein, welches unten zu sehen ist:
 
 @component('mail::panel')
 

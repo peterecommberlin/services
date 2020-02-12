@@ -20,13 +20,13 @@ Search for the [E-commerce Berlin Exhibitor in Play store](https://play.google.c
 
 (it is a bit more complicated)
 
-Open an App Store, search for [Expo Client](https://apps.apple.com/us/app/expo-client/id982107779) and install. 
+Step 1) Open an App Store, search for [Expo Client](https://apps.apple.com/us/app/expo-client/id982107779) and install. 
 
-Open browser and go to [https://expo.io/@eventjuicer/ebe-exhibitor](https://expo.io/@eventjuicer/ebe-exhibitor) and scan visible QR code with your mobile camera - inquiry about opening an app (in Expo Client) should follow. You can also use "Request a link via email or text message." if encounter any problems.
+Step 2) Open browser and go to [https://expo.io/@eventjuicer/ebe-exhibitor](https://expo.io/@eventjuicer/ebe-exhibitor) and scan QR code visible on this website with your mobile camera - inquiry about opening an app (in Expo Client) should follow. You can also use "Request a link via email or text message." if encounter any problems or it's more convenient for you.
 
 # Authentication
 
-Open the app. Click on the "user icon". Search for your company name {{ array_get($company, "name") }} and enter your password shown below:
+Open the app. Click on the "user icon". Search for your company name **{{ array_get($company, "name") }}** and enter your password shown below:
 
 @component('mail::panel')
 
