@@ -177,7 +177,7 @@ class SmsDisbelievers extends Command
 
             $profile = new Personalizer($participant);
 
-            $email = trim($participant->email);
+            $email = strtolower(trim($participant->email));
 
             $fname = ucwords(
                 str_replace(
