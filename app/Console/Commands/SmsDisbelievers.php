@@ -16,6 +16,7 @@ use Eventjuicer\Repositories\Criteria\WhereIn;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
 
 use Eventjuicer\Models\ParticipantFields;
+use Eventjuicer\Services\Personalizer;
 
 class SmsDisbelievers extends Command
 {
@@ -60,20 +61,20 @@ class SmsDisbelievers extends Command
 
         $domain = $this->option("domain");
         $prefix = $this->option("prefix");
-        $limit = $this->option("limit");
+        $limit  = $this->option("limit");
         $events = $this->option("events");
 
         $errors = [];
 
-        if(empty( $domain )) {
+        if( empty( $domain ) ) {
             $errors[] = "--domain= must be provided!";
         }
 
-        if(empty( $prefix )) {
+        if( empty( $prefix ) ) {
             $errors[] = "--prefix= default prefix must be provided!";
         }
 
-        if(empty( $events )) {
+        if( empty( $events ) ) {
             $errors[] = "--events= default prefix must be provided!";
         }
 
@@ -174,7 +175,20 @@ class SmsDisbelievers extends Command
                 continue;
             }
 
-            $phones[] = $phone;
+            $profile = new Personalizer($participant);
+
+            $email = trim($participant->email);
+
+            $fname = ucwords(
+                str_replace(
+                    array(","), " ", $profile->fname
+                )
+            );
+
+            $phones[] = '"'.$email.'","'.$fname.'","'.$phone.'"';
+
+            //,"https://'.$domain.'/ticket,'.$profile->code.'"';
+
 
             if($done % 1000 === 0)
             {
