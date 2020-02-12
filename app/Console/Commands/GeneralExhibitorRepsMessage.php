@@ -91,9 +91,6 @@ class GeneralExhibitorRepsMessage extends Command {
 
         $filtered = $service->getSendable();
 
-        //REPS!
-        $sendable->setEventId($eventId);
-
         $this->info("Exhibitors that can be notified: " . $filtered->count() );
 
         $allTranslations = $service->getTranslations();
@@ -129,9 +126,9 @@ class GeneralExhibitorRepsMessage extends Command {
 
             $this->line("Processing " . $name . " reps." . $cReps->count());
 
-            $filteredReps = $send
+            $filteredReps = $sendable->filter($cReps, $eventId);
 
-            foreach($cReps AS $rep){
+            foreach($filteredReps AS $rep){
 
                 dispatch(new Job(
                     $rep, 
