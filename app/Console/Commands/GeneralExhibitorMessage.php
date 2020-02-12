@@ -98,7 +98,7 @@ class GeneralExhibitorMessage extends Command {
 
         $done = 0;
 
-        foreach($exhibitors as $ex)
+        foreach($filtered as $ex)
         {
             //do we have company assigned?
 
