@@ -36,7 +36,11 @@ Open the app. Click on the "user icon". Search for your company name {{ array_ge
 
 # Usage
 
-There are two main screens. Barcode scanner and list of **your scans.** Every couple of minutes we try to sync your list of scans with our serves. The full list of scans (from all your company's representatives) should appear on your exhibitor account under "Scans" page. There is an export to .xlsx.
+There are two main screens. Barcode scanner and list of **your scans.** 
+
+Every couple of minutes we try to sync your list of scans with our serves. If you want to sync manually - just pull down the list of your scans. It is good practice to do so during the quick test. 
+
+**The full list of scans** (from all your company's representatives) should appear on your exhibitor account under "Scans" page. There is an export to .xlsx.
 
 @component('mail::panel')
 
