@@ -93,7 +93,7 @@ class SmsCurrentVisitors extends Command
             return is_null($item->ticketdownload) || $item->ticketdownload->going == 1;
         });
 
-        $this->info("Total visitors without RSVP=NO: " . $participants->count() - $filtered->count() );
+        $this->info("Total visitors without RSVP=NO: " . $filtered->count() );
 
         $counter = 1;
 
