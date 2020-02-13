@@ -88,10 +88,12 @@ class SmsCurrentVisitors extends Command
         //exlude fuckers with RSVP - NO
 
         $filtered = $participants->filter(function($item){
+
+            //no RSVP OR ... has a ticket!
             return is_null($item->ticketdownload) || $item->ticketdownload->going == 1;
         });
 
-        $this->info("Total visitors without RSVP=NO: " . $filtered->count() );
+        $this->info("Total visitors without RSVP=NO: " . $participants->count() - $filtered->count() );
 
         $counter = 1;
 
@@ -137,7 +139,7 @@ class SmsCurrentVisitors extends Command
                 )
             );
 
-            $phones[] = '"'.$phone .'","https://'. $domain . '/ticket,'.$profile->code.'"';
+            $phones[] = '"'.$phone .'","https://'. $domain . '/ticket,'.$profile->code.'","'. $fname . '"';
 
             if($counter % 100 === 0){
 
