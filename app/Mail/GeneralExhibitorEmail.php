@@ -40,6 +40,7 @@ class GeneralExhibitorEmail extends Mailable
             $company,
             $accountUrl,
             $trackingLink,
+            $pollUrl,
             $footer;
  
 
@@ -79,6 +80,10 @@ class GeneralExhibitorEmail extends Mailable
 
         $this->footer = $emailHelper->getFooter();
         $this->calendar = $emailHelper->getCalendarUrl();
+        $this->pollUrl = $emailHelper->getPollUrl();
+
+
+        
 
         //this should be moved to settings?...
        if( $this->participant->group_id > 1 ){
