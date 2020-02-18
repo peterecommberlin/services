@@ -140,6 +140,33 @@ php artisan company:relations --domain=ecommerceberlin.com --threshold=10 --lang
  
 php artisan company:relations --domain=ecommerceberlin.com --threshold=10 --lang=de --defaultlang=en --subject="Durchsuchen Sie die registrierten Besucher und senden Sie die Einladungen zum Stand-Meetup." --email=ebe5-meetups
 
+php artisan visitors:restore-from-old-events --domain=ecommerceberlin.com --email=ebe5-ebeold --subject="Your ticket for 13/02/2020 E-commerce Berlin Expo @ STATION Berlin." --throttle=50000
+
+
+12 lutego 
+=========
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Logistics information - E-commerce Berlin Expo 2020" --email=ebe5-logistics-reminder-message
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Logistikinformationen für Aussteller - E-commerce Berlin Expo 2020" --email=ebe5-logistics-reminder-message
+
+/*
+* mobileapp
+*/
+
+php artisan reps:current-event --domain=ecommerceberlin.com --defaultlang=en --lang=en --email=ebe5-reps-mobileapp --subject="Collecting leads at the stand. mobile app."
+
+php artisan reps:current-event --domain=ecommerceberlin.com --defaultlang=en --lang=de --email=ebe5-reps-mobileapp --subject="Scannen Sie die Besucher Ihres Standes"
+
+
+18 lutego
+=========
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="E-commerce Berlin - super short exhibitors’ survey" --email=ebe5-survey
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="E-commerce Berlin- Kurze Umfrage für die Aussteller" --email=ebe5-survey
+
+
 
 
 =====================================

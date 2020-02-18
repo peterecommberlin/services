@@ -2,13 +2,13 @@
 
 @component('mail::message')
  
-# Hi {{$profile->translate("[[fname]]")}},
+# Hi {{ array_get($profile, "fname") }},
 
 **We have prepared a questionnaire**, thanks to which we hope to smooth out any sharp organizational edges in the nearest future :)
 
 Please find a few minutes and fill in.
 
-@component('mail::button', ['url' => "https://forms.gle/Z9GDgyj4Xi49afd26"])
+@component('mail::button', ['url' => $pollUrl ])
 Complete the Survey
 @endcomponent 
 
@@ -18,6 +18,7 @@ We have published selected photos from the event [on our Facebook fanpage](https
 
 
 Regards,
+
 E-commerce Berlin Expo Team
 
 @endcomponent
