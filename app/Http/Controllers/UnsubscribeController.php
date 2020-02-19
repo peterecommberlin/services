@@ -90,14 +90,15 @@ class UnsubscribeController extends Controller
         //we got a fuckup here....
         //event, group must be from CURRENT SCOPE!
 
-        // $event_id = 87;
-        // $group_id = 1;
-        // $organizer_id = 1;
+        $event_id = 89;
+        $group_id = 1;
+        $organizer_id = 1;
 
 
-        $event_id = 86;
-        $group_id = 23;
-        $organizer_id = 5;
+        // EBE5
+        // $event_id = 86;
+        // $group_id = 23;
+        // $organizer_id = 5;
 
         $email = trim(strtolower($user->email));
 

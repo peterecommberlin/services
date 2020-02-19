@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Unsubscribe from E-commerce Berlin Expo</title>
+        <title>Unsubscribe Targi eHandlu</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -80,7 +80,7 @@
                 <div class="title m-b-md">
                     
                      <p>
-                       <a href="{{ action('UnsubscribeController@muteEvent', ['hash'=>$hash]) }}">Opt out from <strong>CURRENT (2020) edition</strong> E-commerce Berlin Expo</a>
+                       <a href="{{ action('UnsubscribeController@muteEvent', ['hash'=>$hash]) }}">Wypisz się z <strong>obecnej edycji </strong> Targów eHandlu</a>
                     </p>
 
                 <!--     <p>
@@ -88,7 +88,7 @@
                     </p>
  -->
                     <p>
-                        <a href="{{ action('UnsubscribeController@muteGroup', ['hash'=> $hash]) }}">Opt out from <strong>CURRENT and FUTURE editions</strong> of E-commerce Berlin Expo</a>
+                        <a href="{{ action('UnsubscribeController@muteGroup', ['hash'=> $hash]) }}">Wypisz się <strong>z wszystkich edycji</strong> Targów eHandlu</a>
                     </p>
                    
                    
