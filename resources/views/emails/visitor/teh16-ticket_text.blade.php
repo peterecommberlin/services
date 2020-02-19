@@ -1,5 +1,5 @@
 
-Cześć {{$p->translate("[[fname]]") }} 
+Cześć {{ $p->translate("[[fname]]") }} 
 
 Twój bilet na XVI Targi eHandlu w Krakowie jest gotowy do pobrania i druku.
 
