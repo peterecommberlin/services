@@ -1,0 +1,4 @@
+19 lutego
+=========
+
+php artisan visitors:restore-from-old-events --domain=targiehandlu.pl --email=teh18-cfp1 --subject="Mamy problem. Proszę, pomoż nam z prezentacjami." --events=81,83,85,87,89 --throttle=50000
