@@ -18,9 +18,10 @@ class GeneralExhibitorMessage extends Command {
         {--subject=}
         {--lang=}
         {--defaultlang=} 
-        {--throttle=1}';
+        {--throttle=1}
+        {--exclude_reg_ids=""}';
     
-    protected $description = 'Send general email message to Exhibitors';
+    protected $description = '--exclude_reg_ids="100,102,103';
  
     public function __construct()
     {
@@ -37,6 +38,7 @@ class GeneralExhibitorMessage extends Command {
         $domain     = $this->option("domain");
         $email      = $this->option("email");
         $subject    = $this->option("subject");
+        $exclude_reg_ids =  array_filter(explode(",", $this->option("exclude_reg_ids")), function($value){ return intval($value) > 0; }); 
 
         $errors = [];
 
@@ -98,8 +100,23 @@ class GeneralExhibitorMessage extends Command {
 
         $done = 0;
 
+        $whatWeDo  = $this->anticipate('Send, test?', ['test', 'send']);
+
+        if(!empty($exclude_reg_ids)) {
+            
+            $this->error( count($exclude_reg_ids) . " regs excluded" );
+        
+        }
+
         foreach($filtered as $ex)
         {
+
+            if(!empty( $exclude_reg_ids ) && in_array($ex->getModel()->id, $exclude_reg_ids) ){
+            
+                $this->error("registration excluded" . $ex->email );
+                continue;                
+            }
+
             //do we have company assigned?
 
             if(!$ex->company_id)
@@ -130,14 +147,19 @@ class GeneralExhibitorMessage extends Command {
 
             $this->line("Notifying " . $ex->email);
 
+
             dispatch(new Job(
                 $ex->getModel(), 
                 $eventId, 
                 compact("email", "subject", "event_manager", "viewlang", "lang", "domain", "translations") 
             ));
-            
+
             $done++;
 
+            if($done && $whatWeDo === "test"){
+                break;
+            }
+            
         }   
 
         $this->info("Delivered " . $done . " messages");
