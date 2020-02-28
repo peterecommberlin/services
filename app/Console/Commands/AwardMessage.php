@@ -156,6 +156,8 @@ class AwardMessage extends Command {
 
         $awardRules = $prizes[$award];
 
+        $allTranslations = $service->getTranslations();
+
         $done = 0;
 
         $arr = $whatWeDo === "send" ? $filtered : $exhibitors;
@@ -171,18 +173,13 @@ class AwardMessage extends Command {
                 continue;
             }
 
-            $stats          = array_get($ranking, $ex->company_id, []);
-            $prizes     = array_get($stats, "prizes", []);
+            $stats   = array_get($ranking, $ex->company_id, []);
+            $prizes  = array_get($stats, "prizes", []);
 
-            dd($prizes);
-
-            /*IF $award in PRIZES than assigned = 1 {
-    
-                $this->info("Assigned for " . $ex->company->slug);
-
+            if(in_array($award, $prizes)){
+                $this->info("Assigned for " . $ex->getName());
                 $assigned = 1;
-
-            }*/
+            }
 
             if($reverse){
                 $assigned = !$assigned;
@@ -195,15 +192,10 @@ class AwardMessage extends Command {
 
             if($whatWeDo === "send"){
 
-                // $cdh->setData($ex->company->data);
-                // $event_manager = $cdh->manager("event");
-                // $lang = $cdh->lang("en");
-
-
+            
                 $lang           = $ex->getLang();
                 $name           = $ex->getName();
                 $event_manager  = $ex->getEventManager();
-                //$cReps          = $ex->getReps();
                 $translations   = array_get($allTranslations, $lang);
 
                 if($lang !== $viewlang)
