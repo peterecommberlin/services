@@ -124,6 +124,8 @@ class AwardMessage extends Command
 
         $prizes = collect($prizes)->keyBy("name")->all();
 
+        dd($ranking, $prizes);
+
         if(!isset($prizes[$award])){
             return $this->error("award not defined!");
         }
