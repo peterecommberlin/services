@@ -167,6 +167,16 @@ php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.c
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="E-commerce Berlin- Kurze Umfrage für die Aussteller" --email=ebe5-survey
 
 
+24 lutego
+==========
+
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Have you already filled up the exhibitors’ survey?" --email=ebe5-survey --exclude_reg_ids="93678,106715,107560,98136,110321,99264,97462,106200,92901,97298,105674,98817,106671,92914,99357,98845,104700,92901,92900,98481,97399,97139,93856,97128,108983,93206,93559,105772,99672,97816,97614,93620,105711,106443,106069,107498,106641,98318,106217,109796"
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Hast du an der Ausstellerumfrage teilgenommen?" --email=ebe5-survey --exclude_reg_ids="93678,106715,107560,98136,110321,99264,97462,106200,92901,97298,105674,98817,106671,92914,99357,98845,104700,92901,92900,98481,97399,97139,93856,97128,108983,93206,93559,105772,99672,97816,97614,93620,105711,106443,106069,107498,106641,98318,106217,109796"
+
+
+
 
 
 =====================================

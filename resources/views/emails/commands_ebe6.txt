@@ -1,0 +1,13 @@
+
+28 lutego
+=========
+
+
+
+
+
+=======================================
+
+supervisorctl restart laravel-services:*
+php artisan queue:restart
+
