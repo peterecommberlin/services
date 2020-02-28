@@ -18,7 +18,7 @@ The fees will start from 2500€ for 9m2 up to 5200€ for 18m2.
 
 The following link will show you the stands and pricing.
 
-@component('mail::button', [‘url’ => "https://ecommerceberlin.com/exhibit"])
+@component('mail::button', ['url' => "https://ecommerceberlin.com/exhibit"])
 Check the map here
 @endcomponent
 
