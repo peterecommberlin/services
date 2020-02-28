@@ -117,14 +117,12 @@ class AwardMessage extends Command
 
         $this->info("Exhibitors that can be notified: " . $filtered->count() );
 
-        $apiCall = $service->getApi("/partner-performance?event_id" . $eventId);
+        $apiCall = $service->getApi("/partner-performance?event_id=" . $eventId);
 
         $ranking = array_get($apiCall, "data");
         $prizes = array_get($apiCall, "meta.prizes");
 
         $prizes = collect($prizes)->keyBy("name")->all();
-
-        dd($ranking, $prizes);
 
         if(!isset($prizes[$award])){
             return $this->error("award not defined!");
