@@ -3,22 +3,42 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-
-
-
 use Eventjuicer\Services\Resolver;
 use Eventjuicer\Services\GetByRole;
 use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
 use Eventjuicer\Services\Revivers\ParticipantSendable;
- 
-
 use Eventjuicer\Services\Company;
 use Eventjuicer\ValueObjects\EmailAddress;
-
 use Eventjuicer\Services\Exhibitors\Console;
 
-class AwardMessage extends Command
-{
+
+/*  "data": [
+        {
+            "id": 98740,
+            "company_id": 1573,
+            "name": "A4G DSP",
+            "logotype": "https://res.cloudinary.com/eventjuicer/image/upload/w_600,h_300,c_fit/v1570194922/c_1573_logotype.png",
+            "stats": {
+                "id": 1573,
+                "sessions": 2560,
+                "conversions": 0,
+                "position": 1,
+                "prizes": [
+                    "badges",
+                    "presentation",
+                    "video_interview",
+                    "earlybird",
+                    "meetups",
+                    "brand_highlight",
+                    "leaflets",
+                    "rollups",
+                    "blog"
+                ]
+            }
+        }
+*/
+
+class AwardMessage extends Command {
 
  
     protected $signature = 'exhibitors:award 
@@ -119,7 +139,13 @@ class AwardMessage extends Command
 
         $apiCall = $service->getApi("/partner-performance?event_id=" . $eventId);
 
-        $ranking = array_get($apiCall, "data");
+        // $ranking = array_get($apiCall, "data");
+
+        $ranking = collect(array_get($apiCall, "data", []))->mapWithKeys(function($item){
+
+             return [$item['company_id'] => $item['stats']];
+        });
+
         $prizes = array_get($apiCall, "meta.prizes");
 
         $prizes = collect($prizes)->keyBy("name")->all();
@@ -139,13 +165,16 @@ class AwardMessage extends Command
 
             $assigned = 0;
 
-            if(!  $company->id )
+            if(! $ex->hasCompany() )
             {
                 $this->error("No company assigned for " . $ex->email . " - skipped.");
                 continue;
             }
 
-            dd($ex);
+            $stats          = array_get($ranking, $ex->company_id, []);
+            $prizes     = array_get($stats, "prizes", []);
+
+            dd($prizes);
 
             /*IF $award in PRIZES than assigned = 1 {
     
@@ -171,11 +200,11 @@ class AwardMessage extends Command
                 // $lang = $cdh->lang("en");
 
 
-                $companyProfile = $cd->toArray($ex->company);
-
-                $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
-
-                $event_manager = isset($companyProfile["event_manager"]) ? (new EmailAddress($companyProfile["event_manager"]))->find() : "";
+                $lang           = $ex->getLang();
+                $name           = $ex->getName();
+                $event_manager  = $ex->getEventManager();
+                //$cReps          = $ex->getReps();
+                $translations   = array_get($allTranslations, $lang);
 
                 if($lang !== $viewlang)
                 {
@@ -186,7 +215,7 @@ class AwardMessage extends Command
                 $this->line("Notifying " . $ex->email);
 
                 dispatch(new Job(
-                    $ex, 
+                    $ex->getModel(), 
                     $eventId, 
                     compact(
                         "email", 
