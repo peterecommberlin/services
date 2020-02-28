@@ -177,7 +177,6 @@ class AwardMessage extends Command {
             $prizes  = array_get($stats, "prizes", []);
 
             if(in_array($award, $prizes)){
-                $this->info("Assigned for " . $ex->getName());
                 $assigned = 1;
             }
 
@@ -186,8 +185,10 @@ class AwardMessage extends Command {
             }
 
             if(!$assigned){
-                $this->line("Skipping " . $ex->email);
+                $this->line("Skipping " . $ex->getName() );
                 continue;
+            }else{
+                $this->info("Assigned for: " . $ex->getName() );
             }
 
             if($whatWeDo === "send"){
