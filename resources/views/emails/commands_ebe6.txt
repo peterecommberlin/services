@@ -17,6 +17,8 @@ php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --pr
 3 marca
 =======
 
+//TOP30
+
 php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --previous --lang=en --defaultlang=en --email="ebe6-top30-reminder" --subject="Wednesday 10:00-EOD; E-commerce Berlin Expo 2021 - Fasten your seatbelts and get ready!"
 
 php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --previous --lang=de --defaultlang=en --email="ebe6-top30-reminder" --subject="Mittwoch 10:00-23:59; E-commerce Berlin Expo 2021; Achtung, fertig, LOS! - Earlybird-Sales Start"
@@ -24,8 +26,11 @@ php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --pr
 4 marca
 =======
 
+//EARLYBIRD
 
+php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --previous --reverse --lang=en --defaultlang=en --email="ebe6-earlybird-reminder" --subject=""
 
+php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --previous --reverse --lang=de --defaultlang=en --email="ebe6-earlybird-reminder" --subject=""
 
 
 
