@@ -4,9 +4,9 @@
  
 # Hello {{ array_get($profile, "fname") }} ,
 
-We would like to kindly remind you about the start of the exclusive sales round for TOP30 companies in the recent Exhibitors' Contest by **tomorrow, 4th March 2020 from 10:00 AM**. 
+We would like to kindly remind you about the **start of the exclusive sales** round for TOP30 companies in the recent Exhibitors' Contest by **tomorrow, 4th March 2020 from 10:00 AM**. 
 
-The reservation of exhibition spaces will be available **till the end of the day - 23:59. (4th of March 2020)**
+The reservation of exhibition spaces will be available **till the end of the day - 4th of March 2020**
 
 The sales round for the other exhibitors (from 2020 edition) will be relesed on the 5th of March 2020.
 
