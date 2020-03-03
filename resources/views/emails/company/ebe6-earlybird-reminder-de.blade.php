@@ -4,25 +4,20 @@
 
 # Hi {{ array_get($profile, "fname") }},
 
-die E-commerce Berlin Expo 2020 gehört der Vergangenheit an, jedoch laufen die Vorbereitungen für die Expo 2021 (18.02.2021 @ STATION Berlin) auf Hochtouren. 
+Wir wollen dich auf den Beginn des exklusiven Early-Bird-Sales' aufmerksam machen, der nur für die Aussteller der letzten Expo vorgesehen ist. Dieser beginnt am Donnerstag, den 05.03.20 ab 12 Uhr.
 
-# Wir möchten dich darüber informieren, dass am kommenden Donnerstag, **den 05.03.2020, ab 12 Uhr**, der Vorverkauf für die anstehende Expo beginnt. 
+# Reservierungen in diesem Salespool sind nur bis zum 31.03.20 möglich. Danach gibt es keinen Early-Bird mehr und die Preise werden steigen.
 
-Was sind die Vorteile? 
 
-* Zugang zu den Topflächen zum günstigsten Preis 
-* Sichere dir die Toplocation 
-* sichere dir den Topplatz vor der Konkurrenz 
-
-Die Preise beginnen ab 2500€ für 9m2 bis zu 5200€ für 18m2. 
-
-Der nachfolgende Link bringt euch zur Bookingseite. Dort werdet ihr die Preise sehen. 
+Der Link unten wird dich zur Bookingseite weiterleiten wo du alle Standflächen sehen wirst. 
 
 @component('mail::button', ['url' => "https://ecommerceberlin.com/exhibit"])
-Check the map here
+hier zur Bookingseite
 @endcomponent
 
-**WICHTIG!** Bitte beachte, dass der Vorverkauf bis zum 31.03.2020 offen ist. Danach werden die Preise steigen und du wirst nicht mehr die Möglichkeit haben, die Standfläche zu den oben genannten Konditionen zu bekommen. 
+**WICHTIG!** 
+Es kann sein, dass einige Flächen mit einem „R“ versehen sind, d.h diese Standfläche ist bereits vergeben, da die TOP30 aus dem Ausstellerwettbewerb diese bereits ergattert haben. Diese Flächen werden dann nicht mehr verfügbar sein. 
+Der Early-Bird-Verkauf wird bis zum 31.03 gültig sein. Danach wird es nicht mehr möglich sein, die Flächen zu den Preisen zu buchen. 
 
 Mit freundlichen Grüßen,
 
