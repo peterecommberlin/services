@@ -10,7 +10,9 @@ Die Reservierung der Standflächen wird **bis zum Ende des Tages des 04.03.2020 
 
 Der Salesstart für alle anderen beginnt am 05.03.2020.
 
-Dieser Link führt euch zur Bookingseite wo ihr alle Standflächen sehen werdet. Die Buchungen können ab 10 Uhr vorgenommen werden.
+Dieser Link führt euch zur Bookingseite wo ihr alle Standflächen sehen werdet. 
+
+**Die Buchungen können ab 10 Uhr vorgenommen werden.**
 
 @component('mail::button', ['url' => "https://ecommerceberlin.com/top30earlybird_9f8s83jd"])
 Booking map, preise, buche hier
