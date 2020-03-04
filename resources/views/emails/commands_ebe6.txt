@@ -35,9 +35,9 @@ php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --pr
 
 //EARLYBIRD
 
-php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --previous --reverse --lang=en --defaultlang=en --email="ebe6-earlybird-reminder" --subject=""
+php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --previous --reverse --lang=en --defaultlang=en --email="ebe6-earlybird-reminder" --subject="Thursday 12:00; E-commerce Berlin Expo 2021; Start of the Early Bird sales round"
 
-php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --previous --reverse --lang=de --defaultlang=en --email="ebe6-earlybird-reminder" --subject=""
+php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --previous --reverse --lang=de --defaultlang=en --email="ebe6-earlybird-reminder" --subject="Donnerstag 12:00 Uhr; E-commerce Berlin Expo 2021; Achtung, fertig, LOS! Der Early-Bird-Verkauf beginnt Morgen."
 
 
 
