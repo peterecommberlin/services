@@ -6,7 +6,7 @@ php artisan visitors:restore-from-old-events --domain=targiehandlu.pl --email=te
 18 marca
 ========
 
-php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="3x Speakingslots, Videointerview, Promomaterialien.... warten auf dich." --email=ebe5-promoninja-intro
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="Targi eHandlu przeniesione na 23 października do Warszawy." --email=teh18-postponed
 
 
 =======================================
