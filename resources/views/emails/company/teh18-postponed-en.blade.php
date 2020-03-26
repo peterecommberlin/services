@@ -2,40 +2,42 @@
 
 @component('mail::message')
  
-# Dzień dobry {{ array_get($profile, "fname") }},
+# Hello {{ array_get($profile, "fname") }},
 
-Nadchodzimy z informacja dotyczącą planowanej na kwiecień edycji Targów eHandlu w Krakowie. 
+I would like to inform you about the situation regarding our E-commerce Expo planned for April in Cracow.
 
-Przepraszamy za długie trzymanie w niepewności - musieliśmy przeanalizować sytuację wielowymiarowo, co niestety jest czasochłonne.
+We would also like to apologize for the long-term uncertainty - we had to analyze the situation in many aspects.
 
-## Informacja w skrócie:
+## Brief information:
 
 @component('mail::panel')
 
-Najbliższe - jedyne w tym roku - Targi eHandlu odbędą się **23 października 2020 roku na EXPO XXI w Warszawie**.
+The next - the only one this year - Ecommerce Expo will be held **on October 23, 2020 at EXPO XXI in Warsaw**.
 
-Wszelkie **rezerwacje przestrzeni** wystawienniczej, które dotyczyły planowanej edycji Targów eHandlu w Krakowie, zostają **utrzymane** - bez jakichkolwiek dopłat - w Warszawie.
+All **reservations of the exhibition spaces**, related to planned edition of the Ecommerce Expo in Cracow, are going to be **sustained** - without any additional payments - in Warsaw.
 
 @endcomponent
 
-## Pełna informacja:
+## Complete information:
 
-**Rozporządzenie ministra zdrowia z dnia 14 marca** w sprawie ogłoszenia na obszarze Rzeczypospolitej Polskiej stanu zagrożenia epidemicznego, wprowadzające m.in. **zakaz zgromadzeń pow. 50 osób**, powoduje brak możliwości realizacji Targów eHandlu w dniu 22 kwietnia 2020 roku.
+The regulations from the Polish government (issued on March 14th and constantly tightened) prohibits any public gatherings.
 
-Po analizie prognoz epidemiologów dotyczących prawdopodobnych scenariuszy rozwoju sytuacji, doszliśmy do wniosku, że jakakolwiek próba organizacji Targów w tym półroczu (utrzymanie lokalizacji za wszelką cenę i przesunięcie terminu np na połowę czerwca) obarczona jest zbyt dużym ryzykiem dla wszystkich.
+After analyzing the epidemiological forecasts for probable scenarios for the development of the epidemiological situation, we came to the conclusion that any attempt to organize an event in this half-year is too risky for everyone.
 
-Z uwagi na **kompatybilność hal targowych** w Krakowie i Warszawie (metraż, proporcje ścian hal, rozkład kanałów technicznych) jesteśmy w stanie **przenieść wszystkie rezerwacje** gwarantując **identyczną ekspozycję Wystawców** względem kluczowych elementów Targów jak szlaki komunikacyjne, scena networkingu, sceny prezentacyjne, wejście na Halę. Zmiany będą wyłącznie kosmetyczne - dotyczące głównie szlaków ewakuacyjnych.
+Due to **99% compatibility of the expo halls in Cracow and Warsaw we are able to transfer all reservations** guaranteeing **identical exhibitors' exposure** in relation to key elements of the Expo as communication routes, networking scene, presentation scenes and the entrance. 
 
-Jeśli uczestnictwo w Targach w terminie 23 października 2020 w Warszawie, z uwagi na inne plany, jest dla Państwa nieakceptowalne - prosimy o odpowiedź na wiadomość. Postaramy się znaleźć optymalne rozwiązanie.
+## Possible actions
 
-Jeśli państwa dział księgowości wymaga pisemnego potwierdzenia przeniesienia opłat na edycję Targów w innej lokalizacji i innej dacie - prosimy o kontakt.
+If participation in the Expo on October 23, 2020 in Warsaw is unacceptable to you - please reply to this message. We will try to find the optimal solution.
 
-Dziękujemy za wsparcie i wyrozumiałość.
+If your accounting department requires a written confirmation of transferring fees to the edition of the Expo in a different location and date - please contact us.
 
-Z pozdrowieniami,
+Thank you for your support and understanding.
+
+Best regards,
 
 Adam Zygadlewicz
 
-Prezes Zarządu
+CEO
 
 @endcomponent

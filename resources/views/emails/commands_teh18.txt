@@ -8,6 +8,12 @@ php artisan visitors:restore-from-old-events --domain=targiehandlu.pl --email=te
 
 php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="Targi eHandlu przeniesione na 23 października do Warszawy." --email=teh18-postponed
 
+26 marca
+========
+
+php artisan exhibitors:current-event --defaultlang=en --domain=targiehandlu.pl --lang=en --subject="E-commerce (Cracow) Expo moved to Warsaw; new date October 23rd" --email=teh18-postponed
+
+
 
 =======================================
 
