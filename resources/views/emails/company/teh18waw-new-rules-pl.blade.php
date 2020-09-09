@@ -34,7 +34,7 @@ Maksymalnie 2 osoby (dla stoisk standardowych) i 4 (stoiska Grand) reprezentują
 
 @endcomponent
 
-Aktualna polityka i zasady udziału w Targach będzie aktualizowana na [https://targiehandlu.pl/covid19](https://targiehandlu.pl/covid19)
+Aktualna polityka i zasady udziału w Targach będą aktualizowane na [https://targiehandlu.pl/covid19](https://targiehandlu.pl/covid19)
 
 W razie pytań i sugestii zapraszamy do kontaktu.
 
