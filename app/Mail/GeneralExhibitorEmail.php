@@ -106,7 +106,7 @@ class GeneralExhibitorEmail extends Mailable
 
             if($this->viewlang === "en"){
                 app()->setLocale("en");
-                config(["app.name" => "E-commerce Cracow Expo"]);
+                config(["app.name" => "E-commerce Warsaw Expo"]);
             }
             else
             {
