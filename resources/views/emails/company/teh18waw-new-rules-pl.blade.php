@@ -24,7 +24,7 @@ c) poproszą o spotkanie przez publiczny profil Wystawcy
 
 d) zostaną zaproszeni bezpośrednio przez Wystawcę przez panel wystawcy 
 
-(nad funkcjonalnościami b,c,d aktualnie pracujemy - zostaną udostępnione najpóźniej miesiąc przed Targami)
+(nad funkcjonalnościami b, c, d aktualnie pracujemy - zostaną udostępnione najpóźniej miesiąc przed Targami)
 
 **Liczba Przedstawicieli Wystawcy w ramach stoiska będzie musiała być kontrolowana.**
 
@@ -33,6 +33,8 @@ Maksymalnie 2 osoby (dla stoisk standardowych) i 4 (stoiska Grand) reprezentują
 **Nie będzie możliwa dystrybucja materiałów papierowych poza stoiskiem**
 
 @endcomponent
+
+Aktualna polityka i zasady udziału w Targach będzie aktualizowana na [https://targiehandlu.pl/covid19](https://targiehandlu.pl/covid19)
 
 W razie pytań i sugestii zapraszamy do kontaktu.
 
