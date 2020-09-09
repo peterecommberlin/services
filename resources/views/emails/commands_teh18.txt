@@ -11,8 +11,13 @@ php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl -
 26 marca
 ========
 
-php artisan exhibitors:current-event --defaultlang=en --domain=targiehandlu.pl --lang=en --subject="E-commerce (Cracow) Expo moved to Warsaw; new date October 23rd" --email=teh18-postponed
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=en --subject="E-commerce (Cracow) Expo moved to Warsaw; new date October 23rd" --email=teh18-postponed
 
+
+9 wrzesnia
+========
+
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="Nowe zasady; Targi eHandlu w Warszawie 23 października" --email=teh18waw-new-rules
 
 
 =======================================

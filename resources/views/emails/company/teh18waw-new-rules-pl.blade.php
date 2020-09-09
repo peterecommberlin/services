@@ -14,21 +14,27 @@ Pomijając dodatkowe procedury, do których mieliśmy już okazję się przyzwyc
 
 ## Najważniejsze zmiany dla Wystawców
 
-* Liczba Zwiedzających Targi będzie musiała być ograniczona do osób, które:
+**Liczba Zwiedzających Targi będzie musiała być ograniczona do osób, które:**
 
 a) zarejestrują się podając NIP i zostaną przez nas zaakceptowani
+
 b) jw. lecz zostaną zaakceptowani wcześniej przez Wystawcę w panelu Wystawcy
+
 c) poproszą o spotkanie przez publiczny profil Wystawcy
+
 d) zostaną zaproszeni bezpośrednio przez Wystawcę przez panel wystawcy 
 
-nad funkcjonalnościami b,c,d aktualnie pracujemy - zostaną udostępnione najpóźniej miesiąc przed Targami 
+(nad funkcjonalnościami b,c,d aktualnie pracujemy - zostaną udostępnione najpóźniej miesiąc przed Targami)
 
-* Liczba Przedstawicieli Wystawcy w ramach stoiska będzie musiałą być kontrolowana. Maksymalnie 2 osoby (dla stoisk standardowych) i 4 (stoiska Grand) reprezentujące Wystawcę w 1 momencie. Możliwa jest zmiana Przedstawicieli podczas Wydarzenia (np w połowie wydarzenia)
+**Liczba Przedstawicieli Wystawcy w ramach stoiska będzie musiała być kontrolowana.**
 
-* Nie będzie możliwa dystrybucja materiałów papierowych poza stoiskiem
+Maksymalnie 2 osoby (dla stoisk standardowych) i 4 (stoiska Grand) reprezentujące Wystawcę w 1 momencie. Możliwa będzie zmiana Przedstawicieli podczas Wydarzenia (np w połowie wydarzenia)
+
+**Nie będzie możliwa dystrybucja materiałów papierowych poza stoiskiem**
 
 @endcomponent
 
+W razie pytań i sugestii zapraszamy do kontaktu.
 
 Dziękujemy za wsparcie i wyrozumiałość.
 
