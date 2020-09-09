@@ -4,7 +4,7 @@
  
 # Dzień dobry {{ array_get($profile, "fname") }},
 
-Nadchodzimy z informacjami dotyczącymi nadchodzącej edycji Targów eHandlu w Warszawie.
+Nadchodzimy z informacjami dotyczącymi Targów eHandlu w Warszawie.
 
 Targi odbędą się 23 października, w EXPO XXI w Warszawie, w formule dostosowanej do aktualnych wytycznych dla organizatorów targów przygotowanych przez Ministerstwo Rozwoju i Główny Inspektorat Sanitarny [https://targiehandlu.pl/covid19](https://targiehandlu.pl/covid19)
 
