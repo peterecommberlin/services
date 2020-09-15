@@ -113,7 +113,7 @@ class GeneralExhibitorMessage extends Command {
 
             if(!empty( $exclude_reg_ids ) && in_array($ex->getModel()->id, $exclude_reg_ids) ){
             
-                $this->error("registration excluded" . $ex->email );
+                $this->error("Registration excluded by --exclude_reg_ids: " . $ex->email );
                 continue;                
             }
 
@@ -131,7 +131,7 @@ class GeneralExhibitorMessage extends Command {
                // continue;
             }
 
-            $lang           = $ex->getLang();
+            $lang           = $ex->getLang($defaultlang);
             $name           = $ex->getName();
             $event_manager  = $ex->getEventManager();
             //$cReps          = $ex->getReps();

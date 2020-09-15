@@ -3,6 +3,22 @@
 
 php artisan visitors:restore-from-old-events --domain=targiehandlu.pl --email=teh18-cfp1 --subject="Targi eHandlu mają problem. Proszę, pomoż nam z prezentacjami." --events=81,83,85,87,89 --throttle=50000
 
+18 marca
+========
+
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="Targi eHandlu przeniesione na 23 października do Warszawy." --email=teh18-postponed
+
+26 marca
+========
+
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=en --subject="E-commerce (Cracow) Expo moved to Warsaw; new date October 23rd" --email=teh18-postponed
+
+
+9 wrzesnia
+========
+
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="Nowe zasady; Targi eHandlu w Warszawie 23 października" --email=teh18waw-new-rules
+
 
 =======================================
 
