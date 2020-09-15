@@ -28,6 +28,7 @@ Submit your presentation proposal!
 @endcomponent
 
 **How does it work?** 
+
 The deadline for submitting proposals is 30.09.2020.
 
 Before you submit your proposal and start working on your presentation, please bear in mind that we’re not looking for sales pitches. Based on our experience, the audience is not interested in listening to them unless they’ve already known or researched your services or products, or unless you have a great case to show. 
