@@ -50,10 +50,10 @@ php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --pr
 
 
 
+16 września
+===========
 
-
-
-
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="Reminder: Submit a presentation proposal for E-commerce Berlin Expo 2021" --email=ebe6-cfp-reminder
 
 
 

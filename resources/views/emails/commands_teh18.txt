@@ -19,6 +19,8 @@ php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl -
 
 php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="Nowe zasady; Targi eHandlu w Warszawie 23 października" --email=teh18waw-new-rules
 
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=en --subject="E-commerce Warsaw Expo - COVID-19 update" --email=teh18waw-new-rules
+
 
 =======================================
 

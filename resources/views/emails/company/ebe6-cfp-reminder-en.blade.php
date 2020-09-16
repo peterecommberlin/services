@@ -11,20 +11,25 @@ We would like to kindly remind you about the ** E-commerce Berlin Expo - Call fo
 We are looking for data-driven case studies that cover the following topics:
 
 > Tips on new technologies that really work – along with practical examples
+
 > Best practices in multi-channel
+
 > Actionable insights on the use of data
+
 > Examples of successful personalization and its impact on customer experience
+
 > Cross-border opportunities and successful expansion into foreign markets
+
 > Other practical examples of e-commerce related problems solved or successes achieved
+
 
 We strongly encourage the Service Providers to submit with a representative of an Online Store together - case study formula.
 
 
-
-To start submitting your presentation proposal just press the button below.
+To start submitting your presentation proposal just follow the link by pressing the button below.
 
 @component('mail::button', ['url' => "https://ecommerceberlin.com/speaking"])
-Submit your presentation proposal!
+Submit a presentation proposal
 @endcomponent
 
 **How does it work?** 
@@ -35,8 +40,6 @@ Before you submit your proposal and start working on your presentation, please b
 
 
 Best regards,
-
-TEST
 
 Lucas Zarna
 
