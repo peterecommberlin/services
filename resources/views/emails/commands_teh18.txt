@@ -15,11 +15,20 @@ php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl -
 
 
 9 wrzesnia
-========
+===========
 
 php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="Nowe zasady; Targi eHandlu w Warszawie 23 października" --email=teh18waw-new-rules
 
 php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=en --subject="E-commerce Warsaw Expo - COVID-19 update" --email=teh18waw-new-rules
+
+
+8 października
+==============
+
+
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="[ANKIETA] Cała Polska objęta tzw. żółtą strefą. Co powinniśmy zrobić z Targami eHandlu?" --email=teh18-covid
+
+
 
 
 =======================================
