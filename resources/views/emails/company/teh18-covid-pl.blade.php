@@ -18,13 +18,13 @@ Dochodzą do nas głosy, że oprócz obaw związanych ze zdrowiem, biorąc pod u
 
 Naszym zadaniem jest zweryfikować zasadność takich głosów konfrontując je z zdaniem wszystkich, których sytuacja dotyczy.
 
-Na ten moment rozważamy 2 opcje:
+**Na ten moment rozważamy 2 opcje:**
 
 A) realizację Targów zgodnie z planem i dostosowanie ich do świeżo ogłoszonych ograniczeń (odmówienie części zarejestrowanym uczestnikom wejścia)
 
 B) zmianę terminu na II kwartał 2021 (lokalizacja Kraków bądź Warszawa)
 
-opcji (B) nie będziemy mogli przeprowadzić bez zgody minimum 80% Wystawców i woli dopłaty w wysokości 20% wartości przestrzeni wystawienniczej na miesiąc przed kolejnymi Targami (nie jesteśmy w stanie po raz kolejny bezkosztowo przenieść rezerwacji)
+opcji (B) nie będziemy mogli przeprowadzić bez zgody większości Wystawców i woli dopłaty w wysokości 25% wartości przestrzeni wystawienniczej na miesiąc przed kolejnymi Targami (nie jesteśmy w stanie po raz kolejny bezkosztowo przenieść rezerwacji)
 
 **Która opcja jest dla Twojej firmy najlepsza?**
 
