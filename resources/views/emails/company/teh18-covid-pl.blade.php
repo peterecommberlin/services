@@ -22,9 +22,9 @@ Naszym zadaniem jest zweryfikować zasadność takich głosów konfrontując je 
 
 A) realizację Targów zgodnie z planem i dostosowanie ich do świeżo ogłoszonych ograniczeń (odmówienie części zarejestrowanym uczestnikom wejścia)
 
-B) zmianę terminu na II kwartał 2021 (lokalizacja Kraków bądź Warszawa)
+B) zmianę terminu na II kwartał 2021 (lokalizacja Kraków bądź Warszawa). Wtedy 23/10 nagralibyśmy tylko prezentacje Prelegentów.
 
-opcji (B) nie będziemy mogli przeprowadzić bez zgody większości Wystawców i woli dopłaty w wysokości 25% wartości przestrzeni wystawienniczej na miesiąc przed kolejnymi Targami (nie jesteśmy w stanie po raz kolejny bezkosztowo przenieść rezerwacji)
+opcji (B) nie będziemy mogli przeprowadzić bez zgody większości Wystawców i woli dopłaty w wysokości 25% wartości przestrzeni wystawienniczej na ok. miesiąc przed kolejnymi Targami (nie jesteśmy w stanie po raz kolejny bezkosztowo przenieść rezerwacji)
 
 **Która opcja jest dla Twojej firmy najlepsza?**
 
