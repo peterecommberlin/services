@@ -30,6 +30,21 @@ php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl -
 
 
 
+13 października
+==============
+
+
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="80 do 20. Wyniki ankiety dot. ew. przełożenia Targów eHandlu." --email=teh18-covid-results
+
+
+
+
+
+
+
+
+
+
 
 =======================================
 
