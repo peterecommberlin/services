@@ -18,7 +18,9 @@ Zgodnie z treścią poprzedniej wiadomości (jej kopia na samym końcu), z uwagi
 Oświadczenie Wystawcy, który chce przełożenia Targów
 @endcomponent
 
-**Decyzję o przełożeniu terminu będziemy mogli podjąć po otrzymaniu podpisanych oświadczeń od minimum 85% Wystawców.** Z uwagi na trzymanie wielu dostawców oraz Państwa w niepewności chcielibyśmy podjąć ostateczną decyzję możliwie szybko. Niezbędne są do tego podpisane oświadczenia, dlatego prosimy o ich **przesłanie maksymalnie do czwartku rano.**
+**Decyzję o przełożeniu terminu będziemy mogli podjąć po otrzymaniu podpisanych oświadczeń od minimum 85% Wystawców.** 
+
+Z uwagi na trzymanie wielu dostawców (AV, catering, zabudowa, EXPO XXI) oraz Państwa w niepewności chcielibyśmy podjąć ostateczną decyzję możliwie szybko. Niezbędne są do tego podpisane oświadczenia, dlatego prosimy o ich **przesłanie maksymalnie do czwartku rano.**
 
 
 ## Uzasadnienia firm, które NIE CHCĄ przekładania terminu Targów
