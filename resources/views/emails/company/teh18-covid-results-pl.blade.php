@@ -14,7 +14,7 @@ Zgodnie z treścią poprzedniej wiadomości (jej kopia na samym końcu), z uwagi
 
 **Na ten moment nasz zapasowy (roboczy) termin to 10 czerwca 2021 (Warszawa)**
 
-@component('mail::button', ['url' =• "https://res.cloudinary.com/eventjuicer/image/upload/v1602587842/TargieHandlu-OswiadczenieWystawcy.pdf"])
+@component('mail::button', ['url' => "https://res.cloudinary.com/eventjuicer/image/upload/v1602587842/TargieHandlu-OswiadczenieWystawcy.pdf"])
 Oświadczenie Wystawcy, który chce przełożenia Targów
 @endcomponent
 
