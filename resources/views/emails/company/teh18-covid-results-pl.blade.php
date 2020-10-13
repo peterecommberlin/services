@@ -10,7 +10,7 @@ Oto wyniki (uzasadnienia publikujemy poniżej).
 
 <img src="https://res.cloudinary.com/eventjuicer/image/upload/c_fit,w_650/v1602586681/teh18postponed.png" alt="wyniki ankiety" style="margin: 10px auto;" />
 
-Zgodnie z treścią poprzedniej wiadomości (jej kopia na samym końcu), z uwagi na to że już raz nie mogliśmy przeprowadzić Targów (jak to ujął jeden z Wystawców, w wyniku "bad luck"), **możliwość przełożenia nadchodzącej edycji uzależniamy od gotowości minimum 85% Wystawców do współfinansowania tej decyzji** (wbrew niektórym opiniom, organizacja Targów to nie tylko najem hali i otwarcie jej w dzień montażu)
+Zgodnie z treścią poprzedniej wiadomości (jej kopia na samym końcu), z uwagi na to że już raz nie mogliśmy przeprowadzić Targów (jak to ujął jeden z Wystawców, w wyniku "bad luck"), **możliwość przełożenia nadchodzącej edycji uzależniamy od gotowości minimum 85% Wystawców do finansowego wsparcia tej decyzji** (wbrew niektórym opiniom, organizacja Targów to nie tylko najem hali i otwarcie jej w dzień montażu)
 
 **Na ten moment nasz zapasowy (roboczy) termin to 10 czerwca 2021 (Warszawa)**
 
