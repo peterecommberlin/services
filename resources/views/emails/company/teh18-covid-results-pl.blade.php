@@ -212,7 +212,7 @@ opcji (B) nie będziemy mogli przeprowadzić bez zgody większości Wystawców i
 
 **Która opcja jest dla Twojej firmy najlepsza?**
 
-@component('mail::button', ['url' =• "https://forms.gle/L3LAxwRWQ7WTKh146"])
+@component('mail::button', ['url' => "https://forms.gle/L3LAxwRWQ7WTKh146"])
 Link do ankiety
 @endcomponent
 
