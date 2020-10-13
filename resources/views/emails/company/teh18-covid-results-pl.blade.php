@@ -173,6 +173,9 @@ Oświadczenie Wystawcy, który chce przełożenia Targów
 • Obawa przed Covidem przy jednocześnie niskiej frekwencji uczestników
 
 
+@component('mail::button', ['url' => "https://res.cloudinary.com/eventjuicer/image/upload/v1602587842/TargieHandlu-OswiadczenieWystawcy.pdf"])
+Oświadczenie Wystawcy, który chce przełożenia Targów
+@endcomponent
 
 
 Dziękujemy za wsparcie i wyrozumiałość.
@@ -212,9 +215,7 @@ opcji (B) nie będziemy mogli przeprowadzić bez zgody większości Wystawców i
 
 **Która opcja jest dla Twojej firmy najlepsza?**
 
-@component('mail::button', ['url' => "https://forms.gle/L3LAxwRWQ7WTKh146"])
-Link do ankiety
-@endcomponent
+(Link do ankiety)
 
 Jesteśmy również otwarci na ewentualne inne pomyśly - może istnieją jeszcze jakieś inne rozwiązania, które jeszcze lepiej realizują kompromis interesów wszystkich stron.
 
