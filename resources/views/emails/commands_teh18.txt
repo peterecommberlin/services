@@ -37,8 +37,11 @@ php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl -
 php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="80 do 20. Wyniki ankiety dot. ew. przełożenia Targów eHandlu." --email=teh18-covid-results
 
 
+16 października
+==============
 
 
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="Targi odwołane. Czerwona strefa w Warszawie." --email=teh18-red-zone
 
 
 
