@@ -43,7 +43,7 @@ php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl -
 
 php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="Targi odwołane. Czerwona strefa w Warszawie." --email=teh18-red-zone
 
-
+php artisan visitors:current-event --domain=targiehandlu.pl --subject="23/10/2020 Targi eHandlu w Warszawie odwołane." --email=teh18-covid
 
 
 
