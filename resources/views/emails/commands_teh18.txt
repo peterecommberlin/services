@@ -45,6 +45,10 @@ php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl -
 
 php artisan visitors:current-event --domain=targiehandlu.pl --subject="23/10/2020 Targi eHandlu w Warszawie odwołane." --email=teh18-covid
 
+19 października
+==============
+
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="Tryby rozwiązania umowy w związku z odwołaniem Targów." --email=teh18-red-zone-final
 
 
 
