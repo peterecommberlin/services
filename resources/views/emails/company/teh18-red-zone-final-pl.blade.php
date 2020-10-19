@@ -4,11 +4,11 @@
  
 # Cześć {{ array_get($profile, "fname") }},
 
-**Od soboty Warszawa znalazła sie w tzw. "czerwonej strefie" zagrożenia epidemicznego, warszawska edycja Targów eHandlu zostaje odwołana z przyczyn niezależnych od organizatora.**
+Od soboty Warszawa znalazła sie w tzw. "czerwonej strefie" zagrożenia epidemicznego. **Warszawska edycja Targów eHandlu została odwołana z przyczyn niezależnych od organizatora.**
 
 Następna edycja Targów odbędzie się prawdopodobnie 10 czerwca 2021 w Warszawie.
 
-Dla Wystawców przewidzieliśmy 2 drogi rozwiązania umowy: 1) rozwiązania umowy (z potrąceniem 30% wpłaty tytułem poniesionych przez organizatora kosztów organizacji) 2) zaliczenie opłaty na poczet kolejnej edycji (obowiązuje dopłata 15%) 
+Dla Wystawców przewidzieliśmy 2 drogi rozwiązania umowy: 1) rozwiązania umowy z potrąceniem 30% wpłaty tytułem poniesionych przez organizatora kosztów organizacji 2) zaliczenie opłaty na poczet kolejnej edycji z dopłatą 15%
 
 Prosimy pobrać stosowne oświadczenie i odesłać do nas do 30 października.
 
@@ -20,7 +20,7 @@ Rozwiązanie umowy
 Przeniesienie opłaty
 @endcomponent
 
-**W przypadku kiedy wysłano do nas już oświadczenie o chęci dopłaty 25% (analiza możliwości przeniesienia Targów na życzenie Wystawców zanim ogłoszono "czerwoną strefę") i nadal chcielibyście Państwo przenieść opłatę, możemy odesłać nasze oświadczenie o obniżeniu dopłaty z 25% do 15% (prośba o stosowną informację zwrotną).**
+**W przypadku kiedy wysłano do nas już oświadczenie o chęci dopłaty 25% (analiza możliwości przeniesienia Targów na życzenie Wystawców po ogłoszeniu "żółtej strefy") i nadal chcielibyście Państwo przenieść opłatę, możemy odesłać nasze oświadczenie o obniżeniu dopłaty z 25% do 15% (prośba o stosowną informację zwrotną).**
 
 
 Z pozdrowieniami,
