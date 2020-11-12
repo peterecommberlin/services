@@ -59,6 +59,14 @@ php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.c
 
 
 
+12 listopada
+============
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="E-commerce Germany Awards - Submit your entry now!" --email=ebe6-ega-info-exhibitors
+
+
+
+
 
 
 =======================================
