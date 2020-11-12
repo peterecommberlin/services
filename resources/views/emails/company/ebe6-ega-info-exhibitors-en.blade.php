@@ -8,7 +8,7 @@ We are happy to announce that submissions for the 4th edition of the **E-commerc
 
 ## As our exhibitor, you can take part in the contest completely free of charge and increase your visibility in the e-commerce industry! 
 
-Submit your application **by November 29, 2019**  - in one of the 10 different categories:
+Submit your application **by November 29, 2020**  - in one of the 10 different categories:
 
 * Best Sales Generating Tool 
 
@@ -36,7 +36,9 @@ To submit an entry, please complete and save the online entry form.
 Submit your company!
 @endcomponent
 
-Add a business trip to Berlin to your event calendar today! Remember that as an exhibitor, you have two tickets to the E-commerce Germany Awards 2020 ceremony included in your exhibitor package. The Gala will be a part of the pre-event party taking place on the 12th of February 2020. 
+Add a business trip to Berlin to your event calendar today! 
+
+Remember that as an exhibitor, you have two tickets to the E-commerce Germany Awards 2020 ceremony included in your exhibitor package. The Gala will be a part of the pre-event party taking place on the 12th of February 2020. 
 
 
 Best regards,
