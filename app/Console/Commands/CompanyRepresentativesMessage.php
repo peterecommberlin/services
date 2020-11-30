@@ -8,6 +8,7 @@ use Eventjuicer\Jobs\GeneralExhibitorMessageJob as Job;
 use Eventjuicer\Models\ParticipantFields;
 use Eventjuicer\Services\Personalizer;
 use Eventjuicer\Services\Exhibitors\Console;
+use Eventjuicer\Services\Exhibitors\CompanyData;
 
 class CompanyRepresentativesMessage extends Command
 {
@@ -29,9 +30,9 @@ class CompanyRepresentativesMessage extends Command
         parent::__construct();
     }
  
-    public function handle(Console $service)
+    public function handle(Console $service, AllExhibitorsReps $allreps)
     {
-
+        $service->setParams($this->options());
 
         $viewlang   = $this->option("lang");
         $defaultlang = $this->option("defaultlang");
@@ -81,30 +82,32 @@ class CompanyRepresentativesMessage extends Command
             LET'S FUCKING START!
         **/
 
+        $role  = $this->anticipate('representative, party?', ['representative', 'party']);
+        $whatWeDo = $this->anticipate("test?, send?", ["test", "send"]);
 
-        $route = new Resolver( $domain );
+        $service->run($domain);
 
-        $eventId =  $route->getEventId();
+        $eventId =  $service->getEventId();
+
+        AllExhibitorsReps::setEventId( $eventId);
 
         $this->info("Event id: " . $eventId);
 
-        $reps = $repo->get($eventId, "representative");
+        $reps = $allreps->get($role, false);
 
         $this->info("Number of reps: " . $reps->count() );
 
-        $sendable->checkUniqueness(true);
+        $sendable = $allreps->getSendable($role);
 
-        $sendable->setMuteTime(20); //minutes!!!!
-
-        $reps = $sendable->filter($reps, $eventId);
-
-        $this->info("Reps that can be notified: " . $reps->count() );
+        $this->info("Reps that can be notified: " . $sendable->count() );
 
         $done = 0;
 
         $phones = array();
 
-        foreach($reps as $rep)
+        $items = $whatWeDo === "send" ? $sendable : $reps;
+
+        foreach($items as $rep)
         {
             //do we have company assigned?
             $phone = "";
@@ -115,7 +118,8 @@ class CompanyRepresentativesMessage extends Command
                continue;
             }
 
-           
+            $companydata = new CompanyData();
+
             $companyProfile = $cd->toArray($rep->company);
 
             $lang = !empty($companyProfile["lang"]) ? $companyProfile["lang"] : $defaultlang;
