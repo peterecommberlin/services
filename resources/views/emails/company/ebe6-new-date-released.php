@@ -27,7 +27,7 @@ Best regards,
 Peter Szczepaniak & Mark Tomaszewski
 Co-Founders of the E-commerce Berlin Expo
 
-<LINK DO GRAFIKI Z PODPISAMI ZNAJDUJE SIĘ W KOMENTARZU DO PULLa>
+<LINK DO GRAFIKI Z PODPISAMI ZNAJDUJE SIĘ W KOMENTARZU DO PULLa >
 
 @endcomponent
 
