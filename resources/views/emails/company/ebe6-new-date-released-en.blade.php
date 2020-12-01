@@ -10,7 +10,7 @@ We strongly believed that we were capable of organizing the event with all appli
 
 In addition to that, we’ve talked to many of current exhibitors and companies interested in participating as exhibitors and they were only interested in a physical/on-site formula of the event. We know how important and fruitful are face-to-face meetings for all parties therefore hybrid or digitial events might not bring expected outcome.
 
-In order for this to happen and to meet participants’ expectations, **we'd like to sustain the initially proposed formula of our event. Hybrid or online versions are therefore not an acceptable substitute in our case.**
+In order for this to happen and to meet participants’ expectations, **we'd like to sustain the initially proposed formula of our event. Hybrid or online versions are therefore not an acceptable substitutes in our case.**
 
 In relation to the above mentioned and the decision about postponing our main project - E-commerce Berlin Expo - to May 27, 2021, **we have also decided to extend the deadline for submissions to the E-commerce Germany Awards until January 8, 2021 **
 
@@ -20,12 +20,11 @@ Looking forward to seeing you in May next year!
 
 Best regards,
 
-<img src="https://res.cloudinary.com/ecommerceberlin/image/upload/v1606743599/images/podpisy_mt_psz.png" alt="signatures" style="max-width: 250px;">
+<img src="https://res.cloudinary.com/ecommerceberlin/image/upload/v1606743599/images/podpisy_mt_psz.png" alt="signatures" style="max-width: 300px;">
 
 Peter Szczepaniak & Mark Tomaszewski
 
 Managing Partners, E-commerce Berlin Expo
-
 
 @endcomponent
 
