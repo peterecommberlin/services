@@ -8,7 +8,7 @@ Due to the current COVID-19 restrictions on organizing trade fairs and conferenc
 
 We strongly believed that we were capable of organizing the event with all applicable restrictions, but the concerns about the number of people who would attend when organized in February, our commitment to prioritizing health of attendees, highest organizational standards and overall outcome (ROI) of the event got us to make this decision.
 
-In addition to that, we’ve talked to many of current exhibitors and companies interested in participating as exhibitors and they were only interested in a physical/on-site formula of the event. We know how important and fruitful are face-to-face meetings for all parties therefore hybrid or digitial events may not bring expected outcome.
+In addition to that, we’ve talked to many of current exhibitors and companies interested in participating as exhibitors and they were only interested in a physical/on-site formula of the event. We know how important and fruitful are face-to-face meetings for all parties therefore hybrid or digitial events might not bring expected outcome.
 
 In order for this to happen and to meet participants’ expectations, **we'd like to sustain the initially proposed formula of our event. Hybrid or online versions are therefore not an acceptable substitute in our case.**
 
