@@ -72,7 +72,7 @@ php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.c
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="E-commerce Berlin Expo 2021 has been postponed. Check the new date." --email=ebe6-new-date-released
 
 
-
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Die E-commerce Berlin Expo 2021 wird verschoben - neues Datum" --email=ebe6-new-date-released
 
 
 
