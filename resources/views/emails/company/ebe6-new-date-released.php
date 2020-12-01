@@ -4,30 +4,28 @@
  
 # Hello {{ array_get($profile, "fname") }},
 
-Due to the current situation with Covid-19, and in light of the current health and major events regulations that are in force, the overall development of the sanitary crisis and the quality standards regarding the number and type of attendees that we have been striving towards for months are no longer guaranteed.
+Due to the current COVID-19 restrictions on organizing trade fairs and conferences, people's consternation about the course of the COVID-19 pandemic, **we have decided to postpone the event to May 27th, 2021.**
 
-# To protect the trust and funds already invested in our event by our respective partners, we have decided to postpone the event until May 27th, 2021.
+We strongly believed that we were capable of organizing the event with all applicable restrictions, but the concerns about the number of people who would attend when organized in February, our commitment to prioritizing health of attendees, highest organizational standards and overall outcome (ROI) of the event got us to make this decision.
 
-From a business perspective, the situation is obviously less than ideal at the moment. We strongly believe that we would be able to organize an event with all of the current restrictions, but we are worried about the number of people who would attend it in February. We have always prioritized health and the highest organizational standards above all else, but the limitations on indoor event attendees in Q1 2021 might affect your ROI/outcome of the event.
+In addition to that, we’ve talked to many of current exhibitors and companies interested in participating as exhibitors and they were only interested in a physical/on-site formula of the event. We know how important and fruitful are face-to-face meetings for all parties therefore hybrid or digitial events may not bring expected outcome.
 
+In order for this to happen and to meet participants’ expectations, **we'd like to sustain the initially proposed formula of our event. Hybrid or online versions are therefore not an acceptable substitute in our case.**
 
-We’ve talked with a lot of companies, and a huge group of our current and potential exhibitors are only interested in a physical version of the event. We know how important face to face meetings are for all exhibitors, and we'd like to deliver the highest quality event possible with the most fruitful talks during the show!
-
-In order for this to happen and to meet participants’ expectations, we'd like to persevere with the initially proposed version of this event. Hybrid or online versions are therefore not an acceptable substitute in our case.
-
-In relation to the above mentioned and the decision about postponing the main project E-commerce Berlin Expo to May 27, 2021, we have also decided to extend the deadline for submissions in the E-commerce Germany Awards. 
-
-**The new deadline for submissions is 8 January 2021!**
+In relation to the above mentioned and the decision about postponing our main project - E-commerce Berlin Expo - to May 27, 2021, **we have also decided to extend the deadline for submissions to the E-commerce Germany Awards until January 8, 2021 **
 
 We thank you for your continued support and wish you the best for the coming months.
+
 Looking forward to seeing you in May next year!
 
 Best regards,
 
-Peter Szczepaniak & Mark Tomaszewski
-Co-Founders of the E-commerce Berlin Expo
+<img src="https://res.cloudinary.com/ecommerceberlin/image/upload/v1606743599/images/podpisy_mt_psz.png" alt="signatures" style="max-width: 250px;">
 
-<LINK DO GRAFIKI Z PODPISAMI ZNAJDUJE SIĘ W KOMENTARZU DO PULLa >
+Peter Szczepaniak & Mark Tomaszewski
+
+Managing Partners, E-commerce Berlin Expo
+
 
 @endcomponent
 
