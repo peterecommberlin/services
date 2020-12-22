@@ -12,9 +12,7 @@ We want to thank you for your partnership and collaboration in 2020.
 
 **With this in mind,we wish Merry Christmas and a Happy New Year 2021 to you, your team and your families!**
 
-
 Your E-commerce Berlin Expo Team
-
 
 @endcomponent
 

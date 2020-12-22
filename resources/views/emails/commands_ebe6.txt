@@ -8,7 +8,8 @@ php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --pr
 
 php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --previous --lang=de --defaultlang=en --email="ebe6-top30" --subject="EBE2021: Exklusive Salesrunde für die TOP30 Unternehmen aus dem vorherigen Ausstellerwettbewerb"
 
-//EARLYBIRD
+//EARLYBIRD....
+
 
 php artisan exhibitors:award --domain=ecommerceberlin.com --award=earlybird --previous --reverse --lang=en --defaultlang=en --email="ebe6-earlybird" --subject="Beginning of the Early Bird sales for the E-commerce Berlin Expo 2021"
 
@@ -74,6 +75,14 @@ php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.c
 
 php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Die E-commerce Berlin Expo 2021 wird verschoben - neues Datum" --email=ebe6-new-date-released
 
+
+22 grudnia
+
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=en --subject="2020 is ending and we would like to tell you that..." --email=ebe6-christmas-message
+
+
+php artisan exhibitors:current-event --defaultlang=en --domain=ecommerceberlin.com --lang=de --subject="Das Jahr 2020 geht zu Ende und wir möchten Ihnen sagen, dass.." --email=ebe6-christmas-message
 
 
 

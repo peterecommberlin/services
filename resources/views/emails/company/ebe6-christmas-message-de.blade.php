@@ -13,8 +13,8 @@ Wir möchten uns für eine partnerliche und gute Zusammenarbeit in diesem Jahr b
 **In diesem Sinne frohe Weihnachten und einen guten Rutsch ins neue Jahr 2021!**
 
 Euer 
-E-commerce Berlin Expo Team
 
+E-commerce Berlin Expo Team
 
 
 @endcomponent
