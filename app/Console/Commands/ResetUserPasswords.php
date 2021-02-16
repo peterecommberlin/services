@@ -1,6 +1,6 @@
 <?php
 
-namespace Eventjuicer\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
