@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use Eventjuicer\Models\User;
+use Eventjuicer\Models\CompanyAdmin;
 
 
 class ResetUserPasswords extends Command
@@ -31,7 +31,7 @@ class ResetUserPasswords extends Command
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(CompanyAdmin $user)
     {
         parent::__construct();
 
