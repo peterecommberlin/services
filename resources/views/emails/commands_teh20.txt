@@ -1,0 +1,12 @@
+18 lutego
+=========
+
+
+php artisan exhibitors:current-event --defaultlang=pl --domain=targiehandlu.pl --lang=pl --subject="Co nowego w ofercie Twojej firmy? Publikacja na ehandel.com.pl" --email=ehandelcompl
+
+
+
+=======================================
+
+supervisorctl restart laravel-services:*
+php artisan queue:restart
