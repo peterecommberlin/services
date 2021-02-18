@@ -12,7 +12,7 @@ Każdy dostawca produktów i usług do prowadzenia eHandlu będzie miał link do
 Publikacja jest bezpłatna. Zachęcamy do nadsyłania materiałów na **redakcja@ehandel.com.pl** (lub przekazania adresu działowi/agencji PR)
 @endcomponent
 
-Korzystając z okazji polecamy lekturę [wywiadu z Pawłem Piotuchem z IdoSell](https://ehandel.com.pl/pawel-piotuch-idosell,1894)
+Korzystając z okazji polecamy lekturę [wywiadu z Pawłem Piotuchem z IdoSell](https://ehandel.com.pl/pawel-piotuch-idosell,1894). Zapytaliśmy Pawła m.in. o zmiany w braży w kontekście COVID-19 i czy omnichannel jest czy nie jest "buzzwordem".
 
 
 Z pozdrowieniami,
