@@ -17,7 +17,7 @@ Route::get('/', function()
 });
 
 
-Route::get('/marek', function () {
+Route::get('/ebe', function () {
     return Artisan::call('contestants:votes', [
         
         //'--domain' => 'ecommerceberlin.com'
@@ -27,6 +27,17 @@ Route::get('/marek', function () {
 
     //
 });
+
+
+Route::get('/ega', function () {
+    return Artisan::call('contestants:votes', [
+        '--domain' 	=> 'ecommercegermanyawards.com',
+        '--role' 	=> 'contestant_company'
+    ]);
+
+    //
+});
+
 
 
 Route::get('/p', function()
